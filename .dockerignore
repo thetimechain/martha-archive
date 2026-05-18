@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.env
+.env.*
+*.log
+.fly
+.github
+README.md
+tests
+screenshots
+verification-screenshots
+reports
+data
+**/*.test.ts

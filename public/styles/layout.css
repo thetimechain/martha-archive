@@ -1,0 +1,48 @@
+.page {
+  max-width: var(--measure-page);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+.page--wide { max-width: var(--measure-wide); }
+.page--prose { max-width: var(--measure-prose); }
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  gap: var(--space-6);
+}
+@media (max-width: 900px) {
+  .grid-2col { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5) var(--space-4);
+}
+@media (max-width: 900px) { .archive-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .archive-grid { grid-template-columns: 1fr; } }
+
+.hero {
+  padding: var(--space-7) 0 var(--space-5);
+  text-align: left;
+}
+.hero h1 { font-family: var(--font-display); font-size: var(--size-display); margin: 0 0 var(--space-2); font-weight: 400; }
+.hero .lede { max-width: var(--measure-prose); font-style: italic; font-size: var(--size-body); color: var(--mid-gray); margin: 0 0 var(--space-3); }
+
+.section { padding: var(--space-5) 0; }
+.section h2 { font-family: var(--font-display); font-size: var(--size-h2); margin: 0 0 var(--space-3); }
+.section .section-eyebrow { font-family: var(--font-smallcap); font-size: var(--size-eyebrow); letter-spacing: var(--track-eyebrow); text-transform: uppercase; color: var(--bedford-gray); margin-bottom: var(--space-1); }
+
+.results-header { padding: var(--space-3) 0 var(--space-1); }
+.results-header h1 { font-family: var(--font-display); font-size: var(--size-h2); margin: 0; }
+.active-filters { display: flex; flex-wrap: wrap; gap: var(--space-1); padding: var(--space-1) 0 var(--space-3); }
+.active-filter { font-family: var(--font-smallcap); font-size: var(--size-eyebrow); letter-spacing: var(--track-eyebrow); text-transform: uppercase; color: var(--body-text); border: var(--hairline); padding: 2px var(--space-2); text-decoration: none; }
+.active-filter:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+.good-things { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); padding: var(--space-3) 0; }
+@media (max-width: 900px) { .good-things { grid-template-columns: 1fr; } }
+.good-thing blockquote { font-family: var(--font-display); font-style: italic; font-size: var(--size-h2); margin: 0 0 var(--space-2); line-height: 1.25; }
+.good-thing cite { font-family: var(--font-smallcap); font-size: var(--size-eyebrow); letter-spacing: var(--track-eyebrow); text-transform: uppercase; color: var(--bedford-gray); font-style: normal; }
+.good-thing a { text-decoration: none; color: inherit; display: block; padding: var(--space-2) 0; border-top: var(--hairline-bold); }
+.good-thing a:hover blockquote { color: var(--terracotta); }

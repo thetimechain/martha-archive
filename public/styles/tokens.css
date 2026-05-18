@@ -1,0 +1,91 @@
+/* tokens.css — Martha Stewart Living, 1990s identity
+   Source: E:/github/martha/1990s-martha-stewart-design-system.md
+   All names and hex values mirror that file exactly. */
+
+:root {
+  /* ─── Araucana Colors (1995) — signature 90s palette ─── */
+  --araucana-eggshell-blue: #BFD3CE;
+  --robins-egg:             #A7C7C2;
+  --bedford-gray:           #9CA39C;
+  --dove:                   #D8D5CC;
+  --buttermilk:             #F1E8D2;
+  --pale-sage:              #B4BBA1;
+  --wisteria:               #C8BFD4;
+  --pale-buttercup:         #EFE0A8;
+
+  /* ─── Colors of the Garden (1992) — original palette ─── */
+  --hosta:      #7C8B6F;
+  --hydrangea:  #9FB4C9;
+  --wedgwood:   #9FB1C0;
+  --tomato:     #B84A3E;
+  --crocus:     #D9C7B0;
+  --russet:     #8B5A3C;
+
+  /* ─── Colors of Skylands (1999) — later, moodier ─── */
+  --skylands-blue: #6A7E89;
+  --stone:         #A8A39A;
+  --lichen:        #8C9075;
+  --putty:         #C8B89C;
+
+  /* ─── Core neutrals (page / canvas / type) ─── */
+  --page-cream:      #F5F0E4;
+  --page-warm-white: #FBF8F0;
+  --body-text:       #2E2A24;
+  --mid-gray:        #6B665E;
+  --rule:            #C9C1B0;
+  --border:          #C9C1B0;
+
+  /* ─── Accents derived from palettes (for focus, drop-caps) ─── */
+  --terracotta: var(--tomato);
+  --drop-cap-eggshell: var(--araucana-eggshell-blue);
+  --drop-cap-terracotta: var(--tomato);
+  --drop-cap-sage: var(--pale-sage);
+  --accent-sage: var(--hosta);
+
+  /* ─── Type families ─── */
+  --font-display: 'Cormorant Garamond', 'Bodoni Moda', 'Bodoni 72', Didot, 'Times New Roman', serif;
+  --font-body:    'Libre Caslon Text', 'EB Garamond', 'Adobe Caslon Pro', Garamond, Georgia, serif;
+  --font-smallcap:'Cormorant SC', 'Copperplate Gothic', 'Trade Gothic', Georgia, serif;
+
+  /* ─── Type ramp (px → rem reference at 16px root) ─── */
+  --size-display-xl: 4.5rem;   /* 72px — hero wordmark */
+  --size-display:    2.75rem;  /* 44px — page openers */
+  --size-h2:         1.75rem;  /* 28px — section titles */
+  --size-h3:         1.25rem;  /* 20px — card titles */
+  --size-eyebrow:    0.75rem;  /* 12px — small caps */
+  --size-body:       1.0625rem;/* 17px — generous body */
+  --size-caption:    0.8125rem;/* 13px */
+  --size-dropcap:    4.5rem;
+
+  /* ─── Letterspacing ─── */
+  --track-display: 0.18em;
+  --track-eyebrow: 0.22em;
+  --track-caps:    0.14em;
+  --track-body:    0.005em;
+
+  /* ─── Leading ─── */
+  --lh-display: 1.05;
+  --lh-h2:      1.18;
+  --lh-body:    1.65;
+  --lh-caption: 1.45;
+
+  /* ─── Spacing scale (8px base, generous) ─── */
+  --space-1:  0.5rem;
+  --space-2:  1rem;
+  --space-3:  1.5rem;
+  --space-4:  2rem;
+  --space-5:  3rem;
+  --space-6:  4.5rem;
+  --space-7:  6rem;
+  --space-8:  9rem;
+
+  /* ─── Hairlines ─── */
+  --hairline-thin:   0.5px solid var(--rule);
+  --hairline:        1px solid var(--rule);
+  --hairline-bold:   1px solid var(--body-text);
+
+  /* ─── Container widths ─── */
+  --measure-prose: 36rem;
+  --measure-page:  72rem;
+  --measure-wide:  84rem;
+}

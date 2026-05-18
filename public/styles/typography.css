@@ -1,0 +1,162 @@
+/* Self-hosted webfonts. If a woff2 is absent the font-display: swap fallback chain in tokens.css kicks in. */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/static/fonts/CormorantGaramond-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/static/fonts/CormorantGaramond-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/static/fonts/CormorantGaramond-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/static/fonts/CormorantGaramond-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Libre Caslon Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/static/fonts/LibreCaslonText-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Libre Caslon Text';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/static/fonts/LibreCaslonText-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Libre Caslon Text';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/static/fonts/LibreCaslonText-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/static/fonts/EBGaramond-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/static/fonts/EBGaramond-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant SC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/static/fonts/CormorantSC-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant SC';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/static/fonts/CormorantSC-SemiBold.woff2') format('woff2');
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.005em;
+}
+
+.display-xl {
+  font-family: var(--font-display);
+  font-size: var(--size-display-xl);
+  font-weight: 400;
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-display);
+  text-transform: uppercase;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-size: var(--size-display);
+  font-weight: 400;
+  line-height: var(--lh-display);
+}
+
+.display-smaller {
+  font-family: var(--font-display);
+  font-size: var(--size-h2);
+  font-weight: 400;
+  line-height: var(--lh-h2);
+}
+
+.smallcap-eyebrow {
+  font-family: var(--font-smallcap);
+  font-size: var(--size-eyebrow);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--bedford-gray);
+}
+
+.eyebrow { /* alias */
+  font-family: var(--font-smallcap);
+  font-size: var(--size-eyebrow);
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--bedford-gray);
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--track-body);
+  text-align: left;
+  hyphens: auto;
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: var(--size-caption);
+  font-style: italic;
+  color: var(--bedford-gray);
+  line-height: var(--lh-caption);
+}
+
+.italic { font-style: italic; }
+
+.serif-title {
+  font-family: var(--font-display);
+  font-size: var(--size-display);
+  line-height: var(--lh-display);
+  font-weight: 400;
+}
+
+.drop-cap {
+  float: left;
+  font-family: var(--font-display);
+  font-size: var(--size-dropcap);
+  line-height: 0.9;
+  padding: 0.4rem 0.6rem 0 0;
+  color: var(--drop-cap-eggshell);
+}
+.drop-cap--terracotta { color: var(--drop-cap-terracotta); }
+.drop-cap--sage { color: var(--drop-cap-sage); }
+.drop-cap--eggshell { color: var(--drop-cap-eggshell); }

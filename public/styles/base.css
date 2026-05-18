@@ -1,0 +1,69 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+html { background: var(--page-cream); color: var(--body-text); }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  color: var(--body-text);
+  background: var(--page-cream);
+  letter-spacing: var(--track-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 0.2em;
+}
+a:hover { text-decoration-color: var(--terracotta); }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+}
+
+button { font: inherit; color: inherit; background: transparent; border: var(--hairline); padding: var(--space-1) var(--space-3); cursor: pointer; border-radius: 0; letter-spacing: var(--track-eyebrow); text-transform: uppercase; font-family: var(--font-smallcap); font-size: var(--size-eyebrow); }
+button:hover { border-color: var(--body-text); }
+
+input[type="text"], input[type="search"], input[type="number"], select {
+  font: inherit;
+  color: inherit;
+  background: var(--page-warm-white);
+  border: none;
+  border-bottom: var(--hairline);
+  padding: var(--space-1) 0;
+  border-radius: 0;
+  width: 100%;
+}
+
+hr { border: 0; border-top: var(--hairline); margin: 0; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection { background: var(--pale-buttercup); color: var(--body-text); }

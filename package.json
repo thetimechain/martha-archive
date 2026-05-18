@@ -1,0 +1,46 @@
+{
+  "name": "martha-archive",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.0.0" },
+  "scripts": {
+    "dev": "tsx watch src/server.tsx",
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
+    "start": "node dist/server.js",
+    "prebuild": "node scripts/fetch-fonts.mjs || true",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint . --ext .ts,.tsx || true",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/db/migrate.ts",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "data:import": "tsx src/import/run.ts",
+    "import": "tsx src/import/run.ts",
+    "import:verify": "tsx src/import/verify.ts",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "playwright test",
+    "test:all": "pnpm test:unit && pnpm test:integration"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "hono": "^4.6.10",
+    "drizzle-orm": "^0.36.4",
+    "postgres": "^3.4.5",
+    "pino": "^9.5.0",
+    "lru-cache": "^11.0.2",
+    "zod": "^3.23.8",
+    "marked": "^14.1.3",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "drizzle-kit": "^0.28.1",
+    "pino-pretty": "^11.3.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
