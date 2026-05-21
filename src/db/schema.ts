@@ -62,6 +62,13 @@ export const episodes = pgTable(
     confidence: confidenceEnum("confidence").default("inferred").notNull(),
     singleSource: boolean("single_source").default(false).notNull(),
     sources: text("sources").array().default(sql`'{}'::text[]`),
+    // marthastewart.tv / vhx.tv linkage
+    photoUrl: text("photo_url"),
+    photoUrlSource: text("photo_url_source"),
+    mstVhxId: integer("mst_vhx_id"),
+    mstCanonicalSlug: text("mst_canonical_slug"),
+    mstCanonicalUrl: text("mst_canonical_url"),
+    mstMatchScore: text("mst_match_score"),
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
   },
@@ -245,6 +252,52 @@ export const importRuns = pgTable("import_runs", {
 });
 export type ImportRun = typeof importRuns.$inferSelect;
 export type ImportRunInsert = typeof importRuns.$inferInsert;
+
+export const mstCollections = pgTable(
+  "mst_collections",
+  {
+    id: serial("id").primaryKey(),
+    slug: text("slug").notNull(),
+    name: text("name").notNull(),
+    vhxCollectionId: integer("vhx_collection_id"),
+    itemsCount: integer("items_count").default(0).notNull(),
+    thumbnailUrl: text("thumbnail_url"),
+    sortOrder: integer("sort_order").default(0).notNull(),
+  },
+  (t) => ({
+    slugIdx: uniqueIndex("mst_collections_slug_uniq").on(t.slug),
+  }),
+);
+export type MstCollection = typeof mstCollections.$inferSelect;
+export type MstCollectionInsert = typeof mstCollections.$inferInsert;
+
+export const mstCollectionItems = pgTable(
+  "mst_collection_items",
+  {
+    id: serial("id").primaryKey(),
+    collectionSlug: text("collection_slug").notNull(),
+    vhxId: integer("vhx_id").notNull(),
+    episodeId: text("episode_id").references(() => episodes.id, { onDelete: "set null" }),
+    position: integer("position").default(0).notNull(),
+    title: text("title"),
+    description: text("description"),
+    photoUrl: text("photo_url"),
+    photoSourceUrl: text("photo_source_url"),
+    canonicalUrl: text("canonical_url"),
+    canonicalSlug: text("canonical_slug"),
+    seasonNumber: integer("season_number"),
+    episodeNumberVhx: integer("episode_number_vhx"),
+    durationSeconds: integer("duration_seconds"),
+  },
+  (t) => ({
+    collIdx: index("mst_collection_items_coll_idx").on(t.collectionSlug, t.position),
+    vhxIdx: index("mst_collection_items_vhx_idx").on(t.vhxId),
+    epIdx: index("mst_collection_items_ep_idx").on(t.episodeId),
+    uniqIdx: uniqueIndex("mst_collection_items_coll_vhx_uniq").on(t.collectionSlug, t.vhxId),
+  }),
+);
+export type MstCollectionItem = typeof mstCollectionItems.$inferSelect;
+export type MstCollectionItemInsert = typeof mstCollectionItems.$inferInsert;
 
 export const importGaps = pgTable("import_gaps", {
   id: serial("id").primaryKey(),

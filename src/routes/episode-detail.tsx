@@ -31,6 +31,17 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
       footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
     >
       <article class="episode-detail page page--prose">
+        {(ep as any).photo_url && (
+          <figure class="episode-detail__hero" style="margin:0 0 var(--space-3);">
+            <img
+              src={(ep as any).photo_url}
+              alt={ep.title}
+              loading="eager"
+              decoding="async"
+              style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:var(--bedford-gray);"
+            />
+          </figure>
+        )}
         <p class="eyebrow">
           {show ? <a href={`/shows/${show.slug}`} style="text-decoration:none;">{show.name}</a> : "Episode"}
           {ep.season !== null && ep.episodeNumber !== null && (
@@ -42,6 +53,14 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
         <h1 class="serif-title">{ep.title}</h1>
         <p class="air-date italic">{date}</p>
         {ep.description && <p class="description">{ep.description}</p>}
+        {(ep as any).mst_canonical_url && (
+          <p class="caption" style="margin-top:var(--space-2);">
+            Watch on{" "}
+            <a href={(ep as any).mst_canonical_url} rel="noreferrer" target="_blank" style="text-decoration:underline;">
+              marthastewart.tv →
+            </a>
+          </p>
+        )}
         {ep.network && (
           <p class="caption">
             Network: {ep.network}

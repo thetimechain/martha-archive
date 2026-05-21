@@ -44,6 +44,12 @@ export type EpisodeRow = {
   confidence: string;
   single_source: boolean;
   sources: string[] | null;
+  photo_url: string | null;
+  photo_url_source: string | null;
+  mst_vhx_id: number | null;
+  mst_canonical_slug: string | null;
+  mst_canonical_url: string | null;
+  mst_match_score: string | null;
 };
 
 export type EpisodePageResult = {

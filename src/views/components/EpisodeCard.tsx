@@ -8,6 +8,7 @@ export type EpisodeCardData = {
   airDate: string | null | undefined;
   airYear: number | null | undefined;
   airPrecision: string | null | undefined;
+  photoUrl?: string | null;
 };
 
 const TONES = ["bedford", "eggshell", "sage", "buttermilk", "crocus", "stone"] as const;
@@ -36,9 +37,22 @@ export const EpisodeCard: FC<{ episode: EpisodeCardData }> = ({ episode }) => {
   return (
     <article class="episode-card">
       <a href={`/episodes/${episode.id}`}>
-        <div class={photoClass} role="img" aria-label={`${copy.photographWanted} for ${episode.title}`}>
-          <span class="episode-card__photo-caption">{copy.photographWanted}</span>
-        </div>
+        {episode.photoUrl ? (
+          <div class="episode-card__photo episode-card__photo--image">
+            <img
+              src={episode.photoUrl}
+              alt={episode.title}
+              loading="lazy"
+              decoding="async"
+              width={640}
+              height={360}
+            />
+          </div>
+        ) : (
+          <div class={photoClass} role="img" aria-label={`${copy.photographWanted} for ${episode.title}`}>
+            <span class="episode-card__photo-caption">{copy.photographWanted}</span>
+          </div>
+        )}
         {episode.showName && <p class="episode-card__eyebrow">{episode.showName}</p>}
         <h3 class="episode-card__title">{episode.title}</h3>
         <p class="episode-card__airdate">{date}</p>

@@ -16,6 +16,11 @@ export const Header: FC = () => (
           </a>
         </li>
         <li>
+          <a class="smallcap-eyebrow" href="/collections">
+            Collections
+          </a>
+        </li>
+        <li>
           <a class="smallcap-eyebrow" href="/calendar">
             {copy.calendar}
           </a>

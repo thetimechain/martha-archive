@@ -3,6 +3,9 @@
   margin: 0 auto;
   padding: 0 var(--space-4);
 }
+@media (max-width: 600px) {
+  .page { padding: 0 var(--space-3); }
+}
 .page--wide { max-width: var(--measure-wide); }
 .page--prose { max-width: var(--measure-prose); }
 

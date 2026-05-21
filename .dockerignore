@@ -12,4 +12,7 @@ screenshots
 verification-screenshots
 reports
 data
+_coll.html
 **/*.test.ts
+public/episode-images/source
+

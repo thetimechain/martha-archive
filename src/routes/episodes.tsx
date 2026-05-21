@@ -78,6 +78,7 @@ episodesRoute.get("/episodes", async (c) => {
                       airDate: e.air_date ?? e.airDate ?? null,
                       airYear: e.air_year ?? e.airYear ?? null,
                       airPrecision: e.air_precision ?? e.airPrecision ?? null,
+                      photoUrl: e.photo_url ?? e.photoUrl ?? null,
                     }}
                   />
                 ))}
