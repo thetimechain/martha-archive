@@ -31,6 +31,11 @@ export const Header: FC = () => (
           </a>
         </li>
         <li>
+          <a class="smallcap-eyebrow" href="/facts">
+            The numbers
+          </a>
+        </li>
+        <li>
           <a class="smallcap-eyebrow" href="/gaps">
             {copy.gaps}
           </a>

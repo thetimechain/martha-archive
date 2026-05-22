@@ -50,7 +50,7 @@
   let episodes = null;      // full compact array, loaded once
   let showSeasons = {};     // show_slug → Set of season numbers
   let query = '';
-  let filterShow = '';
+  let filterShow = 'martha-stewart-living'; // default to the OG
   let filterYear = '';
   let filterSeason = '';
   let chipsExpanded = false;
@@ -220,11 +220,16 @@
   /* ─── Count line ─────────────────────────────────────────────────────────── */
   function countLine(result) {
     const total = episodes.length;
-    const any   = filterShow || filterYear || filterSeason || query;
+    const isDefaultState = !query && !filterYear && !filterSeason && filterShow === 'martha-stewart-living';
     if (result.scored && query) {
       return `${result.items.length.toLocaleString()} result${result.items.length !== 1 ? 's' : ''} for "${esc(query)}"`;
     }
-    if (any) return `${result.items.length.toLocaleString()} episode${result.items.length !== 1 ? 's' : ''}`;
+    if (isDefaultState) {
+      return `${result.items.length.toLocaleString()} episodes · Martha Stewart Living · 1993–2004`;
+    }
+    if (filterShow || filterYear || filterSeason) {
+      return `${result.items.length.toLocaleString()} episode${result.items.length !== 1 ? 's' : ''}`;
+    }
     return `${total.toLocaleString()} episodes · ${Object.keys(showSeasons).length} programs · 1993–now`;
   }
 
@@ -705,7 +710,7 @@
     // Restore home state from URL params
     if (path === '/' || path === '') {
       query        = search.get('q') || '';
-      filterShow   = search.get('show') || '';
+      filterShow   = search.get('show') || 'martha-stewart-living'; // default to the OG
       filterYear   = search.get('year') || '';
       filterSeason = search.get('season') || '';
       renderHome();
