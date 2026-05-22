@@ -625,6 +625,136 @@
   }
 
   /* ───────────────────────────────────────────────────────────────────────────
+   * GUESTS VIEW
+   * ─────────────────────────────────────────────────────────────────────────── */
+
+  // Build guest index from in-memory episodes (no extra API call needed)
+  function buildGuestIndex() {
+    const map = new Map(); // name → { count, shows: Set<slug> }
+    for (const ep of episodes) {
+      for (const name of (ep.guests || [])) {
+        if (!name) continue;
+        if (!map.has(name)) map.set(name, { count: 0, shows: new Set() });
+        const g = map.get(name);
+        g.count++;
+        g.shows.add(ep.show_slug);
+      }
+    }
+    return Array.from(map.entries())
+      .map(([name, g]) => ({ name, count: g.count, shows: Array.from(g.shows).sort() }))
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  }
+
+  let guestIndex = null; // cached after first build
+
+  let guestFilter = '';  // live filter within the guests view
+
+  function guestRowHTML(g) {
+    const badges = g.shows.map(s =>
+      `<span class="ep-badge badge-${esc(s)}" style="font-size:9px;padding:1px 5px;">${esc(SHOW_SHORT[s] || s.slice(0,7).toUpperCase())}</span>`
+    ).join('');
+    return `<div class="ep-row" style="cursor:pointer;" onclick="setQueryAndGo('${esc(g.name.replace(/'/g, "\\'"))}')" role="button" tabindex="0" aria-label="Search ${esc(g.name)}">
+      <div class="ep-num">
+        <span class="ep-num__episode" style="font-size:1.4rem;">${g.count}</span>
+      </div>
+      <div class="ep-body">
+        <div class="ep-title" style="font-size:15px;">${hl(g.name, guestFilter)}</div>
+        <div class="ep-pills" style="margin-top:4px;">${badges}</div>
+      </div>
+    </div>`;
+  }
+
+  function renderGuests() {
+    if (!guestIndex) guestIndex = buildGuestIndex();
+
+    const q = guestFilter.trim().toLowerCase();
+    const filtered = q
+      ? guestIndex.filter(g => g.name.toLowerCase().includes(q))
+      : guestIndex;
+
+    const recurring  = filtered.filter(g => g.count >= 3);
+    const multi      = filtered.filter(g => g.count === 2);
+    const single     = filtered.filter(g => g.count === 1);
+
+    // A-Z for single-appearance guests
+    const alpha = {};
+    for (const g of single) {
+      const l = g.name.charAt(0).toUpperCase();
+      (alpha[l] = alpha[l] || []).push(g);
+    }
+    const letters = Object.keys(alpha).sort();
+
+    const alphaHTML = letters.map(l =>
+      `<div style="margin-bottom:var(--space-3);">
+         <p style="font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--ink-whisper);padding:var(--space-2) 16px 0;">${esc(l)}</p>
+         ${alpha[l].map(guestRowHTML).join('')}
+       </div>`
+    ).join('');
+
+    document.getElementById('view').innerHTML = `
+      <div style="padding:16px 16px 0;">
+        <p style="font-family:var(--font-display);font-size:var(--size-display);line-height:1.1;margin-bottom:8px;">Who was there.</p>
+        <p style="font-size:12px;color:var(--ink-whisper);margin-bottom:12px;">${filtered.length} of ${guestIndex.length} guests · tap any name to search their episodes</p>
+
+        <div class="search-input" style="margin-bottom:0;">
+          <svg width="16" height="16" viewBox="0 0 17 17" fill="none" aria-hidden="true">
+            <circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="12" x2="16" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input id="guest-q" type="search" placeholder="Filter guests…"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+            value="${esc(guestFilter)}" inputmode="search">
+          <button class="search-clear ${guestFilter ? 'visible' : ''}" id="clear-gq" aria-label="Clear">×</button>
+        </div>
+      </div>
+
+      ${recurring.length > 0 ? `
+        <div class="section-hd" style="margin-top:var(--space-3);">RECURRING <span class="section-hd__count">${recurring.length}</span></div>
+        ${recurring.map(guestRowHTML).join('')}
+      ` : ''}
+
+      ${multi.length > 0 ? `
+        <div class="section-hd">APPEARED TWICE <span class="section-hd__count">${multi.length}</span></div>
+        ${multi.map(guestRowHTML).join('')}
+      ` : ''}
+
+      ${single.length > 0 ? `
+        <div class="section-hd">ONCE <span class="section-hd__count">${single.length}</span></div>
+        ${alphaHTML}
+      ` : ''}
+
+      ${filtered.length === 0 ? `
+        <div class="state-empty">
+          <p class="state-empty__title">No guests match</p>
+          <p class="state-empty__sub">Try a different name.</p>
+        </div>
+      ` : ''}
+    `;
+
+    // Wire filter input
+    const qi = document.getElementById('guest-q');
+    let deb = 0;
+    qi?.addEventListener('input', e => {
+      clearTimeout(deb);
+      deb = setTimeout(() => {
+        guestFilter = e.target.value;
+        renderGuests();
+        document.getElementById('guest-q')?.focus();
+      }, 120);
+    });
+    document.getElementById('clear-gq')?.addEventListener('click', () => {
+      guestFilter = '';
+      renderGuests();
+      document.getElementById('guest-q')?.focus();
+    });
+
+    // Wire row keyboard nav
+    document.querySelectorAll('.ep-row[role="button"]').forEach(row => {
+      row.addEventListener('keydown', e => { if (e.key === 'Enter') row.click(); });
+    });
+  }
+
+  /* ───────────────────────────────────────────────────────────────────────────
    * ABOUT VIEW
    * ─────────────────────────────────────────────────────────────────────────── */
   function renderAbout() {
@@ -686,9 +816,10 @@
   function updateTabBar(path) {
     const tabs = document.querySelectorAll('.tab-bar__item');
     tabs.forEach(t => t.classList.remove('active'));
-    if (path === '/' || path === '') tabs[0]?.classList.add('active');
-    else if (path.startsWith('/random'))   tabs[1]?.classList.add('active');
-    else if (path.startsWith('/about'))    tabs[2]?.classList.add('active');
+    if (path === '/' || path === '')          tabs[0]?.classList.add('active');
+    else if (path.startsWith('/guests'))      tabs[1]?.classList.add('active');
+    else if (path.startsWith('/random'))      tabs[2]?.classList.add('active');
+    else if (path.startsWith('/about'))       tabs[3]?.classList.add('active');
   }
 
   /* ───────────────────────────────────────────────────────────────────────────
@@ -742,6 +873,13 @@
       return;
     }
 
+    // Guests
+    if (path === '/guests') {
+      renderGuests();
+      document.getElementById('view')?.scrollTo(0, 0);
+      return;
+    }
+
     // Random
     if (path === '/random') { navigateRandom(); return; }
 
@@ -787,6 +925,13 @@
             <line x1="14.5" y1="14.5" x2="20" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
           Search
+        </button>
+        <button class="tab-bar__item" onclick="navigate('/guests')" aria-label="Guest index">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+            <circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          Guests
         </button>
         <button class="tab-bar__item" onclick="navigate('/random')" aria-label="Random episode">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
