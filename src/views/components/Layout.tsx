@@ -7,6 +7,7 @@ export type OG = {
   description?: string;
   url?: string;
   image?: string;
+  type?: "website" | "article" | "video.tv_show" | "video.episode";
 };
 
 export const Layout: FC<
@@ -15,10 +16,12 @@ export const Layout: FC<
     description?: string;
     og?: OG;
     canonical?: string;
+    jsonLd?: object | object[];
     footerMeta?: { lastImport?: string; episodeCount?: number };
   }>
-> = ({ title, description, og, canonical, footerMeta, children }) => {
+> = ({ title, description, og, canonical, jsonLd, footerMeta, children }) => {
   const fullTitle = title.startsWith("Martha") ? title : `${title} — Martha Stewart Living: An Archive`;
+  const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
     <html lang="en">
       <head>
@@ -30,14 +33,26 @@ export const Layout: FC<
         <meta property="og:title" content={og?.title ?? fullTitle} />
         {og?.description && <meta property="og:description" content={og.description} />}
         {og?.url && <meta property="og:url" content={og.url} />}
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={og?.type ?? "website"} />
+        <meta property="og:site_name" content="Martha Stewart Living: An Archive" />
         <meta property="og:image" content={og?.image ?? "/static/og-wordmark.png"} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={og?.title ?? fullTitle} />
+        {og?.description && <meta name="twitter:description" content={og.description} />}
+        <meta name="twitter:image" content={og?.image ?? "/static/og-wordmark.png"} />
         <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
         <link rel="stylesheet" href="/static/styles/tokens.css" />
         <link rel="stylesheet" href="/static/styles/base.css" />
         <link rel="stylesheet" href="/static/styles/typography.css" />
         <link rel="stylesheet" href="/static/styles/components.css" />
         <link rel="stylesheet" href="/static/styles/layout.css" />
+        {ldArray.map((ld) => (
+          <script
+            type="application/ld+json"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+          />
+        ))}
       </head>
       <body>
         <Header />

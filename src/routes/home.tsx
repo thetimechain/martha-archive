@@ -2,8 +2,11 @@ import { Hono } from "hono";
 import { Layout } from "../views/components/Layout.js";
 import { fetchShows, fetchLastImport, fetchRowCounts, fetchNotableEpisodes } from "../db/queries.js";
 import { copy } from "../copy.js";
+import { canonical, websiteJsonLd } from "../lib/seo.js";
 
 export const homeRoute = new Hono();
+
+const MOBILE_UA_RE = /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
 
 const SHOW_TONES: Record<string, string> = {
   "martha-stewart-living": "eggshell",
@@ -21,6 +24,13 @@ const SHOW_TONES: Record<string, string> = {
 };
 
 homeRoute.get("/", async (c) => {
+  // Redirect mobile browsers to the search-first mobile SPA.
+  // Desktop users stay at /. Append ?desktop=1 to force the desktop view.
+  const ua = c.req.header("User-Agent") ?? "";
+  if (c.req.query("desktop") !== "1" && MOBILE_UA_RE.test(ua)) {
+    return c.redirect("/m/", 302);
+  }
+
   const [shows, lastImport, counts] = await Promise.all([fetchShows(), fetchLastImport(), fetchRowCounts()]);
 
   // pull a few notable episodes for the Good Things callouts
@@ -30,10 +40,13 @@ homeRoute.get("/", async (c) => {
     <Layout
       title="Martha Stewart Living: An Archive"
       description="A complete record of Martha Stewart television episodes, with the recipes and small good things they contained."
+      canonical={canonical("/")}
       og={{
         title: "Martha Stewart Living — An Archive",
         description: "A complete record of Martha Stewart television episodes.",
+        url: canonical("/"),
       }}
+      jsonLd={[websiteJsonLd()]}
       footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
     >
       <section class="page hero">

@@ -1,0 +1,33 @@
+{
+  "name": "Martha Episodes",
+  "short_name": "Martha",
+  "description": "A complete index of Martha Stewart's television episodes, 1986–now.",
+  "start_url": "/m/",
+  "display": "standalone",
+  "background_color": "#F5F0E4",
+  "theme_color": "#F5F0E4",
+  "orientation": "portrait-primary",
+  "categories": ["food", "entertainment", "lifestyle"],
+  "icons": [
+    {
+      "src": "/static/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/static/icons/screenshot-home.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}

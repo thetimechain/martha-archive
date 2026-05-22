@@ -5,22 +5,26 @@
 (function () {
   'use strict';
 
-  /* ─── Show metadata ────────────────────────────────────────────────────── */
-  const SHOW_SHORT = {
-    'martha-stewart-living':          'LIVING',
-    'martha-stewart-show':            'SHOW',
-    'martha-bakes':                   'BAKES',
-    'cooking-school':                 'SCHOOL',
-    'martha-and-snoops':              'SNOOP',
-    'martha-knows-best':              'KNOWS',
-    'martha-cooks':                   'COOKS',
-    'martha-holidays':                'HOLIDAY',
-    'from-marthas-kitchen':           'KITCHEN',
-    'martha-gets-down-and-dirty':     'DIRTY',
-    'apprentice-martha-stewart':      'APPRNTCE',
-    'holiday-special':                'SPECIAL',
+  /* ─── Show metadata — canonical from data.js in the handoff package ──── */
+  // bg/fg colors are drawn from the 1990s magazine palettes; DO NOT invent new ones.
+  const SHOWS = {
+    'martha-stewart-living':       { short:'Living',        bg:'#F3EBC9', fg:'#5A4914' },
+    'martha-bakes':                { short:'Bakes',         bg:'#E4ECDB', fg:'#4A5C3A' },
+    'cooking-school':              { short:'Cooking School',bg:'#DDE5EE', fg:'#3B4F66' },
+    'martha-stewart-show':         { short:'The Show',      bg:'#E8DFE8', fg:'#4F2F5A' },
+    'martha-and-snoops':           { short:'Martha & Snoop',bg:'#F0DED2', fg:'#7A3F22' },
+    'martha-knows-best':           { short:'Knows Best',    bg:'#E8EBD8', fg:'#4F5638' },
+    'martha-gets-down-and-dirty':  { short:'Down & Dirty',  bg:'#DDE6DE', fg:'#3F5B45' },
+    'martha-cooks':                { short:'Cooks',         bg:'#F3E6D3', fg:'#6B4823' },
+    'martha-holidays':             { short:'Holidays',      bg:'#E8D8D2', fg:'#6E2820' },
+    'apprentice-martha-stewart':   { short:'Apprentice',    bg:'#D6DDE3', fg:'#36464F' },
+    'from-marthas-kitchen':        { short:'Kitchen',       bg:'#F0D8D2', fg:'#6E2820' },
+    'holiday-special':             { short:'Specials',      bg:'#DDE3EC', fg:'#3A4960' },
   };
+  // Convenience lookup for the old code paths that use SHOW_SHORT
+  const SHOW_SHORT = Object.fromEntries(Object.entries(SHOWS).map(([k,v]) => [k, v.short]));
 
+  // Full show names derived from SHOWS table
   const SHOW_NAMES = {
     'martha-stewart-living':          'Martha Stewart Living',
     'martha-stewart-show':            'The Martha Stewart Show',
@@ -33,16 +37,42 @@
     'from-marthas-kitchen':           "From Martha's Kitchen",
     'martha-gets-down-and-dirty':     'Martha Gets Down and Dirty',
     'apprentice-martha-stewart':      'The Apprentice: Martha Stewart',
-    'holiday-special':                'Holiday Special',
+    'holiday-special':                'Holiday Specials',
   };
 
-  /* ─── Popular chips ─────────────────────────────────────────────────────── */
+  /* ─── Popular chips — canonical QUICK_PICKS from search.js handoff ──── */
   const ALL_CHIPS = [
-    'halloween','thanksgiving','christmas','easter',
-    'brunch','pasta','cookies','cake','pie','bread',
-    'pumpkin','lobster','garden','wedding','organizing',
-    'Snoop Dogg','travel','craft','baking','soup',
-    'italian','french','mexican','new york','paris',
+    // holidays first — biggest seasonal pull
+    { q:'halloween',    label:'halloween'   },
+    { q:'thanksgiving', label:'thanksgiving' },
+    { q:'christmas',    label:'christmas'   },
+    { q:'easter',       label:'easter'      },
+    // people
+    { q:'snoop',        label:'snoop dogg'  },
+    { q:'julia child',  label:'julia child' },
+    // place
+    { q:'new york',     label:'new york'    },
+    { q:'italy',        label:'italy'       },
+    { q:'maine',        label:'maine'       },
+    { q:'paris',        label:'paris'       },
+    // cuisine
+    { q:'french',       label:'french'      },
+    { q:'mexican',      label:'mexican'     },
+    // meal occasion
+    { q:'brunch',       label:'brunch'      },
+    { q:'breakfast',    label:'breakfast'   },
+    { q:'wedding',      label:'weddings'    },
+    // subject
+    { q:'pumpkin',      label:'pumpkin'     },
+    { q:'pie',          label:'pies'        },
+    { q:'cookie',       label:'cookies'     },
+    { q:'cake',         label:'cakes'       },
+    { q:'bread',        label:'bread'       },
+    { q:'garden',       label:'garden'      },
+    { q:'pets',         label:'pets'        },
+    { q:'knit',         label:'knitting'    },
+    { q:'pottery',      label:'pottery'     },
+    { q:'craft',        label:'crafts'      },
   ];
   const CHIPS_DEFAULT = 8;
 
@@ -134,12 +164,21 @@
     return '· ' + mins + 'm';
   }
 
+  // Per-show badge using canonical inline colors from data.js
+  function badgeHTML(slug) {
+    const show = SHOWS[slug];
+    if (show) {
+      return `<span class="ep-badge" style="background:${esc(show.bg)};color:${esc(show.fg)};">${esc(show.short)}</span>`;
+    }
+    return `<span class="ep-badge" style="background:#E0D9C8;color:#5C544A;">${esc((slug||'').slice(0,8).toUpperCase())}</span>`;
+  }
+
   function badgeClass(slug) {
-    return 'ep-badge badge-' + (SHOW_SHORT[slug] ? slug : 'default');
+    return 'ep-badge'; // class only; inline style handles colors
   }
 
   function shortName(slug) {
-    return SHOW_SHORT[slug] || (SHOW_NAMES[slug] || slug).toUpperCase().slice(0, 8);
+    return (SHOWS[slug] || SHOW_SHORT[slug]) ? (SHOWS[slug]?.short || SHOW_SHORT[slug]) : (SHOW_NAMES?.[slug] || slug).toUpperCase().slice(0, 8);
   }
 
   /* ─── Tonight/This month helper ─────────────────────────────────────────── */
@@ -199,14 +238,14 @@
     ].join('');
 
     const thumb = hasPhoto
-      ? `<img class="ep-thumb" src="${esc(ep.photo_url)}" alt="" loading="lazy" decoding="async">`
+      ? `<img class="ep-thumb" src="${esc(ep.photo_url)}" alt="${esc(ep.title)}" loading="lazy" decoding="async" width="72" height="54">`
       : '';
 
     return `<article class="ep-row" data-id="${esc(ep.id)}" role="button" tabindex="0" aria-label="${esc(ep.title)}">
       ${numCol}
       <div class="ep-body">
         <div class="ep-meta">
-          <span class="${badgeClass(ep.show_slug)}" data-show="${esc(ep.show_slug)}">${shortName(ep.show_slug)}</span>
+          ${badgeHTML(ep.show_slug)}
           <span class="ep-date">${fmtDate(ep)} ${fmtDuration(ep.runtime_minutes)}</span>
         </div>
         <h3 class="ep-title">${hl(ep.title, q)}</h3>
@@ -293,46 +332,43 @@
     document.getElementById('view').innerHTML = `
       <div class="search-wrap">
         <div class="search-input">
-          <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 17 17" fill="none" aria-hidden="true">
             <circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.5"/>
             <line x1="12" y1="12" x2="16" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
           <input id="q" type="search" placeholder='Search "brunch", "new york"…'
             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-            value="${esc(query)}" inputmode="search">
+            value="${esc(query)}" inputmode="search" aria-label="Search episodes">
           <button class="search-clear ${query ? 'visible' : ''}" id="clear-q" aria-label="Clear search">×</button>
+        </div>
+        <div class="count-row">
+          <span class="count-line" id="count-line">${countLine(result)}</span>
+          ${(hasFilter || query) ? `<button class="clear-filters visible" id="clear-filters" style="padding:0;background:none;border:none;">× clear</button>` : ''}
         </div>
       </div>
 
-      <p class="count-line">${countLine(result)}</p>
-
       <div class="filter-row">
-        <div class="filter-select-wrap">
-          <select class="filter-select ${filterShow ? 'active' : ''}" id="sel-show" aria-label="Show">
+        <div class="filter-select-wrap ${filterShow ? 'active' : ''}">
+          <select class="filter-select" id="sel-show" aria-label="Show">
             <option value="">Show</option>
             ${buildShowOptions()}
           </select>
           <span class="filter-chevron" aria-hidden="true">▾</span>
         </div>
-        <div class="filter-select-wrap">
-          <select class="filter-select ${filterYear ? 'active' : ''}" id="sel-year" aria-label="Year">
+        <div class="filter-select-wrap ${filterYear ? 'active' : ''}">
+          <select class="filter-select" id="sel-year" aria-label="Year">
             <option value="">Year</option>
             ${buildYearOptions()}
           </select>
           <span class="filter-chevron" aria-hidden="true">▾</span>
         </div>
-        <div class="filter-select-wrap">
-          <select class="filter-select ${filterSeason ? 'active' : ''} ${!filterShow ? '' : ''}"
-            id="sel-season" aria-label="Season" ${!filterShow ? 'disabled' : ''}>
-            <option value="">${filterShow ? 'Season' : 'Season'}</option>
+        <div class="filter-select-wrap ${filterSeason ? 'active' : ''} ${!filterShow ? 'disabled' : ''}">
+          <select class="filter-select" id="sel-season" aria-label="Season" ${!filterShow ? 'disabled' : ''}>
+            <option value="">Season</option>
             ${buildSeasonOptions()}
           </select>
           <span class="filter-chevron" aria-hidden="true">▾</span>
         </div>
-      </div>
-
-      <div class="clear-filters ${hasFilter || query ? 'visible' : ''}" id="clear-filters">
-        <span>×</span> clear filters
       </div>
 
       ${!hasQuery ? `
@@ -342,7 +378,7 @@
             ${showExpand ? `<button class="chips-expand" id="chips-expand">+${ALL_CHIPS.length - CHIPS_DEFAULT} more</button>` : ''}
           </div>
           <div class="chips-wrap">
-            ${chips.map(c => `<button class="chip" data-chip="${esc(c)}">${esc(c)}</button>`).join('')}
+            ${chips.map(c => `<button class="chip" data-chip="${esc(c.q)}">${esc(c.label)}</button>`).join('')}
           </div>
         </div>
       ` : ''}
@@ -377,9 +413,10 @@
       document.getElementById('q')?.focus();
     });
 
-    // Clear all filters
-    document.getElementById('clear-filters')?.addEventListener('click', () => {
-      query = ''; filterShow = ''; filterYear = ''; filterSeason = '';
+    // Clear all filters (button now lives inside search-wrap)
+    document.getElementById('clear-filters')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      query = ''; filterShow = 'martha-stewart-living'; filterYear = ''; filterSeason = '';
       renderHome();
       document.getElementById('q')?.focus();
     });
@@ -650,9 +687,11 @@
   let guestFilter = '';  // live filter within the guests view
 
   function guestRowHTML(g) {
-    const badges = g.shows.map(s =>
-      `<span class="ep-badge badge-${esc(s)}" style="font-size:9px;padding:1px 5px;">${esc(SHOW_SHORT[s] || s.slice(0,7).toUpperCase())}</span>`
-    ).join('');
+    const badges = g.shows.map(s => {
+      const show = SHOWS[s];
+      const style = show ? `background:${show.bg};color:${show.fg};` : 'background:#E0D9C8;color:#5C544A;';
+      return `<span class="ep-badge" style="${style}font-size:9px;padding:1px 5px;">${esc(show?.short || s.slice(0,7).toUpperCase())}</span>`;
+    }).join('');
     return `<div class="ep-row" style="cursor:pointer;" onclick="setQueryAndGo('${esc(g.name.replace(/'/g, "\\'"))}')" role="button" tabindex="0" aria-label="Search ${esc(g.name)}">
       <div class="ep-num">
         <span class="ep-num__episode" style="font-size:1.4rem;">${g.count}</span>

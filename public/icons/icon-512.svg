@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#F5F0E4"/>
+  <text x="256" y="348.16" text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="281.6" font-weight="400"
+    fill="#2E2A24" letter-spacing="-0.02em">M</text>
+  <text x="256" y="450.56" text-anchor="middle"
+    font-family="'Helvetica Neue', Arial, sans-serif"
+    font-size="43.52" font-weight="300" fill="#7C8B6F"
+    letter-spacing="0.15em">MARTHA</text>
+</svg>

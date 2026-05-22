@@ -3,6 +3,7 @@ import { Layout } from "../views/components/Layout.js";
 import { fetchEpisodeDetail, fetchLastImport, fetchRowCounts } from "../db/queries.js";
 import { formatDate } from "../views/components/EpisodeCard.js";
 import { copy } from "../copy.js";
+import { canonical, siteHost, tvEpisodeJsonLd, breadcrumbsJsonLd } from "../lib/seo.js";
 
 export const episodeDetailRoute = new Hono();
 
@@ -22,12 +23,40 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
   const [lastImport, counts] = await Promise.all([fetchLastImport(), fetchRowCounts()]);
   const date = formatDate(ep.airDate as any, ep.airYear, ep.airPrecision);
   const ogTitle = `${show?.name ?? "Episode"}${ep.season !== null && ep.episodeNumber !== null ? `, S${ep.season}E${ep.episodeNumber}` : ""} — "${ep.title}"`;
+  const url = canonical(`/episodes/${ep.id}`);
+  const epLd = tvEpisodeJsonLd({
+    id: ep.id,
+    title: ep.title,
+    description: truncate(ep.description, 500),
+    air_date: (ep as any).airDate as any,
+    air_year: ep.airYear ?? null,
+    season: ep.season ?? null,
+    episode_number: ep.episodeNumber ?? null,
+    runtime_minutes: ep.runtimeMinutes ?? null,
+    photo_url: (ep as any).photo_url ?? null,
+    show_name: show?.name ?? null,
+    show_slug: show?.slug ?? null,
+    guests: guests.map((g: any) => g.name).slice(0, 20),
+  });
+  const crumbs = breadcrumbsJsonLd([
+    { name: "Archive", url: siteHost() },
+    ...(show ? [{ name: show.name, url: canonical(`/shows/${show.slug}`) }] : []),
+    { name: ep.title, url },
+  ]);
 
   return c.html(
     <Layout
       title={ogTitle}
       description={truncate(ep.description, 200)}
-      og={{ title: ogTitle, description: truncate(ep.description, 200) }}
+      canonical={url}
+      og={{
+        title: ogTitle,
+        description: truncate(ep.description, 200),
+        url,
+        type: "video.episode",
+        image: (ep as any).photo_url ?? undefined,
+      }}
+      jsonLd={[epLd, crumbs]}
       footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
     >
       <article class="episode-detail page page--prose">

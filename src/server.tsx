@@ -20,6 +20,7 @@ import { adminRoute } from "./routes/admin.js";
 import { mobileRoute } from "./routes/mobile.js";
 import { factsRoute } from "./routes/facts.js";
 import { guestsRoute } from "./routes/guests.js";
+import { topicsRoute } from "./routes/topics.js";
 import { NotFoundPage } from "./views/NotFound.js";
 
 const app = new Hono();
@@ -56,6 +57,7 @@ app.route("/", adminRoute);
 app.route("/", mobileRoute);
 app.route("/", factsRoute);
 app.route("/", guestsRoute);
+app.route("/", topicsRoute);
 
 app.notFound((c) => c.html(<NotFoundPage />, 404));
 app.onError((err, c) => {

@@ -10,6 +10,7 @@ import {
   fetchRowCounts,
 } from "../db/queries.js";
 import { parseEpisodeQuery } from "../lib/query.js";
+import { canonical, siteHost, tvSeriesJsonLd, breadcrumbsJsonLd } from "../lib/seo.js";
 
 export const showRoute = new Hono();
 
@@ -38,10 +39,32 @@ showRoute.get("/shows/:slug", async (c) => {
   const totalEps = recent.total;
   const docPct = show.totalEpisodes ? Math.round(((show.documented ?? 0) / show.totalEpisodes) * 100) : 100;
 
+  const url = canonical(`/shows/${slug}`);
+  const seriesLd = tvSeriesJsonLd({
+    slug,
+    name: show.name,
+    description: show.description ?? undefined,
+    numberOfEpisodes: show.totalEpisodes ?? totalEps,
+    startYear: (show as any).startYear ?? undefined,
+    endYear: (show as any).endYear ?? undefined,
+  });
+  const crumbs = breadcrumbsJsonLd([
+    { name: "Archive", url: siteHost() },
+    { name: show.name, url },
+  ]);
+
   return c.html(
     <Layout
       title={`${show.name} — episode archive`}
       description={show.description ?? `${show.name} episode archive.`}
+      canonical={url}
+      og={{
+        title: `${show.name} — Episode Archive`,
+        description: show.description ?? `${show.name} episode archive — every episode, sorted.`,
+        url,
+        type: "video.tv_show",
+      }}
+      jsonLd={[seriesLd, crumbs]}
       footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
     >
       <div class="page page--wide" style="padding-top:var(--space-4);">
