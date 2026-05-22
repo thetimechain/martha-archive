@@ -1,9 +1,12 @@
 import { Hono } from "hono";
 import { createHash } from "node:crypto";
+import { createGzip } from "node:zlib";
+import { Readable } from "node:stream";
 import { fetchEpisodePage, fetchLastImport, fetchRowCounts } from "../db/queries.js";
 import { parseEpisodeQuery, calcLastPage } from "../lib/query.js";
 import { apiCache, canonicalizeQuery } from "../lib/cache.js";
 import { apiRateLimit } from "../middleware/rate-limit.js";
+import { sql } from "../db/client.js";
 
 export const apiRoute = new Hono();
 
@@ -95,4 +98,75 @@ apiRoute.get("/api/health", async (c) => {
   } catch (e) {
     return c.json({ status: "degraded", db: "unreachable", error: (e as Error).message }, 503);
   }
+});
+
+// ---------------------------------------------------------------------------
+// GET /api/episodes/compact
+// Returns all episodes as a compact JSON array for client-side search.
+// In-memory cache (10 min). Gzip when client sends Accept-Encoding: gzip.
+// ---------------------------------------------------------------------------
+
+const COMPACT_TTL_MS = 10 * 60 * 1000; // 10 minutes
+
+type CompactCache = { ts: number; raw: ArrayBuffer; gzipped: ArrayBuffer };
+let compactCache: CompactCache | null = null;
+
+async function gzipToArrayBuffer(buf: Buffer): Promise<ArrayBuffer> {
+  return new Promise((resolve, reject) => {
+    const gz = createGzip();
+    const chunks: Buffer[] = [];
+    gz.on("data", (chunk: Buffer) => chunks.push(chunk));
+    gz.on("end", () => {
+      const combined = Buffer.concat(chunks);
+      // Copy into a plain ArrayBuffer so the generic is ArrayBuffer, not ArrayBufferLike
+      const ab = combined.buffer.slice(combined.byteOffset, combined.byteOffset + combined.byteLength);
+      resolve(ab);
+    });
+    gz.on("error", reject);
+    Readable.from(buf).pipe(gz);
+  });
+}
+
+async function getCompactPayload(): Promise<CompactCache> {
+  const now = Date.now();
+  if (compactCache && now - compactCache.ts < COMPACT_TTL_MS) {
+    return compactCache;
+  }
+
+  const rows = await sql`
+    SELECT e.id, e.show_slug, e.show_name, e.season, e.episode_number,
+           e.title, e.air_date::text AS air_date, e.air_year, e.runtime_minutes,
+           e.description, e.photo_url, e.confidence, e.provenance,
+           e.mst_canonical_url, e.streaming,
+           COALESCE((SELECT json_agg(tag ORDER BY tag) FROM episode_tags WHERE episode_id = e.id), '[]') AS tags,
+           COALESCE((SELECT json_agg(topic ORDER BY topic) FROM episode_topics WHERE episode_id = e.id), '[]') AS topics,
+           COALESCE((SELECT json_agg(theme ORDER BY theme) FROM episode_themes WHERE episode_id = e.id), '[]') AS themes,
+           COALESCE((SELECT json_agg(name ORDER BY position) FROM episode_guests WHERE episode_id = e.id), '[]') AS guests,
+           COALESCE((SELECT json_agg(name ORDER BY position) FROM episode_recipes WHERE episode_id = e.id), '[]') AS recipes
+    FROM episodes e
+    ORDER BY e.show_slug, e.season, e.episode_number
+  `;
+
+  const rawBuf = Buffer.from(JSON.stringify(rows), "utf8");
+  const raw: ArrayBuffer = rawBuf.buffer.slice(rawBuf.byteOffset, rawBuf.byteOffset + rawBuf.byteLength);
+  const gzipped = await gzipToArrayBuffer(rawBuf);
+
+  compactCache = { ts: now, raw, gzipped };
+  return compactCache;
+}
+
+apiRoute.get("/api/episodes/compact", async (c) => {
+  const payload = await getCompactPayload();
+
+  c.header("Content-Type", "application/json; charset=utf-8");
+  c.header("Cache-Control", "public, max-age=600");
+
+  const acceptEncoding = c.req.header("Accept-Encoding") ?? "";
+  if (acceptEncoding.includes("gzip")) {
+    c.header("Content-Encoding", "gzip");
+    c.header("Vary", "Accept-Encoding");
+    return c.body(payload.gzipped);
+  }
+
+  return c.body(payload.raw);
 });

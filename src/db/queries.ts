@@ -50,6 +50,8 @@ export type EpisodeRow = {
   mst_canonical_slug: string | null;
   mst_canonical_url: string | null;
   mst_match_score: string | null;
+  mst_duration_seconds: number | null;
+  provenance: string;
 };
 
 export type EpisodePageResult = {

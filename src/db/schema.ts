@@ -69,6 +69,9 @@ export const episodes = pgTable(
     mstCanonicalSlug: text("mst_canonical_slug"),
     mstCanonicalUrl: text("mst_canonical_url"),
     mstMatchScore: text("mst_match_score"),
+    mstDurationSeconds: integer("mst_duration_seconds"),
+    // provenance: 'seed' (from episodes.json) | 'marthastewart-tv' (new from vhx)
+    provenance: text("provenance").default("seed").notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
   },

@@ -1,0 +1,821 @@
+/* ─── Martha Episodes — Mobile Design System ─────────────────────────── */
+/* Based on handoff-mobile.md §7 and the 1990s Martha Stewart Living identity */
+
+:root {
+  /* Page */
+  --page-cream:       #F5F0E4;
+  --page-warm-white:  #FBF8F0;
+  --page-dove:        #EFEAE0;
+
+  /* Ink — never pure black */
+  --ink:        #2E2A24;
+  --ink-soft:   #5C544A;
+  --ink-whisper:#8B8275;
+
+  /* Rules */
+  --rule:       #C9C1B0;
+  --rule-soft:  #E0D9C8;
+  --rule-deep:  #A89E89;
+
+  /* Accent — the 1990s palette */
+  --garden-hosta:      #7C8B6F;
+  --garden-tomato:     #B84A3E;
+  --accent-buttercup:  #EFE0A8;
+  --araucana-eggshell: #BFD3CE;
+  --bedford-gray:      #9CA39C;
+  --pale-sage:         #B4BBA1;
+
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', 'Bodoni Moda', 'Didot', serif;
+  --font-serif:   'Libre Caslon Text', 'EB Garamond', 'Caslon', Georgia, serif;
+  --font-ui:      system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing */
+  --top-bar-h: 44px;
+  --bottom-bar-h: 56px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ─── Reset ────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; }
+
+body {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--page-cream);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; background: none; border: none; padding: 0; }
+input, select { font: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ─── App shell ────────────────────────────────────────────────────────── */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  min-height: 100vh;
+}
+
+.view {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  padding-top: calc(var(--top-bar-h) + var(--safe-top));
+  padding-bottom: calc(var(--bottom-bar-h) + var(--safe-bottom) + 8px);
+}
+
+/* ─── Top bar ──────────────────────────────────────────────────────────── */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: calc(var(--top-bar-h) + var(--safe-top));
+  padding-top: var(--safe-top);
+  background: var(--page-cream);
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.top-bar__wordmark {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  line-height: var(--top-bar-h);
+}
+
+.top-bar__back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 15px;
+  color: var(--garden-hosta);
+  padding: 8px 0;
+  min-width: 44px;
+}
+.top-bar__back svg { flex-shrink: 0; }
+
+.top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-bar__filter-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  border-radius: 4px;
+}
+.top-bar__filter-btn:active { background: var(--page-dove); }
+
+/* ─── Bottom tab bar ───────────────────────────────────────────────────── */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: calc(var(--bottom-bar-h) + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: var(--page-cream);
+  border-top: 1px solid var(--rule-soft);
+  display: flex;
+  align-items: stretch;
+}
+
+.tab-bar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--ink-whisper);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 0;
+  transition: color 0.1s;
+}
+.tab-bar__item.active { color: var(--garden-hosta); }
+.tab-bar__item svg { width: 22px; height: 22px; }
+
+/* ─── Search input ─────────────────────────────────────────────────────── */
+.search-wrap {
+  padding: 12px 16px 0;
+  position: relative;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  background: var(--page-warm-white);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 0 12px;
+  height: 44px;
+  gap: 8px;
+}
+
+.search-input:focus-within {
+  border-color: var(--garden-hosta);
+  outline: 2px solid rgba(124, 139, 111, 0.18);
+  outline-offset: 0;
+}
+
+.search-input svg { color: var(--ink-whisper); flex-shrink: 0; }
+
+.search-input input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1;
+  -webkit-appearance: none;
+}
+.search-input input::placeholder { color: var(--ink-whisper); }
+
+.search-clear {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bedford-gray);
+  color: white;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 1;
+}
+.search-clear.visible { display: flex; }
+
+/* ─── Count line ───────────────────────────────────────────────────────── */
+.count-line {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--ink-whisper);
+  padding: 6px 16px 0;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Filter selects ───────────────────────────────────────────────────── */
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 10px 16px 0;
+}
+
+.filter-select-wrap {
+  position: relative;
+}
+
+.filter-select {
+  width: 100%;
+  height: 36px;
+  padding: 0 24px 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: var(--page-warm-white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.filter-select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.filter-select.active {
+  background: var(--garden-hosta);
+  color: var(--page-warm-white);
+  border-color: var(--garden-hosta);
+}
+
+.filter-chevron {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--ink-whisper);
+  font-size: 10px;
+}
+.filter-select.active + .filter-chevron { color: rgba(255,255,255,0.7); }
+
+.clear-filters {
+  font-size: 12px;
+  color: var(--garden-tomato);
+  padding: 4px 16px 0;
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+.clear-filters.visible { display: flex; }
+
+/* ─── Popular chips ────────────────────────────────────────────────────── */
+.chips-section {
+  padding: 14px 16px 0;
+}
+
+.chips-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-whisper);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.chips-expand {
+  font-size: 11px;
+  color: var(--garden-hosta);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  background: var(--page-warm-white);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+.chip:active, .chip.active {
+  background: var(--araucana-eggshell);
+  border-color: var(--bedford-gray);
+  color: var(--ink);
+}
+
+/* ─── Section header ───────────────────────────────────────────────────── */
+.section-hd {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-whisper);
+  padding: 18px 16px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.section-hd__count {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+  text-transform: none;
+}
+
+/* ─── Episode row ──────────────────────────────────────────────────────── */
+.ep-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule-soft);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  gap: 0;
+}
+.ep-row:active { background: var(--page-dove); }
+
+/* Numerals column */
+.ep-num {
+  flex-shrink: 0;
+  width: 42px;
+  text-align: right;
+  padding-right: 12px;
+  padding-top: 2px;
+}
+.ep-num__season {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink-whisper);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+.ep-num__episode {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  line-height: 1;
+}
+
+/* No season (no episode number in numeral style) */
+.ep-num--year .ep-num__season {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.ep-num--year .ep-num__episode { display: none; }
+
+/* Main content */
+.ep-body { flex: 1; min-width: 0; }
+
+.ep-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.ep-badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.ep-date {
+  font-size: 11px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.ep-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: 4px;
+  text-wrap: pretty;
+}
+
+.ep-desc {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.ep-pills {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.pill-guest {
+  background: var(--araucana-eggshell);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.pill-tag {
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ─── Thumbnail (right-side, optional) ─────────────────────────────────── */
+.ep-thumb {
+  flex-shrink: 0;
+  width: 72px;
+  height: 54px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-left: 12px;
+  background: var(--bedford-gray);
+  align-self: flex-start;
+}
+.ep-thumb-placeholder {
+  flex-shrink: 0;
+  width: 72px;
+  height: 54px;
+  border-radius: 4px;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Match highlight ──────────────────────────────────────────────────── */
+mark {
+  background: var(--accent-buttercup);
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 2px;
+}
+
+/* ─── Show badge colors (per-show tonal swatches) ──────────────────────── */
+.badge-martha-stewart-living   { background: #BFD3CE; color: #2E2A24; }
+.badge-martha-stewart-show     { background: #B4BBA1; color: #2E2A24; }
+.badge-martha-bakes            { background: #EFE0A8; color: #2E2A24; }
+.badge-cooking-school          { background: #D9C7B0; color: #2E2A24; }
+.badge-martha-and-snoops       { background: #C8BFD4; color: #2E2A24; }
+.badge-martha-knows-best       { background: #9FB4C9; color: #2E2A24; }
+.badge-martha-cooks            { background: #A8A39A; color: #2E2A24; }
+.badge-martha-holidays         { background: #C8B89C; color: #2E2A24; }
+.badge-from-marthas-kitchen    { background: #B4BBA1; color: #2E2A24; }
+.badge-martha-gets-down-and-dirty { background: #8C9075; color: #FBFAF0; }
+.badge-apprentice-martha-stewart  { background: #9FB1C0; color: #2E2A24; }
+.badge-holiday-special         { background: #C8BFD4; color: #2E2A24; }
+.badge-default                 { background: var(--rule-soft); color: var(--ink-soft); }
+
+/* Short names per show for the badge */
+[data-show="martha-stewart-living"]::before     { content: "LIVING"; }
+[data-show="martha-stewart-show"]::before       { content: "SHOW"; }
+[data-show="martha-bakes"]::before              { content: "BAKES"; }
+[data-show="cooking-school"]::before            { content: "SCHOOL"; }
+[data-show="martha-and-snoops"]::before         { content: "SNOOP"; }
+[data-show="martha-knows-best"]::before         { content: "KNOWS"; }
+[data-show="martha-cooks"]::before              { content: "COOKS"; }
+[data-show="martha-holidays"]::before           { content: "HOLIDAY"; }
+[data-show="from-marthas-kitchen"]::before      { content: "KITCHEN"; }
+[data-show="martha-gets-down-and-dirty"]::before{ content: "DIRTY"; }
+[data-show="apprentice-martha-stewart"]::before { content: "APPRNTCE"; }
+[data-show="holiday-special"]::before           { content: "SPECIAL"; }
+
+/* ─── Episode detail ───────────────────────────────────────────────────── */
+.detail-hero {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: var(--bedford-gray);
+  display: block;
+}
+.detail-hero-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--page-dove);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-whisper);
+}
+
+.detail-body { padding: 16px; }
+
+.detail-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.detail-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 8px;
+  text-wrap: pretty;
+}
+
+.detail-airdate {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+.detail-desc {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 14px;
+}
+.detail-section-hd {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-whisper);
+  margin-bottom: 10px;
+}
+
+.detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.detail-list li {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--ink);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.detail-list li:last-child { border-bottom: none; }
+
+.detail-guest-role {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.detail-watch-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--garden-hosta);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 24px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.detail-streaming-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.detail-streaming-pill {
+  background: var(--page-warm-white);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.detail-confidence {
+  font-size: 11px;
+  color: var(--ink-whisper);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-soft);
+}
+.confidence-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.conf-confirmed { background: var(--garden-hosta); }
+.conf-partial   { background: #B84A3E; }
+.conf-inferred  { background: var(--bedford-gray); }
+
+.prevnext {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule-soft);
+  margin: 0 -16px;
+  padding: 0 16px;
+}
+.prevnext__item {
+  background: var(--page-cream);
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.prevnext__item--next { text-align: right; }
+.prevnext__dir {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-whisper);
+}
+.prevnext__title {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--garden-hosta);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Show overview ────────────────────────────────────────────────────── */
+.show-hero {
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.show-hero__title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.show-hero__meta {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.season-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--rule-soft);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.season-row:active { background: var(--page-dove); }
+.season-num {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  width: 42px;
+  flex-shrink: 0;
+}
+.season-info { flex: 1; }
+.season-title { font-size: 15px; color: var(--ink); margin-bottom: 2px; }
+.season-count { font-size: 12px; color: var(--ink-whisper); }
+.season-chevron { color: var(--ink-whisper); }
+
+/* ─── About / colophon ─────────────────────────────────────────────────── */
+.about-body {
+  padding: 20px 16px;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1.65;
+}
+.about-body h2 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-whisper);
+  margin: 24px 0 10px;
+  font-family: var(--font-ui);
+}
+.about-body p { margin-bottom: 14px; }
+.about-body a { color: var(--garden-hosta); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ─── Empty / loading states ───────────────────────────────────────────── */
+.state-empty {
+  padding: 60px 24px;
+  text-align: center;
+}
+.state-empty__title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.state-empty__sub {
+  font-size: 14px;
+  color: var(--ink-whisper);
+}
+
+.state-loading {
+  padding: 60px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-whisper);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ─── Utilities ────────────────────────────────────────────────────────── */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* Divider hairline */
+.hairline { border: 0; border-top: 1px solid var(--rule-soft); margin: 0; }
+
+/* Tap-safe minimum */
+.tap-target {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Desktop guard: never let this look good on desktop ───────────────── */
+@media (min-width: 600px) {
+  #app {
+    max-width: 430px;
+    margin: 0 auto;
+    box-shadow: 0 0 0 1px var(--rule-soft), 0 8px 40px rgba(0,0,0,0.1);
+    min-height: 100dvh;
+    min-height: 100vh;
+  }
+}

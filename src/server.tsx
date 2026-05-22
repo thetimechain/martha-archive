@@ -17,6 +17,7 @@ import { gapsRoute } from "./routes/gaps.js";
 import { apiRoute } from "./routes/api.js";
 import { sitemapRoute } from "./routes/sitemap.js";
 import { adminRoute } from "./routes/admin.js";
+import { mobileRoute } from "./routes/mobile.js";
 import { NotFoundPage } from "./views/NotFound.js";
 
 const app = new Hono();
@@ -50,6 +51,7 @@ app.route("/", gapsRoute);
 app.route("/", apiRoute);
 app.route("/", sitemapRoute);
 app.route("/", adminRoute);
+app.route("/", mobileRoute);
 
 app.notFound((c) => c.html(<NotFoundPage />, 404));
 app.onError((err, c) => {

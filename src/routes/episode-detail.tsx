@@ -40,6 +40,11 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
               decoding="async"
               style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:var(--bedford-gray);"
             />
+            {((ep as any).mst_match_score ?? "").includes("title_cross_season") && (
+              <figcaption class="caption" style="margin-top:var(--space-1);">
+                Photograph from a related segment on marthastewart.tv (not the exact broadcast).
+              </figcaption>
+            )}
           </figure>
         )}
         <p class="eyebrow">
@@ -55,10 +60,23 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
         {ep.description && <p class="description">{ep.description}</p>}
         {(ep as any).mst_canonical_url && (
           <p class="caption" style="margin-top:var(--space-2);">
-            Watch on{" "}
-            <a href={(ep as any).mst_canonical_url} rel="noreferrer" target="_blank" style="text-decoration:underline;">
-              marthastewart.tv →
-            </a>
+            {((ep as any).provenance === "marthastewart-tv") ? (
+              <>
+                <span class="confidence-badge confidence-badge--inferred" style="margin-right:var(--space-2);">
+                  via marthastewart.tv
+                </span>
+                <a href={(ep as any).mst_canonical_url} rel="noreferrer" target="_blank" style="text-decoration:underline;">
+                  Watch on marthastewart.tv →
+                </a>
+              </>
+            ) : (
+              <>
+                Watch on{" "}
+                <a href={(ep as any).mst_canonical_url} rel="noreferrer" target="_blank" style="text-decoration:underline;">
+                  marthastewart.tv →
+                </a>
+              </>
+            )}
           </p>
         )}
         {ep.network && (
