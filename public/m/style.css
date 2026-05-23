@@ -457,22 +457,34 @@ mark {
   display: flex;
   align-items: center;
 }
-.chips-wrap { display: flex; flex-wrap: wrap; gap: 4px; }
+/* Equal-width grid — all chips visible at once, no expand needed */
+.chips-wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
 
 .chip {
   background: var(--page-cream);
   border: 1px solid var(--rule);
   color: var(--ink);
   border-radius: var(--radius-pill);
-  padding: 4px 10px;
+  padding: 7px 4px;
   font-family: var(--font-serif);
-  font-size: 12px;
+  font-size: 13px;
   cursor: pointer;
+  text-align: center;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: background var(--dur-quick) var(--ease),
               border-color var(--dur-quick) var(--ease);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .chip:active, .chip.active {
   background: var(--araucana-eggshell);

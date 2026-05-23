@@ -40,41 +40,28 @@
     'holiday-special':                'Holiday Specials',
   };
 
-  /* ─── Popular chips — canonical QUICK_PICKS from search.js handoff ──── */
+  /* ─── Popular chips — 12 real MSL topics, all shown at once in a 4×3 grid ─
+     Verified against the DB: each has 30+ episodes in Martha Stewart Living.
+     Ordered so each row of 4 reads as a coherent group.                      */
   const ALL_CHIPS = [
-    // holidays first — biggest seasonal pull
-    { q:'halloween',    label:'halloween'   },
-    { q:'thanksgiving', label:'thanksgiving' },
-    { q:'christmas',    label:'christmas'   },
-    { q:'easter',       label:'easter'      },
-    // people
-    { q:'snoop',        label:'snoop dogg'  },
-    { q:'julia child',  label:'julia child' },
-    // place
-    { q:'new york',     label:'new york'    },
-    { q:'italy',        label:'italy'       },
-    { q:'maine',        label:'maine'       },
-    { q:'paris',        label:'paris'       },
-    // cuisine
-    { q:'french',       label:'french'      },
-    { q:'mexican',      label:'mexican'     },
-    // meal occasion
-    { q:'brunch',       label:'brunch'      },
-    { q:'breakfast',    label:'breakfast'   },
-    { q:'wedding',      label:'weddings'    },
-    // subject
-    { q:'pumpkin',      label:'pumpkin'     },
-    { q:'pie',          label:'pies'        },
-    { q:'cookie',       label:'cookies'     },
-    { q:'cake',         label:'cakes'       },
-    { q:'bread',        label:'bread'       },
-    { q:'garden',       label:'garden'      },
-    { q:'pets',         label:'pets'        },
-    { q:'knit',         label:'knitting'    },
-    { q:'pottery',      label:'pottery'     },
-    { q:'craft',        label:'crafts'      },
+    // Row 1 — the garden and kitchen
+    { q:'gardening',  label:'gardening'  },
+    { q:'crafts',     label:'crafts'     },
+    { q:'baking',     label:'baking'     },
+    { q:'cookies',    label:'cookies'    },
+    // Row 2 — the seasons
+    { q:'halloween',  label:'halloween'  },
+    { q:'christmas',  label:'christmas'  },
+    { q:'flowers',    label:'flowers'    },
+    { q:'field trip', label:'field trip' },
+    // Row 3 — the table
+    { q:'french',     label:'french'     },
+    { q:'pasta',      label:'pasta'      },
+    { q:'chocolate',  label:'chocolate'  },
+    { q:'pie',        label:'pies'       },
   ];
-  const CHIPS_DEFAULT = 8;
+  // All chips shown at once — no expand button
+  const CHIPS_DEFAULT = ALL_CHIPS.length;
 
   /* ─── State ─────────────────────────────────────────────────────────────── */
   let episodes = null;      // full compact array, loaded once
@@ -361,10 +348,10 @@
    * ─────────────────────────────────────────────────────────────────────────── */
   function renderHome() {
     const result   = getFiltered();
-    const chips    = chipsExpanded ? ALL_CHIPS : ALL_CHIPS.slice(0, CHIPS_DEFAULT);
+    const chips    = ALL_CHIPS; // all shown at once — grid fills evenly
     const hasQuery = !!query.trim();
     const hasFilter= !!(filterShow || filterYear || filterSeason);
-    const showExpand = !chipsExpanded && ALL_CHIPS.length > CHIPS_DEFAULT;
+    const showExpand = false; // no expand needed
 
     let feed = '';
     if (hasQuery || hasFilter) {
@@ -438,10 +425,7 @@
 
       ${!hasQuery ? `
         <div class="chips-section" id="chips-section">
-          <div class="chips-label">
-            POPULAR
-            ${showExpand ? `<button class="chips-expand" id="chips-expand">+${ALL_CHIPS.length - CHIPS_DEFAULT} more</button>` : ''}
-          </div>
+          <div class="chips-label">POPULAR</div>
           <div class="chips-wrap">
             ${chips.map(c => `<button class="chip" data-chip="${esc(c.q)}">${esc(c.label)}</button>`).join('')}
           </div>
@@ -502,12 +486,6 @@
     // Season select
     document.getElementById('sel-season')?.addEventListener('change', e => {
       filterSeason = e.target.value;
-      renderHome();
-    });
-
-    // Popular chip expand
-    document.getElementById('chips-expand')?.addEventListener('click', () => {
-      chipsExpanded = true;
       renderHome();
     });
 
