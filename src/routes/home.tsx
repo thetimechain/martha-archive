@@ -7,6 +7,9 @@ import { canonical, websiteJsonLd } from "../lib/seo.js";
 export const homeRoute = new Hono();
 
 const MOBILE_UA_RE = /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+// Crawlers see the desktop home so they index the server-rendered JSON-LD,
+// canonical, and OG tags. /m/ is a SPA shell with no SSR'd content.
+const BOT_UA_RE = /bot|spider|crawl|GPT|Claude|Perplexity|Google-Extended|CCBot|facebookexternalhit|Slackbot|Twitterbot|Discordbot|Applebot/i;
 
 const SHOW_TONES: Record<string, string> = {
   "martha-stewart-living": "eggshell",
@@ -27,7 +30,7 @@ homeRoute.get("/", async (c) => {
   // Redirect mobile browsers to the search-first mobile SPA.
   // Desktop users stay at /. Append ?desktop=1 to force the desktop view.
   const ua = c.req.header("User-Agent") ?? "";
-  if (c.req.query("desktop") !== "1" && MOBILE_UA_RE.test(ua)) {
+  if (c.req.query("desktop") !== "1" && MOBILE_UA_RE.test(ua) && !BOT_UA_RE.test(ua)) {
     return c.redirect("/m/", 302);
   }
 

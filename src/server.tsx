@@ -18,6 +18,7 @@ import { apiRoute } from "./routes/api.js";
 import { sitemapRoute } from "./routes/sitemap.js";
 import { adminRoute } from "./routes/admin.js";
 import { mobileRoute } from "./routes/mobile.js";
+import { mobileSwRoute } from "./routes/mobile-sw.js";
 import { factsRoute } from "./routes/facts.js";
 import { guestsRoute } from "./routes/guests.js";
 import { topicsRoute } from "./routes/topics.js";
@@ -36,6 +37,11 @@ app.use("*", async (c, next) => {
     pinoLogger.info({ req_id: id, method: c.req.method, path: c.req.path, status: c.res.status, duration_ms: ms }, "req");
   }
 });
+
+// Dynamic mobile service worker — must be mounted BEFORE the /static/*
+// middleware so it wins for /static/m/sw.js. Rewrites CACHE_VERSION to a
+// content-hash of the shell files so each shell change invalidates clients.
+app.route("/", mobileSwRoute);
 
 // static assets at /static/*  — served from ./public (dev) or ./dist/public (prod build)
 const staticRoot = "./public";

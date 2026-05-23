@@ -501,7 +501,127 @@ mark {
   letter-spacing: 0;
 }
 
+/* ─── Episode CARD — full-width with hero image ──────────────────────────── */
+/* Used when the episode has a real photograph. Apple TV+ style.              */
+.ep-card {
+  display: block;
+  cursor: pointer;
+  background: var(--page-cream);
+  border-bottom: 1px solid var(--rule-soft);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: opacity var(--dur-quick) var(--ease);
+}
+.ep-card:active { opacity: 0.88; }
+.ep-card:focus { outline: none; }
+.ep-card:focus-visible { box-shadow: inset 0 0 0 2px var(--garden-hosta); }
+
+/* The image container — locks aspect ratio so nothing shifts while loading */
+.ep-card__img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--page-dove);    /* placeholder color while img loads */
+}
+.ep-card__img-wrap.has-color {
+  /* Show-specific tonal placeholder when no photo */
+}
+
+.ep-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;           /* favor faces/subjects over lower-thirds */
+  display: block;
+  -webkit-backface-visibility: hidden;   /* eliminate WebKit composite flicker */
+  backface-visibility: hidden;
+  /* Smooth 220ms fade-in — matches iOS UIKit default curve */
+  opacity: 0;
+  transition: opacity 220ms cubic-bezier(.22, .61, .36, 1);
+}
+.ep-card__img.loaded { opacity: 1; }
+
+/* Subtle gradient at bottom: blends image into card background */
+.ep-card__img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 48%;
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 240, 228, 0) 0%,
+    rgba(245, 240, 228, 0.6) 100%
+  );
+  pointer-events: none;
+}
+
+/* Season/episode numeral — bottom-left corner of the image */
+.ep-card__numeral {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.ep-card__s {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  line-height: 1;
+}
+.ep-card__e {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink);
+}
+
+/* Card body — below the image */
+.ep-card__body {
+  padding: 10px 14px 14px;
+}
+.ep-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+.ep-card__title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 5px;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+.ep-card__desc {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ep-card__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
 /* ─── Episode row — exact spec from AHome.css ────────────────────────────── */
+/* Used for photo-less episodes and compact search results                     */
 .ep-row {
   display: grid;
   grid-template-columns: 42px 1fr;

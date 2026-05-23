@@ -212,11 +212,76 @@
     return tags.slice(0, max || 3);
   }
 
-  /* ─── Episode row HTML ──────────────────────────────────────────────────── */
+  /* ─── Per-show placeholder colors for photo-less episodes ──────────────── */
+  const SHOW_PLACEHOLDER = {
+    'martha-stewart-living':       '#F3EBC9',
+    'martha-bakes':                '#E4ECDB',
+    'cooking-school':              '#DDE5EE',
+    'martha-stewart-show':         '#E8DFE8',
+    'martha-and-snoops':           '#F0DED2',
+    'martha-knows-best':           '#E8EBD8',
+    'martha-gets-down-and-dirty':  '#DDE6DE',
+    'martha-cooks':                '#F3E6D3',
+    'martha-holidays':             '#E8D8D2',
+    'apprentice-martha-stewart':   '#D6DDE3',
+    'from-marthas-kitchen':        '#F0D8D2',
+    'holiday-special':             '#DDE3EC',
+  };
+
+  /* ─── Episode CARD — full-width hero image ───────────────────────────────
+     Used when the episode has a photograph. Shows image full-width 16:9
+     with season numeral overlaid, then title + metadata below.              */
+  function epCardHTML(ep, q) {
+    const tags  = goodTags(ep, 3);
+    const guest = (ep.guests || [])[0];
+    const pills = [
+      ...(guest ? [`<span class="pill-guest">★ ${esc(guest)}</span>`] : []),
+      ...tags.map(t => `<span class="pill-tag">${esc(t)}</span>`),
+    ].join('');
+
+    const hasNum = ep.season != null && ep.episode_number != null;
+    const numHTML = hasNum
+      ? `<div class="ep-card__numeral">
+           <span class="ep-card__s">S${ep.season}</span>
+           <span class="ep-card__e">${ep.episode_number}</span>
+         </div>`
+      : ep.air_year
+        ? `<div class="ep-card__numeral"><span class="ep-card__e" style="font-size:20px;">${ep.air_year}</span></div>`
+        : '';
+
+    // Image or show-colored placeholder
+    const placeholderColor = SHOW_PLACEHOLDER[ep.show_slug] || '#E0D9C8';
+    const imgHTML = ep.photo_url
+      ? `<img class="ep-card__img"
+            src="${esc(ep.photo_url)}"
+            alt="${esc(ep.title)}"
+            loading="lazy"
+            decoding="async"
+            width="640" height="360"
+            onload="this.classList.add('loaded')">`
+      : '';
+
+    return `<article class="ep-card" data-id="${esc(ep.id)}" role="button" tabindex="0" aria-label="${esc(ep.title)}">
+      <div class="ep-card__img-wrap" style="background:${esc(placeholderColor)};">
+        ${imgHTML}
+        ${numHTML}
+      </div>
+      <div class="ep-card__body">
+        <div class="ep-card__meta">
+          ${badgeHTML(ep.show_slug)}
+          <span class="ep-date">${fmtDate(ep)} ${fmtDuration(ep.runtime_minutes)}</span>
+        </div>
+        <h3 class="ep-card__title">${hl(ep.title, q)}</h3>
+        ${ep.description ? `<p class="ep-card__desc">${hl(ep.description, q)}</p>` : ''}
+        ${pills ? `<div class="ep-card__pills">${pills}</div>` : ''}
+      </div>
+    </article>`;
+  }
+
+  /* ─── Episode ROW — compact list (photo-less fallback) ──────────────────── */
   function epRowHTML(ep, q) {
     const tags  = goodTags(ep, 3);
     const guest = (ep.guests || [])[0];
-    const hasPhoto = !!ep.photo_url;
 
     let numCol;
     if (ep.season != null && ep.episode_number != null) {
@@ -237,10 +302,6 @@
       ...tags.map(t => `<span class="pill-tag">${esc(t)}</span>`),
     ].join('');
 
-    const thumb = hasPhoto
-      ? `<img class="ep-thumb" src="${esc(ep.photo_url)}" alt="${esc(ep.title)}" loading="lazy" decoding="async" width="72" height="54">`
-      : '';
-
     return `<article class="ep-row" data-id="${esc(ep.id)}" role="button" tabindex="0" aria-label="${esc(ep.title)}">
       ${numCol}
       <div class="ep-body">
@@ -252,8 +313,12 @@
         ${ep.description ? `<p class="ep-desc">${hl(ep.description, q)}</p>` : ''}
         ${pills ? `<div class="ep-pills">${pills}</div>` : ''}
       </div>
-      ${thumb}
     </article>`;
+  }
+
+  /* Choose card vs row based on whether the episode has a photo */
+  function epHTML(ep, q) {
+    return ep.photo_url ? epCardHTML(ep, q) : epRowHTML(ep, q);
   }
 
   /* ─── Count line ─────────────────────────────────────────────────────────── */
@@ -311,7 +376,7 @@
       } else {
         feed = `<div class="section-hd">
           ${hasQuery ? `RESULTS <span class="section-hd__count">${result.items.length}</span>` : 'EPISODES'}
-        </div>` + result.items.map(ep => epRowHTML(ep, query)).join('');
+        </div>` + result.items.map(ep => epHTML(ep, query)).join('');
       }
     } else {
       const tonight = getThisMonthEpisodes();
@@ -322,10 +387,10 @@
       feed = `
         ${tonight.length > 0 ? `
           <div class="section-hd">${monthName}, IN EARLIER YEARS</div>
-          ${tonight.map(ep => epRowHTML(ep, '')).join('')}
+          ${tonight.map(ep => epHTML(ep, '')).join('')}
         ` : ''}
         <div class="section-hd">RECENT IN THE ARCHIVE <span class="section-hd__count">${recent.length}</span></div>
-        ${recent.map(ep => epRowHTML(ep, '')).join('')}
+        ${recent.map(ep => epHTML(ep, '')).join('')}
       `;
     }
 
@@ -461,6 +526,17 @@
       row.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') navigate('/episode/' + row.dataset.id);
       });
+    });
+    // Episode card taps (same behavior)
+    document.querySelectorAll('.ep-card').forEach(card => {
+      card.addEventListener('click', () => navigate('/episode/' + card.dataset.id));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') navigate('/episode/' + card.dataset.id);
+      });
+    });
+    // Fade-in images that are already cached (complete before load fires)
+    document.querySelectorAll('.ep-card__img').forEach(img => {
+      if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
     });
 
     // Update URL with state
@@ -616,7 +692,7 @@
           <h1 class="show-hero__title">Season ${seasonNum}</h1>
           <p class="show-hero__meta">${sEps.length} episode${sEps.length !== 1 ? 's' : ''}</p>
         </div>
-        ${sEps.map(ep => epRowHTML(ep, '')).join('')}
+        ${sEps.map(ep => epHTML(ep, '')).join('')}
       `;
     } else {
       // Show overview: list seasons
@@ -646,9 +722,12 @@
       });
     }
 
-    // Wire episode rows if we're in a season
-    document.querySelectorAll('.ep-row').forEach(row => {
-      row.addEventListener('click', () => navigate('/episode/' + row.dataset.id));
+    // Wire episode rows and cards in season/show view
+    document.querySelectorAll('.ep-row, .ep-card').forEach(el => {
+      el.addEventListener('click', () => navigate('/episode/' + el.dataset.id));
+    });
+    document.querySelectorAll('.ep-card__img').forEach(img => {
+      if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
     });
   }
 

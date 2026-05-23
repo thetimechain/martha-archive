@@ -2,7 +2,11 @@
 // Caches: app shell (HTML + CSS + JS) and the compact episode JSON.
 // Strategy: cache-first for static assets, network-first with cache fallback for data.
 
-const CACHE_VERSION = 'martha-v3';
+// CACHE_VERSION is rewritten at request time by src/routes/mobile-sw.tsx to
+// `martha-<hash>` where <hash> is a SHA-1 over the shell file contents
+// (sw.js + style.css + app.js). The literal below is the dev/fallback value
+// used only if someone fetches this file directly off disk.
+const CACHE_VERSION = '__CACHE_VERSION__';
 const SHELL_CACHE   = `${CACHE_VERSION}-shell`;
 const DATA_CACHE    = `${CACHE_VERSION}-data`;
 
