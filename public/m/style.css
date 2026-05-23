@@ -457,31 +457,56 @@ mark {
   display: flex;
   align-items: center;
 }
-/* Equal-width grid — all chips visible at once, no expand needed */
+/* 4-column grid, 2 rows default, expands to 6 */
 .chips-wrap {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
 }
 
+/* "Show more popular topics" — small caps link below the grid */
+.chips-show-more {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--garden-hosta);
+  text-align: center;
+  cursor: pointer;
+  padding: 6px 0 2px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Chip: refined, editorial — EB Garamond italic, almost-square corners.
+   Feels like a magazine caption card, not a generic pill.               */
 .chip {
-  background: var(--page-cream);
-  border: 1px solid var(--rule);
-  color: var(--ink);
-  border-radius: var(--radius-pill);
-  padding: 7px 4px;
+  background: var(--page-warm-white);
+  border: 1px solid var(--rule-soft);
+  border-bottom: 1.5px solid var(--rule);
+  color: var(--ink-soft);
+  border-radius: var(--radius-2);
+  padding: 8px 4px 7px;
   font-family: var(--font-serif);
   font-size: 13px;
+  font-style: italic;
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: background var(--dur-quick) var(--ease),
-              border-color var(--dur-quick) var(--ease);
+              border-color var(--dur-quick) var(--ease),
+              color var(--dur-quick) var(--ease);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  min-height: 36px;
+  min-height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -489,6 +514,9 @@ mark {
 .chip:active, .chip.active {
   background: var(--araucana-eggshell);
   border-color: var(--garden-hosta);
+  border-bottom-color: var(--garden-hosta);
+  color: var(--ink);
+  font-style: normal;
 }
 
 /* ─── Section header ────────────────────────────────────────────────────── */

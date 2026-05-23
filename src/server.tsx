@@ -22,6 +22,7 @@ import { mobileSwRoute } from "./routes/mobile-sw.js";
 import { factsRoute } from "./routes/facts.js";
 import { guestsRoute } from "./routes/guests.js";
 import { topicsRoute } from "./routes/topics.js";
+import { chipsRoute } from "./routes/api-chips.js";
 import { NotFoundPage } from "./views/NotFound.js";
 
 const app = new Hono();
@@ -64,6 +65,7 @@ app.route("/", mobileRoute);
 app.route("/", factsRoute);
 app.route("/", guestsRoute);
 app.route("/", topicsRoute);
+app.route("/", chipsRoute);
 
 app.notFound((c) => c.html(<NotFoundPage />, 404));
 app.onError((err, c) => {

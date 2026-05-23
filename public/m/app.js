@@ -40,28 +40,40 @@
     'holiday-special':                'Holiday Specials',
   };
 
-  /* ─── Popular chips — 12 real MSL topics, all shown at once in a 4×3 grid ─
-     Verified against the DB: each has 30+ episodes in Martha Stewart Living.
-     Ordered so each row of 4 reads as a coherent group.                      */
-  const ALL_CHIPS = [
-    // Row 1 — the garden and kitchen
-    { q:'gardening',  label:'gardening'  },
-    { q:'crafts',     label:'crafts'     },
-    { q:'baking',     label:'baking'     },
-    { q:'cookies',    label:'cookies'    },
-    // Row 2 — the seasons
-    { q:'halloween',  label:'halloween'  },
-    { q:'christmas',  label:'christmas'  },
-    { q:'flowers',    label:'flowers'    },
-    { q:'field trip', label:'field trip' },
-    // Row 3 — the table
-    { q:'french',     label:'french'     },
-    { q:'pasta',      label:'pasta'      },
-    { q:'chocolate',  label:'chocolate'  },
-    { q:'pie',        label:'pies'       },
-  ];
-  // All chips shown at once — no expand button
-  const CHIPS_DEFAULT = ALL_CHIPS.length;
+  /* ─── Popular chips — fetched from /api/chips (server-ranked)
+     Ranking: seasonal proximity + click count + MSL episode coverage.
+     Default: 8 chips (2 rows). Expand to 24 (6 rows) on tap.          */
+  let ALL_CHIPS = [];         // populated from API
+  const CHIPS_DEFAULT  = 8;  // 2 rows × 4 columns visible by default
+  const CHIPS_EXPANDED = 24; // 6 rows × 4 columns when expanded
+
+  async function loadChips() {
+    try {
+      const r = await fetch('/api/chips');
+      if (r.ok) ALL_CHIPS = await r.json();
+    } catch {
+      // Fallback if API fails — curated evergreen list
+      ALL_CHIPS = [
+        { q:'crafts',     label:'Crafts'     },
+        { q:'gardening',  label:'Gardening'  },
+        { q:'baking',     label:'Baking'     },
+        { q:'cookies',    label:'Cookies'    },
+        { q:'halloween',  label:'Halloween'  },
+        { q:'christmas',  label:'Christmas'  },
+        { q:'flowers',    label:'Flowers'    },
+        { q:'field trip', label:'Field Trip' },
+        { q:'french',     label:'French'     },
+        { q:'pasta',      label:'Pasta'      },
+        { q:'chocolate',  label:'Chocolate'  },
+        { q:'pie',        label:'Pies'       },
+      ];
+    }
+  }
+
+  // Track chip clicks for the ranking algorithm (fire-and-forget)
+  function trackChipClick(q) {
+    fetch(`/api/chips/click?q=${encodeURIComponent(q)}`, { method: 'POST' }).catch(() => {});
+  }
 
   /* ─── State ─────────────────────────────────────────────────────────────── */
   let episodes = null;      // full compact array, loaded once
@@ -348,10 +360,12 @@
    * ─────────────────────────────────────────────────────────────────────────── */
   function renderHome() {
     const result   = getFiltered();
-    const chips    = ALL_CHIPS; // all shown at once — grid fills evenly
-    const hasQuery = !!query.trim();
-    const hasFilter= !!(filterShow || filterYear || filterSeason);
-    const showExpand = false; // no expand needed
+    const chipLimit = chipsExpanded ? CHIPS_EXPANDED : CHIPS_DEFAULT;
+    const chips     = ALL_CHIPS.slice(0, chipLimit);
+    const hasMore   = ALL_CHIPS.length > CHIPS_DEFAULT && !chipsExpanded;
+    const hasQuery  = !!query.trim();
+    const hasFilter = !!(filterShow || filterYear || filterSeason);
+    const showExpand = false; // kept for compatibility — expand handled separately
 
     let feed = '';
     if (hasQuery || hasFilter) {
@@ -425,10 +439,14 @@
 
       ${!hasQuery ? `
         <div class="chips-section" id="chips-section">
-          <div class="chips-label">POPULAR</div>
+          <div class="chips-label">
+          POPULAR TOPICS
+          ${hasMore ? `<button class="chips-expand" id="chips-expand">Show more</button>` : chipsExpanded ? `<button class="chips-expand" id="chips-collapse">Show fewer</button>` : ''}
+        </div>
           <div class="chips-wrap">
             ${chips.map(c => `<button class="chip" data-chip="${esc(c.q)}">${esc(c.label)}</button>`).join('')}
           </div>
+          ${hasMore ? `<button class="chips-show-more" id="chips-show-more">Show more popular topics</button>` : ''}
         </div>
       ` : ''}
 
@@ -489,10 +507,26 @@
       renderHome();
     });
 
-    // Chip taps
+    // Chip expand / collapse
+    document.getElementById('chips-show-more')?.addEventListener('click', () => {
+      chipsExpanded = true;
+      renderHome();
+    });
+    document.getElementById('chips-expand')?.addEventListener('click', () => {
+      chipsExpanded = true;
+      renderHome();
+    });
+    document.getElementById('chips-collapse')?.addEventListener('click', () => {
+      chipsExpanded = false;
+      renderHome();
+    });
+
+    // Chip taps — search + track click for ranking
     document.querySelectorAll('.chip').forEach(btn => {
       btn.addEventListener('click', () => {
-        query = btn.dataset.chip;
+        const q = btn.dataset.chip;
+        trackChipClick(q);
+        query = q;
         renderHome();
         document.getElementById('q')?.focus();
       });
@@ -1078,7 +1112,7 @@
     window.addEventListener('popstate', () => route(window.location.href));
 
     try {
-      await loadEpisodes();
+      await Promise.all([loadEpisodes(), loadChips()]);
       route(window.location.href);
     } catch (err) {
       console.error(err);
