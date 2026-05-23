@@ -1015,12 +1015,27 @@
       <div id="view" class="view" role="main"></div>
 
       <nav class="tab-bar" role="navigation" aria-label="Main navigation">
-        <button class="tab-bar__item active" onclick="navigate('/')" aria-label="Search">
+        <button class="tab-bar__item active" onclick="navigate('/')" aria-label="Home">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-            <circle cx="9.5" cy="9.5" r="7" stroke="currentColor" stroke-width="1.6"/>
-            <line x1="14.5" y1="14.5" x2="20" y2="20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <!-- Chimney — set slightly right of center, classic colonial -->
+            <rect x="13.5" y="1.5" width="2.5" height="5" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <!-- Roof with gentle pitch and eave line -->
+            <polyline points="1,11 11,3 21,11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="2" y1="11" x2="20" y2="11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+            <!-- House walls -->
+            <rect x="3" y="11" width="16" height="9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+            <!-- Door with arched top — centered -->
+            <path d="M9.5 20.5V16C9.5 15.2 10 14.8 11 14.8S12.5 15.2 12.5 16V20.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <!-- Left window — divided panes (mullion) -->
+            <rect x="4.5" y="13" width="3" height="3" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+            <line x1="6" y1="13" x2="6" y2="16" stroke="currentColor" stroke-width="0.8"/>
+            <line x1="4.5" y1="14.5" x2="7.5" y2="14.5" stroke="currentColor" stroke-width="0.8"/>
+            <!-- Right window — divided panes (mullion) -->
+            <rect x="14.5" y="13" width="3" height="3" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="16" y2="16" stroke="currentColor" stroke-width="0.8"/>
+            <line x1="14.5" y1="14.5" x2="17.5" y2="14.5" stroke="currentColor" stroke-width="0.8"/>
           </svg>
-          Search
+          Home
         </button>
         <button class="tab-bar__item" onclick="navigate('/guests')" aria-label="Guest index">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
