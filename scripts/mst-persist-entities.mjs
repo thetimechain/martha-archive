@@ -49,9 +49,12 @@ for (const p of data.places) {
     mentions: mentions.get(p.slug) ?? 0,
   });
 }
-// Drop entities with zero resolved mentions to keep the index tidy.
-const insertable = entityRows.filter((r) => r.mentions > 0);
-console.log(`[persist] ${insertable.length} entities will be written (skipping ${entityRows.length - insertable.length} with no resolved mentions)`);
+// Keep entities that either (a) have resolved episode mentions, OR (b) come with a researched
+// role (curated entry — every curated PEOPLE / CURATED_PLACES item has a role even if the alias
+// regex hasn't yet matched any vhx description). Drop only the discovered-with-no-role-and-no-
+// mentions noise.
+const insertable = entityRows.filter((r) => r.mentions > 0 || (r.role && r.role.length > 60));
+console.log(`[persist] ${insertable.length} entities will be written (skipping ${entityRows.length - insertable.length} discovered-without-role-or-mention)`);
 
 // Wipe + re-insert (entity universe is fully derived; safe to rebuild).
 await sql`TRUNCATE mst_episode_entities RESTART IDENTITY`;

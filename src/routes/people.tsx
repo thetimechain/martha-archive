@@ -210,6 +210,12 @@ peopleRoute.get("/people/:slug", async (c) => {
         <hr class="hairline" style="margin-bottom:var(--space-5);" />
 
         <p class="smallcap-eyebrow" style="margin-bottom:var(--space-3);">Appearances</p>
+        {appearances.length === 0 && (
+          <p class="caption" style="color:var(--bedford-gray);font-style:italic;max-width:var(--measure-prose);">
+            No specific episode appearances have been cross-referenced yet. Their connection to Martha
+            is documented in the bio above; matching them to a specific MSL TV episode is open work.
+          </p>
+        )}
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--space-4);">
           {appearances.map((e) => (
             <a href={`/episodes/${e.episode_id}`} style="text-decoration:none;color:inherit;display:block;">

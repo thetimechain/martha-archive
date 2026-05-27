@@ -51,7 +51,7 @@ homeRoute.get("/", async (c) => {
     `,
     sql<HomeEntity[]>`
       SELECT slug, name, kind, role, mentions FROM mst_entities
-      WHERE entity_type = 'place'
+      WHERE entity_type = 'place' AND mentions >= 1
         AND kind IN ('business','museum','farm','garden','zoo','historic-house')
       ORDER BY mentions DESC, name ASC LIMIT 10
     `,

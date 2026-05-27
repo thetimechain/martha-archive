@@ -220,6 +220,12 @@ placesRoute.get("/places/:slug", async (c) => {
         <hr class="hairline" style="margin-bottom:var(--space-5);" />
 
         <p class="smallcap-eyebrow" style="margin-bottom:var(--space-3);">Featured in</p>
+        {eps.length === 0 && (
+          <p class="caption" style="color:var(--bedford-gray);font-style:italic;max-width:var(--measure-prose);">
+            Documented as a Martha-orbit location in the research notes above; matching it to a specific
+            MSL TV episode is open work. The vhx segment descriptions don't name it directly.
+          </p>
+        )}
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--space-4);">
           {eps.map((e) => (
             <a href={`/episodes/${e.id}`} style="text-decoration:none;color:inherit;display:block;">
