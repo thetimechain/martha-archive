@@ -160,3 +160,13 @@ h1, h2, h3, h4, h5, h6 {
 .drop-cap--terracotta { color: var(--drop-cap-terracotta); }
 .drop-cap--sage { color: var(--drop-cap-sage); }
 .drop-cap--eggshell { color: var(--drop-cap-eggshell); }
+
+/* Inline segment-shorthand glossary (COW, GT, QC, …).
+ * Wrapped in <abbr class="shorthand" title="…"> by src/lib/shorthand.ts. */
+abbr.shorthand[title] {
+  text-decoration: underline dotted var(--bedford-gray);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.5px;
+  cursor: help;
+  font-variant-numeric: tabular-nums;
+}

@@ -23,6 +23,8 @@ import { factsRoute } from "./routes/facts.js";
 import { guestsRoute } from "./routes/guests.js";
 import { peopleRoute } from "./routes/people.js";
 import { placesRoute } from "./routes/places.js";
+import { aboutShorthandRoute } from "./routes/about-shorthand.js";
+import { todayRoute } from "./routes/today.js";
 import { topicsRoute } from "./routes/topics.js";
 import { chipsRoute } from "./routes/api-chips.js";
 import { NotFoundPage } from "./views/NotFound.js";
@@ -68,6 +70,8 @@ app.route("/", factsRoute);
 app.route("/", guestsRoute);
 app.route("/", peopleRoute);
 app.route("/", placesRoute);
+app.route("/", aboutShorthandRoute);
+app.route("/", todayRoute);
 app.route("/", topicsRoute);
 app.route("/", chipsRoute);
 

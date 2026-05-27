@@ -1,7 +1,8 @@
 import { Hono } from "hono";
 import { Layout } from "../views/components/Layout.js";
-import { fetchLastImport, fetchRowCounts, fetchUnifiedPeople, fetchPersonDetail } from "../db/queries.js";
+import { fetchLastImport, fetchRowCounts, fetchUnifiedPeople, fetchPersonDetail, fetchConnections } from "../db/queries.js";
 import { canonical, breadcrumbsJsonLd } from "../lib/seo.js";
+import { wikiLinksFor } from "../lib/wiki-links.js";
 
 export const peopleRoute = new Hono();
 
@@ -169,8 +170,12 @@ peopleRoute.get("/people", async (c) => {
 
 peopleRoute.get("/people/:slug", async (c) => {
   const slug = c.req.param("slug");
-  const { person, appearances } = await fetchPersonDetail(slug);
+  const [{ person, appearances }, connections] = await Promise.all([
+    fetchPersonDetail(slug),
+    fetchConnections(slug, 10),
+  ]);
   if (!person) return c.notFound();
+  const wikiLinks = wikiLinksFor(person.slug, "person");
 
   return c.html(
     <Layout
@@ -206,8 +211,39 @@ peopleRoute.get("/people/:slug", async (c) => {
         {person.role && (
           <p class="lede" style="max-width:var(--measure-prose);margin-bottom:var(--space-5);">{person.role}</p>
         )}
+        {wikiLinks.length > 0 && (
+          <p class="caption" style="font-style:italic;color:var(--bedford-gray);max-width:var(--measure-prose);margin-top:calc(-1 * var(--space-3));margin-bottom:var(--space-5);">
+            Main article on the research wiki:{" "}
+            {wikiLinks.map((l, i) => (
+              <>
+                {i > 0 && " · "}
+                <a href={l.href} target="_blank" rel="noopener" style="color:var(--body-text);text-decoration-thickness:0.5px;">{l.label}</a>
+              </>
+            ))}
+          </p>
+        )}
 
         <hr class="hairline" style="margin-bottom:var(--space-5);" />
+
+        {connections.length > 0 && (
+          <section style="margin-bottom:var(--space-6);">
+            <p class="smallcap-eyebrow" style="margin-bottom:var(--space-3);">Often appeared with</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--space-2) var(--space-4);">
+              {connections.map((c) => (
+                <a href={`/${c.entity_type === "person" ? "people" : "places"}/${c.slug}`}
+                   style="text-decoration:none;color:inherit;display:block;padding:var(--space-1) 0;border-bottom:var(--hairline-thin);">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
+                    <span style="font-family:var(--font-body);">{c.name}</span>
+                    <span style="font-family:var(--font-display);color:var(--bedford-gray);font-size:1.05rem;">{c.shared}</span>
+                  </div>
+                  <p class="caption" style="margin-top:2px;color:var(--bedford-gray);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;">
+                    {c.entity_type === "person" ? c.kind : `${c.kind} · place`}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
 
         <p class="smallcap-eyebrow" style="margin-bottom:var(--space-3);">Appearances</p>
         {appearances.length === 0 && (

@@ -30,6 +30,8 @@ sitemapRoute.get("/sitemap.xml", async (c) => {
   urls.push(`<url><loc>${base}/guests</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
   urls.push(`<url><loc>${base}/people</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
   urls.push(`<url><loc>${base}/places</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
+  urls.push(`<url><loc>${base}/today</loc><lastmod>${lastmod}</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>`);
+  urls.push(`<url><loc>${base}/about/shorthand</loc><lastmod>${lastmod}</lastmod><priority>0.4</priority></url>`);
   urls.push(`<url><loc>${base}/topics</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
   urls.push(`<url><loc>${base}/collections</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
   urls.push(`<url><loc>${base}/design-system</loc><lastmod>${lastmod}</lastmod><priority>0.3</priority></url>`);

@@ -28,6 +28,7 @@ COPY --from=prune --chown=app:app /app/node_modules ./node_modules
 COPY --from=build --chown=app:app /app/dist ./dist
 COPY --from=build --chown=app:app /app/drizzle ./drizzle
 COPY --from=build --chown=app:app /app/public ./public
+COPY --from=build --chown=app:app /app/data/entity-wiki-links.json ./data/entity-wiki-links.json
 COPY --from=build --chown=app:app /app/package.json ./package.json
 USER app
 EXPOSE 8080

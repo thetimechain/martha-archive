@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { Layout } from "../views/components/Layout.js";
-import { fetchShows, fetchLastImport, fetchRowCounts, fetchNotableEpisodes } from "../db/queries.js";
+import { fetchShows, fetchLastImport, fetchRowCounts, fetchNotableEpisodes, fetchOnThisDay } from "../db/queries.js";
 import { sql } from "../db/client.js";
 import { copy } from "../copy.js";
 import { canonical, websiteJsonLd } from "../lib/seo.js";
@@ -41,6 +41,16 @@ homeRoute.get("/", async (c) => {
 
   // pull a few notable episodes for the Good Things callouts
   const notable = await fetchNotableEpisodes("martha-stewart-living", 3);
+
+  // Compute today's MM-DD in America/New_York for "On this day" widget.
+  const nyParts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York", month: "numeric", day: "numeric",
+  }).formatToParts(new Date());
+  const todayMonth = Number.parseInt(nyParts.find((p) => p.type === "month")!.value, 10);
+  const todayDay = Number.parseInt(nyParts.find((p) => p.type === "day")!.value, 10);
+  const todayEps = await fetchOnThisDay(todayMonth, todayDay);
+  const todayMd = `${todayMonth.toString().padStart(2, "0")}-${todayDay.toString().padStart(2, "0")}`;
+  const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
   // Surface MSL TV's recurring contributors and a few favorite field-trip destinations.
   const [topPeople, topPlaces] = await Promise.all([
@@ -89,6 +99,29 @@ homeRoute.get("/", async (c) => {
         </p>
         <hr class="hairline" style="margin-top:var(--space-5);" />
       </section>
+
+      {todayEps.length > 0 && (
+        <section class="page section" aria-label="On this day">
+          <p class="section-eyebrow">On this day · {MONTHS[todayMonth - 1]} {todayDay}</p>
+          <h2 class="display-smaller">Years ago, on Martha.</h2>
+          <div style="display:grid;gap:var(--space-3);margin-top:var(--space-4);">
+            {todayEps.slice(0, 4).map((e) => (
+              <a href={`/episodes/${e.id}`} style="text-decoration:none;color:inherit;display:grid;grid-template-columns:60px 1fr;gap:var(--space-4);align-items:baseline;border-bottom:var(--hairline-thin);padding-bottom:var(--space-2);">
+                <span style="font-family:var(--font-display);font-size:1.6rem;line-height:1;color:var(--bedford-gray);">{e.air_year ?? "—"}</span>
+                <span>
+                  <span style="font-family:var(--font-body);">{e.title}</span>
+                  <span class="caption" style="display:block;color:var(--bedford-gray);font-size:0.78rem;margin-top:2px;">{e.show_name ?? e.show_slug}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+          <p style="margin-top:var(--space-3);">
+            <a href={`/today/${todayMd}`} class="smallcap-eyebrow" style="color:var(--body-text);text-decoration-thickness:0.5px;">
+              All anniversaries for {MONTHS[todayMonth - 1]} {todayDay} →
+            </a>
+          </p>
+        </section>
+      )}
 
       {topPeople.length > 0 && (
         <section class="page section" aria-label="People on MSL TV">

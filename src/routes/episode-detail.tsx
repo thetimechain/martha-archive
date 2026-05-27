@@ -4,6 +4,7 @@ import { fetchEpisodeDetail, fetchLastImport, fetchRowCounts } from "../db/queri
 import { formatDate } from "../views/components/EpisodeCard.js";
 import { copy } from "../copy.js";
 import { canonical, siteHost, tvEpisodeJsonLd, breadcrumbsJsonLd } from "../lib/seo.js";
+import { decorateShorthandSafe } from "../lib/shorthand.js";
 
 export const episodeDetailRoute = new Hono();
 
@@ -86,7 +87,7 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
         </p>
         <h1 class="serif-title">{ep.title}</h1>
         <p class="air-date italic">{date}</p>
-        {ep.description && <p class="description">{ep.description}</p>}
+        {ep.description && <p class="description" dangerouslySetInnerHTML={decorateShorthandSafe(ep.description)}></p>}
         {(ep as any).mst_canonical_url && (
           <p class="caption" style="margin-top:var(--space-2);">
             {((ep as any).provenance === "marthastewart-tv") ? (
@@ -194,8 +195,8 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
                 <article class="segment">
                   <span class="numeral">{(s.position + 1).toString().padStart(2, "0")}</span>
                   {s.kind && <span class="kind">{s.kind}</span>}
-                  <span class="title">{s.title}</span>
-                  {s.description && <p class="caption">{s.description}</p>}
+                  <span class="title" dangerouslySetInnerHTML={decorateShorthandSafe(s.title)}></span>
+                  {s.description && <p class="caption" dangerouslySetInnerHTML={decorateShorthandSafe(s.description)}></p>}
                 </article>
               ))}
             </div>

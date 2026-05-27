@@ -456,6 +456,63 @@ export type PersonAppearance = {
   source: string;
 };
 
+// ─── On this day in Martha history ──────────────────────────────────────────
+export type OnThisDayRow = {
+  id: string;
+  title: string;
+  show_slug: string;
+  show_name: string | null;
+  air_year: number | null;
+  air_date: string | null;
+  photo_url: string | null;
+};
+
+export async function fetchOnThisDay(month: number, day: number): Promise<OnThisDayRow[]> {
+  return pg<OnThisDayRow[]>`
+    SELECT id, title, show_slug, show_name, air_year, air_date::text AS air_date, photo_url
+    FROM episodes
+    WHERE air_precision = 'day'
+      AND EXTRACT(MONTH FROM air_date)::int = ${month}
+      AND EXTRACT(DAY   FROM air_date)::int = ${day}
+    ORDER BY air_year ASC NULLS LAST, title ASC
+  `;
+}
+
+// ─── Entity connections (used by /people/:slug and /places/:slug) ───────────
+//
+// "Often appeared with X" — entities that share ≥ 2 episodes with the subject,
+// drawn from mst_episode_entities. Cross-type intentionally (a person's page
+// may surface a closely-linked place and vice-versa).
+
+export type Connection = {
+  slug: string;
+  name: string;
+  kind: string;
+  entity_type: string;
+  role: string | null;
+  shared: number;
+};
+
+export async function fetchConnections(slug: string, limit = 10): Promise<Connection[]> {
+  const canonical = canonicalSlug(slug);
+  const rows = await pg<Connection[]>`
+    SELECT other.slug, other.name, other.kind, other.entity_type, other.role,
+           count(*)::int AS shared
+    FROM mst_episode_entities me1
+    JOIN mst_episode_entities me2
+      ON me1.episode_id = me2.episode_id
+     AND me1.entity_slug <> me2.entity_slug
+    JOIN mst_entities other ON other.slug = me2.entity_slug
+    WHERE me1.entity_slug = ${canonical}
+      AND other.mentions > 0
+    GROUP BY other.slug, other.name, other.kind, other.entity_type, other.role
+    HAVING count(*) >= 2
+    ORDER BY shared DESC, other.mentions DESC, other.name ASC
+    LIMIT ${limit}
+  `;
+  return rows;
+}
+
 export async function fetchPersonDetail(slug: string): Promise<{ person: UnifiedPerson | null; appearances: PersonAppearance[] }> {
   // Resolve aliases backwards too — if user lands on /people/martha-kostyra, look up /people/mrs-kostyra.
   const canonical = canonicalSlug(slug);

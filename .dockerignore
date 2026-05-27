@@ -11,7 +11,8 @@ tests
 screenshots
 verification-screenshots
 reports
-data
+data/*
+!data/entity-wiki-links.json
 _coll.html
 **/*.test.ts
 public/episode-images/source
