@@ -9,5 +9,7 @@ dist
 screenshots
 verification-screenshots
 reports
-data
+data/*
+!data/entity-wiki-links.json
+!data/places-geo.json
 drizzle/meta/_journal.json.bak

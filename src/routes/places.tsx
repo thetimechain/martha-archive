@@ -4,6 +4,7 @@ import { sql } from "../db/client.js";
 import { fetchLastImport, fetchRowCounts, fetchConnections } from "../db/queries.js";
 import { canonical, breadcrumbsJsonLd } from "../lib/seo.js";
 import { wikiLinksFor } from "../lib/wiki-links.js";
+import { allCoords } from "../lib/places-geo.js";
 
 export const placesRoute = new Hono();
 
@@ -104,6 +105,11 @@ placesRoute.get("/places", async (c) => {
             the marthastewart.tv archive. Some you've heard of (Balthazar, the Metropolitan Museum).
             Some you haven't (Murray McMurray Hatchery, Peckerwood Garden, Gilberties Herb Farm).
           </p>
+          <p style="margin-top:var(--space-3);">
+            <a href="/places/map" class="smallcap-eyebrow" style="color:var(--body-text);text-decoration-thickness:0.5px;">
+              View on the atlas →
+            </a>
+          </p>
         </header>
 
         {GROUP_ORDER.map((groupKey) => {
@@ -164,6 +170,100 @@ placesRoute.get("/places", async (c) => {
           Curated entries include researched context (founding, location, link to Martha); discovered
           entries show only the segment they appeared in.
         </p>
+      </div>
+    </Layout>,
+  );
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// /places/map — illustrated atlas of every researched Martha-orbit place.
+// Hand-curated coords in data/places-geo.json. Tiles via CARTO Positron with
+// a sepia/parchment CSS filter applied client-side.
+// ─────────────────────────────────────────────────────────────────────────────
+placesRoute.get("/places/map", async (c) => {
+  const [places, lastImport, counts] = await Promise.all([
+    sql<PlaceRow[]>`
+      SELECT slug, name, kind, role, mentions
+      FROM mst_entities
+      WHERE entity_type = 'place'
+      ORDER BY mentions DESC, name ASC
+    `,
+    fetchLastImport(),
+    fetchRowCounts(),
+  ]);
+
+  const coords = allCoords();
+  // Build the dataset the client will consume.
+  const mapPoints = places
+    .filter((p) => coords[p.slug])
+    .map((p) => ({
+      slug: p.slug,
+      name: p.name,
+      kind: p.kind,
+      role: p.role ? (p.role.length > 200 ? p.role.slice(0, 200) + "…" : p.role) : null,
+      mentions: p.mentions,
+      lat: coords[p.slug]![0],
+      lng: coords[p.slug]![1],
+    }));
+
+  const unmappedCount = places.length - mapPoints.length;
+
+  return c.html(
+    <Layout
+      title="Atlas — Where Martha Went"
+      description={`Every farm, bakery, museum, gallery, garden, and field-trip destination featured on Martha Stewart programming, mapped. ${mapPoints.length} located, ${unmappedCount} yet to be pinned.`}
+      canonical={canonical("/places/map")}
+      jsonLd={[breadcrumbsJsonLd([
+        { name: "Archive", url: canonical("/") },
+        { name: "Places", url: canonical("/places") },
+        { name: "Atlas", url: canonical("/places/map") },
+      ])]}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      head={
+        <>
+          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+          <link rel="stylesheet" href="/static/styles/places-map.css" />
+        </>
+      }
+    >
+      <div class="atlas-page">
+        <header class="atlas-header">
+          <p class="smallcap-eyebrow" style="color:var(--body-text);margin-bottom:var(--space-2);">An atlas</p>
+          <h1 class="display">Where Martha went.</h1>
+          <p class="caption atlas-lede">
+            {mapPoints.length} farms, bakeries, museums, galleries, gardens, and field-trip
+            destinations she visited on camera — pinned on a vintage chart. {unmappedCount > 0 && (
+              <>The remaining {unmappedCount} discovered places aren't yet located.</>
+            )}
+          </p>
+        </header>
+
+        <div id="atlas-map" role="region" aria-label="Atlas of Martha-orbit places"></div>
+
+        <section class="atlas-filters" aria-label="Filter by kind">
+          <span class="smallcap-eyebrow">Show</span>
+          <button type="button" class="atlas-chip is-active" data-kind="all">All</button>
+          <button type="button" class="atlas-chip" data-kind="residence">Residences</button>
+          <button type="button" class="atlas-chip" data-kind="business">Businesses</button>
+          <button type="button" class="atlas-chip" data-kind="museum">Museums</button>
+          <button type="button" class="atlas-chip" data-kind="garden">Gardens</button>
+          <button type="button" class="atlas-chip" data-kind="farm">Farms</button>
+          <button type="button" class="atlas-chip" data-kind="zoo">Zoos</button>
+          <button type="button" class="atlas-chip" data-kind="historic-house">Historic houses</button>
+          <button type="button" class="atlas-chip" data-kind="location">Locations</button>
+          <button type="button" class="atlas-chip" data-kind="event">Events</button>
+          <button type="button" class="atlas-chip" data-kind="organization">Organizations</button>
+        </section>
+
+        <p class="atlas-attribution">
+          Tiles by <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>,
+          data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>.
+          Coordinates hand-curated; corrections welcome.
+        </p>
+
+        <script id="atlas-data" type="application/json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mapPoints) }}></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="/static/scripts/places-map.js" defer></script>
       </div>
     </Layout>,
   );

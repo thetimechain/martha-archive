@@ -13,6 +13,7 @@ verification-screenshots
 reports
 data/*
 !data/entity-wiki-links.json
+!data/places-geo.json
 _coll.html
 **/*.test.ts
 public/episode-images/source

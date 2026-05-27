@@ -18,8 +18,9 @@ export const Layout: FC<
     canonical?: string;
     jsonLd?: object | object[];
     footerMeta?: { lastImport?: string; episodeCount?: number };
+    head?: any;
   }>
-> = ({ title, description, og, canonical, jsonLd, footerMeta, children }) => {
+> = ({ title, description, og, canonical, jsonLd, footerMeta, head, children }) => {
   const fullTitle = title.startsWith("Martha") ? title : `${title} — Martha Stewart Living: An Archive`;
   const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
@@ -53,6 +54,7 @@ export const Layout: FC<
             dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
           />
         ))}
+        {head}
       </head>
       <body>
         <Header />

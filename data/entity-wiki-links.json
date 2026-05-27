@@ -1,0 +1,260 @@
+{
+  "_comment": "Map from entity slug (in mst_entities) → list of research-wiki articles in github.com/thetimechain/random where that entity is profiled. Each link is { article: <stable key from articleMap below>, anchor: <github heading slug>, label: <UI label> }. Used by src/routes/people.tsx and src/routes/places.tsx to render a Wikipedia-style 'Main article: …' hatnote linking to deep research.",
+
+  "_articleMap": {
+    "recurring-cast-bios":          "https://github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/raw/articles/2026-05-26-recurring-cast-bios.md",
+    "master-chefs-roster":          "https://github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/raw/articles/2026-05-26-master-chefs-roster.md",
+    "animals-and-marc-morrone":     "https://github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/raw/articles/2026-05-26-animals-and-marc-morrone-breeds.md",
+    "business-empires":             "https://github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/raw/articles/2026-05-27-business-empires.md",
+    "gap-fill-businesses-imdb":     "https://github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/raw/articles/2026-05-27-gap-fill-businesses-and-imdb.md",
+    "polish-verify-craft-taxonomy": "https://github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/raw/articles/2026-05-27-polish-verify-and-craft-taxonomy.md",
+    "seasonal-arc":                 "https://github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/wiki/topics/seasonal-arc.md",
+    "locations-and-residences":     "https://github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/wiki/topics/locations-and-residences.md"
+  },
+
+  "people": {
+    "marc-morrone": [
+      { "article": "recurring-cast-bios", "anchor": "marc-morrone", "label": "Bio" },
+      { "article": "animals-and-marc-morrone", "anchor": "marc-morrones-msl-segments--catalog-by-breed-category", "label": "Breed taxonomy" }
+    ],
+    "mrs-kostyra": [
+      { "article": "recurring-cast-bios", "anchor": "martha-kostyra-mrs-kostyra--big-martha", "label": "Bio" }
+    ],
+    "salli-lagrone": [
+      { "article": "recurring-cast-bios", "anchor": "salli-lagrone", "label": "Bio" }
+    ],
+    "hannah-milman": [
+      { "article": "recurring-cast-bios", "anchor": "hannah-milman", "label": "Bio" },
+      { "article": "polish-verify-craft-taxonomy", "anchor": "wreath-making", "label": "Wreath segments" }
+    ],
+    "stephen-drucker": [
+      { "article": "recurring-cast-bios", "anchor": "stephen-drucker", "label": "Bio" }
+    ],
+    "eric-ripert": [
+      { "article": "master-chefs-roster", "anchor": "already-confirmed-chefs", "label": "Master Chefs" },
+      { "article": "business-empires", "anchor": "eric-ripert-le-bernardin", "label": "Business empire" }
+    ],
+    "rick-bayless": [
+      { "article": "master-chefs-roster", "anchor": "already-confirmed-chefs", "label": "Master Chefs" },
+      { "article": "business-empires", "anchor": "rick-bayless", "label": "Business empire" }
+    ],
+    "anne-willan": [
+      { "article": "master-chefs-roster", "anchor": "already-confirmed-chefs", "label": "Master Chefs" },
+      { "article": "polish-verify-craft-taxonomy", "anchor": "anne-willan--alive", "label": "Status confirmed alive" }
+    ],
+    "diana-kennedy": [
+      { "article": "master-chefs-roster", "anchor": "already-confirmed-chefs", "label": "Master Chefs" }
+    ],
+    "todd-english": [
+      { "article": "master-chefs-roster", "anchor": "already-confirmed-chefs", "label": "Master Chefs" },
+      { "article": "business-empires", "anchor": "todd-english", "label": "Business empire" }
+    ],
+    "josefina-howard": [
+      { "article": "master-chefs-roster", "anchor": "already-confirmed-chefs", "label": "Master Chefs" }
+    ],
+    "franck-deletrain": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Master Chefs" }
+    ],
+    "riad-nasr": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Master Chefs" },
+      { "article": "business-empires", "anchor": "riad-nasr", "label": "Frenchette empire" }
+    ],
+    "patricia-wells": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Master Chefs" }
+    ],
+    "terrance-brennan": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Master Chefs" }
+    ],
+    "scott-peacock": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Master Chefs" }
+    ],
+    "madhur-jaffrey": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Master Chefs" }
+    ],
+    "egidiana-maccioni": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Master Chefs (Le Cirque)" }
+    ],
+    "cesare-casella": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--medium-high-confidence", "label": "Master Chefs" },
+      { "article": "business-empires", "anchor": "cesare-casella", "label": "Beppe + Center for Discovery" }
+    ],
+    "daniel-boulud": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--medium-high-confidence", "label": "Master Chefs" },
+      { "article": "business-empires", "anchor": "daniel-boulud", "label": "Dinex Group" }
+    ],
+    "hiroko-shimbo": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--medium-high-confidence", "label": "Master Chefs" }
+    ],
+    "michael-romano": [
+      { "article": "master-chefs-roster", "anchor": "first-name-only-collaborators--newly-identified", "label": "First-name resolution" }
+    ],
+    "gael-towey": [
+      { "article": "master-chefs-roster", "anchor": "first-name-only-collaborators--newly-identified", "label": "Origami with Gail" }
+    ],
+    "mark-russ-federman": [
+      { "article": "master-chefs-roster", "anchor": "first-name-only-collaborators--newly-identified", "label": "Caviar with Mark" }
+    ],
+    "eli-wilner": [
+      { "article": "master-chefs-roster", "anchor": "first-name-only-collaborators--newly-identified", "label": "Tag Sale Find with Eli" }
+    ],
+    "nobu-matsuhisa": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "season-1-4--season-9-episode-credits", "label": "Pre-fame MSL S9 E16" }
+    ],
+    "julia-child": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "christmas-specials--verified", "label": "1995 Christmas Special" }
+    ],
+    "hillary-clinton": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "christmas-specials--verified", "label": "1995 Christmas Special" }
+    ],
+    "miss-piggy": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "christmas-specials--verified", "label": "1995 Christmas Special" }
+    ],
+    "michael-pollan": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "season-1-4--season-9-episode-credits", "label": "Cider segment S9 E57" }
+    ],
+    "dale-chihuly": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "season-1-4--season-9-episode-credits", "label": "Glass segment S9 E59" }
+    ],
+    "lorraine-bracco": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "season-1-4--season-9-episode-credits", "label": "MSL S9 E92" }
+    ],
+    "ismail-merchant": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "season-1-4--season-9-episode-credits", "label": "Indian Food MSL S4 E9" }
+    ],
+    "ben-krupinski": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "christmas-specials--verified", "label": "Gingerbread house with Miss Piggy" },
+      { "article": "locations-and-residences", "anchor": "3-lily-pond-lane--east-hampton", "label": "Built Lily Pond Lane" }
+    ],
+    "marcie-mcgoldrick": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "2-the-craft-taxonomy", "label": "Halloween editor" }
+    ],
+    "carolyn-kelly-wallach": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "3-imdb--roku--tvdb-findings--seven-new-behind-the-camera-names", "label": "4× Emmy producer, d. 2004" }
+    ],
+    "lauren-deen": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "3-imdb--roku--tvdb-findings--seven-new-behind-the-camera-names", "label": "3× Emmy series producer" }
+    ],
+    "linda-corradina": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "3-imdb--roku--tvdb-findings--seven-new-behind-the-camera-names", "label": "Executive Producer" }
+    ],
+    "isolde-motley": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "3-imdb--roku--tvdb-findings--seven-new-behind-the-camera-names", "label": "Founding magazine EIC" }
+    ],
+    "susan-wyland": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "3-imdb--roku--tvdb-findings--seven-new-behind-the-camera-names", "label": "EIC → Real Simple" }
+    ],
+    "greta-anthony": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "3-imdb--roku--tvdb-findings--seven-new-behind-the-camera-names", "label": "First MSLO culinary intern" }
+    ],
+    "suzanne-mcgrath": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "3-imdb--roku--tvdb-findings--seven-new-behind-the-camera-names", "label": "Executive Producer" }
+    ],
+    "margaret-roach": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "margaret-roach", "label": "A Way to Garden" }
+    ],
+    "sydney-eddison": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "sydney-eddison", "label": "Newtown CT garden" }
+    ],
+    "thomas-hobbs": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "thomas-hobbs", "label": "Southlands Nursery" }
+    ],
+    "eric-pike": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "eric-pike", "label": "MSLO Creative Director" }
+    ],
+    "frances-palmer": [
+      { "article": "business-empires", "anchor": "frances-palmer", "label": "Pottery + flower books" }
+    ],
+    "guy-wolff": [
+      { "article": "business-empires", "anchor": "guy-wolff", "label": "Bantam CT pottery" }
+    ],
+    "jonathan-adler": [
+      { "article": "business-empires", "anchor": "jonathan-adler", "label": "Sold for ~$150M, 2024" }
+    ],
+    "lord-wedgwood": [
+      { "article": "recurring-cast-bios", "anchor": "" , "label": "Background" }
+    ],
+    "jacques-pepin": [
+      { "article": "business-empires", "anchor": "jacques-pepin", "label": "Business empire" }
+    ],
+    "johnny-batson": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "12-the-avian-club-segment--identified", "label": "CPAC co-judge with Martha" }
+    ]
+  },
+
+  "places": {
+    "turkey-hill": [
+      { "article": "locations-and-residences", "anchor": "1-turkey-hill--westport-connecticut", "label": "Full history" }
+    ],
+    "katonah-bedford": [
+      { "article": "locations-and-residences", "anchor": "2-cantitoe-corners--bedfordkatonah-ny", "label": "Cantitoe Corners" }
+    ],
+    "east-hampton": [
+      { "article": "locations-and-residences", "anchor": "3-lily-pond-lane--east-hampton", "label": "Lily Pond Lane" }
+    ],
+    "skylands": [
+      { "article": "locations-and-residences", "anchor": "4-skylands--seal-harbor-maine", "label": "Skylands" }
+    ],
+    "balthazar-bakery": [
+      { "article": "locations-and-residences", "anchor": "balthazar-bakery", "label": "Full bio" },
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Riad Nasr era" }
+    ],
+    "balthazar-restaurant": [
+      { "article": "master-chefs-roster", "anchor": "newly-identified--high-confidence", "label": "Riad Nasr era" }
+    ],
+    "frances-palmer-pottery": [
+      { "article": "business-empires", "anchor": "frances-palmer", "label": "About the studio" }
+    ],
+    "guy-wolff-pottery": [
+      { "article": "business-empires", "anchor": "guy-wolff", "label": "About the studio" }
+    ],
+    "murray-mcmurray-hatchery": [
+      { "article": "locations-and-residences", "anchor": "murray-mcmurray-hatchery", "label": "About the hatchery" },
+      { "article": "polish-verify-craft-taxonomy", "anchor": "13-mcmurray-hatchery--confirmed-season-6--1999-05-20", "label": "Episode verified" }
+    ],
+    "wave-hill": [
+      { "article": "locations-and-residences", "anchor": "wave-hill", "label": "Marco Polo Stufano era" }
+    ],
+    "peckerwood-gardens": [
+      { "article": "locations-and-residences", "anchor": "peckerwood-garden-now-the-john-fairey-garden", "label": "John Fairey's garden" }
+    ],
+    "yucca-do-nursery": [
+      { "article": "locations-and-residences", "anchor": "yucca-do-nursery--closed-2018", "label": "Closed 2018" }
+    ],
+    "central-pennsylvania-avian-club": [
+      { "article": "polish-verify-craft-taxonomy", "anchor": "12-the-avian-club-segment--identified", "label": "Avian Club mystery solved" }
+    ],
+    "russian-tea-room": [
+      { "article": "locations-and-residences", "anchor": "russian-tea-room", "label": "About the restaurant" }
+    ],
+    "brewery-ommegang": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "brewery-ommegang", "label": "Field trip context" }
+    ],
+    "cabot-hosiery-mills": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "cabot-hosiery-mills-makers-of-darn-tough-socks", "label": "Pre-Darn-Tough era" }
+    ],
+    "straus-family-creamery": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "straus-family-creamery-note-straus-not-strauss", "label": "Field trip context" }
+    ],
+    "saint-basil-seminary": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "saint-basil-seminary-ukrainian-easter-bread-segment", "label": "Ukrainian Easter Bread" }
+    ],
+    "vanns-spices": [
+      { "article": "gap-fill-businesses-imdb", "anchor": "vanns-spices", "label": "Baltimore spice merchants" }
+    ],
+    "le-bernardin": [
+      { "article": "business-empires", "anchor": "eric-ripert-le-bernardin", "label": "Eric Ripert's empire" }
+    ],
+    "frenchette": [
+      { "article": "business-empires", "anchor": "riad-nasr", "label": "Riad Nasr's NYC empire" }
+    ],
+    "frontera-grill": [
+      { "article": "business-empires", "anchor": "rick-bayless", "label": "Rick Bayless's empire" }
+    ],
+    "union-square-cafe": [
+      { "article": "master-chefs-roster", "anchor": "first-name-only-collaborators--newly-identified", "label": "Michael Romano era" }
+    ],
+    "russ-and-daughters": [
+      { "article": "master-chefs-roster", "anchor": "first-name-only-collaborators--newly-identified", "label": "Caviar with Mark" }
+    ]
+  }
+}
