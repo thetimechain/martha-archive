@@ -1017,3 +1017,33 @@ mark {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ─── Featured "On this day" tile (slot one of the mobile feed) ───────────── */
+.ep--featured {
+  position: relative;
+  margin-top: 4px;
+}
+.ep--featured::before {
+  /* outer ring to set the featured card apart from the rest */
+  content: '';
+  position: absolute;
+  inset: -6px -4px;
+  border: 1px solid rgba(60, 50, 30, 0.35);
+  pointer-events: none;
+  border-radius: 2px;
+}
+.featured-badge {
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  z-index: 2;
+  background: #2a2018;
+  color: #f5f0e4;
+  font-family: var(--font-display, "Cormorant Garamond"), serif;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  box-shadow: 0 2px 6px rgba(60, 50, 30, 0.4);
+  pointer-events: none;
+}

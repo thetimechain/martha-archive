@@ -197,6 +197,78 @@
       .slice(0, 10);
   }
 
+  /* ─── Featured "On this day" pick (randomized per render) ──────────────────
+   * Filters episodes that aired on today's calendar date in any year and
+   * picks one at random — preferring those with a real photograph.
+   * Falls back to ±3 days ("This week in YYYY") if no exact-day match
+   * exists. Respects the current show filter so the headline tile stays
+   * coherent with the user's filter intent.
+   */
+  function getFeaturedEpisode() {
+    if (!episodes || episodes.length === 0) return null;
+    const now = new Date();
+    const m = now.getMonth() + 1;
+    const d = now.getDate();
+    const pad2 = n => String(n).padStart(2, '0');
+    const todayMd = pad2(m) + '-' + pad2(d);
+
+    const inScope = e => {
+      if (!e.air_date) return false;
+      if (filterShow && e.show_slug !== filterShow) return false;
+      return true;
+    };
+
+    // Exact-day matches
+    const exact = episodes.filter(e => inScope(e) && e.air_date.slice(5, 10) === todayMd);
+    if (exact.length > 0) {
+      const withPhoto = exact.filter(e => e.photo_url);
+      const pool = withPhoto.length > 0 ? withPhoto : exact;
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      return { ep: pick, bucket: 'on-this-day', daysOff: 0 };
+    }
+
+    // ±3 days fallback
+    const todayDoy = (() => {
+      // approximate day-of-year for "this week" radius math
+      const start = Date.UTC(now.getUTCFullYear(), 0, 0);
+      const diff = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()) - start;
+      return Math.floor(diff / 86400000);
+    })();
+    const dist = e => {
+      const dt = new Date(e.air_date + 'T00:00:00Z');
+      const start = Date.UTC(dt.getUTCFullYear(), 0, 0);
+      const doy = Math.floor((dt.getTime() - start) / 86400000);
+      const raw = Math.abs(doy - todayDoy);
+      return Math.min(raw, 365 - raw);
+    };
+    const week = episodes.filter(e => inScope(e) && dist(e) <= 3);
+    if (week.length > 0) {
+      const withPhoto = week.filter(e => e.photo_url);
+      const pool = withPhoto.length > 0 ? withPhoto : week;
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      return { ep: pick, bucket: 'this-week', daysOff: dist(pick) };
+    }
+    return null;
+  }
+
+  /* ─── Featured tile HTML — same outer shape as epHTML, plus a badge ──── */
+  function featuredEpHTML(picked) {
+    const ep = picked.ep;
+    const eyebrow = picked.bucket === 'on-this-day'
+      ? 'On this day · ' + (ep.air_year || '—')
+      : 'This week in ' + (ep.air_year || '—');
+    // Reuse epHTML for the inner card, then surgically inject the badge.
+    const inner = epHTML(ep, '');
+    const badgeHTML = '<span class="featured-badge">' + esc(eyebrow) + '</span>';
+    // Add the .ep--featured class and a data-bucket marker, then inject the
+    // badge as the article's first child. Both epCardHTML and epRowHTML emit
+    // a class="…" attribute, so the regex always matches.
+    return inner.replace(
+      /^<article\b([^>]*)class="([^"]*)"([^>]*)>/,
+      '<article$1class="$2 ep--featured" data-bucket="' + esc(picked.bucket) + '"$3>' + badgeHTML
+    );
+  }
+
   function getRecentEpisodes() {
     return [...episodes]
       .filter(e => e.air_date)
@@ -367,6 +439,15 @@
     const hasFilter = !!(filterShow || filterYear || filterSeason);
     const showExpand = false; // kept for compatibility — expand handled separately
 
+    // Pick a featured "on this day" tile to seed the feed. Skip when the user
+    // is actively searching or has narrowed by year/season — those signal
+    // explicit intent and the featured surprise would distract.
+    const featuredPick = (hasQuery || filterYear || filterSeason)
+      ? null
+      : getFeaturedEpisode();
+    const featuredId = featuredPick ? featuredPick.ep.id : null;
+    const featuredHTML = featuredPick ? featuredEpHTML(featuredPick) : '';
+
     let feed = '';
     if (hasQuery || hasFilter) {
       if (result.items.length === 0) {
@@ -375,17 +456,24 @@
           <p class="state-empty__sub">Try a different word or clear the filters.</p>
         </div>`;
       } else {
+        // Dedupe — featured tile should never also appear in the list.
+        const items = featuredId
+          ? result.items.filter(e => e.id !== featuredId)
+          : result.items;
         feed = `<div class="section-hd">
           ${hasQuery ? `RESULTS <span class="section-hd__count">${result.items.length}</span>` : 'EPISODES'}
-        </div>` + result.items.map(ep => epHTML(ep, query)).join('');
+        </div>` + featuredHTML + items.map(ep => epHTML(ep, query)).join('');
       }
     } else {
-      const tonight = getThisMonthEpisodes();
-      const recent  = getRecentEpisodes();
+      const tonight = getThisMonthEpisodes()
+        .filter(e => !featuredId || e.id !== featuredId);
+      const recent  = getRecentEpisodes()
+        .filter(e => !featuredId || e.id !== featuredId);
       const now = new Date();
       const monthName = now.toLocaleString('en-US', { month: 'long' }).toUpperCase();
 
       feed = `
+        ${featuredHTML}
         ${tonight.length > 0 ? `
           <div class="section-hd">${monthName}, IN EARLIER YEARS</div>
           ${tonight.map(ep => epHTML(ep, '')).join('')}
