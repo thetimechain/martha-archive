@@ -1,10 +1,11 @@
 import { Hono } from "hono";
 import { Layout } from "../views/components/Layout.js";
 import { EpisodeCard } from "../views/components/EpisodeCard.js";
+import { FeaturedTile } from "../views/components/FeaturedTile.js";
 import { FilterSidebar } from "../views/components/FilterSidebar.js";
 import { TagCloud } from "../views/components/TagCloud.js";
 import { Pagination } from "../views/components/Pagination.js";
-import { fetchEpisodePage, fetchTopTags, fetchLastImport, fetchRowCounts } from "../db/queries.js";
+import { fetchEpisodePage, fetchTopTags, fetchLastImport, fetchRowCounts, fetchFeaturedTile } from "../db/queries.js";
 import { parseEpisodeQuery, calcLastPage, buildHref, SORTS } from "../lib/query.js";
 import { copy } from "../copy.js";
 
@@ -23,11 +24,32 @@ episodesRoute.get("/episodes", async (c) => {
   if (params.page > last && last > 0) {
     return c.redirect(buildHref(params, { page: last }), 302);
   }
-  const [tagCloud, lastImport, counts] = await Promise.all([
+  // Featured "On this day" tile — only on the unfiltered first page, since the
+  // grid is otherwise reflecting the user's current filter intent.
+  const isEmpty = (v: any) => v === undefined || v === null || v === "" || (Array.isArray(v) && v.length === 0);
+  const isUnfilteredFirstPage =
+    params.page === 1 &&
+    params.sort === "date-desc" &&
+    isEmpty((params as any).show) && isEmpty((params as any).season) &&
+    isEmpty((params as any).year) && isEmpty((params as any).topic) &&
+    isEmpty((params as any).theme) && isEmpty((params as any).tag) &&
+    isEmpty((params as any).guest) && isEmpty((params as any).q) &&
+    isEmpty((params as any).confidence);
+  const nyParts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York", month: "numeric", day: "numeric",
+  }).formatToParts(new Date());
+  const featuredMonth = Number.parseInt(nyParts.find((p) => p.type === "month")!.value, 10);
+  const featuredDay = Number.parseInt(nyParts.find((p) => p.type === "day")!.value, 10);
+
+  const [tagCloud, lastImport, counts, featured] = await Promise.all([
     fetchTopTags(40),
     fetchLastImport(),
     fetchRowCounts(),
+    isUnfilteredFirstPage ? fetchFeaturedTile(featuredMonth, featuredDay) : Promise.resolve(null),
   ]);
+
+  // Featured tile is randomized per request — never let intermediaries cache it.
+  if (featured) c.header("Cache-Control", "no-store");
 
   return c.html(
     <Layout
@@ -69,7 +91,10 @@ episodesRoute.get("/episodes", async (c) => {
               </div>
             ) : (
               <div class="archive-grid">
-                {result.episodes.map((e: any) => (
+                {featured && <FeaturedTile episode={featured} />}
+                {result.episodes
+                  .filter((e: any) => !featured || e.id !== featured.id)
+                  .map((e: any) => (
                   <EpisodeCard
                     episode={{
                       id: e.id,

@@ -301,3 +301,47 @@
 .confidence-badge--confirmed { color: var(--hosta); border-color: var(--hosta); }
 .confidence-badge--partial { color: var(--russet); border-color: var(--russet); }
 .confidence-badge--inferred { color: var(--bedford-gray); }
+
+/* ─── Featured "On this day" tile (first slot of /episodes) ─── */
+.episode-card--featured {
+  position: relative;
+}
+.episode-card--featured a {
+  display: block;
+}
+.episode-card__photo--featured {
+  position: relative;
+  outline: 2px solid var(--bedford-gray);
+  outline-offset: 3px;
+}
+.featured-tile__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #2a2018;
+  color: #f8f1de;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  text-transform: none;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(60, 50, 30, 0.35);
+}
+.episode-card__photo--featured-no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--araucana-eggshell-blue);
+}
+.featured-tile__year {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--bedford-gray);
+}
+.featured-tile__eyebrow {
+  font-style: italic;
+  color: var(--russet) !important;
+}

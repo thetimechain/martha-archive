@@ -456,6 +456,81 @@ export type PersonAppearance = {
   source: string;
 };
 
+// ─── Featured "On this day" tile for the /episodes archive ──────────────────
+//
+// Returns a random episode that aired on today's date (any year) — preferring
+// ones with a real photograph. Falls back to "this week in <year>" if no
+// exact-day match exists. Used by /episodes to replace the boring first tile.
+
+export type FeaturedTile = {
+  id: string;
+  title: string;
+  show_slug: string;
+  show_name: string | null;
+  air_year: number | null;
+  air_date: string | null;
+  photo_url: string | null;
+  /** "on-this-day" | "this-week" — drives the eyebrow text */
+  bucket: "on-this-day" | "this-week";
+  /** how many days off from today (0 for on-this-day, 1-7 for this-week) */
+  days_off: number;
+};
+
+export async function fetchFeaturedTile(month: number, day: number): Promise<FeaturedTile | null> {
+  // Try exact-day matches first — preferring those with photos.
+  const exact = await pg<Array<{
+    id: string; title: string; show_slug: string; show_name: string | null;
+    air_year: number | null; air_date: string | null; photo_url: string | null;
+  }>>`
+    SELECT id, title, show_slug, show_name, air_year, air_date::text AS air_date, photo_url
+    FROM episodes
+    WHERE air_precision = 'day'
+      AND EXTRACT(MONTH FROM air_date)::int = ${month}
+      AND EXTRACT(DAY   FROM air_date)::int = ${day}
+    ORDER BY (photo_url IS NOT NULL) DESC, random()
+    LIMIT 24
+  `;
+  if (exact.length > 0) {
+    // Prefer the photo-having ones; if none have photos, take any.
+    const withPhoto = exact.filter((e) => e.photo_url);
+    const pool = withPhoto.length > 0 ? withPhoto : exact;
+    const pick = pool[Math.floor(Math.random() * pool.length)]!;
+    return { ...pick, bucket: "on-this-day", days_off: 0 };
+  }
+
+  // Fallback: episodes within ±3 days. Same photo-preference.
+  const week = await pg<Array<{
+    id: string; title: string; show_slug: string; show_name: string | null;
+    air_year: number | null; air_date: string | null; photo_url: string | null;
+    days_off: number;
+  }>>`
+    WITH today_doy AS (
+      SELECT EXTRACT(DOY FROM make_date(EXTRACT(YEAR FROM CURRENT_DATE)::int, ${month}, ${day}))::int AS doy
+    )
+    SELECT id, title, show_slug, show_name, air_year, air_date::text AS air_date, photo_url,
+           LEAST(
+             abs(EXTRACT(DOY FROM air_date)::int - (SELECT doy FROM today_doy)),
+             365 - abs(EXTRACT(DOY FROM air_date)::int - (SELECT doy FROM today_doy))
+           )::int AS days_off
+    FROM episodes
+    WHERE air_precision = 'day'
+      AND LEAST(
+            abs(EXTRACT(DOY FROM air_date)::int - (SELECT doy FROM today_doy)),
+            365 - abs(EXTRACT(DOY FROM air_date)::int - (SELECT doy FROM today_doy))
+          ) <= 3
+    ORDER BY (photo_url IS NOT NULL) DESC, days_off ASC, random()
+    LIMIT 24
+  `;
+  if (week.length > 0) {
+    const withPhoto = week.filter((e) => e.photo_url);
+    const pool = withPhoto.length > 0 ? withPhoto : week;
+    const pick = pool[Math.floor(Math.random() * pool.length)]!;
+    return { ...pick, bucket: "this-week", days_off: pick.days_off };
+  }
+
+  return null;
+}
+
 // ─── On this day in Martha history ──────────────────────────────────────────
 export type OnThisDayRow = {
   id: string;
