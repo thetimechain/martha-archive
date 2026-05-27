@@ -1,10 +1,13 @@
 import { Hono } from "hono";
 import { Layout } from "../views/components/Layout.js";
 import { fetchShows, fetchLastImport, fetchRowCounts, fetchNotableEpisodes } from "../db/queries.js";
+import { sql } from "../db/client.js";
 import { copy } from "../copy.js";
 import { canonical, websiteJsonLd } from "../lib/seo.js";
 
 export const homeRoute = new Hono();
+
+type HomeEntity = { slug: string; name: string; kind: string; role: string | null; mentions: number };
 
 const MOBILE_UA_RE = /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
 // Crawlers see the desktop home so they index the server-rendered JSON-LD,
@@ -39,6 +42,29 @@ homeRoute.get("/", async (c) => {
   // pull a few notable episodes for the Good Things callouts
   const notable = await fetchNotableEpisodes("martha-stewart-living", 3);
 
+  // Surface MSL TV's recurring contributors and a few favorite field-trip destinations.
+  const [topPeople, topPlaces] = await Promise.all([
+    sql<HomeEntity[]>`
+      SELECT slug, name, kind, role, mentions FROM mst_entities
+      WHERE entity_type = 'person' AND mentions >= 1
+      ORDER BY mentions DESC, name ASC LIMIT 8
+    `,
+    sql<HomeEntity[]>`
+      SELECT slug, name, kind, role, mentions FROM mst_entities
+      WHERE entity_type = 'place'
+        AND kind IN ('business','museum','farm','garden','zoo','historic-house')
+      ORDER BY mentions DESC, name ASC LIMIT 10
+    `,
+  ]);
+
+  // Order shows so Martha Stewart Living (the 1990s TV show) leads, with the others by sort_order.
+  const orderedShows = [...shows].sort((a, b) => {
+    const aLiving = a.slug === "martha-stewart-living" ? 0 : 1;
+    const bLiving = b.slug === "martha-stewart-living" ? 0 : 1;
+    if (aLiving !== bLiving) return aLiving - bLiving;
+    return (a.sortOrder ?? 0) - (b.sortOrder ?? 0);
+  });
+
   return c.html(
     <Layout
       title="Martha Stewart Living: An Archive"
@@ -64,11 +90,71 @@ homeRoute.get("/", async (c) => {
         <hr class="hairline" style="margin-top:var(--space-5);" />
       </section>
 
+      {topPeople.length > 0 && (
+        <section class="page section" aria-label="People on MSL TV">
+          <p class="section-eyebrow">Martha Stewart Living Television</p>
+          <h2 class="display-smaller">The people who were there.</h2>
+          <p class="caption" style="font-style:italic;color:var(--mid-gray);max-width:var(--measure-prose);margin-top:var(--space-2);">
+            Mothers, neighbors, pet experts, chefs, lords. The recurring cast of Martha's first show — drawn from the marthastewart.tv archive.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--space-3) var(--space-4);margin-top:var(--space-4);">
+            {topPeople.map((p) => (
+              <a href={`/people/${p.slug}`} style="text-decoration:none;color:inherit;border-bottom:var(--hairline-thin);padding:var(--space-2) 0;display:block;">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
+                  <span style="font-family:var(--font-body);">{p.name}</span>
+                  <span style="font-family:var(--font-display);color:var(--bedford-gray);">{p.mentions}</span>
+                </div>
+                {p.role && (
+                  <p class="caption" style="margin-top:4px;font-size:0.78rem;color:var(--bedford-gray);line-height:1.35;">
+                    {p.role.length > 100 ? p.role.slice(0, 100) + "…" : p.role}
+                  </p>
+                )}
+              </a>
+            ))}
+          </div>
+          <p style="margin-top:var(--space-3);">
+            <a href="/people" class="smallcap-eyebrow" style="color:var(--body-text);text-decoration-thickness:0.5px;">
+              Every named person →
+            </a>
+          </p>
+        </section>
+      )}
+
+      {topPlaces.length > 0 && (
+        <section class="page section" aria-label="Field trips">
+          <p class="section-eyebrow">Field trips</p>
+          <h2 class="display-smaller">Where Martha went.</h2>
+          <p class="caption" style="font-style:italic;color:var(--mid-gray);max-width:var(--measure-prose);margin-top:var(--space-2);">
+            Bakeries, hatcheries, gardens, museums. The businesses and places the camera followed Martha to.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--space-3) var(--space-4);margin-top:var(--space-4);">
+            {topPlaces.map((p) => (
+              <a href={`/places/${p.slug}`} style="text-decoration:none;color:inherit;border-bottom:var(--hairline-thin);padding:var(--space-2) 0;display:block;">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
+                  <span style="font-family:var(--font-body);">{p.name}</span>
+                  <span style="font-family:var(--font-display);color:var(--bedford-gray);font-size:0.95rem;">{p.kind}</span>
+                </div>
+                {p.role && (
+                  <p class="caption" style="margin-top:4px;font-size:0.78rem;color:var(--bedford-gray);line-height:1.35;">
+                    {p.role.length > 120 ? p.role.slice(0, 120) + "…" : p.role}
+                  </p>
+                )}
+              </a>
+            ))}
+          </div>
+          <p style="margin-top:var(--space-3);">
+            <a href="/places" class="smallcap-eyebrow" style="color:var(--body-text);text-decoration-thickness:0.5px;">
+              Every field trip and location →
+            </a>
+          </p>
+        </section>
+      )}
+
       <section class="page section" aria-label="Shows">
         <p class="section-eyebrow">{copy.byShow}</p>
         <h2 class="display-smaller">Twelve programs, four decades</h2>
         <div class="taxonomy-grid" style="margin-top:var(--space-3);">
-          {shows.map((s) => (
+          {orderedShows.map((s) => (
             <a class="taxonomy-tile" href={`/shows/${s.slug}`}>
               <div
                 class={`taxonomy-tile__photo taxonomy-tile__photo--${SHOW_TONES[s.slug] ?? "eggshell"}`}

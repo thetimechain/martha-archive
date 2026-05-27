@@ -14,11 +14,12 @@ function host(): string {
 
 sitemapRoute.get("/sitemap.xml", async (c) => {
   const base = host();
-  const [shows, years, lastImport, episodeIds] = await Promise.all([
+  const [shows, years, lastImport, episodeIds, entities] = await Promise.all([
     fetchShows(),
     fetchCalendarYearsAvailable(),
     fetchLastImport(),
     db.execute<{ id: string }>(sql`SELECT id FROM episodes ORDER BY id`),
+    db.execute<{ slug: string; entity_type: string }>(sql`SELECT slug, entity_type FROM mst_entities ORDER BY entity_type, slug`),
   ]);
   const lastmod = (lastImport?.finishedAt ?? new Date()).toISOString();
   const urls: string[] = [];
@@ -27,6 +28,8 @@ sitemapRoute.get("/sitemap.xml", async (c) => {
   urls.push(`<url><loc>${base}/m/</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>`);
   urls.push(`<url><loc>${base}/episodes</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>`);
   urls.push(`<url><loc>${base}/guests</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
+  urls.push(`<url><loc>${base}/people</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
+  urls.push(`<url><loc>${base}/places</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
   urls.push(`<url><loc>${base}/topics</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>`);
   urls.push(`<url><loc>${base}/collections</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
   urls.push(`<url><loc>${base}/design-system</loc><lastmod>${lastmod}</lastmod><priority>0.3</priority></url>`);
@@ -38,6 +41,10 @@ sitemapRoute.get("/sitemap.xml", async (c) => {
   for (const s of shows) urls.push(`<url><loc>${base}/shows/${s.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
   for (const y of years) urls.push(`<url><loc>${base}/calendar/${y}</loc><lastmod>${lastmod}</lastmod><priority>0.5</priority></url>`);
   for (const r of episodeIds as any) urls.push(`<url><loc>${base}/episodes/${r.id}</loc><lastmod>${lastmod}</lastmod><priority>0.6</priority></url>`);
+  for (const e of entities as any) {
+    const path = e.entity_type === "person" ? "people" : "places";
+    urls.push(`<url><loc>${base}/${path}/${e.slug}</loc><lastmod>${lastmod}</lastmod><priority>0.6</priority></url>`);
+  }
   const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
   c.header("Content-Type", "application/xml; charset=utf-8");
   c.header("Cache-Control", "public, max-age=3600");
@@ -151,7 +158,9 @@ ${topicLines}
 ## Hub pages
 
 - [Episode archive](${base}/episodes): all ${episodeCount.toLocaleString()} episodes, filterable by show, season, year, guest, tag, topic
-- [Guest index](${base}/guests): every celebrity, chef, and figure who appeared on a Martha program
+- [People](${base}/people): named contributors, chefs, family, and recurring on-camera guests of Martha Stewart Living Television (e.g. Marc Morrone, Mrs. Kostyra, Salli LaGrone, Rick Bayless, Eric Ripert, Anne Willan, Hannah Milman, Todd English, Lord Wedgwood)
+- [Places](${base}/places): every farm, bakery, museum, gallery, garden, and field-trip destination featured on Martha Stewart Living (e.g. Murray McMurray Hatchery, Balthazar Bakery, Peckerwood Gardens, Wave Hill, Shelburne Museum, Turkey Hill, Skylands)
+- [Guest index](${base}/guests): every celebrity, chef, and figure who appeared on a Martha program (across all twelve shows)
 - [Collections](${base}/collections): themed playlists mirrored from marthastewart.tv
 - [Topics](${base}/topics): twenty curated topic indexes
 - [Calendar](${base}/calendar/): on-air anniversaries by year

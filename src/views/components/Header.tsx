@@ -36,6 +36,16 @@ export const Header: FC = () => (
           </a>
         </li>
         <li>
+          <a class="smallcap-eyebrow" href="/people">
+            People
+          </a>
+        </li>
+        <li>
+          <a class="smallcap-eyebrow" href="/places">
+            Places
+          </a>
+        </li>
+        <li>
           <a class="smallcap-eyebrow" href="/guests">
             Guests
           </a>

@@ -302,6 +302,52 @@ export const mstCollectionItems = pgTable(
 export type MstCollectionItem = typeof mstCollectionItems.$inferSelect;
 export type MstCollectionItemInsert = typeof mstCollectionItems.$inferInsert;
 
+// Entities discovered in marthastewart.tv (vhx) data — recurring people (contributors, chefs,
+// family) and places (businesses she visited on field trips, museums, farms, locations).
+// Sourced from `data/marthastewart-tv/entities.json` (see `scripts/mst-extract-entities.mjs`).
+export const mstEntities = pgTable(
+  "mst_entities",
+  {
+    slug: text("slug").primaryKey(),
+    name: text("name").notNull(),
+    // person: contributor | chef | family | guest
+    // place:  business | museum | farm | garden | location | residence | event | zoo | park | historic-house | organization | field-trip
+    kind: text("kind").notNull(),
+    // 'person' | 'place'
+    entityType: text("entity_type").notNull(),
+    role: text("role"),
+    mentions: integer("mentions").default(0).notNull(),
+  },
+  (t) => ({
+    typeIdx: index("mst_entities_type_idx").on(t.entityType),
+    kindIdx: index("mst_entities_kind_idx").on(t.kind),
+  }),
+);
+export type MstEntity = typeof mstEntities.$inferSelect;
+export type MstEntityInsert = typeof mstEntities.$inferInsert;
+
+export const mstEpisodeEntities = pgTable(
+  "mst_episode_entities",
+  {
+    id: serial("id").primaryKey(),
+    episodeId: text("episode_id")
+      .notNull()
+      .references(() => episodes.id, { onDelete: "cascade" }),
+    entitySlug: text("entity_slug")
+      .notNull()
+      .references(() => mstEntities.slug, { onDelete: "cascade" }),
+    source: text("source").notNull(),
+    context: text("context"),
+  },
+  (t) => ({
+    epIdx: index("mst_episode_entities_ep_idx").on(t.episodeId),
+    entIdx: index("mst_episode_entities_ent_idx").on(t.entitySlug),
+    uniqIdx: uniqueIndex("mst_episode_entities_ep_ent_uniq").on(t.episodeId, t.entitySlug),
+  }),
+);
+export type MstEpisodeEntity = typeof mstEpisodeEntities.$inferSelect;
+export type MstEpisodeEntityInsert = typeof mstEpisodeEntities.$inferInsert;
+
 export const importGaps = pgTable("import_gaps", {
   id: serial("id").primaryKey(),
   showSlug: text("show_slug"),

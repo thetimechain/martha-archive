@@ -349,3 +349,153 @@ export async function fetchNotableEpisodes(showSlug: string, limit = 6): Promise
     LIMIT ${limit}
   `;
 }
+
+// ─── Unified people index ────────────────────────────────────────────────────
+// Pulls from `mst_entities` (vhx-derived MSL TV contributors and chefs) AND
+// `episode_guests` (seed celebrity guests from MSS / Snoop / Cooking School etc.)
+// into a single roster, deduped by normalized slug.
+
+export type UnifiedPerson = {
+  slug: string;
+  name: string;
+  kind: string;        // contributor | chef | family | guest | celebrity
+  role: string | null;
+  total: number;       // total appearances across sources
+  mst_count: number;   // mentions in MSL TV (mst_entities)
+  guest_count: number; // appearances in episode_guests
+  shows: string[];     // distinct show slugs the person appeared on
+};
+
+// Aliases that collapse two names into one canonical slug.
+// Left = how it appears in `episode_guests`; right = the canonical slug we keep
+// (matching the slug already stored in `mst_entities`).
+const PERSON_ALIASES: Record<string, string> = {
+  "martha-kostyra": "mrs-kostyra",
+};
+
+function slugify(s: string): string {
+  return s.toLowerCase()
+    .replace(/['`’]/g, "")
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function canonicalSlug(rawSlug: string): string {
+  return PERSON_ALIASES[rawSlug] ?? rawSlug;
+}
+
+export async function fetchUnifiedPeople(): Promise<UnifiedPerson[]> {
+  const [mstRows, guestRows] = await Promise.all([
+    pg<Array<{ slug: string; name: string; kind: string; role: string | null; mentions: number; shows: string[] }>>`
+      SELECT me.slug, me.name, me.kind, me.role, me.mentions,
+        COALESCE(
+          (SELECT array_agg(DISTINCT e.show_slug)
+           FROM mst_episode_entities mee JOIN episodes e ON e.id = mee.episode_id
+           WHERE mee.entity_slug = me.slug),
+          '{}'::text[]
+        ) AS shows
+      FROM mst_entities me
+      WHERE me.entity_type = 'person'
+    `,
+    pg<Array<{ name: string; role: string | null; c: number; shows: string[] }>>`
+      SELECT g.name,
+        (array_agg(g.role) FILTER (WHERE g.role IS NOT NULL AND g.role <> ''))[1] AS role,
+        count(*)::int AS c,
+        array_agg(DISTINCT e.show_slug) AS shows
+      FROM episode_guests g
+      JOIN episodes e ON e.id = g.episode_id
+      GROUP BY g.name
+    `,
+  ]);
+
+  const bySlug = new Map<string, UnifiedPerson>();
+
+  for (const r of mstRows) {
+    const slug = canonicalSlug(r.slug);
+    bySlug.set(slug, {
+      slug, name: r.name, kind: r.kind, role: r.role,
+      total: r.mentions, mst_count: r.mentions, guest_count: 0,
+      shows: r.shows ?? [],
+    });
+  }
+
+  for (const r of guestRows) {
+    const slug = canonicalSlug(slugify(r.name));
+    const existing = bySlug.get(slug);
+    if (existing) {
+      existing.guest_count = r.c;
+      existing.total += r.c;
+      // Merge show list
+      const shows = new Set([...existing.shows, ...(r.shows ?? [])]);
+      existing.shows = [...shows];
+      // Prefer the richer/longer role description
+      if ((!existing.role || existing.role.length < 30) && r.role) existing.role = r.role;
+    } else {
+      bySlug.set(slug, {
+        slug, name: r.name,
+        kind: r.role && /chef|caterer|cookbook|baker/i.test(r.role) ? "chef" : "celebrity",
+        role: r.role, total: r.c, mst_count: 0, guest_count: r.c,
+        shows: r.shows ?? [],
+      });
+    }
+  }
+
+  return [...bySlug.values()].sort((a, b) => b.total - a.total || a.name.localeCompare(b.name));
+}
+
+export type PersonAppearance = {
+  episode_id: string;
+  title: string;
+  show_slug: string;
+  show_name: string | null;
+  season: number | null;
+  air_year: number | null;
+  photo_url: string | null;
+  context: string | null;
+  source: string;
+};
+
+export async function fetchPersonDetail(slug: string): Promise<{ person: UnifiedPerson | null; appearances: PersonAppearance[] }> {
+  // Resolve aliases backwards too — if user lands on /people/martha-kostyra, look up /people/mrs-kostyra.
+  const canonical = canonicalSlug(slug);
+  const people = await fetchUnifiedPeople();
+  const person = people.find((p) => p.slug === canonical) ?? null;
+  if (!person) return { person: null, appearances: [] };
+
+  // Resolve aliases forwards to find every name that maps to this slug.
+  const aliasNames = new Set<string>();
+  aliasNames.add(person.name);
+  for (const [aliasRaw, canon] of Object.entries(PERSON_ALIASES)) {
+    if (canon === canonical) aliasNames.add(aliasRaw);
+  }
+
+  // Pull from both sources for the detail view.
+  const [mstApps, guestApps] = await Promise.all([
+    pg<PersonAppearance[]>`
+      SELECT e.id AS episode_id, e.title, e.show_slug, e.show_name,
+        e.season, e.air_year, e.photo_url, mee.context, 'mst_entity' AS source
+      FROM mst_episode_entities mee
+      JOIN episodes e ON e.id = mee.episode_id
+      WHERE mee.entity_slug = ${canonical}
+    `,
+    pg<PersonAppearance[]>`
+      SELECT e.id AS episode_id, e.title, e.show_slug, e.show_name,
+        e.season, e.air_year, e.photo_url, g.role AS context, 'episode_guest' AS source
+      FROM episode_guests g
+      JOIN episodes e ON e.id = g.episode_id
+      WHERE g.name = ANY(${pg.array([...aliasNames])}::text[])
+    `,
+  ]);
+
+  // Dedupe by episode_id (an episode might be tagged in both sources)
+  const seen = new Set<string>();
+  const combined: PersonAppearance[] = [];
+  for (const a of [...mstApps, ...guestApps]) {
+    if (seen.has(a.episode_id)) continue;
+    seen.add(a.episode_id);
+    combined.push(a);
+  }
+  combined.sort((a, b) => (b.air_year ?? 0) - (a.air_year ?? 0) || a.title.localeCompare(b.title));
+  return { person, appearances: combined };
+}

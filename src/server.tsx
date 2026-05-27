@@ -21,6 +21,8 @@ import { mobileRoute } from "./routes/mobile.js";
 import { mobileSwRoute } from "./routes/mobile-sw.js";
 import { factsRoute } from "./routes/facts.js";
 import { guestsRoute } from "./routes/guests.js";
+import { peopleRoute } from "./routes/people.js";
+import { placesRoute } from "./routes/places.js";
 import { topicsRoute } from "./routes/topics.js";
 import { chipsRoute } from "./routes/api-chips.js";
 import { NotFoundPage } from "./views/NotFound.js";
@@ -64,6 +66,8 @@ app.route("/", adminRoute);
 app.route("/", mobileRoute);
 app.route("/", factsRoute);
 app.route("/", guestsRoute);
+app.route("/", peopleRoute);
+app.route("/", placesRoute);
 app.route("/", topicsRoute);
 app.route("/", chipsRoute);
 
