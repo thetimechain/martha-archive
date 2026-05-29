@@ -135,6 +135,18 @@ body.body--bare main#main { height: 100%; }
   align-items: center;
   pointer-events: none;
 }
+/* Invisible hit zone wrapping the dot. Gives the pin a real touch target
+ * (44×44) without growing the visible dot. */
+.atlas-pin__hit {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 28px;
+  pointer-events: auto;
+  z-index: 1;
+}
 .atlas-pin__dot {
   width: 14px; height: 14px;
   border-radius: 50%;
@@ -145,12 +157,21 @@ body.body--bare main#main { height: 100%; }
     0 0 0 1px rgba(42, 32, 24, 0.4);
   margin-bottom: 2px;
   pointer-events: auto;
-  transition: transform 120ms ease;
+  position: relative;
+  z-index: 2;
+  transition: transform 120ms ease, box-shadow 200ms ease;
 }
-.atlas-pin:hover .atlas-pin__dot,
-.atlas-pin--active .atlas-pin__dot {
+.atlas-pin:hover .atlas-pin__dot {
   transform: scale(1.4);
 }
+.atlas-pin--active .atlas-pin__dot {
+  transform: scale(1.6);
+  box-shadow:
+    0 2px 6px rgba(60, 50, 30, 0.55),
+    0 0 0 1px rgba(42, 32, 24, 0.55),
+    0 0 0 5px rgba(196, 99, 42, 0.18);  /* terracotta halo */
+}
+.atlas-pin--active { z-index: 1000 !important; }
 
 .atlas-pin__dot[data-kind="residence"]      { background: var(--umber); }
 .atlas-pin__dot[data-kind="business"]       { background: var(--terracotta); }
@@ -401,6 +422,14 @@ body.body--bare main#main { height: 100%; }
   font-size: 0.9rem;
   color: var(--umber);
   margin: 8px 0;
+}
+
+.atlas-sheet__empty {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--umber);
+  line-height: 1.5;
+  margin: 0 0 14px;
 }
 
 /* Loading state — small pulse */

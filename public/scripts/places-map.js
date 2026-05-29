@@ -52,24 +52,45 @@
   }
   map.on("zoomend", applyZoomState);
 
+  let activeMarker = null;
   const markers = [];
   for (const p of points) {
     const icon = L.divIcon({
       className: "atlas-pin",
       html:
+        '<span class="atlas-pin__hit" aria-hidden="true"></span>' +
         '<span class="atlas-pin__dot" data-kind="' + escapeAttr(p.kind) + '"></span>' +
         '<span class="atlas-pin__label">' + escapeHtml(p.name) + "</span>",
-      iconSize: [120, 36],
-      iconAnchor: [60, 18],
+      iconSize: [120, 44],
+      iconAnchor: [60, 22],
     });
     const marker = L.marker([p.lat, p.lng], { icon, riseOnHover: true });
     marker._slug = p.slug;
     marker._kind = p.kind;
     marker._name = p.name;
-    marker.on("click", function () { openSheet(p); });
+    marker._point = p;
+    marker.on("click", function (ev) {
+      // Stop the click from bubbling up to map click (which closes the sheet).
+      if (ev && ev.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
+      setActiveMarker(marker);
+      openSheet(p);
+    });
     marker.addTo(map);
     markers.push(marker);
   }
+
+  function setActiveMarker(m) {
+    if (activeMarker && activeMarker !== m) {
+      const el = activeMarker.getElement();
+      if (el) el.classList.remove("atlas-pin--active");
+    }
+    activeMarker = m;
+    if (m) {
+      const el = m.getElement();
+      if (el) el.classList.add("atlas-pin--active");
+    }
+  }
+  function clearActiveMarker() { setActiveMarker(null); }
 
   if (markers.length > 0) {
     const group = L.featureGroup(markers);
@@ -84,6 +105,7 @@
   }
 
   // ── Filter chips ────────────────────────────────────────────────────────
+  const chipRail = document.querySelector(".atlas-chips");
   const chips = document.querySelectorAll(".atlas-chip[data-kind]");
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
@@ -94,6 +116,16 @@
         if (show) m.addTo(map); else map.removeLayer(m);
       });
       closeSheet();
+      // Center the chip in the horizontally-scrolling rail. If "All" was
+      // tapped, scroll all the way back to the start.
+      if (chipRail) {
+        if (want === "all") {
+          chipRail.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          try { chip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" }); }
+          catch (_) { /* old browsers */ }
+        }
+      }
     });
   });
 
@@ -127,6 +159,7 @@
   function closeSheet() {
     sheetEl.classList.remove("is-open");
     sheetEl.setAttribute("aria-hidden", "true");
+    clearActiveMarker();
   }
 
   sheetEl.querySelector(".atlas-sheet__close").addEventListener("click", closeSheet);
@@ -154,7 +187,7 @@
     const role = data.role || fallback.role || "";
     const eps  = data.episodes || [];
 
-    let episodesHTML = "";
+    let episodesHTML;
     if (eps.length > 0) {
       episodesHTML =
         '<p class="atlas-sheet__divider">Featured in</p>' +
@@ -179,6 +212,13 @@
             );
           }).join("") +
         '</div>';
+    } else {
+      episodesHTML =
+        '<p class="atlas-sheet__divider">Featured in</p>' +
+        '<p class="atlas-sheet__empty">' +
+          'A documented Martha-orbit location, but the matching episode hasn\u2019t ' +
+          'been cross-referenced yet. See the full entry for the latest.' +
+        '</p>';
     }
 
     return (
