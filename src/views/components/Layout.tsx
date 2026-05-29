@@ -2,6 +2,10 @@ import type { FC, PropsWithChildren } from "hono/jsx";
 import { Header } from "./Header.js";
 import { Footer } from "./Footer.js";
 
+// Cache-buster pinned to the current build. Each deploy gets a new timestamp,
+// busting browser caches that pinned the old stylesheet without an "?v=".
+const BUILD_ID = process.env.BUILD_ID ?? String(Date.now());
+
 export type OG = {
   title: string;
   description?: string;
@@ -42,11 +46,11 @@ export const Layout: FC<
         {og?.description && <meta name="twitter:description" content={og.description} />}
         <meta name="twitter:image" content={og?.image ?? "/static/og-wordmark.png"} />
         <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-        <link rel="stylesheet" href="/static/styles/tokens.css" />
-        <link rel="stylesheet" href="/static/styles/base.css" />
-        <link rel="stylesheet" href="/static/styles/typography.css" />
-        <link rel="stylesheet" href="/static/styles/components.css" />
-        <link rel="stylesheet" href="/static/styles/layout.css" />
+        <link rel="stylesheet" href={`/static/styles/tokens.css?v=${BUILD_ID}`} />
+        <link rel="stylesheet" href={`/static/styles/base.css?v=${BUILD_ID}`} />
+        <link rel="stylesheet" href={`/static/styles/typography.css?v=${BUILD_ID}`} />
+        <link rel="stylesheet" href={`/static/styles/components.css?v=${BUILD_ID}`} />
+        <link rel="stylesheet" href={`/static/styles/layout.css?v=${BUILD_ID}`} />
         {ldArray.map((ld) => (
           <script
             type="application/ld+json"

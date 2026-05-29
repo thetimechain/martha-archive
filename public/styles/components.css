@@ -345,3 +345,50 @@
   font-style: italic;
   color: var(--russet) !important;
 }
+
+/* ─── Compact mobile header ─────────────────────────────────────────────────
+ * Was: enormous wordmark + 9-link nav + search box stacked above every page.
+ * Now: smaller wordmark with letter-spacing for fit, primary nav links only,
+ * search box on its own row. Hides secondary nav links to save vertical space.
+ */
+@media (max-width: 640px) {
+  .site-header {
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-2);
+  }
+  .site-header .wordmark.display-xl {
+    font-size: 1.35rem;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    display: block;
+    word-spacing: 0.05em;
+  }
+  .site-header .caption {
+    font-size: 0.78rem;
+    margin-top: 2px;
+  }
+  .site-nav {
+    gap: var(--space-1);
+    margin-top: var(--space-2);
+  }
+  .site-nav ul {
+    gap: var(--space-2);
+    row-gap: 4px;
+  }
+  .site-nav ul li a.smallcap-eyebrow {
+    font-size: 0.7rem;
+    min-height: 32px;
+    letter-spacing: 0.06em;
+  }
+  /* Hide secondary nav links on small screens — they're reachable from
+   * /episodes or via direct URL. Keep the high-traffic ones visible. */
+  .site-nav ul li:has(a[href="/design-system"]),
+  .site-nav ul li:has(a[href="/facts"]),
+  .site-nav ul li:has(a[href="/gaps"]) {
+    display: none;
+  }
+  .site-search {
+    margin-top: 4px;
+  }
+  .site-search input { font-size: 0.85rem; }
+}
