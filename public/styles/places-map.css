@@ -217,7 +217,97 @@
 .atlas-attribution a { color: var(--body-text); text-decoration: none; border-bottom: 1px dotted var(--bedford-gray); }
 
 /* ─── Mobile tweaks ──────────────────────────────────────────────────────── */
-@media (max-width: 640px) {
-  #atlas-map { height: 60vh; box-shadow: 0 0 0 4px #f8f1de, 0 0 0 5px var(--bedford-gray); }
+@media (max-width: 720px) {
+  /* Tighten the page chrome so the map can breathe. */
+  .atlas-page {
+    padding: var(--space-3) var(--space-2) var(--space-5);
+  }
+  .atlas-header {
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+  .atlas-header .display {
+    font-size: 2.1rem;
+    line-height: 1.05;
+  }
+  .atlas-lede {
+    font-size: 0.95rem;
+    margin-top: var(--space-1);
+  }
+
+  /* Generous height; thin single-hairline frame to save space. */
+  #atlas-map {
+    height: calc(100dvh - 290px);
+    min-height: 360px;
+    max-height: 720px;
+    box-shadow: 0 0 0 3px #f8f1de, 0 0 0 4px var(--bedford-gray);
+    margin-bottom: var(--space-3);
+    touch-action: manipulation;
+  }
+
+  /* Horizontally-scrollable single-row chip strip, no wrap.
+   * Sticky to the bottom of the viewport so the filter stays
+   * thumb-reachable while the user is panning the map. */
+  .atlas-filters {
+    position: sticky;
+    bottom: var(--space-2);
+    z-index: 5;
+    margin: 0 calc(-1 * var(--space-2)) var(--space-2);
+    padding: var(--space-2) var(--space-2);
+    background: #f8f1de;
+    border-top: 1px solid var(--bedford-gray);
+    border-bottom: 1px solid var(--bedford-gray);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--space-1);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;          /* hide on Firefox */
+    box-shadow: 0 -4px 12px -8px rgba(60, 50, 30, 0.4);
+  }
+  .atlas-filters::-webkit-scrollbar { display: none; } /* hide on WebKit */
+
+  .atlas-filters .smallcap-eyebrow {
+    flex-shrink: 0;
+    margin-right: var(--space-1);
+    align-self: center;
+  }
+  .atlas-chip {
+    flex-shrink: 0;
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  /* Pin labels: tighter for legibility against busy basemaps. */
   .atlas-pin__label { font-size: 0.7rem; }
+  .atlas-pin__dot { width: 10px; height: 10px; }
+
+  /* Popups: ensure they fit on narrow viewports. */
+  .leaflet-popup-content-wrapper { max-width: calc(100vw - 48px); }
+  .atlas-popup__inner { max-width: none; }
+  .atlas-popup__name { font-size: 1.2rem; }
+
+  /* Zoom control: slightly larger touch targets. */
+  .leaflet-control-zoom a {
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+    font-size: 1.2rem !important;
+  }
+
+  /* Attribution line: smaller + above the sticky chip bar */
+  .atlas-attribution {
+    font-size: 0.66rem;
+    margin-bottom: var(--space-3);
+  }
+}
+
+/* Very small phones (< 380px): tighter still */
+@media (max-width: 380px) {
+  .atlas-header .display { font-size: 1.8rem; }
+  .atlas-pin__label { font-size: 0.65rem; }
+  .atlas-chip { font-size: 0.9rem; padding: 5px 10px; }
 }

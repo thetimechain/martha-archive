@@ -18,11 +18,16 @@
   }
   if (!Array.isArray(points) || points.length === 0) return;
 
+  // Touch devices don't have scroll wheels, so the click-to-enable
+  // courtesy doesn't apply — let pinch + drag work immediately.
+  const isTouch = matchMedia("(hover: none) and (pointer: coarse)").matches;
+
   // Set up the map. fitBounds() will frame all pins after we add them.
   const map = L.map(mapEl, {
     center: [40.0, -85.0],
     zoom: 4,
-    scrollWheelZoom: false,    // require focus + ctrl, courtesy to scrollers
+    scrollWheelZoom: isTouch ? true : false,
+    tap: true,
     zoomControl: true,
     attributionControl: false, // we render our own caption beneath the map
   });
@@ -78,9 +83,12 @@
     });
   });
 
-  // Enable scroll-zoom only when the map has focus (avoids page-scroll hijack).
-  mapEl.addEventListener("click", function () { map.scrollWheelZoom.enable(); });
-  map.on("mouseout", function () { map.scrollWheelZoom.disable(); });
+  // Desktop courtesy: enable scroll-zoom only when the map is clicked,
+  // disable on mouseout so page scroll isn't hijacked.
+  if (!isTouch) {
+    mapEl.addEventListener("click", function () { map.scrollWheelZoom.enable(); });
+    map.on("mouseout", function () { map.scrollWheelZoom.disable(); });
+  }
 
   // ─── helpers ──────────────────────────────────────────────────────────────
   function escapeHtml(s) {
