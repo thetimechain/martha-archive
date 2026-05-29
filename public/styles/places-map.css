@@ -218,30 +218,55 @@
 
 /* ─── Mobile tweaks ──────────────────────────────────────────────────────── */
 @media (max-width: 720px) {
-  /* Tighten the page chrome so the map can breathe. */
+  /* The map IS the page — reorder so it appears immediately under a tiny
+   * eyebrow. The H1 + lede demote to a small footer below the map. */
   .atlas-page {
-    padding: var(--space-3) var(--space-2) var(--space-5);
+    padding: var(--space-2) var(--space-2) var(--space-4);
+    display: grid;
+    grid-template-areas:
+      "eyebrow"
+      "map"
+      "filters"
+      "title"
+      "lede"
+      "attribution";
+    gap: var(--space-2);
   }
-  .atlas-header {
-    padding-bottom: var(--space-2);
-    margin-bottom: var(--space-3);
+  /* Dissolve <header.atlas-header> so its children become direct grid items. */
+  .atlas-header { display: contents; }
+  .atlas-header .smallcap-eyebrow {
+    grid-area: eyebrow;
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--bedford-gray);
   }
   .atlas-header .display {
-    font-size: 2.1rem;
+    grid-area: title;
+    font-size: 1.55rem;
     line-height: 1.05;
+    margin: var(--space-2) 0 0;
   }
-  .atlas-lede {
-    font-size: 0.95rem;
-    margin-top: var(--space-1);
+  .atlas-header .atlas-lede {
+    grid-area: lede;
+    font-size: 0.88rem;
+    margin: 4px 0 0;
+    max-width: none;
+    color: var(--bedford-gray);
   }
+  #atlas-map     { grid-area: map; }
+  .atlas-filters { grid-area: filters; }
+  .atlas-attribution { grid-area: attribution; }
+  .atlas-page > script { display: none !important; }
 
-  /* Generous height; thin single-hairline frame to save space. */
+  /* Big map — the page's reason for being. With the title + lede demoted
+   * below, only the site-header + tiny eyebrow chrome sit above it. */
   #atlas-map {
-    height: calc(100dvh - 290px);
-    min-height: 360px;
-    max-height: 720px;
+    height: calc(100dvh - 200px);
+    min-height: 440px;
+    max-height: 820px;
     box-shadow: 0 0 0 3px #f8f1de, 0 0 0 4px var(--bedford-gray);
-    margin-bottom: var(--space-3);
+    margin: 0;
     touch-action: manipulation;
   }
 
