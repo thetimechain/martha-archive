@@ -23,8 +23,11 @@ export const Layout: FC<
     jsonLd?: object | object[];
     footerMeta?: { lastImport?: string; episodeCount?: number };
     head?: any;
+    /** Render without site header/footer; body locks to 100dvh, no scroll.
+     *  Used by immersive views like /places/map. */
+    bare?: boolean;
   }>
-> = ({ title, description, og, canonical, jsonLd, footerMeta, head, children }) => {
+> = ({ title, description, og, canonical, jsonLd, footerMeta, head, bare, children }) => {
   const fullTitle = title.startsWith("Martha") ? title : `${title} — Martha Stewart Living: An Archive`;
   const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
@@ -60,10 +63,10 @@ export const Layout: FC<
         ))}
         {head}
       </head>
-      <body>
-        <Header />
+      <body class={bare ? "body--bare" : undefined}>
+        {!bare && <Header />}
         <main id="main">{children}</main>
-        <Footer meta={footerMeta} />
+        {!bare && <Footer meta={footerMeta} />}
       </body>
     </html>
   );

@@ -219,6 +219,7 @@ placesRoute.get("/places/map", async (c) => {
         { name: "Atlas", url: canonical("/places/map") },
       ])]}
       footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      bare
       head={
         <>
           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -226,40 +227,35 @@ placesRoute.get("/places/map", async (c) => {
         </>
       }
     >
-      <div class="atlas-page">
-        <header class="atlas-header">
-          <p class="smallcap-eyebrow" style="color:var(--body-text);margin-bottom:var(--space-2);">An atlas</p>
-          <h1 class="display">Where Martha went.</h1>
-          <p class="caption atlas-lede">
-            {mapPoints.length} farms, bakeries, museums, galleries, gardens, and field-trip
-            destinations she visited on camera — pinned on a vintage chart. {unmappedCount > 0 && (
-              <>The remaining {unmappedCount} discovered places aren't yet located.</>
-            )}
-          </p>
+      <div class="atlas atlas--fullscreen">
+        <header class="atlas-bar">
+          <a href="/places" class="atlas-bar__back" aria-label="Back to places">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path d="M14 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <span class="atlas-bar__title">Where Martha went</span>
+          <span class="atlas-bar__count">{mapPoints.length}</span>
         </header>
 
         <div id="atlas-map" role="region" aria-label="Atlas of Martha-orbit places"></div>
 
-        <section class="atlas-filters" aria-label="Filter by kind">
-          <span class="smallcap-eyebrow">Show</span>
-          <button type="button" class="atlas-chip is-active" data-kind="all">All</button>
+        <nav class="atlas-chips" aria-label="Filter by kind">
+          <button type="button" class="atlas-chip atlas-chip--all is-active" data-kind="all">All</button>
           <button type="button" class="atlas-chip" data-kind="residence">Residences</button>
           <button type="button" class="atlas-chip" data-kind="business">Businesses</button>
           <button type="button" class="atlas-chip" data-kind="museum">Museums</button>
           <button type="button" class="atlas-chip" data-kind="garden">Gardens</button>
           <button type="button" class="atlas-chip" data-kind="farm">Farms</button>
-          <button type="button" class="atlas-chip" data-kind="zoo">Zoos</button>
-          <button type="button" class="atlas-chip" data-kind="historic-house">Historic houses</button>
-          <button type="button" class="atlas-chip" data-kind="location">Locations</button>
+          <button type="button" class="atlas-chip" data-kind="historic-house">Historic</button>
           <button type="button" class="atlas-chip" data-kind="event">Events</button>
-          <button type="button" class="atlas-chip" data-kind="organization">Organizations</button>
-        </section>
+          <button type="button" class="atlas-chip" data-kind="location">Locations</button>
+        </nav>
 
-        <p class="atlas-attribution">
-          Tiles by <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>,
-          data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>.
-          Coordinates hand-curated; corrections welcome.
-        </p>
+        <aside id="atlas-sheet" class="atlas-sheet" aria-hidden="true">
+          <button type="button" class="atlas-sheet__close" aria-label="Close">×</button>
+          <div id="atlas-sheet-body"></div>
+        </aside>
 
         <script id="atlas-data" type="application/json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mapPoints) }}></script>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
