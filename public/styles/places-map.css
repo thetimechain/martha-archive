@@ -101,15 +101,52 @@ body.body--bare main#main { height: 100%; }
   position: relative;
 }
 
-/* Light tinting — Voyager basemap already has color (green parks, blue
- * water, gray roads). Just warm it slightly to match the parchment palette
- * without flattening the natural color hierarchy. */
+/* Stamen Watercolor is already perfect for this aesthetic — soft
+ * painted texture, muted greens + blues. Just nudge contrast/brightness
+ * slightly to bind it to the parchment surround. */
 .leaflet-tile-pane {
-  filter:
-    sepia(0.18)
-    saturate(0.78)
-    hue-rotate(-4deg)
-    brightness(1.03);
+  filter: contrast(0.96) brightness(1.02) saturate(0.9);
+}
+
+
+/* Subtle paper grain overlay — keeps the map from feeling like a screen
+ * and makes it feel like an illustrated atlas page. Tiny SVG noise,
+ * inline so it adds 0 network requests. */
+#atlas-map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.82' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0.24  0 0 0 0 0.18  0 0 0 0 0.12  0 0 0 0.32 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  z-index: 350;
+}
+
+/* Decorative compass rose — italic-serif "N" in a circle, top-right of
+ * the map. A small atlas flourish that the painted tiles deserve. */
+#atlas-map::before {
+  content: "N";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display, "Cormorant Garamond"), serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink, #2a2018);
+  background: var(--parchment, #f8f1de);
+  border: 1px solid rgba(42, 32, 24, 0.55);
+  border-radius: 50%;
+  box-shadow:
+    0 2px 6px rgba(42, 32, 24, 0.4),
+    inset 0 0 0 1px rgba(248, 241, 222, 0.95);
+  z-index: 1500;
+  pointer-events: none;
 }
 
 .leaflet-control-attribution { display: none; }

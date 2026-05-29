@@ -181,6 +181,12 @@ placesRoute.get("/places", async (c) => {
 // a sepia/parchment CSS filter applied client-side.
 // ─────────────────────────────────────────────────────────────────────────────
 placesRoute.get("/places/map", async (c) => {
+  // Force every visitor to the latest HTML — Safari was caching the older
+  // bare-less version. Asset URLs already carry ?v=BUILD_ID so once the
+  // fresh HTML arrives the new CSS/JS pulls through too.
+  c.header("Cache-Control", "no-cache, no-store, must-revalidate");
+  c.header("Pragma", "no-cache");
+  c.header("Expires", "0");
   const [places, lastImport, counts] = await Promise.all([
     sql<PlaceRow[]>`
       SELECT slug, name, kind, role, mentions

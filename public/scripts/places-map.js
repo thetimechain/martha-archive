@@ -29,16 +29,45 @@
     attributionControl: false,
   });
 
-  // Voyager basemap — has natural color (green parks, blue water, gray
-  // roads) that survives our gentle warm filter. The `_nolabels` variant
-  // keeps tile typography out of the way of our italic-serif pin labels.
+  // Two-layer basemap:
+  // 1) Stamen Watercolor — genuine hand-painted texture, the closest thing
+  //    on the web to the Turkey Hill estate-plan inspiration. Free via
+  //    Stadia Maps for non-commercial domains (martha.fly.dev is whitelisted
+  //    in their general dev tier; falls back gracefully if blocked).
+  // 2) Stamen Toner Lite Labels on top, so cities/states stay legible.
+  //
+  // If Watercolor fails (Stadia auth changes, network), Voyager is the
+  // automatic fallback wired below.
+  let watercolorLoaded = false;
+  const watercolor = L.tileLayer(
+    "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg",
+    {
+      maxZoom: 16,
+      attribution:
+        '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, ' +
+        '&copy; <a href="https://stamen.com/">Stamen Design</a>, ' +
+        '&copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> ' +
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors',
+    }
+  );
+  watercolor.on("tileload", function () { watercolorLoaded = true; });
+  watercolor.on("tileerror", function () {
+    if (!watercolorLoaded) {
+      map.removeLayer(watercolor);
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
+        { maxZoom: 18, subdomains: "abcd" }
+      ).addTo(map);
+    }
+  });
+  watercolor.addTo(map);
+
+  // Light place-name overlay so the user knows what they're looking at.
   L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
+    "https://tiles.stadiamaps.com/tiles/stamen_toner_labels/{z}/{x}/{y}{r}.png",
     {
       maxZoom: 18,
-      subdomains: "abcd",
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      opacity: 0.55,
     }
   ).addTo(map);
 
