@@ -252,8 +252,12 @@ placesRoute.get("/places/map", async (c) => {
           <button type="button" class="atlas-chip" data-kind="location">Locations</button>
         </nav>
 
-        <aside id="atlas-sheet" class="atlas-sheet" aria-hidden="true">
-          <button type="button" class="atlas-sheet__close" aria-label="Close">×</button>
+        <aside id="atlas-sheet" class="atlas-sheet" aria-hidden="true" role="dialog" aria-label="Place details">
+          <button type="button" class="atlas-sheet__close" aria-label="Close">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </button>
           <div id="atlas-sheet-body"></div>
         </aside>
 

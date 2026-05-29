@@ -29,8 +29,11 @@
     attributionControl: false,
   });
 
+  // Voyager basemap — has natural color (green parks, blue water, gray
+  // roads) that survives our gentle warm filter. The `_nolabels` variant
+  // keeps tile typography out of the way of our italic-serif pin labels.
   L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
     {
       maxZoom: 18,
       subdomains: "abcd",
@@ -38,6 +41,16 @@
         '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
     }
   ).addTo(map);
+
+  // Zoom-aware label visibility: at < 7 the labels overlap into chaos,
+  // especially around NYC where ~30 pins crowd one square mile. Hide the
+  // labels at low zoom; show them on individual pin hover/active.
+  const atlasEl = document.querySelector(".atlas");
+  function applyZoomState() {
+    const zoomedOut = map.getZoom() < 7;
+    if (atlasEl) atlasEl.classList.toggle("atlas--zoomed-out", zoomedOut);
+  }
+  map.on("zoomend", applyZoomState);
 
   const markers = [];
   for (const p of points) {
@@ -62,6 +75,7 @@
     const group = L.featureGroup(markers);
     map.fitBounds(group.getBounds(), { padding: [50, 50] });
   }
+  applyZoomState();
 
   // Desktop-only courtesy: enable scroll zoom only when the map has focus.
   if (!isTouch) {

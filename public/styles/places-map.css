@@ -51,9 +51,10 @@ body.body--bare main#main { height: 100%; }
   grid-template-columns: 44px 1fr 56px;
   align-items: center;
   padding: 0 var(--space-2);
-  background: var(--ink);
-  color: var(--parchment);
-  border-bottom: 1px solid #1a130d;
+  background: var(--parchment);
+  color: var(--ink);
+  border-bottom: 1px solid rgba(42, 32, 24, 0.22);
+  box-shadow: 0 1px 0 rgba(248, 241, 222, 0.6);  /* hairline inner highlight */
   z-index: 30;
 }
 .atlas-bar__back {
@@ -61,29 +62,33 @@ body.body--bare main#main { height: 100%; }
   align-items: center;
   justify-content: center;
   width: 40px; height: 40px;
-  color: var(--parchment);
+  color: var(--ink);
   text-decoration: none;
   border-radius: 4px;
   transition: background 120ms ease;
 }
 .atlas-bar__back:hover, .atlas-bar__back:focus-visible {
-  background: rgba(248, 241, 222, 0.12);
+  background: rgba(42, 32, 24, 0.08);
   outline: none;
 }
 .atlas-bar__title {
   font-family: var(--font-display, "Cormorant Garamond"), serif;
   font-style: italic;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   letter-spacing: 0.01em;
   text-align: center;
-  color: var(--parchment);
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .atlas-bar__count {
   font-family: var(--font-display);
   font-size: 0.95rem;
-  color: var(--parchment-deep);
+  color: var(--umber);
   text-align: right;
   padding-right: 6px;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Map ──────────────────────────────────────────────────────────────── */
@@ -96,15 +101,15 @@ body.body--bare main#main { height: 100%; }
   position: relative;
 }
 
-/* Warmer, less-flat tile recolor — a bit more golden and saturated than
- * the original heavy-sepia version. */
+/* Light tinting — Voyager basemap already has color (green parks, blue
+ * water, gray roads). Just warm it slightly to match the parchment palette
+ * without flattening the natural color hierarchy. */
 .leaflet-tile-pane {
   filter:
-    sepia(0.45)
-    saturate(0.95)
-    hue-rotate(-8deg)
-    contrast(0.95)
-    brightness(1.05);
+    sepia(0.18)
+    saturate(0.78)
+    hue-rotate(-4deg)
+    brightness(1.03);
 }
 
 .leaflet-control-attribution { display: none; }
@@ -178,8 +183,17 @@ body.body--bare main#main { height: 100%; }
   white-space: nowrap;
   pointer-events: auto;
   letter-spacing: 0.01em;
+  transition: opacity 200ms ease;
 }
 .atlas-pin:hover .atlas-pin__label { color: var(--terracotta-deep); }
+
+/* Zoom-aware label visibility: JS toggles .atlas--zoomed-out on the page
+ * container when zoom < 7. At national/regional zoom labels would just
+ * pile on top of each other, so we hide them and let the dots tell the
+ * story. Pins on hover/active still reveal their label. */
+.atlas--zoomed-out .atlas-pin__label { opacity: 0; pointer-events: none; }
+.atlas--zoomed-out .atlas-pin:hover .atlas-pin__label,
+.atlas--zoomed-out .atlas-pin--active .atlas-pin__label { opacity: 1; }
 
 /* ── Filter chips (bottom strip) ──────────────────────────────────────── */
 .atlas-chips {
@@ -189,8 +203,11 @@ body.body--bare main#main { height: 100%; }
   overflow-x: auto;
   overflow-y: hidden;
   padding: 10px 12px;
-  background: var(--parchment);
-  border-top: 1px solid rgba(42, 32, 24, 0.18);
+  /* Slightly deeper parchment so the chip rail reads as a distinct surface
+   * from the top app bar (also parchment). */
+  background: var(--parchment-deep);
+  border-top: 1px solid rgba(42, 32, 24, 0.22);
+  box-shadow: 0 -1px 0 rgba(248, 241, 222, 0.6) inset;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   align-items: center;
@@ -202,16 +219,24 @@ body.body--bare main#main { height: 100%; }
   flex-shrink: 0;
   font-family: var(--font-display, "Cormorant Garamond"), serif;
   font-style: italic;
-  font-size: 0.95rem;
-  background: transparent;
+  font-size: 0.98rem;
+  background: var(--parchment);
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid rgba(42, 32, 24, 0.4);
   border-radius: 999px;       /* pill */
-  padding: 6px 14px;
+  padding: 8px 16px;
+  min-height: 36px;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
-  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease, transform 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+  font-feature-settings: "kern";
+}
+.atlas-chip:active { transform: scale(0.97); }
+.atlas-chip:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 2px;
 }
 .atlas-chip:hover { background: var(--parchment-deep); }
 .atlas-chip.is-active {
@@ -234,40 +259,63 @@ body.body--bare main#main { height: 100%; }
   right: 0;
   bottom: var(--chips-h);
   background: var(--parchment);
-  border-top: 1px solid var(--ink);
-  box-shadow: 0 -16px 32px -16px rgba(42, 32, 24, 0.55);
+  border-top: 1px solid rgba(42, 32, 24, 0.25);
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  box-shadow: 0 -20px 40px -16px rgba(42, 32, 24, 0.5);
   transform: translateY(100%);
-  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 40;
-  max-height: min(60dvh, 520px);
+  max-height: min(62dvh, 540px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 16px 18px 22px;
+  padding: 22px 20px 26px;
+  overscroll-behavior: contain;
 }
-.atlas-sheet.is-open {
-  transform: translateY(0);
+.atlas-sheet.is-open { transform: translateY(0); }
+
+/* Grab handle — small visual signal that this is a dismissible sheet,
+ * like a native bottom sheet. We don't implement drag-to-dismiss; this is
+ * a familiar affordance that maps to the × button + tap-outside dismiss. */
+.atlas-sheet::before {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  margin: -10px auto 14px;
+  background: rgba(42, 32, 24, 0.28);
+  border-radius: 2px;
 }
+
 .atlas-sheet__close {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   width: 36px;
   height: 36px;
   background: transparent;
   border: none;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   line-height: 1;
-  color: var(--ink);
+  color: var(--umber);
   cursor: pointer;
   padding: 0;
+  border-radius: 50%;
+  transition: background 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.atlas-sheet__close:hover, .atlas-sheet__close:focus-visible {
+  background: rgba(42, 32, 24, 0.08);
+  outline: none;
 }
 
 .atlas-sheet__eyebrow {
   font-family: var(--font-display);
   font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin: 0 0 4px;
+  letter-spacing: 0.14em;
+  margin: 0 0 6px;
+  font-weight: 500;
 }
 .atlas-sheet__eyebrow[data-kind="residence"]   { color: var(--umber); }
 .atlas-sheet__eyebrow[data-kind="business"]    { color: var(--terracotta-deep); }
