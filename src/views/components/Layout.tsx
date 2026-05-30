@@ -1,10 +1,34 @@
 import type { FC, PropsWithChildren } from "hono/jsx";
+import { createHash } from "node:crypto";
+import { readFileSync, readdirSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { join, dirname } from "node:path";
 import { Header } from "./Header.js";
 import { Footer } from "./Footer.js";
+import { safeJsonForScriptTag } from "../../lib/safe-json.js";
 
-// Cache-buster pinned to the current build. Each deploy gets a new timestamp,
-// busting browser caches that pinned the old stylesheet without an "?v=".
-const BUILD_ID = process.env.BUILD_ID ?? String(Date.now());
+// Cache-buster derived from the contents of every CSS file in public/styles/.
+// Because the hash depends only on file contents — not machine boot time —
+// both fly.io machines produce the same BUILD_ID for the same deploy.
+// Falls back to Date.now() if the files can't be read (e.g. in unit tests).
+function computeBuildId(): string {
+  if (process.env.BUILD_ID) return process.env.BUILD_ID;
+  try {
+    const stylesDir = join(dirname(fileURLToPath(import.meta.url)), "../../../public/styles");
+    const cssFiles = readdirSync(stylesDir).filter((f) => f.endsWith(".css")).sort();
+    const hash = createHash("sha256");
+    for (const file of cssFiles) {
+      hash.update(readFileSync(join(stylesDir, file)));
+    }
+    return hash.digest("hex").slice(0, 8);
+  } catch (err) {
+    // Log so this never silently regresses to the broken behavior.
+    console.warn("[Layout] computeBuildId fell back to Date.now() — cross-machine cache-busting disabled. Reason:", (err as Error).message);
+    return String(Date.now());
+  }
+}
+
+const BUILD_ID = computeBuildId();
 
 export type OG = {
   title: string;
@@ -58,7 +82,7 @@ export const Layout: FC<
           <script
             type="application/ld+json"
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+            dangerouslySetInnerHTML={{ __html: safeJsonForScriptTag(ld) }}
           />
         ))}
         {head}

@@ -17,8 +17,32 @@
   try { points = JSON.parse(dataEl.textContent || "[]"); } catch (e) { return; }
   if (!Array.isArray(points) || points.length === 0) return;
 
-  const isTouch = matchMedia("(hover: none) and (pointer: coarse)").matches;
+  // Finding #15: make isTouch reactive to device-state changes (e.g. plugging
+  // in a mouse on a tablet). mq.matches provides the initial value; the
+  // change listener keeps it up-to-date and updates scroll-wheel behavior.
+  const mq = matchMedia("(hover: none) and (pointer: coarse)");
+  let isTouch = mq.matches;
+
+  // Finding #9: LRU cache — Map preserves insertion order, so the first key
+  // is always the oldest entry.
+  const CACHE_MAX = 30;
   const placeCache = new Map(); // slug -> { name, kind, role, episodes }
+  function cacheSet(key, value) {
+    if (placeCache.has(key)) {
+      // Key already present: delete and re-insert to refresh LRU position.
+      // This also prevents a double-evict when updating an existing key at
+      // capacity (FIFO evict + no-op set would shrink the cache by one).
+      placeCache.delete(key);
+    } else if (placeCache.size >= CACHE_MAX) {
+      const oldest = placeCache.keys().next().value;
+      if (oldest !== undefined) placeCache.delete(oldest);
+    }
+    placeCache.set(key, value);
+  }
+
+  // Finding #1: track the active slug so stale fetch responses are ignored.
+  let currentOpenSlug = null;
+  let currentAbort = null;
 
   const map = L.map(mapEl, {
     center: [40.0, -85.0],
@@ -109,13 +133,32 @@
     const group = L.featureGroup(markers);
     map.fitBounds(group.getBounds(), { padding: [50, 50] });
   }
+  // Apply initial zoom state now. zoomend will also fire after fitBounds
+  // animates — and handles all subsequent zoom changes — but we call this
+  // once here so the state is correct before any animation completes.
   applyZoomState();
 
   // Desktop-only courtesy: enable scroll zoom only when the map has focus.
-  if (!isTouch) {
-    mapEl.addEventListener("click", function () { map.scrollWheelZoom.enable(); });
-    map.on("mouseout", function () { map.scrollWheelZoom.disable(); });
-  }
+  // Always attach both listeners so they are present if the device mode changes
+  // (e.g. tablet + mouse plug-in). The isTouch check happens at call time,
+  // not at boot time, so they correctly reflect the current pointer mode.
+  mapEl.addEventListener("click", function () {
+    if (!isTouch) map.scrollWheelZoom.enable();
+  });
+  map.on("mouseout", function () {
+    if (!isTouch) map.scrollWheelZoom.disable();
+  });
+
+  // Finding #15: respond to pointer-type changes (e.g. tablet + mouse plug-in).
+  // Reset scroll-wheel zoom to the correct default for the new pointer mode.
+  mq.addEventListener("change", function (e) {
+    isTouch = e.matches;
+    if (isTouch) {
+      map.scrollWheelZoom.enable();   // touch: always on (no scroll wheel anyway)
+    } else {
+      map.scrollWheelZoom.disable();  // desktop: off by default, click to enable
+    }
+  });
 
   // ── Filter chips ────────────────────────────────────────────────────────
   const chipRail = document.querySelector(".atlas-chips");
@@ -144,34 +187,48 @@
 
   // ── Bottom sheet (pin tap → drawer) ────────────────────────────────────
   function openSheet(p) {
+    // Finding #1: abort any in-flight fetch from a previous pin tap so a slow
+    // response for Pin A cannot overwrite the sheet that is now showing Pin B.
+    if (currentAbort) currentAbort.abort();
+    currentAbort = new AbortController();
+    currentOpenSlug = p.slug;
+
     sheetEl.setAttribute("aria-hidden", "false");
     sheetEl.classList.add("is-open");
     sheetBody.innerHTML = renderSkeleton(p);
 
     if (placeCache.has(p.slug)) {
-      sheetBody.innerHTML = renderSheet(placeCache.get(p.slug), p);
+      const cached = placeCache.get(p.slug);
+      cacheSet(p.slug, cached); // refresh LRU position on cache hit
+      sheetBody.innerHTML = renderSheet(cached, p);
       return;
     }
 
-    fetch("/api/places/" + encodeURIComponent(p.slug))
+    fetch("/api/places/" + encodeURIComponent(p.slug), { signal: currentAbort.signal })
       .then(function (r) {
         if (!r.ok) throw new Error("not ok");
         return r.json();
       })
       .then(function (data) {
-        placeCache.set(p.slug, data);
-        if (sheetEl.classList.contains("is-open")) {
+        // Finding #9: use LRU cacheSet instead of bare Map.set.
+        cacheSet(p.slug, data);
+        // Finding #1: only render if this response is still the active pin.
+        if (currentOpenSlug === p.slug && sheetEl.classList.contains("is-open")) {
           sheetBody.innerHTML = renderSheet(data, p);
         }
       })
-      .catch(function () {
-        sheetBody.innerHTML = renderSheet({ ...p, episodes: [] }, p);
+      .catch(function (err) {
+        if (err && err.name === "AbortError") return; // stale fetch — ignore
+        if (currentOpenSlug === p.slug && sheetEl.classList.contains("is-open")) {
+          sheetBody.innerHTML = renderSheet({ ...p, episodes: [] }, p);
+        }
       });
   }
 
   function closeSheet() {
     sheetEl.classList.remove("is-open");
     sheetEl.setAttribute("aria-hidden", "true");
+    currentOpenSlug = null; // Finding #1: no pin is open
     clearActiveMarker();
   }
 

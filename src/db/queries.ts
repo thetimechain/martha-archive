@@ -477,6 +477,14 @@ export type FeaturedTile = {
 };
 
 export async function fetchFeaturedTile(month: number, day: number): Promise<FeaturedTile | null> {
+  // Defensive: if month=2 day=29 in a non-leap calendar year, clamp to day=28 for
+  // the day-of-year computation. The exact-day query below is unaffected — it
+  // filters on (month, day) directly and naturally returns empty in non-leap years.
+  // Only the make_date in the ±3-day fallback needs guarding.
+  const currentYear = new Date().getUTCFullYear();
+  const isLeap = (currentYear % 4 === 0 && currentYear % 100 !== 0) || (currentYear % 400 === 0);
+  const safeDay = (month === 2 && day === 29 && !isLeap) ? 28 : day;
+
   // Try exact-day matches first — preferring those with photos.
   const exact = await pg<Array<{
     id: string; title: string; show_slug: string; show_name: string | null;
@@ -505,7 +513,7 @@ export async function fetchFeaturedTile(month: number, day: number): Promise<Fea
     days_off: number;
   }>>`
     WITH today_doy AS (
-      SELECT EXTRACT(DOY FROM make_date(EXTRACT(YEAR FROM CURRENT_DATE)::int, ${month}, ${day}))::int AS doy
+      SELECT EXTRACT(DOY FROM make_date(EXTRACT(YEAR FROM CURRENT_DATE)::int, ${month}, ${safeDay}))::int AS doy
     )
     SELECT id, title, show_slug, show_name, air_year, air_date::text AS air_date, photo_url,
            LEAST(
@@ -569,6 +577,8 @@ export type Connection = {
 };
 
 export async function fetchConnections(slug: string, limit = 10): Promise<Connection[]> {
+  // PERSON_ALIASES collapses dual identities for people (Martha Kostyra vs Mrs. Kostyra);
+  // for place slugs it's a no-op pass-through, so this single call covers both entity types.
   const canonical = canonicalSlug(slug);
   const rows = await pg<Connection[]>`
     SELECT other.slug, other.name, other.kind, other.entity_type, other.role,

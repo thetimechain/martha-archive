@@ -19,11 +19,6 @@ episodesRoute.get("/episodes", async (c) => {
     flat[k] = v && v.length === 1 ? v[0] : v;
   }
   const params = parseEpisodeQuery(flat);
-  const result = await fetchEpisodePage(params);
-  const last = calcLastPage(result.total, params.pageSize);
-  if (params.page > last && last > 0) {
-    return c.redirect(buildHref(params, { page: last }), 302);
-  }
   // Featured "On this day" tile — only on the unfiltered first page, since the
   // grid is otherwise reflecting the user's current filter intent.
   const isEmpty = (v: any) => v === undefined || v === null || v === "" || (Array.isArray(v) && v.length === 0);
@@ -38,15 +33,23 @@ episodesRoute.get("/episodes", async (c) => {
   const nyParts = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York", month: "numeric", day: "numeric",
   }).formatToParts(new Date());
-  const featuredMonth = Number.parseInt(nyParts.find((p) => p.type === "month")!.value, 10);
-  const featuredDay = Number.parseInt(nyParts.find((p) => p.type === "day")!.value, 10);
+  const monthPart = nyParts.find((p) => p.type === "month")?.value;
+  const dayPart = nyParts.find((p) => p.type === "day")?.value;
+  const fallbackDate = new Date();
+  const featuredMonth = monthPart ? Number.parseInt(monthPart, 10) : fallbackDate.getMonth() + 1;
+  const featuredDay = dayPart ? Number.parseInt(dayPart, 10) : fallbackDate.getDate();
 
-  const [tagCloud, lastImport, counts, featured] = await Promise.all([
+  const [result, tagCloud, lastImport, counts, featured] = await Promise.all([
+    fetchEpisodePage(params),
     fetchTopTags(40),
     fetchLastImport(),
     fetchRowCounts(),
     isUnfilteredFirstPage ? fetchFeaturedTile(featuredMonth, featuredDay) : Promise.resolve(null),
   ]);
+  const last = calcLastPage(result.total, params.pageSize);
+  if (params.page > last && last > 0) {
+    return c.redirect(buildHref(params, { page: last }), 302);
+  }
 
   // Featured tile is randomized per request — never let intermediaries cache it.
   if (featured) c.header("Cache-Control", "no-store");
@@ -92,21 +95,28 @@ episodesRoute.get("/episodes", async (c) => {
             ) : (
               <div class="archive-grid">
                 {featured && <FeaturedTile episode={featured} />}
-                {result.episodes
-                  .filter((e: any) => !featured || e.id !== featured.id)
-                  .map((e: any) => (
-                  <EpisodeCard
-                    episode={{
-                      id: e.id,
-                      showName: e.show_name ?? e.showName ?? null,
-                      title: e.title,
-                      airDate: e.air_date ?? e.airDate ?? null,
-                      airYear: e.air_year ?? e.airYear ?? null,
-                      airPrecision: e.air_precision ?? e.airPrecision ?? null,
-                      photoUrl: e.photo_url ?? e.photoUrl ?? null,
-                    }}
-                  />
-                ))}
+                {(() => {
+                  const filtered = result.episodes.filter((e: any) => !featured || e.id !== featured.id);
+                  const removed = result.episodes.length - filtered.length;
+                  // Only trim if the featured episode was NOT in the page's results (filter removed nothing).
+                  // When filter DID remove featured, the count is already correct — no trim needed.
+                  const trimmed = (featured && removed === 0)
+                    ? filtered.slice(0, params.pageSize - 1)
+                    : filtered;
+                  return trimmed.map((e: any) => (
+                    <EpisodeCard
+                      episode={{
+                        id: e.id,
+                        showName: e.show_name ?? e.showName ?? null,
+                        title: e.title,
+                        airDate: e.air_date ?? e.airDate ?? null,
+                        airYear: e.air_year ?? e.airYear ?? null,
+                        airPrecision: e.air_precision ?? e.airPrecision ?? null,
+                        photoUrl: e.photo_url ?? e.photoUrl ?? null,
+                      }}
+                    />
+                  ));
+                })()}
               </div>
             )}
             <Pagination params={params} total={result.total} />

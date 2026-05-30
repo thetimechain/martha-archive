@@ -69,25 +69,29 @@ apiRoute.get("/api/episodes", async (c) => {
 // Place detail + appearances, used by /places/map's bottom-sheet drawer.
 apiRoute.get("/api/places/:slug", async (c) => {
   const slug = c.req.param("slug");
-  const placeRows = await sql<Array<{ slug: string; name: string; kind: string; role: string | null; mentions: number }>>`
-    SELECT slug, name, kind, role, mentions
-    FROM mst_entities
-    WHERE entity_type = 'place' AND slug = ${slug}
-    LIMIT 1
-  `;
+  const [placeRows, eps] = await Promise.all([
+    sql<Array<{ slug: string; name: string; kind: string; role: string | null; mentions: number }>>`
+      SELECT slug, name, kind, role, mentions
+      FROM mst_entities
+      WHERE entity_type = 'place' AND slug = ${slug}
+      LIMIT 1
+    `,
+    sql<Array<{
+      id: string; title: string; season: number | null; air_year: number | null;
+      photo_url: string | null; show_name: string | null;
+    }>>`
+      SELECT e.id, e.title, e.season, e.air_year, e.photo_url, e.show_name
+      FROM mst_episode_entities mee
+      JOIN episodes e ON e.id = mee.episode_id
+      WHERE mee.entity_slug = ${slug}
+      ORDER BY COALESCE(e.air_date, make_date(COALESCE(e.air_year, 1993), COALESCE(e.air_month, 1), 1)) DESC NULLS LAST
+      LIMIT 5
+    `,
+  ]);
+
   if (!placeRows.length) return c.json({ error: "not found" }, 404);
   const place = placeRows[0]!;
-  const eps = await sql<Array<{
-    id: string; title: string; season: number | null; air_year: number | null;
-    photo_url: string | null; show_name: string | null;
-  }>>`
-    SELECT e.id, e.title, e.season, e.air_year, e.photo_url, e.show_name
-    FROM mst_episode_entities mee
-    JOIN episodes e ON e.id = mee.episode_id
-    WHERE mee.entity_slug = ${slug}
-    ORDER BY COALESCE(e.air_date, make_date(COALESCE(e.air_year, 1993), COALESCE(e.air_month, 1), 1)) DESC NULLS LAST
-    LIMIT 5
-  `;
+
   c.header("Cache-Control", "public, max-age=300, s-maxage=3600");
   return c.json({ ...place, episodes: eps });
 });

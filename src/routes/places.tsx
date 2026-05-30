@@ -5,6 +5,7 @@ import { fetchLastImport, fetchRowCounts, fetchConnections } from "../db/queries
 import { canonical, breadcrumbsJsonLd } from "../lib/seo.js";
 import { wikiLinksFor } from "../lib/wiki-links.js";
 import { allCoords } from "../lib/places-geo.js";
+import { safeJsonForScriptTag } from "../lib/safe-json.js";
 
 export const placesRoute = new Hono();
 
@@ -187,16 +188,12 @@ placesRoute.get("/places/map", async (c) => {
   c.header("Cache-Control", "no-cache, no-store, must-revalidate");
   c.header("Pragma", "no-cache");
   c.header("Expires", "0");
-  const [places, lastImport, counts] = await Promise.all([
-    sql<PlaceRow[]>`
-      SELECT slug, name, kind, role, mentions
-      FROM mst_entities
-      WHERE entity_type = 'place'
-      ORDER BY mentions DESC, name ASC
-    `,
-    fetchLastImport(),
-    fetchRowCounts(),
-  ]);
+  const places = await sql<PlaceRow[]>`
+    SELECT slug, name, kind, role, mentions
+    FROM mst_entities
+    WHERE entity_type = 'place'
+    ORDER BY mentions DESC, name ASC
+  `;
 
   const coords = allCoords();
   // Build the dataset the client will consume.
@@ -224,7 +221,6 @@ placesRoute.get("/places/map", async (c) => {
         { name: "Places", url: canonical("/places") },
         { name: "Atlas", url: canonical("/places/map") },
       ])]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
       bare
       head={
         <>
@@ -286,7 +282,7 @@ placesRoute.get("/places/map", async (c) => {
             </svg>
             <span>Home</span>
           </a>
-          <a class="atlas-tabbar__item" href="/guests" aria-label="Guest index">
+          <a class="atlas-tabbar__item" href="/m/guests" aria-label="Guest index">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               <circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/>
               <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -321,7 +317,7 @@ placesRoute.get("/places/map", async (c) => {
           </a>
         </nav>
 
-        <script id="atlas-data" type="application/json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mapPoints) }}></script>
+        <script id="atlas-data" type="application/json" dangerouslySetInnerHTML={{ __html: safeJsonForScriptTag(mapPoints) }}></script>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <script src="/static/scripts/places-map.js" defer></script>
       </div>
@@ -341,22 +337,23 @@ placesRoute.get("/places/:slug", async (c) => {
   const place = rows[0]!;
   const wikiLinks = wikiLinksFor(place.slug, "place");
 
-  const connections = await fetchConnections(slug, 10);
-
-  const eps = await sql<Array<{
-    id: string;
-    title: string;
-    season: number | null;
-    air_year: number | null;
-    photo_url: string | null;
-    context: string | null;
-  }>>`
-    SELECT e.id, e.title, e.season, e.air_year, e.photo_url, mee.context
-    FROM mst_episode_entities mee
-    JOIN episodes e ON e.id = mee.episode_id
-    WHERE mee.entity_slug = ${slug}
-    ORDER BY COALESCE(e.air_date, make_date(COALESCE(e.air_year, 1993), COALESCE(e.air_month, 1), 1)) ASC NULLS LAST, e.season ASC, e.title ASC
-  `;
+  const [connections, eps] = await Promise.all([
+    fetchConnections(slug, 10),
+    sql<Array<{
+      id: string;
+      title: string;
+      season: number | null;
+      air_year: number | null;
+      photo_url: string | null;
+      context: string | null;
+    }>>`
+      SELECT e.id, e.title, e.season, e.air_year, e.photo_url, mee.context
+      FROM mst_episode_entities mee
+      JOIN episodes e ON e.id = mee.episode_id
+      WHERE mee.entity_slug = ${slug}
+      ORDER BY COALESCE(e.air_date, make_date(COALESCE(e.air_year, 1993), COALESCE(e.air_month, 1), 1)) ASC NULLS LAST, e.season ASC, e.title ASC
+    `,
+  ]);
 
   return c.html(
     <Layout

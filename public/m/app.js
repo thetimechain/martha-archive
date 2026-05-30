@@ -228,6 +228,7 @@
     }
 
     // ±3 days fallback
+    const isLeapYear = y => (y % 4 === 0 && y % 100 !== 0) || (y % 400 === 0);
     const todayDoy = (() => {
       // approximate day-of-year for "this week" radius math
       const start = Date.UTC(now.getUTCFullYear(), 0, 0);
@@ -239,7 +240,8 @@
       const start = Date.UTC(dt.getUTCFullYear(), 0, 0);
       const doy = Math.floor((dt.getTime() - start) / 86400000);
       const raw = Math.abs(doy - todayDoy);
-      return Math.min(raw, 365 - raw);
+      const yearLen = isLeapYear(now.getUTCFullYear()) ? 366 : 365;
+      return Math.min(raw, yearLen - raw);
     };
     const week = episodes.filter(e => inScope(e) && dist(e) <= 3);
     if (week.length > 0) {
@@ -259,14 +261,19 @@
       : 'This week in ' + (ep.air_year || '—');
     // Reuse epHTML for the inner card, then surgically inject the badge.
     const inner = epHTML(ep, '');
-    const badgeHTML = '<span class="featured-badge">' + esc(eyebrow) + '</span>';
-    // Add the .ep--featured class and a data-bucket marker, then inject the
-    // badge as the article's first child. Both epCardHTML and epRowHTML emit
-    // a class="…" attribute, so the regex always matches.
-    return inner.replace(
-      /^<article\b([^>]*)class="([^"]*)"([^>]*)>/,
-      '<article$1class="$2 ep--featured" data-bucket="' + esc(picked.bucket) + '"$3>' + badgeHTML
-    );
+    // Use DOMParser to robustly add the featured class, data attribute, and
+    // badge — avoids relying on attribute order in the serialized HTML string.
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(inner, 'text/html');
+    const article = doc.querySelector('article');
+    if (!article) return inner; // graceful degradation
+    article.classList.add('ep--featured');
+    article.dataset.bucket = picked.bucket;
+    const badge = doc.createElement('span');
+    badge.className = 'featured-badge';
+    badge.textContent = eyebrow; // textContent escapes automatically
+    article.insertBefore(badge, article.firstChild);
+    return article.outerHTML;
   }
 
   function getRecentEpisodes() {
