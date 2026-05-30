@@ -91,6 +91,10 @@
 
   let activeMarker = null;
   const markers = [];
+  const markersBySlug = new Map();
+  const clusterMarkers = [];
+  let currentKindFilter = "all";
+
   for (const p of points) {
     const icon = L.divIcon({
       className: "atlas-pin",
@@ -112,8 +116,8 @@
       setActiveMarker(marker);
       openSheet(p);
     });
-    marker.addTo(map);
     markers.push(marker);
+    markersBySlug.set(p.slug, marker);
   }
 
   function setActiveMarker(m) {
@@ -129,6 +133,98 @@
   }
   function clearActiveMarker() { setActiveMarker(null); }
 
+  // ── Pixel-proximity clustering ─────────────────────────────────────────
+  // At low zoom the NYC area piles ~25 dots into one square mile. Hand-curated
+  // pixel clustering replaces tight groups with a single italic-serif count
+  // marker; clicking it zooms the map into the group's bounds. At higher
+  // zoom the individual pins return.
+  const CLUSTER_ZOOM_THRESHOLD = 7;
+  const CLUSTER_DISTANCE_PX = 28;
+
+  function passesFilter(kind) {
+    return currentKindFilter === "all" || kind === currentKindFilter;
+  }
+
+  function clearLayers() {
+    markers.forEach(function (m) { if (map.hasLayer(m)) map.removeLayer(m); });
+    clusterMarkers.forEach(function (c) { if (map.hasLayer(c)) map.removeLayer(c); });
+    clusterMarkers.length = 0;
+  }
+
+  function rebuildLayers() {
+    clearLayers();
+
+    const visibleMarkers = markers.filter(function (m) { return passesFilter(m._kind); });
+    const z = map.getZoom();
+
+    if (z >= CLUSTER_ZOOM_THRESHOLD) {
+      visibleMarkers.forEach(function (m) { m.addTo(map); });
+      return;
+    }
+
+    // Fixed-seed pixel clustering — sweep visible markers in mention-rank
+    // order, group each into the first existing cluster within
+    // CLUSTER_DISTANCE_PX of that cluster's SEED, otherwise start a new
+    // cluster anchored at this marker. Fixed seeds (vs running centroid)
+    // prevent the snowball drift that previously rolled the whole NYC metro
+    // into one "50" mega-cluster anchored well off-center.
+    const seededOrder = visibleMarkers.slice().sort(function (a, b) {
+      return (b._point.mentions || 0) - (a._point.mentions || 0);
+    });
+    const groups = [];
+    seededOrder.forEach(function (m) {
+      const pt = map.latLngToContainerPoint(m.getLatLng());
+      let matched = null;
+      for (let i = 0; i < groups.length; i++) {
+        if (groups[i].seed.distanceTo(pt) < CLUSTER_DISTANCE_PX) {
+          matched = groups[i];
+          break;
+        }
+      }
+      if (matched) {
+        matched.members.push(m);
+      } else {
+        groups.push({ seed: pt, members: [m] });
+      }
+    });
+
+    groups.forEach(function (g) {
+      if (g.members.length === 1) {
+        g.members[0].addTo(map);
+        return;
+      }
+      // Anchor the cluster at the seed pin's lat/lng — the highest-mention
+      // place gives the cluster a stable, recognizable position rather than
+      // a drifting centroid that lands between two real places.
+      const seedLatLng = g.members[0].getLatLng();
+      const lat = seedLatLng.lat;
+      const lng = seedLatLng.lng;
+      const sizeClass = g.members.length >= 10 ? "atlas-cluster--lg" : g.members.length >= 5 ? "atlas-cluster--md" : "atlas-cluster--sm";
+      const size = g.members.length >= 10 ? 44 : g.members.length >= 5 ? 38 : 32;
+      const cluster = L.marker([lat, lng], {
+        icon: L.divIcon({
+          className: "atlas-cluster " + sizeClass,
+          html:
+            '<span class="atlas-cluster__ring" aria-hidden="true"></span>' +
+            '<span class="atlas-cluster__count">' + g.members.length + "</span>",
+          iconSize: [size, size],
+          iconAnchor: [size / 2, size / 2],
+        }),
+        riseOnHover: true,
+      });
+      cluster._members = g.members;
+      cluster.on("click", function (ev) {
+        if (ev && ev.originalEvent) L.DomEvent.stopPropagation(ev.originalEvent);
+        const bounds = L.latLngBounds(g.members.map(function (m) { return m.getLatLng(); }));
+        // Zoom into the cluster — capped just above threshold so the
+        // pins fan out without diving all the way to street level.
+        map.flyToBounds(bounds.pad(0.35), { maxZoom: 9, duration: 0.6 });
+      });
+      cluster.addTo(map);
+      clusterMarkers.push(cluster);
+    });
+  }
+
   if (markers.length > 0) {
     const group = L.featureGroup(markers);
     map.fitBounds(group.getBounds(), { padding: [50, 50] });
@@ -137,6 +233,10 @@
   // animates — and handles all subsequent zoom changes — but we call this
   // once here so the state is correct before any animation completes.
   applyZoomState();
+  // First layer build runs after fitBounds settles so cluster pixel distances
+  // are computed against the final zoom.
+  map.once("moveend", rebuildLayers);
+  map.on("zoomend", rebuildLayers);
 
   // Desktop-only courtesy: enable scroll zoom only when the map has focus.
   // Always attach both listeners so they are present if the device mode changes
@@ -167,10 +267,10 @@
     chip.addEventListener("click", function () {
       const want = chip.getAttribute("data-kind");
       chips.forEach(function (c) { c.classList.toggle("is-active", c === chip); });
-      markers.forEach(function (m) {
-        const show = want === "all" || m._kind === want;
-        if (show) m.addTo(map); else map.removeLayer(m);
-      });
+      currentKindFilter = want;
+      // Rebuild via the clustering pipeline so filter + cluster state stays
+      // in sync — manual addLayer/removeLayer would leave stale clusters.
+      rebuildLayers();
       closeSheet();
       // Center the chip in the horizontally-scrolling rail. If "All" was
       // tapped, scroll all the way back to the start.
