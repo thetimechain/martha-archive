@@ -225,18 +225,21 @@
     });
   }
 
+  // Register zoom-change rebuild handler BEFORE fitBounds — fitBounds with
+  // {animate: false} fires zoomend synchronously, so a handler registered
+  // after the call would never see the initial paint and the map would
+  // render empty.
+  map.on("zoomend", rebuildLayers);
+
   if (markers.length > 0) {
     const group = L.featureGroup(markers);
     map.fitBounds(group.getBounds(), { padding: [50, 50] });
   }
-  // Apply initial zoom state now. zoomend will also fire after fitBounds
-  // animates — and handles all subsequent zoom changes — but we call this
-  // once here so the state is correct before any animation completes.
   applyZoomState();
-  // First layer build runs after fitBounds settles so cluster pixel distances
-  // are computed against the final zoom.
-  map.once("moveend", rebuildLayers);
-  map.on("zoomend", rebuildLayers);
+  // Run an initial build explicitly — if fitBounds didn't change the zoom
+  // (e.g. cached state matched), zoomend wouldn't have fired and we'd still
+  // be empty. Calling here is idempotent because rebuildLayers clears first.
+  rebuildLayers();
 
   // Desktop-only courtesy: enable scroll zoom only when the map has focus.
   // Always attach both listeners so they are present if the device mode changes
