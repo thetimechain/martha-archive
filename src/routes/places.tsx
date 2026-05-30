@@ -267,6 +267,60 @@ placesRoute.get("/places/map", async (c) => {
           <div id="atlas-sheet-body"></div>
         </aside>
 
+        {/* Bottom tab bar — mirrors the /m/ SPA so navigation feels the
+            same on every page. "Map" is the active item here. */}
+        <nav class="atlas-tabbar" role="navigation" aria-label="Main navigation">
+          <a class="atlas-tabbar__item" href="/m/" aria-label="Home">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+              <rect x="13.5" y="1.5" width="2.5" height="5" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+              <polyline points="1,11 11,3 21,11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="2" y1="11" x2="20" y2="11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+              <rect x="3" y="11" width="16" height="9.5" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M9.5 20.5V16C9.5 15.2 10 14.8 11 14.8S12.5 15.2 12.5 16V20.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <rect x="4.5" y="13" width="3" height="3" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+              <line x1="6" y1="13" x2="6" y2="16" stroke="currentColor" stroke-width="0.8"/>
+              <line x1="4.5" y1="14.5" x2="7.5" y2="14.5" stroke="currentColor" stroke-width="0.8"/>
+              <rect x="14.5" y="13" width="3" height="3" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+              <line x1="16" y1="13" x2="16" y2="16" stroke="currentColor" stroke-width="0.8"/>
+              <line x1="14.5" y1="14.5" x2="17.5" y2="14.5" stroke="currentColor" stroke-width="0.8"/>
+            </svg>
+            <span>Home</span>
+          </a>
+          <a class="atlas-tabbar__item" href="/guests" aria-label="Guest index">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+              <circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span>Guests</span>
+          </a>
+          <a class="atlas-tabbar__item is-active" href="/places/map" aria-label="Atlas — where Martha went" aria-current="page">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+              <path d="M11 2.5c-3 0-5.5 2.4-5.5 5.5 0 4.2 5.5 11.5 5.5 11.5s5.5-7.3 5.5-11.5C16.5 4.9 14 2.5 11 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="11" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>
+            </svg>
+            <span>Map</span>
+          </a>
+          <a class="atlas-tabbar__item" href="/m/random" aria-label="Random episode">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="11" cy="11" r="2" fill="currentColor"/>
+              <circle cx="7" cy="8" r="1.2" fill="currentColor"/>
+              <circle cx="15" cy="8" r="1.2" fill="currentColor"/>
+              <circle cx="7" cy="14" r="1.2" fill="currentColor"/>
+              <circle cx="15" cy="14" r="1.2" fill="currentColor"/>
+            </svg>
+            <span>Random</span>
+          </a>
+          <a class="atlas-tabbar__item" href="/m/about" aria-label="About">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="11" y1="10" x2="11" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="11" cy="7" r="1.1" fill="currentColor"/>
+            </svg>
+            <span>About</span>
+          </a>
+        </nav>
+
         <script id="atlas-data" type="application/json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mapPoints) }}></script>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <script src="/static/scripts/places-map.js" defer></script>

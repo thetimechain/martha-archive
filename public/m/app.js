@@ -1166,6 +1166,13 @@
           </svg>
           Guests
         </button>
+        <a class="tab-bar__item" href="/places/map" aria-label="Atlas — where Martha went">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+            <path d="M11 2.5c-3 0-5.5 2.4-5.5 5.5 0 4.2 5.5 11.5 5.5 11.5s5.5-7.3 5.5-11.5C16.5 4.9 14 2.5 11 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="11" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>
+          </svg>
+          Map
+        </a>
         <button class="tab-bar__item" onclick="navigate('/random')" aria-label="Random episode">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/>

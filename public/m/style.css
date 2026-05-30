@@ -236,12 +236,12 @@ mark {
   right: 0;
   z-index: 100;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-  padding: 8px 12px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  padding: 8px 10px;
   padding-bottom: max(28px, var(--safe-bottom));
-  padding-left: calc(12px + var(--safe-left));
-  padding-right: calc(12px + var(--safe-right));
+  padding-left: calc(10px + var(--safe-left));
+  padding-right: calc(10px + var(--safe-right));
   background: rgba(251, 248, 240, 0.96);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
@@ -263,6 +263,11 @@ mark {
   transition: opacity var(--dur-quick) var(--ease);
   min-height: 44px;
   justify-content: center;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .tab-bar__item.active { color: var(--garden-tomato); opacity: 1; }
 .tab-bar__item:active { opacity: 0.75; }
