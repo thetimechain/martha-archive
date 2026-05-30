@@ -101,25 +101,32 @@ body.body--bare main#main { height: 100%; }
   position: relative;
 }
 
-/* Stamen Watercolor is already perfect for this aesthetic — soft
- * painted texture, muted greens + blues. Just nudge contrast/brightness
- * slightly to bind it to the parchment surround. */
+/* CARTO Voyager isn't painted, but with a warm sepia + a faint blur the
+ * tiles read as "old illustrated map page". The paper-grain overlay
+ * (below) does the rest. */
 .leaflet-tile-pane {
-  filter: contrast(0.96) brightness(1.02) saturate(0.9);
+  filter:
+    sepia(0.32)
+    saturate(0.78)
+    hue-rotate(-6deg)
+    contrast(0.94)
+    brightness(1.04);
 }
 
 
-/* Subtle paper grain overlay — keeps the map from feeling like a screen
- * and makes it feel like an illustrated atlas page. Tiny SVG noise,
- * inline so it adds 0 network requests. */
+/* Two-layer paper texture — coarser fiber speckle and a finer noise on top.
+ * SVG noise via feTurbulence, inlined as data-URIs so they add 0 network
+ * requests. Multiply blend keeps the colours below intact. */
 #atlas-map::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.82' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0.24  0 0 0 0 0.18  0 0 0 0 0.12  0 0 0 0.32 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  background-size: 160px 160px;
-  opacity: 0.35;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3' seed='7'/><feColorMatrix values='0 0 0 0 0.34  0 0 0 0 0.26  0 0 0 0 0.18  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.22  0 0 0 0 0.16  0 0 0 0 0.10  0 0 0 0.3 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 320px 320px, 160px 160px;
+  opacity: 0.55;
   mix-blend-mode: multiply;
   z-index: 350;
 }

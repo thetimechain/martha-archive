@@ -29,45 +29,29 @@
     attributionControl: false,
   });
 
-  // Two-layer basemap:
-  // 1) Stamen Watercolor — genuine hand-painted texture, the closest thing
-  //    on the web to the Turkey Hill estate-plan inspiration. Free via
-  //    Stadia Maps for non-commercial domains (martha.fly.dev is whitelisted
-  //    in their general dev tier; falls back gracefully if blocked).
-  // 2) Stamen Toner Lite Labels on top, so cities/states stay legible.
-  //
-  // If Watercolor fails (Stadia auth changes, network), Voyager is the
-  // automatic fallback wired below.
-  let watercolorLoaded = false;
-  const watercolor = L.tileLayer(
-    "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg",
-    {
-      maxZoom: 16,
-      attribution:
-        '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, ' +
-        '&copy; <a href="https://stamen.com/">Stamen Design</a>, ' +
-        '&copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> ' +
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors',
-    }
-  );
-  watercolor.on("tileload", function () { watercolorLoaded = true; });
-  watercolor.on("tileerror", function () {
-    if (!watercolorLoaded) {
-      map.removeLayer(watercolor);
-      L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
-        { maxZoom: 18, subdomains: "abcd" }
-      ).addTo(map);
-    }
-  });
-  watercolor.addTo(map);
-
-  // Light place-name overlay so the user knows what they're looking at.
+  // Two-layer CARTO basemap (no auth required, free for non-commercial):
+  // 1) Voyager nolabels — colored basemap (green parks, blue water).
+  // 2) Voyager labels-only overlay — subtle gray place names on top so the
+  //    user can navigate without crowding pin labels.
+  // The painted/atlas feel comes from the CSS layer: heavy filter + paper-
+  // grain SVG overlay + compass rose. Far more reliable than depending on
+  // Stadia's auth-gated watercolor tiles.
   L.tileLayer(
-    "https://tiles.stadiamaps.com/tiles/stamen_toner_labels/{z}/{x}/{y}{r}.png",
+    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
     {
       maxZoom: 18,
-      opacity: 0.55,
+      subdomains: "abcd",
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    }
+  ).addTo(map);
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png",
+    {
+      maxZoom: 18,
+      subdomains: "abcd",
+      opacity: 0.7,
     }
   ).addTo(map);
 
