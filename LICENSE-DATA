@@ -1,0 +1,46 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+=========================================================
+
+The dataset in this repository — every `*.json` file under `data/`
+(including `data/marthastewart-tv/segments-llm.json`, `data/entity-wiki-links.json`,
+and `data/places-geo.json`)
+and all original episode descriptions written for this project — is licensed
+under the Creative Commons Attribution 4.0 International License.
+
+You are free to:
+
+  - Share  — copy and redistribute the material in any medium or format
+  - Adapt  — remix, transform, and build upon the material for any purpose,
+             even commercially
+
+Under the following term:
+
+  - Attribution — You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made. You may do so in any
+    reasonable manner, but not in any way that suggests the licensor endorses
+    you or your use.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+Suggested attribution:
+
+  "Martha Stewart TV Archive (an unofficial fan project),
+   https://github.com/thetimechain/martha-archive — CC BY 4.0"
+
+------------------------------------------------------------------------------
+A note on facts vs. expression
+------------------------------------------------------------------------------
+
+In the United States, facts are not subject to copyright (Feist Publications,
+Inc. v. Rural Telephone Service Co., 499 U.S. 340 (1991)). The individual
+facts in this dataset — episode titles, air dates, season and episode numbers,
+guest names, and the like — are not owned by anyone and you may reuse them
+freely. The CC BY 4.0 license here applies to the parts that ARE protectable:
+the original descriptive prose and the selection, coordination, and
+arrangement of the compilation.
+
+This dataset is a fan-compiled, best-effort reference. It contains records
+marked as `partial` confidence and documented gaps; it is not an official or
+authoritative record. See `README.md` for details and `docs/data-sources.md`
+for provenance.
