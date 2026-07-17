@@ -12,4 +12,8 @@ reports
 data/*
 !data/entity-wiki-links.json
 !data/places-geo.json
+!data/marthastewart-tv
+data/marthastewart-tv/*
+!data/marthastewart-tv/segments-llm.json
+!data/marthastewart-tv/llm-review
 drizzle/meta/_journal.json.bak

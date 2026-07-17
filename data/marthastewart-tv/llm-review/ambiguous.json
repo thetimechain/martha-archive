@@ -1,0 +1,737 @@
+[
+ {
+  "vhx_id": 333475,
+  "text": "collecting McCoy pottery",
+  "why": "McCoy is a collectible pottery brand (Nelson McCoy Pottery Co., defunct), not a business visited or a person appearing on the show"
+ },
+ {
+  "vhx_id": 333476,
+  "text": "Fiestaware collecting",
+  "why": "Fiestaware is a dinnerware brand (Homer Laughlin China Co.), a collectible category rather than a visited business or place"
+ },
+ {
+  "vhx_id": 333489,
+  "text": "sal's herb garden",
+  "why": "first name only; possessive implies a person named Sal (possibly herb grower Sal Gilbertie, a known MSL contributor) but the segment text is insufficient to identify"
+ },
+ {
+  "vhx_id": 333469,
+  "text": "sole e luna",
+  "why": "Italian for 'sun and moon'; could be a restaurant name or a dish/recipe name — segment text gives no context to decide"
+ },
+ {
+  "vhx_id": 333468,
+  "text": "Tin man",
+  "why": "likely a visit to a tinsmith but described generically, not a proper name (generic field trip)"
+ },
+ {
+  "vhx_id": 333470,
+  "text": "EZ glides",
+  "why": "product name (furniture glides), not a person or place"
+ },
+ {
+  "vhx_id": 334209,
+  "text": "Salvage",
+  "why": "bare generic word, likely an architectural-salvage segment, not a proper name"
+ },
+ {
+  "vhx_id": 334506,
+  "text": "Ginger",
+  "why": "bare single word between two Puff Pastry cooking segments; almost certainly the ingredient/spice ginger, not a person, but could conceivably be a name"
+ },
+ {
+  "vhx_id": 334525,
+  "text": "Greenwich Orchid",
+  "why": "likely a visit to an orchid grower or greenhouse in Greenwich, CT, but not a clear proper business name as written"
+ },
+ {
+  "vhx_id": 334534,
+  "text": "Curt",
+  "why": "bare first name with no surname or context; could be a person appearing in the topiary/gardening segments but cannot be confirmed"
+ },
+ {
+  "vhx_id": 334754,
+  "text": "FT-Mattress Maker",
+  "why": "generic field trip (no proper business name given); 'Mattress Maker' is also already credited for this episode"
+ },
+ {
+  "vhx_id": 334797,
+  "text": "Disney Topiaries",
+  "why": "could be a visit to character topiaries at a Disney park or simply a Disney-style topiary craft segment; no unambiguous proper place name in the line"
+ },
+ {
+  "vhx_id": 337377,
+  "text": "Jerk Chicken Stand",
+  "why": "generic description of a roadside stand (Jamaica episode) with no proper name given"
+ },
+ {
+  "vhx_id": 337388,
+  "text": "FT-Sod Farming",
+  "why": "generic field trip (activity, not a proper-named place); name already in already_credited"
+ },
+ {
+  "vhx_id": 337427,
+  "text": "FT - Apple Orchard",
+  "why": "generic field trip (no proper orchard name given); name already in already_credited"
+ },
+ {
+  "vhx_id": 337424,
+  "text": "FT - Curtains",
+  "why": "generic field trip (subject matter, not a proper-named business); name already in already_credited"
+ },
+ {
+  "vhx_id": 337438,
+  "text": "FT- Fig Nursery",
+  "why": "generic field trip (no proper nursery name given); name already in already_credited"
+ },
+ {
+  "vhx_id": 337444,
+  "text": "FT -Unusual Topiaries Pt.1",
+  "why": "generic field trip (descriptive subject, not a proper-named place); already listed in already_credited as 'Unusual Topiaries'"
+ },
+ {
+  "vhx_id": 337457,
+  "text": "FT - Annual Garden",
+  "why": "generic field trip (describes a type of garden, not a proper-named place)"
+ },
+ {
+  "vhx_id": 337698,
+  "text": "FT- Burgers",
+  "why": "generic field trip (a food subject, not a proper-named place); 'Burgers' already appears in already_credited"
+ },
+ {
+  "vhx_id": 337711,
+  "text": "Kitchen Aid Collar & Pouring Shield",
+  "why": "KitchenAid is a product brand featured in a product demo segment, not a visited business or place"
+ },
+ {
+  "vhx_id": 337708,
+  "text": "FT - Pressing Cider",
+  "why": "generic field trip (an activity, not a proper-named place); 'Pressing Cider' already appears in already_credited"
+ },
+ {
+  "vhx_id": 337716,
+  "text": "HQC - Janese Risotto",
+  "why": "'Janese' could be a person's first name or a typo/transcription of 'Japanese'; no context proves a person"
+ },
+ {
+  "vhx_id": 337720,
+  "text": "Steve's Cranberry Sauce / Steve's Acorn Squash",
+  "why": "possessive proves a person named Steve, but first name only — cannot identify a full named human"
+ },
+ {
+  "vhx_id": 337765,
+  "text": "Mattress Maker",
+  "why": "generic field trip — occupation description, not a proper business name"
+ },
+ {
+  "vhx_id": 337810,
+  "text": "Saint Andre COM",
+  "why": "Saint Andre is a French triple-cream cheese (COM segment code), not a person or place"
+ },
+ {
+  "vhx_id": 337812,
+  "text": "Field Trip to Antique Show",
+  "why": "generic field trip - no proper-named show or venue given"
+ },
+ {
+  "vhx_id": 337871,
+  "text": "Madeleine COW",
+  "why": "madeleine is a cookie (COW = cookie of the week), not a person"
+ },
+ {
+  "vhx_id": 337922,
+  "text": "EZ Glides GT",
+  "why": "EZ Glides appears to be a product/brand name in a garden tip segment, not a person or place; no evidence it is a business being visited"
+ },
+ {
+  "vhx_id": 337930,
+  "text": "Patroon Salad",
+  "why": "Patroon may reference the Patroon restaurant in New York (opened 1995) or simply be the name of the dish; segment text alone does not confirm a place visit"
+ },
+ {
+  "vhx_id": 337946,
+  "text": "Field Trip to Arboretum",
+  "why": "generic field trip - arboretum is not proper-named in the segment text"
+ },
+ {
+  "vhx_id": 337945,
+  "text": "Bush",
+  "why": "bare single word; could be a shrub/plant segment or a person's surname — no context to prove a person"
+ },
+ {
+  "vhx_id": 337949,
+  "text": "FT- Diving for Sea Scallops",
+  "why": "generic field trip — activity description, no proper business/place name"
+ },
+ {
+  "vhx_id": 337949,
+  "text": "FT- Schucking Sea Scallops",
+  "why": "generic field trip — activity description, no proper business/place name"
+ },
+ {
+  "vhx_id": 337949,
+  "text": "FT- Diving for Urchins & Selling",
+  "why": "generic field trip — activity description, no proper business/place name"
+ },
+ {
+  "vhx_id": 337954,
+  "text": "FT - Croque Monsieur",
+  "why": "generic field trip — croque monsieur is a dish, not a proper place name"
+ },
+ {
+  "vhx_id": 337959,
+  "text": "Perennials with Sarah II",
+  "why": "clearly a person (perennials are plants, so Sarah is human) but first name only — cannot identify full name"
+ },
+ {
+  "vhx_id": 337965,
+  "text": "FT - Collecting Treasure Hunt at Yard",
+  "why": "generic field trip — yard-sale treasure hunt activity, no proper place name"
+ },
+ {
+  "vhx_id": 344679,
+  "text": "Presentation with Ruth & Rose",
+  "why": "Ruth & Rose read as two people (first names only), but Rose could also be the flower used in presentation — cannot confirm identities"
+ },
+ {
+  "vhx_id": 337969,
+  "text": "New Orleans Hors d'oeuvres",
+  "why": "New Orleans is used as a cuisine-style descriptor for the dish, not a visited place"
+ },
+ {
+  "vhx_id": 337972,
+  "text": "Four Season Duck Pts. 1-4",
+  "why": "'Four Season' most likely describes a duck-four-ways dish theme; possible but unproven allusion to the Four Seasons restaurant"
+ },
+ {
+  "vhx_id": 337974,
+  "text": "FT - Japanese Stroll Garden Tour",
+  "why": "already credited for this episode; also a generic garden-type description rather than a proper name"
+ },
+ {
+  "vhx_id": 337977,
+  "text": "Garden Tour",
+  "why": "generic segment title with no proper name"
+ },
+ {
+  "vhx_id": 337987,
+  "text": "Choosing Marble & Milling Factory",
+  "why": "visit to a marble milling factory with no proper business name given"
+ },
+ {
+  "vhx_id": 337984,
+  "text": "FT Cutchogue BBQ",
+  "why": "the BBQ itself is a generic event description; only the Cutchogue, NY location is a proper name"
+ },
+ {
+  "vhx_id": 337985,
+  "text": "FT Bamboo",
+  "why": "generic field trip"
+ },
+ {
+  "vhx_id": 337985,
+  "text": "FT Oyster Pizza",
+  "why": "generic field trip"
+ },
+ {
+  "vhx_id": 351090,
+  "text": "Studio A Before & After",
+  "why": "refers to the show's own TV studio, production context rather than a real-world place"
+ },
+ {
+  "vhx_id": 351092,
+  "text": "Barbie Party Tablesetting / Barbie Cake",
+  "why": "Barbie is a toy brand used as a party theme, not a person or a place"
+ },
+ {
+  "vhx_id": 340363,
+  "text": "Potter's Wheel with Potter Pt. 1 and Pt. 2",
+  "why": "'Potter' is almost certainly the generic occupation (a potter demonstrating the wheel), not a surname; no proper name evidenced"
+ },
+ {
+  "vhx_id": 340815,
+  "text": "Flower Arranging at MMA",
+  "why": "MMA is an unexpanded acronym - possibly the Metropolitan Museum of Art, but the segment text does not spell it out, so the place identity is uncertain"
+ },
+ {
+  "vhx_id": 351728,
+  "text": "Computer 101 with Mark Scanning",
+  "why": "'Mark' may be a person (segment reads like 'Computer 101 with Mark, scanning') but 'Mark Scanning' is not clearly a full human name - could be describing a scanning demo; no surname or other context to confirm"
+ },
+ {
+  "vhx_id": 340845,
+  "text": "Carioca Pt.1 and 2",
+  "why": "Carioca could be a dessert/dish name or a dance/song title; no evidence it is a person or place"
+ },
+ {
+  "vhx_id": 344680,
+  "text": "Chocolate Souffle with Madeleine II",
+  "why": "Madeleine likely refers to madeleine cookies (recipe version II) rather than a person"
+ },
+ {
+  "vhx_id": 341095,
+  "text": "Interview with Bill",
+  "why": "First name only; surrounding email segments suggest Bill Gates but the surname is not evidenced in the segment text"
+ },
+ {
+  "vhx_id": 341097,
+  "text": "Superbowl Party",
+  "why": "References the Super Bowl event, but the segment is a party-hosting how-to, not a visit to or coverage of the event itself"
+ },
+ {
+  "vhx_id": 344730,
+  "text": "FT - Potatoes Pt. 1 and Pt. 2",
+  "why": "generic field trip"
+ },
+ {
+  "vhx_id": 344730,
+  "text": "FT - Sauces",
+  "why": "generic field trip"
+ },
+ {
+  "vhx_id": 341133,
+  "text": "Bookshelf - New Way Things Work Pts. 1 and 2",
+  "why": "book title (David Macaulay's 'The New Way Things Work'), not a person or place; the author is not named in the segment text"
+ },
+ {
+  "vhx_id": 352032,
+  "text": "Chipotle Chicken with Creamy Spinach",
+  "why": "episode title credits 'Ricky Bayless' (Rick Bayless) for this dish, but no person name appears in the segment text itself"
+ },
+ {
+  "vhx_id": 341148,
+  "text": "Watermill Details",
+  "why": "could refer to Water Mill, NY (Hamptons wedding venue location) or be a generic segment title; not clearly a proper-named place"
+ },
+ {
+  "vhx_id": 341846,
+  "text": "FT - Collecting at Antiques & Artisans Part 1 and 2",
+  "why": "the shop 'Antiques & Artisans' appears to already be recorded under the credited name 'Collecting at Antiques & Artisans'; not re-reported to avoid duplication"
+ },
+ {
+  "vhx_id": 352633,
+  "text": "FT - Crabapples",
+  "why": "generic field trip (a plant, not a proper-named place); already credited for this episode"
+ },
+ {
+  "vhx_id": 352633,
+  "text": "FT - Lilacs",
+  "why": "generic field trip (a plant, not a proper-named place); already credited for this episode"
+ },
+ {
+  "vhx_id": 344731,
+  "text": "Raspberries Cincinnati",
+  "why": "Cincinnati is likely part of a dessert name (styled like Cherries Jubilee) rather than a visited location"
+ },
+ {
+  "vhx_id": 341955,
+  "text": "Rosie Dip",
+  "why": "Rosie may be a person (e.g. Rosie O'Donnell) or simply the name of the dip recipe; segment text alone cannot confirm a human"
+ },
+ {
+  "vhx_id": 342057,
+  "text": "Walk through the Congo",
+  "why": "Refers to the Congo exhibit at the Bronx Zoo (already credited), not the country or a separate venue"
+ },
+ {
+  "vhx_id": 345849,
+  "text": "Kite Festival",
+  "why": "Generic event description with no proper name or location evidenced"
+ },
+ {
+  "vhx_id": 347206,
+  "text": "Doll Maker",
+  "why": "Generic craftsperson segment with no proper name evidenced"
+ },
+ {
+  "vhx_id": 347234,
+  "text": "Collecting Ebeniste Part 1",
+  "why": "Ebeniste is the French term for a fine cabinetmaker / ebonized furniture craft, describing the collectible category rather than a named person or business"
+ },
+ {
+  "vhx_id": 347406,
+  "text": "Preparing for The Presidential",
+  "why": "Unclear referent - 'The Presidential' could be an event, hotel, or truncated segment title; no context proves a specific proper-named entity"
+ },
+ {
+  "vhx_id": 347421,
+  "text": "Spaghetti with Brooklyn Clam Sauce",
+  "why": "Brooklyn modifies the dish (a style of clam sauce), not a location visited by the show"
+ },
+ {
+  "vhx_id": 347450,
+  "text": "Leonard's Beds",
+  "why": "could be a proper-named business (possibly Leonard's Antiques, famous for antique beds) or a person named Leonard; segment text alone doesn't resolve which"
+ },
+ {
+  "vhx_id": 347450,
+  "text": "Once Upon a Mattress",
+  "why": "punny segment title (musical reference) for a mattress segment, not evidence of a proper-named place or person"
+ },
+ {
+  "vhx_id": 347520,
+  "text": "Shrimp & Grit Cakes with Seven Parts 1 and 2",
+  "why": "'with Seven' is unclear — could be a person's nickname, a restaurant name, or a transcription error"
+ },
+ {
+  "vhx_id": 347523,
+  "text": "Aunt Mary Dillons Praline COW",
+  "why": "personal name embedded in a cookie-of-the-week recipe title; the named person is not shown appearing on the show"
+ },
+ {
+  "vhx_id": 347523,
+  "text": "Bonnie's Amaretti COW Semifinalist",
+  "why": "personal name embedded in a cookie-of-the-week recipe title; the named person is not shown appearing on the show"
+ },
+ {
+  "vhx_id": 347769,
+  "text": "Bead Maker",
+  "why": "generic field trip — no proper name given"
+ },
+ {
+  "vhx_id": 347770,
+  "text": "Shoemaker",
+  "why": "generic field trip — no proper name given"
+ },
+ {
+  "vhx_id": 347836,
+  "text": "Paul Bunyan COW",
+  "why": "cookie-of-the-week recipe name referencing the folklore figure, not a real person appearing on the show"
+ },
+ {
+  "vhx_id": 347839,
+  "text": "The Masters of Faberge",
+  "why": "Faberge is a historic luxury brand/house referenced as a segment topic (likely an exhibit or collectible overview), not clearly a visited business or a person appearing on the show"
+ },
+ {
+  "vhx_id": 343287,
+  "text": "Collecting Steiff",
+  "why": "Steiff is a German toy brand; segment is about collecting its stuffed animals, not a visit to the company or a person"
+ },
+ {
+  "vhx_id": 347864,
+  "text": "EW Godwin",
+  "why": "E.W. Godwin was a 19th-century British architect/designer and the subject of a Bard Center exhibition tour, not a living person appearing on the show; Bard Center itself is already credited"
+ },
+ {
+  "vhx_id": 348387,
+  "text": "I'Amande Pastis",
+  "why": "Almost certainly a dish (French, l'amande = almond; pastis is a pastry/liqueur), not a person or place"
+ },
+ {
+  "vhx_id": 348410,
+  "text": "The Professor & Madman Book",
+  "why": "Refers to the book 'The Professor and the Madman' (by Simon Winchester); a book title is not a person or place, and the author is not named in the segment text"
+ },
+ {
+  "vhx_id": 348434,
+  "text": "Ingersoll Shaker Chairs",
+  "why": "Ingersoll likely refers to Shaker chair maker Ian Ingersoll, but only the surname appears and it could also be read as a chair style/brand name"
+ },
+ {
+  "vhx_id": 348435,
+  "text": "Bayou",
+  "why": "generic geographic feature term, no proper name evidenced"
+ },
+ {
+  "vhx_id": 348519,
+  "text": "Scrabble Lessons / Scrabble Match / Scrabble Archive",
+  "why": "Scrabble is a branded board game (product), not a person or place; no venue or person named"
+ },
+ {
+  "vhx_id": 348520,
+  "text": "Dog Training with Eddie",
+  "why": "Eddie is most likely the name of the dog being trained, not a human trainer; first name only"
+ },
+ {
+  "vhx_id": 348583,
+  "text": "Interview with Maurice book",
+  "why": "clearly an interview with a person named Maurice about a book (possibly Maurice Sendak), but only a first name is evidenced"
+ },
+ {
+  "vhx_id": 348643,
+  "text": "Outfitting Jockey",
+  "why": "Kentucky Derby-themed segment about jockey attire; no named person or place evidenced"
+ },
+ {
+  "vhx_id": 348662,
+  "text": "FIELD TRIP: Wood Carving",
+  "why": "generic field trip (already credited as 'Wood Carving' for this episode)"
+ },
+ {
+  "vhx_id": 348701,
+  "text": "Irish Roof Thatcher",
+  "why": "generic craftsperson description, no proper name evidenced"
+ },
+ {
+  "vhx_id": 348703,
+  "text": "Strauss Dairy Part 1 and 2",
+  "why": "same entity as already-credited 'Straus Family Creamery' (alternate spelling), not re-reported"
+ },
+ {
+  "vhx_id": 348739,
+  "text": "Brussels Bouquet",
+  "why": "could refer to brussels sprouts arrangement or the city of Brussels; no clear entity"
+ },
+ {
+  "vhx_id": 348746,
+  "text": "Collecting Historical Staffordshire",
+  "why": "Staffordshire here refers to a pottery collectible category (Staffordshire ware), not a visited place"
+ },
+ {
+  "vhx_id": 348783,
+  "text": "Decorative Painters",
+  "why": "visit to unnamed craftspeople; no proper name given"
+ },
+ {
+  "vhx_id": 348794,
+  "text": "Hiroshige at Brooklyn Museum",
+  "why": "Hiroshige is a historical Japanese artist (d. 1858) whose work is the exhibit subject, not a person appearing on the show"
+ },
+ {
+  "vhx_id": 348795,
+  "text": "Interview with Taylor book",
+  "why": "single name 'Taylor' with garbled context; unclear which person or book is meant"
+ },
+ {
+  "vhx_id": 348797,
+  "text": "Falcon Conservation Part 1 and 2",
+  "why": "visit to an unnamed falcon conservation program; no proper name given"
+ },
+ {
+  "vhx_id": 349294,
+  "text": "Woodcut Artist",
+  "why": "visit to an unnamed artist; no proper name given"
+ },
+ {
+  "vhx_id": 349303,
+  "text": "Windsor Chair School",
+  "why": "could be a proper-named chairmaking school or a generic description of a school teaching Windsor chair construction"
+ },
+ {
+  "vhx_id": 349307,
+  "text": "Betlan Countertop",
+  "why": "unclear whether Betlan is a brand/business name or a countertop material/product term"
+ },
+ {
+  "vhx_id": 349309,
+  "text": "Green Animal Topiary",
+  "why": "could refer to Green Animals Topiary Garden (Portsmouth, RI) or be a generic craft segment on animal-shaped topiary"
+ },
+ {
+  "vhx_id": 349311,
+  "text": "Collecting McCoy Cookie Jars",
+  "why": "McCoy is a pottery brand referenced as a collectible, not a visited business or appearing person"
+ },
+ {
+  "vhx_id": 349316,
+  "text": "Collecting Cracker Jack Toys",
+  "why": "Cracker Jack is a snack brand referenced for its collectible toys, not a visited business"
+ },
+ {
+  "vhx_id": 349319,
+  "text": "Paul Bunyan COW",
+  "why": "Paul Bunyan is a folklore character used as a cookie-of-the-week name, not a real person"
+ },
+ {
+  "vhx_id": 349317,
+  "text": "Giant Pumpkin Contest",
+  "why": "generic event description without a proper name"
+ },
+ {
+  "vhx_id": 349369,
+  "text": "Collecting Frankoma",
+  "why": "Frankoma is a pottery brand referenced as a collectible, not a visited business"
+ },
+ {
+  "vhx_id": 343281,
+  "text": "Traveling Pie Lady",
+  "why": "descriptive nickname, no proper name given for the person"
+ },
+ {
+  "vhx_id": 343281,
+  "text": "Raisin Harvest",
+  "why": "generic activity segment, no named farm or location"
+ },
+ {
+  "vhx_id": 349372,
+  "text": "Birch Bark Art",
+  "why": "generic craft segment, no named artist or place"
+ },
+ {
+  "vhx_id": 349386,
+  "text": "Thanksgiving Seed Saver",
+  "why": "could reference Seed Savers Exchange but the line is not a clear proper name"
+ },
+ {
+  "vhx_id": 349386,
+  "text": "Thanksgiving Website",
+  "why": "generic segment about a website, no proper name"
+ },
+ {
+  "vhx_id": 349387,
+  "text": "Harvesting Persimmons Part 1",
+  "why": "likely a farm visit but no proper-named location in the line"
+ },
+ {
+  "vhx_id": 349384,
+  "text": "HQC - Simple Sole with Rainbow",
+  "why": "'Rainbow' likely refers to rainbow trout or a garnish, not clearly a person"
+ },
+ {
+  "vhx_id": 349384,
+  "text": "Making Dolls",
+  "why": "generic craft segment, no named craftsperson"
+ },
+ {
+  "vhx_id": 349423,
+  "text": "Vintage Toy Collection",
+  "why": "generic collecting segment, no named collector or museum"
+ },
+ {
+  "vhx_id": 349424,
+  "text": "Gumdrop Factory",
+  "why": "generic field-trip style description, factory not proper-named"
+ },
+ {
+  "vhx_id": 349424,
+  "text": "Santa Sings",
+  "why": "TV segment bit, Santa is a fictional character not a real person"
+ },
+ {
+  "vhx_id": 349425,
+  "text": "Snowie Ornaments - book",
+  "why": "'Snowie' likely a book/craft name, not clearly a person"
+ },
+ {
+  "vhx_id": 343431,
+  "text": "MSO Christmas Party Part 1 and 2",
+  "why": "MSO = Martha Stewart Omnimedia company event, internal not an external entity"
+ },
+ {
+  "vhx_id": 343431,
+  "text": "Santa Sings Knitting",
+  "why": "TV segment bit, Santa is a fictional character not a real person"
+ },
+ {
+  "vhx_id": 345896,
+  "text": "Arranging Winter Flowers with Daniel I",
+  "why": "'Daniel' is a first name only (likely a floral contributor), surname truncated to 'I' — not a confident full-name extraction"
+ },
+ {
+  "vhx_id": 349526,
+  "text": "Bonsai Nursery",
+  "why": "already credited for this episode; also generic phrasing"
+ },
+ {
+  "vhx_id": 349566,
+  "text": "Hearing Institute",
+  "why": "could be a proper organization name but reads as generic/truncated"
+ },
+ {
+  "vhx_id": 349566,
+  "text": "Sean's Buffalo Wings with Blue",
+  "why": "'Blue' is blue cheese (part of the dish), not a person"
+ },
+ {
+  "vhx_id": 349565,
+  "text": "Shepaug Eagle",
+  "why": "likely refers to eagle-watching at Shepaug Dam in Connecticut — a location, but the line names the bird segment rather than a clear proper-named place"
+ },
+ {
+  "vhx_id": 349563,
+  "text": "Date Harvest",
+  "why": "likely a visit to a date farm but no proper name given — generic field trip"
+ },
+ {
+  "vhx_id": 349607,
+  "text": "Bandini Johnson Barware Part 2",
+  "why": "'Bandini Johnson' is a proper name but unclear whether it is a person (collector/designer) or a barware brand"
+ },
+ {
+  "vhx_id": 349630,
+  "text": "Cookie Monster Part 1 and 2",
+  "why": "Cookie Monster is a fictional Sesame Street character, not a real named human — could also be a cookie segment title"
+ },
+ {
+  "vhx_id": 349987,
+  "text": "Orbo Canvas Rugs Part 1 and 2",
+  "why": "'Orbo' appears to be a proper name (maker or brand of canvas rugs) but unclear whether it is a person or a business"
+ },
+ {
+  "vhx_id": 345899,
+  "text": "Montana Saint Martin",
+  "why": "proper name but unclear whether it is a person, a design firm, or a place"
+ },
+ {
+  "vhx_id": 349998,
+  "text": "Garden Gate Builder",
+  "why": "profile-style segment about a builder but no proper name given — generic"
+ },
+ {
+  "vhx_id": 350003,
+  "text": "Dog Painting Auction",
+  "why": "auction event with no proper name evidenced in the segment text"
+ },
+ {
+  "vhx_id": 350004,
+  "text": "Sarah Bernhardt COW",
+  "why": "Sarah Bernhardt here is a cookie of the week (a classic Danish cookie named after the actress), not a person appearing on the show"
+ },
+ {
+  "vhx_id": 350299,
+  "text": "QC - Linguine with New Zealand",
+  "why": "truncated dish line; 'New Zealand' is part of an ingredient name (likely New Zealand cockles or mussels), not a place segment"
+ },
+ {
+  "vhx_id": 342415,
+  "text": "Keeping",
+  "why": "single-word segment title, likely truncated; not identifiable as a person or place"
+ },
+ {
+  "vhx_id": 350408,
+  "text": "Fish Breed - Goldfish 101",
+  "why": "likely a Marc Morrone pet segment but no person is named in the segment text"
+ },
+ {
+  "vhx_id": 350430,
+  "text": "Westport River Barrel Cukes",
+  "why": "'Westport River' could be a geographic location or part of a pickle/produce description; Westport, Connecticut is already credited for this episode, so unclear whether this names a distinct entity"
+ },
+ {
+  "vhx_id": 350429,
+  "text": "MbM - Development",
+  "why": "MbM is almost certainly a production abbreviation for 'Martha by Mail' (Martha's own catalog business) segment code, not an external entity"
+ },
+ {
+  "vhx_id": 350920,
+  "text": "Bears",
+  "why": "bare single word; almost certainly a wildlife segment (Mount Desert Island episode), not a person or proper-named place"
+ },
+ {
+  "vhx_id": 466059,
+  "text": "Introducing Martha's Grandchild",
+  "why": "April Fools' bloopers episode; no named person given in the segment line"
+ },
+ {
+  "vhx_id": 658308,
+  "text": "Gingerbread House with Miss Piggy",
+  "why": "Miss Piggy is a fictional Muppet character, not a real named human"
+ },
+ {
+  "vhx_id": 658311,
+  "text": "Special Appearance by Santa Claus",
+  "why": "Santa Claus is a fictional/costumed character, not a real named human"
+ },
+ {
+  "vhx_id": 396884,
+  "text": "Martha Stewart Living offices",
+  "why": "the show's own company offices; self-referential rather than an external place entity"
+ },
+ {
+  "vhx_id": 360232,
+  "text": "Martha Stewart Weddings creative team",
+  "why": "the show's own brand/staff, not an external organization entity"
+ }
+]

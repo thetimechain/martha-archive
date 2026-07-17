@@ -1075,6 +1075,24 @@ for (const rec of records) {
   }
 }
 
+// 4c) LLM segment-extraction credits — entities mined from the vhx segment
+//     rundowns by the 2026-07 LLM cleanup pass (data/marthastewart-tv/segments-llm.json).
+//     Every appearance carries the verbatim segment line as evidence; new entities were
+//     adversarially verified before inclusion. Audit trail: data/marthastewart-tv/llm-review/.
+let llmData = null;
+try {
+  llmData = JSON.parse(await readFile("data/marthastewart-tv/segments-llm.json", "utf8"));
+} catch { /* file is optional — pipeline works without it */ }
+if (llmData) {
+  for (const a of llmData.appearances) {
+    appearances.push({
+      kind: a.type, slug: a.slug, vhx_id: a.vhx_id,
+      source: "llm-segment", context: (a.evidence || "").slice(0, 200),
+    });
+  }
+  console.log(`[entities] merged ${llmData.appearances.length} llm-segment appearances, ${llmData.entities.length} llm entities`);
+}
+
 // 5) generic place-suffix sweep (capture everything else like Bakery/Farm/Museum)
 const discoveredPlaces = new Map(); // slug -> { name, kind, mentions }
 for (const rec of records) {
@@ -1145,6 +1163,16 @@ for (const v of discoveredPlaces.values()) {
 }
 for (const v of discoveredFieldTrips.values()) {
   placesOut.push({ slug: "ft-" + slugify(v.name), name: v.name, kind: v.kind, role: null, mentions: v.mentions });
+}
+
+// LLM-verified new entities (existing-entity matches only contribute appearances above)
+if (llmData) {
+  for (const e of llmData.entities) {
+    const target = e.type === "person" ? peopleOut : placesOut;
+    if (!target.some((p) => p.slug === e.slug)) {
+      target.push({ slug: e.slug, name: e.name, kind: e.kind, role: e.role ?? null });
+    }
+  }
 }
 
 const out = { people: peopleOut, places: placesOut, appearances };

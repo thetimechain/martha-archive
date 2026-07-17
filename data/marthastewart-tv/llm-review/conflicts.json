@@ -1,0 +1,30 @@
+[
+ {
+  "key": "person|rosine green",
+  "votes": [
+   {
+    "key": "person|rosine green",
+    "is_real": true,
+    "type": "place",
+    "kind": "business",
+    "canonical_name": "Rosine Green Associates",
+    "role_line": "Brookline, Mass. antiques- and art-restoration firm whose workshop was featured in an MSL segment on restoring antiques.",
+    "same_as_roster": null,
+    "reason": "matches the long-running Brookline MA restoration firm Rosine Green Associates; a business, not a person guest",
+    "file": "voteA-001.json"
+   },
+   {
+    "key": "person|rosine green",
+    "is_real": true,
+    "type": "person",
+    "kind": "contributor",
+    "canonical_name": "Rosine Green",
+    "role_line": "Founder of Rosine Green Associates, the noted Brookline, Mass. antiques-restoration studio, featured in an MSL restoration segment.",
+    "same_as_roster": null,
+    "reason": "Verified real restoration expert; her Brookline firm is confirmed in Boston-area listings and Best of Boston archives.",
+    "file": "voteB-001.json"
+   }
+  ],
+  "why": "type disagreement"
+ }
+]

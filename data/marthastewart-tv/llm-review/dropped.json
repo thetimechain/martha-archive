@@ -1,0 +1,322 @@
+[
+ {
+  "key": "person|mrs maus",
+  "name": "Mrs. Maus",
+  "reasons": [
+   "Honorific-plus-surname recipe contributor, matching the archive's Mrs. DiPaola pattern.",
+   "single-episode possessive recipe attribution with no appearance evidence"
+  ]
+ },
+ {
+  "key": "person|memrie",
+  "name": "Memrie",
+  "reasons": [
+   "Bare first name with only one episode; below the 2-episode threshold for first-name contributors.",
+   "bare first name with only one episode fails the 2+ episode threshold for first-name contributors"
+  ]
+ },
+ {
+  "key": "place|landscape store",
+  "name": "The Landscape Store",
+  "reasons": [
+   "reads as a generic unnamed destination like 'Mattress Maker'; no verifiable proper-named business",
+   "Reads as a generic unnamed destination; web check finds no business by this name."
+  ]
+ },
+ {
+  "key": "person|eve stone",
+  "name": "Eve Stone",
+  "reasons": [
+   "verified real antiques dealer whose shop the show visited",
+   "Only evidenced as part of the shop's name; the visit is already captured by the place entry."
+  ]
+ },
+ {
+  "key": "place|van gogh exhibit",
+  "name": "Van Gogh Exhibit",
+  "reasons": [
+   "A real exhibition the show actually visited on a field trip, though the specific venue is unnamed in the rundown.",
+   "Generic exhibition description, not a proper-named venue or identifiable named event."
+  ]
+ },
+ {
+  "key": "person|quincy",
+  "name": "Quincy",
+  "reasons": [
+   "Bare first name with only 1 episode and no context to identify the real person.",
+   "Bare first name with only 1 episode and no confirming context."
+  ]
+ },
+ {
+  "key": "person|jamaica",
+  "name": "Jamaica",
+  "reasons": [
+   "Two-part author-book interview with 'Jamaica' in the MSL era strongly matches writer-gardener Jamaica Kincaid (My Garden (Book), 1999).",
+   "Bare first name with only 1 episode; likely Jamaica Kincaid but no confirmation of an MSL appearance found."
+  ]
+ },
+ {
+  "key": "place|maine",
+  "name": "Maine",
+  "reasons": [
+   "state-level geographic qualifier of an unnamed destination, not a specific visited place",
+   "state-level geographic backdrop, not a distinct visited place"
+  ]
+ },
+ {
+  "key": "place|take daughters to work day",
+  "name": "Take Daughters to Work Day",
+  "reasons": [
+   "calendar observance/segment theme, not a proper visited place or hosted event",
+   "topical observance, not a place entity"
+  ]
+ },
+ {
+  "key": "place|south carolina",
+  "name": "South Carolina",
+  "reasons": [
+   "extraction artifact; state name qualifying Middleton Place, not a distinct visited entity",
+   "state name is an address qualifier, not a visited place"
+  ]
+ },
+ {
+  "key": "person|eleanora",
+  "name": "Eleanora",
+  "reasons": [
+   "Bare first name with only one episode; below the archive's 2-episode threshold for first-name contributors.",
+   "Bare first name with only 1 episode; fails the 2+ episode threshold."
+  ]
+ },
+ {
+  "key": "place|bad river",
+  "name": "Bad River",
+  "reasons": [
+   "'Bad River Rice' names a rice product/topic; no evidence in the rundown line that the show visited the place.",
+   "Evidence reads as an ingredient/sourcing topic; no visit demonstrated and none confirmable."
+  ]
+ },
+ {
+  "key": "person|bon",
+  "name": "Bon",
+  "reasons": [
+   "Bare first name with only one episode; below the archive's 2-episode threshold for first-name contributors.",
+   "Bare first name with only 1 episode; fails the 2+ episode threshold."
+  ]
+ },
+ {
+  "key": "person|sara foster",
+  "name": "Sara Foster",
+  "reasons": [
+   "Full-named real chef with documented Martha Stewart ties, cooking on-air in the evidence line.",
+   "Evidence shows only bare first name 'Sara' in one episode; surname unsupported by the verbatim line."
+  ]
+ },
+ {
+  "key": "place|wall street journal",
+  "name": "Wall Street Journal",
+  "reasons": [
+   "Media brand appearing only as a segment topic ('WSJ Weekend Section'), not a visited place.",
+   "Media outlet merely referenced in a rundown line; no evidence of a visit or appearance."
+  ]
+ },
+ {
+  "key": "person|lorraine",
+  "name": "Lorraine",
+  "reasons": [
+   "Bare first name with only 1 episode; no indication this craft contributor is actress Lorraine Bracco.",
+   "Bare first name with only one episode; no evidence this craft contributor is the actress Lorraine Bracco."
+  ]
+ },
+ {
+  "key": "person|sharon",
+  "name": "Sharon",
+  "reasons": [
+   "Bare first name with only 1 episode; below the 2-episode threshold for first-name contributors.",
+   "Bare first name with only one episode; below the 2-episode threshold for first-name contributors."
+  ]
+ },
+ {
+  "key": "person|necy",
+  "name": "Necy",
+  "reasons": [
+   "Bare first name with only 1 episode; below the 2-episode threshold for first-name contributors.",
+   "Bare first name with only one episode; below the 2-episode threshold for first-name contributors."
+  ]
+ },
+ {
+  "key": "person|lily",
+  "name": "Lily",
+  "reasons": [
+   "Bare first name with only 1 episode (two parts, same show); below the 2-episode threshold.",
+   "Bare first name with only one episode; below the 2-episode threshold for first-name contributors."
+  ]
+ },
+ {
+  "key": "place|city park",
+  "name": "City Park",
+  "reasons": [
+   "Ambiguous generic name with no city context; unidentifiable destination",
+   "Generic unnamed destination; single episode with no context identifying which City Park."
+  ]
+ },
+ {
+  "key": "place|oxford english dictionary",
+  "name": "Oxford English Dictionary",
+  "reasons": [
+   "Reference work as discussion topic, not a visited place or on-air person",
+   "A dictionary as segment topic, not a place visited or entity that appeared."
+  ]
+ },
+ {
+  "key": "place|bluelight com",
+  "name": "Bluelight.com",
+  "reasons": [
+   "Website/brand as segment topic, not a visited place",
+   "Website brand as segment topic; no evidence of a visit or on-show appearance."
+  ]
+ },
+ {
+  "key": "person|michelle",
+  "name": "Michelle",
+  "reasons": [
+   "Bare first name with only 1 episode",
+   "Bare first name with only one distinct episode; below the 2-episode threshold."
+  ]
+ },
+ {
+  "key": "place|take our daughters to work day",
+  "name": "Take Our Daughters to Work Day",
+  "reasons": [
+   "Real named national event the show participated in on-air",
+   "Generic national observance as segment topic, not a distinct visited place or event."
+  ]
+ },
+ {
+  "key": "person|terrance",
+  "name": "Terrance",
+  "reasons": [
+   "Bare first name with only 1 episode; no evidence linking to chef Terrance Brennan",
+   "Bare first name with only one episode; cannot confirm identity with roster's Terrance Brennan from the evidence."
+  ]
+ },
+ {
+  "key": "place|ebay",
+  "name": "eBay",
+  "reasons": [
+   "Brand as instructional segment topic, not a visited place",
+   "Brand/website as a how-to topic; no visit or on-show appearance of the company."
+  ]
+ },
+ {
+  "key": "place|provence",
+  "name": "Provence",
+  "reasons": [
+   "Region merely names a quilt style/topic; no visit evidenced.",
+   "Region is a topic descriptor ('Quilts of Provence'), not a visited place."
+  ]
+ },
+ {
+  "key": "person|tony",
+  "name": "Tony",
+  "reasons": [
+   "Bare first name with only one episode; below recurrence threshold.",
+   "Bare first name with only 1 episode; below the 2-episode threshold."
+  ]
+ },
+ {
+  "key": "person|pino",
+  "name": "Pino",
+  "reasons": [
+   "Bare first name with only one episode; below recurrence threshold.",
+   "Bare first name with only 1 episode; below the 2-episode threshold."
+  ]
+ },
+ {
+  "key": "place|priceline com",
+  "name": "Priceline.com",
+  "reasons": [
+   "Brand/website is merely the segment's how-to topic; no visit or appearance.",
+   "Brand is the segment's how-to topic, not a visited or appearing place."
+  ]
+ },
+ {
+  "key": "place|memphis",
+  "name": "Memphis",
+  "reasons": [
+   "City name used as a cuisine-style descriptor, not evidenced as a distinct visited destination.",
+   "Used as a cuisine-style qualifier, not evidenced as an indexed destination itself."
+  ]
+ },
+ {
+  "key": "person|conor",
+  "name": "Conor",
+  "reasons": [
+   "Bare first name with only 1 episode; below the 2-episode threshold for first-name contributors.",
+   "Bare first name with only 1 episode; archive rule requires 2+ episodes for first-name-only contributors."
+  ]
+ },
+ {
+  "key": "place|wild maine blueberries pie competition",
+  "name": "Wild Maine Blueberries Pie Competition",
+  "reasons": [
+   "Named event explicitly visited via a field trip in the evidence line.",
+   "Descriptive rundown label, not a verifiable proper-named event; likely a contest within a larger Maine blueberry festival."
+  ]
+ },
+ {
+  "key": "place|zing com",
+  "name": "Zing.com",
+  "reasons": [
+   "A website/brand demoed as a topic, not a real-world place visited or person appearing.",
+   "A website named as a topic, not a real-world place appearing on or visited by the show."
+  ]
+ },
+ {
+  "key": "place|old farmhouse chutneys",
+  "name": "Old Farmhouse Chutneys",
+  "reasons": [
+   "Product/recipe name misread as a place; no evidence of a visit.",
+   "Food-product/recipe title misread as a place; no evidence of a visit to a business by this name."
+  ]
+ },
+ {
+  "key": "person|margi",
+  "name": "Margi",
+  "reasons": [
+   "Bare first name with only 1 episode; below the 2-episode threshold for first-name contributors.",
+   "Bare first name with only one episode; below the two-episode threshold for first-name contributors."
+  ]
+ },
+ {
+  "key": "place|tiffany",
+  "name": "Tiffany",
+  "reasons": [
+   "Brand/historic maker as a collecting-segment topic; no visit or appearance.",
+   "Collecting/topic segment on Tiffany glass; no evidence any Tiffany business location appeared or was visited."
+  ]
+ },
+ {
+  "key": "place|young concert artists",
+  "name": "Young Concert Artists",
+  "reasons": [
+   "Real arts nonprofit; evidence shows an on-air interview.",
+   "Ambiguous — 'Interview with Young Concert Artists' plausibly a generic descriptor; no corroboration found, so rejected under uncertainty."
+  ]
+ },
+ {
+  "key": "person|sophie",
+  "name": "Sophie",
+  "reasons": [
+   "Bare first name with only one episode; below the 2-episode threshold.",
+   "Bare first name with only 1 episode; rule requires 2+ episodes for first-name contributors."
+  ]
+ },
+ {
+  "key": "place|louisiana",
+  "name": "Louisiana",
+  "reasons": [
+   "Merely descriptive of the couple's origin ('Louisiana natives'); no visit or appearance in the segment.",
+   "Only describes where the couple is from ('Louisiana natives'); no visit or on-show appearance of the place."
+  ]
+ }
+]

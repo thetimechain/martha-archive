@@ -1,0 +1,1934 @@
+{
+ "generated": "2026-07-17",
+ "method": "LLM extraction over vhx segment rundowns; 2-vote adversarial verification; see llm-review/",
+ "entities": [
+  {
+   "slug": "alexis-stewart",
+   "name": "Alexis Stewart",
+   "type": "person",
+   "kind": "family",
+   "role": "Martha Stewart's daughter, a frequent on-air presence whose namesake recipes (chocolate chip cookies, egg salad, chopped vegetable salad) appeared in MSL cooking segments."
+  },
+  {
+   "slug": "urban-archaeology",
+   "name": "Urban Archaeology",
+   "type": "place",
+   "kind": "business",
+   "role": "New York City architectural-salvage and restoration-lighting dealer visited in MSL field-trip segments."
+  },
+  {
+   "slug": "puerto-rico",
+   "name": "Puerto Rico",
+   "type": "place",
+   "kind": "location",
+   "role": "Caribbean island and U.S. territory that MSL visited for dedicated travel episodes."
+  },
+  {
+   "slug": "chappellet-winery",
+   "name": "Chappellet Winery",
+   "type": "place",
+   "kind": "business",
+   "role": "Family-owned winery on Pritchard Hill in Napa Valley, California, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "brooklyn-botanic-garden",
+   "name": "Brooklyn Botanic Garden",
+   "type": "place",
+   "kind": "garden",
+   "role": "Major public botanic garden in Brooklyn, N.Y., where MSL filmed tulip and pansy planting and a magnolia tour."
+  },
+  {
+   "slug": "new-orleans",
+   "name": "New Orleans",
+   "type": "place",
+   "kind": "location",
+   "role": "Louisiana city that MSL visited for field-trip segments."
+  },
+  {
+   "slug": "james-david",
+   "name": "James David",
+   "type": "person",
+   "kind": "guest",
+   "role": "Austin, Texas landscape designer and founder of the GARDENS nursery whose celebrated two-acre private garden was toured in MSL segments."
+  },
+  {
+   "slug": "harvard-university",
+   "name": "Harvard University",
+   "type": "place",
+   "kind": "organization",
+   "role": "Cambridge, Massachusetts university whose Blaschka Glass Flowers collection and a butterfly exhibit were visited in MSL segments."
+  },
+  {
+   "slug": "dani-fiori",
+   "name": "Dani Fiori",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Cookie decorator and founder of Sweet Dani B Cookie Kitchen who joined Martha on air to decorate gingerbread cookies and Christmas-tree cupcakes."
+  },
+  {
+   "slug": "sage-street-antiques",
+   "name": "Sage Street Antiques",
+   "type": "place",
+   "kind": "business",
+   "role": "Weekend antiques shop on Division Street in Sag Harbor, N.Y., featured in an MSL antiquing segment."
+  },
+  {
+   "slug": "bark-frameworks",
+   "name": "Bark Frameworks",
+   "type": "place",
+   "kind": "business",
+   "role": "Renowned New York fine-art picture-framing company founded by Jared Bark, featured in an MSL framing segment."
+  },
+  {
+   "slug": "mr-cooper",
+   "name": "Mr. Cooper",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Sandblasting craftsman featured in an early MSL segment on sandblasting; known only by his honorific in the rundown."
+  },
+  {
+   "slug": "guthman-antiques",
+   "name": "Guthman Antiques",
+   "type": "place",
+   "kind": "business",
+   "role": "Connecticut antiques dealer featured in an MSL antiques segment; the Guthman family of Westport/Southport dealt in Americana and hearth antiques."
+  },
+  {
+   "slug": "consignmart",
+   "name": "Consignmart",
+   "type": "place",
+   "kind": "business",
+   "role": "Consignment shop visited in an MSL segment on secondhand furnishings; directory listings place a Consignmart in Westport, Conn., Martha's hometown."
+  },
+  {
+   "slug": "allied-down",
+   "name": "Allied Down",
+   "type": "place",
+   "kind": "business",
+   "role": "Down-and-feather bedding company featured in an MSL segment on down pillows and comforters."
+  },
+  {
+   "slug": "boston-turning-works",
+   "name": "Boston Turning Works",
+   "type": "place",
+   "kind": "business",
+   "role": "Watertown, Mass. architectural wood-turning shop known for finials, balusters, and newel posts, featured in an MSL segment."
+  },
+  {
+   "slug": "fischer-and-page",
+   "name": "Fischer & Page",
+   "type": "place",
+   "kind": "business",
+   "role": "Wholesale florist in Manhattan's 28th Street flower district, known for unusual flower varieties, visited in an MSL flower segment."
+  },
+  {
+   "slug": "brooklyn-rose-garden",
+   "name": "Brooklyn Rose Garden",
+   "type": "place",
+   "kind": "garden",
+   "role": "Rose garden in Brooklyn, N.Y. — most likely the Cranford Rose Garden at Brooklyn Botanic Garden — visited in an MSL gardening segment."
+  },
+  {
+   "slug": "disney-institute",
+   "name": "Disney Institute",
+   "type": "place",
+   "kind": "business",
+   "role": "Walt Disney World's hands-on learning resort in Orlando, Fla., featured on MSL in a contest-winner segment; the show taped there in the late 1990s."
+  },
+  {
+   "slug": "manhattan-fruitier",
+   "name": "Manhattan Fruitier",
+   "type": "place",
+   "kind": "business",
+   "role": "New York City purveyor of hand-arranged fruit gift baskets, founded 1987, featured in an MSL segment."
+  },
+  {
+   "slug": "edible-schoolyard",
+   "name": "Edible Schoolyard",
+   "type": "place",
+   "kind": "garden",
+   "role": "Alice Waters's garden-and-kitchen classroom program at Martin Luther King Jr. Middle School in Berkeley, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "bellocchio",
+   "name": "Bell'occhio",
+   "type": "place",
+   "kind": "business",
+   "role": "San Francisco specialty shop famed for ribbons, boxes, and Parisian ephemera, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "strawberry-hill",
+   "name": "Strawberry Hill",
+   "type": "place",
+   "kind": "business",
+   "role": "Strawberry Hill, the Blue Mountains resort in Irish Town, Jamaica; MSL Season 5 field-trip segments toured its gardens and hand-carved fretwork."
+  },
+  {
+   "slug": "newfoundland",
+   "name": "Newfoundland",
+   "type": "place",
+   "kind": "location",
+   "role": "Newfoundland, Canada, the destination of an MSL field-trip segment."
+  },
+  {
+   "slug": "jane-heller",
+   "name": "Jane Heller",
+   "type": "person",
+   "kind": "guest",
+   "role": "Guest who appeared under her own full name in an MSL segment."
+  },
+  {
+   "slug": "tinsel-trading-company",
+   "name": "Tinsel Trading Company",
+   "type": "place",
+   "kind": "business",
+   "role": "Historic Manhattan vintage-trims and metallic-thread shop (founded 1933), featured in an MSL ornament-making segment."
+  },
+  {
+   "slug": "allen-haskell",
+   "name": "Allen Haskell",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Allen C. Haskell, renowned New Bedford, Massachusetts nurseryman and topiary expert; recurring MSL gardening contributor, here demonstrating forced branches."
+  },
+  {
+   "slug": "jamaica",
+   "name": "Jamaica",
+   "type": "place",
+   "kind": "location",
+   "role": "Caribbean island nation Martha visited in an MSL field-trip episode."
+  },
+  {
+   "slug": "bendheim-glass",
+   "name": "Bendheim Glass",
+   "type": "place",
+   "kind": "business",
+   "role": "S.A. Bendheim, the specialty architectural and restoration glass company, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "cycle-path-bikes",
+   "name": "Cycle Path Bikes",
+   "type": "place",
+   "kind": "business",
+   "role": "Bicycle shop visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "secondhand-rose",
+   "name": "Secondhand Rose",
+   "type": "place",
+   "kind": "business",
+   "role": "Suzanne Lipschutz's famed New York City vintage-wallpaper and antiques shop, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "beds-and-borders",
+   "name": "Beds & Borders",
+   "type": "place",
+   "kind": "business",
+   "role": "Wholesale container-plant nursery in Laurel on Long Island's North Fork, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "nevis",
+   "name": "Nevis",
+   "type": "place",
+   "kind": "location",
+   "role": "Caribbean island in the Federation of St. Kitts and Nevis, featured in an MSL travel segment ('Nevis Details')."
+  },
+  {
+   "slug": "cutchogue",
+   "name": "Cutchogue",
+   "type": "place",
+   "kind": "location",
+   "role": "Hamlet on Long Island's North Fork in Southold, New York, site of an MSL barbecue field-trip segment."
+  },
+  {
+   "slug": "eve-stone-antiques",
+   "name": "Eve Stone Antiques",
+   "type": "place",
+   "kind": "business",
+   "role": "Connecticut antiques shop (founded 1970) specializing in 16th-19th-century copper and brass; visited in an MSL field-trip segment and appeared on MSL TV multiple times."
+  },
+  {
+   "slug": "hinckley-yachts",
+   "name": "Hinckley Yachts",
+   "type": "place",
+   "kind": "business",
+   "role": "Storied yacht builder (The Hinckley Company) based in Southwest Harbor, Maine, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "mrs-dipaola",
+   "name": "Mrs. DiPaola",
+   "type": "person",
+   "kind": "guest",
+   "role": "Home cook who baked her fig cake with Martha in a two-part MSL kitchen segment."
+  },
+  {
+   "slug": "fortuny",
+   "name": "Fortuny",
+   "type": "place",
+   "kind": "business",
+   "role": "Venetian luxury textile house famed for its printed fabrics, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "israel-sack-inc",
+   "name": "Israel Sack, Inc.",
+   "type": "place",
+   "kind": "business",
+   "role": "Preeminent Manhattan dealer in early American antique furniture, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "steinway-and-sons",
+   "name": "Steinway & Sons",
+   "type": "place",
+   "kind": "business",
+   "role": "Legendary piano maker whose Astoria, Queens factory was toured in the two-part MSL segment 'The Making of a Steinway Piano'."
+  },
+  {
+   "slug": "raos",
+   "name": "Rao's",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Famously exclusive century-old Southern Italian restaurant in East Harlem, NYC, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "sony",
+   "name": "Sony",
+   "type": "place",
+   "kind": "business",
+   "role": "Electronics and entertainment corporation whose facility was toured in an MSL field-trip segment."
+  },
+  {
+   "slug": "colin-powell",
+   "name": "Colin Powell",
+   "type": "person",
+   "kind": "guest",
+   "role": "Retired U.S. Army four-star general and former Chairman of the Joint Chiefs of Staff, interviewed in a two-part MSL segment."
+  },
+  {
+   "slug": "mobee-weinstein",
+   "name": "Mobee Weinstein",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Mobee Weinstein, Foreman of Gardeners at the New York Botanical Garden and veteran MSL gardening guest; led a two-part seed-starting segment."
+  },
+  {
+   "slug": "new-york-public-library",
+   "name": "New York Public Library",
+   "type": "place",
+   "kind": "organization",
+   "role": "Landmark New York City library system visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "preston-bailey",
+   "name": "Preston Bailey",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Renowned New York event and floral designer who demonstrated a bouquet on MSL."
+  },
+  {
+   "slug": "holland",
+   "name": "Holland",
+   "type": "place",
+   "kind": "location",
+   "role": "The Netherlands, which Martha visited in a two-part MSL travel field-trip segment."
+  },
+  {
+   "slug": "anny-seavey",
+   "name": "Anny Seavey",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Stained-glass artist Anny Seavey of the Hot Flash Anny's studio (Southwest Harbor, Maine), featured in an MSL stained-glass segment."
+  },
+  {
+   "slug": "fernleigh-topiary-gardens",
+   "name": "Fernleigh Topiary Gardens",
+   "type": "place",
+   "kind": "garden",
+   "role": "Topiary garden featured in a two-part MSL garden-visit segment."
+  },
+  {
+   "slug": "vermont",
+   "name": "Vermont",
+   "type": "place",
+   "kind": "location",
+   "role": "U.S. state visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "middleton-place",
+   "name": "Middleton Place",
+   "type": "place",
+   "kind": "garden",
+   "role": "Historic plantation near Charleston, South Carolina with America's oldest landscaped gardens, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "old-chatham-sheepherding-company",
+   "name": "Old Chatham Sheepherding Company",
+   "type": "place",
+   "kind": "farm",
+   "role": "Sheep dairy farm and creamery in Old Chatham, New York known for sheep's-milk cheeses, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "habitat-for-humanity",
+   "name": "Habitat for Humanity",
+   "type": "place",
+   "kind": "organization",
+   "role": "Nonprofit home-building organization featured in an MSL segment on volunteer house construction."
+  },
+  {
+   "slug": "robert-kinnaman",
+   "name": "Robert Kinnaman",
+   "type": "person",
+   "kind": "guest",
+   "role": "American folk-art and antiques dealer of Kinnaman & Ramaekers in Bridgehampton, NY, whose Americana collection was featured in an MSL segment."
+  },
+  {
+   "slug": "little-and-lewis",
+   "name": "Little & Lewis",
+   "type": "place",
+   "kind": "business",
+   "role": "Bainbridge Island, Washington garden-art studio of George Little and David Lewis, known for cast-concrete hosta leaves, featured in an MSL segment."
+  },
+  {
+   "slug": "heronswood",
+   "name": "Heronswood",
+   "type": "place",
+   "kind": "garden",
+   "role": "Renowned botanical garden and nursery in Kingston, Washington founded by plantsman Dan Hinkley, toured in an MSL field-trip segment."
+  },
+  {
+   "slug": "bloedel-reserve",
+   "name": "Bloedel Reserve",
+   "type": "place",
+   "kind": "garden",
+   "role": "Public garden on Bainbridge Island, Washington whose famous moss garden MSL toured in a field-trip segment."
+  },
+  {
+   "slug": "atlantic-art",
+   "name": "Atlantic Art",
+   "type": "place",
+   "kind": "business",
+   "role": "Glass studio visited for an MSL glass-blowing demonstration segment; likely the coastal-Maine studio Atlantic Art Glass."
+  },
+  {
+   "slug": "mikimoto",
+   "name": "Mikimoto",
+   "type": "place",
+   "kind": "business",
+   "role": "Japanese cultured-pearl company founded by Kokichi Mikimoto, featured in a two-part MSL segment on pearl cultivation."
+  },
+  {
+   "slug": "ralph-kovel",
+   "name": "Ralph Kovel",
+   "type": "person",
+   "kind": "guest",
+   "role": "Antiques expert and co-author of the Kovels' price guides; appeared with wife Terry in the multi-part 'Collecting with Kovels' MSL segments."
+  },
+  {
+   "slug": "terry-kovel",
+   "name": "Terry Kovel",
+   "type": "person",
+   "kind": "guest",
+   "role": "Antiques expert and co-author of the Kovels' price guides; appeared with husband Ralph in the multi-part 'Collecting with Kovels' MSL segments."
+  },
+  {
+   "slug": "arthur-avenue",
+   "name": "Arthur Avenue",
+   "type": "place",
+   "kind": "location",
+   "role": "The Bronx's 'Little Italy' shopping street, famed for its Italian food markets; visited in an MSL shopping segment."
+  },
+  {
+   "slug": "college-of-the-atlantic",
+   "name": "College of the Atlantic",
+   "type": "place",
+   "kind": "organization",
+   "role": "Small ecology-focused college in Bar Harbor, Maine, which runs the Great Duck Island research station; featured in MSL's Maine coverage."
+  },
+  {
+   "slug": "great-duck-island",
+   "name": "Great Duck Island",
+   "type": "place",
+   "kind": "location",
+   "role": "Island off the Maine coast known for its seabird colonies and College of the Atlantic research station; visited in an 'Island Life' MSL segment."
+  },
+  {
+   "slug": "acadia-national-park",
+   "name": "Acadia National Park",
+   "type": "place",
+   "kind": "location",
+   "role": "National park on Mount Desert Island, Maine; destination of an MSL field-trip segment."
+  },
+  {
+   "slug": "iowa-state-fair",
+   "name": "Iowa State Fair",
+   "type": "place",
+   "kind": "event",
+   "role": "The annual state fair in Des Moines, Iowa, one of the largest in the U.S.; destination of an MSL field-trip segment."
+  },
+  {
+   "slug": "horton-brasses",
+   "name": "Horton Brasses",
+   "type": "place",
+   "kind": "business",
+   "role": "Cromwell, Connecticut maker of reproduction antique cabinet and furniture hardware, featured in an MSL segment."
+  },
+  {
+   "slug": "charles-h-baldwin-and-sons",
+   "name": "Charles H. Baldwin & Sons",
+   "type": "place",
+   "kind": "business",
+   "role": "Historic West Stockbridge, Massachusetts extract shop (est. 1888) famous for barrel-aged pure vanilla extract, featured in an MSL vanilla segment."
+  },
+  {
+   "slug": "estiatorio-milos",
+   "name": "Estiatorio Milos",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Greek seafood restaurant in Manhattan famed for its iced fresh-fish display, visited in an MSL field-trip segment on fresh fish."
+  },
+  {
+   "slug": "rabbit-goody",
+   "name": "Rabbit Goody",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Textile historian and master weaver who owns Thistle Hill Weavers in Cherry Valley, NY; demonstrated historic weaving on MSL."
+  },
+  {
+   "slug": "radio-city-music-hall",
+   "name": "Radio City Music Hall",
+   "type": "place",
+   "kind": "location",
+   "role": "Landmark Art Deco theater at Rockefeller Center in New York City, toured in a two-part MSL segment."
+  },
+  {
+   "slug": "thistle-hill-weavers",
+   "name": "Thistle Hill Weavers",
+   "type": "place",
+   "kind": "business",
+   "role": "Custom weaving mill in Cherry Valley, NY, run by textile historian Rabbit Goody, featured in an MSL weaving segment."
+  },
+  {
+   "slug": "new-york-chinese-scholars-garden",
+   "name": "New York Chinese Scholar's Garden",
+   "type": "place",
+   "kind": "garden",
+   "role": "Authentic Ming-style Chinese garden at Snug Harbor Cultural Center on Staten Island (opened 1999), visited in an MSL segment."
+  },
+  {
+   "slug": "sam-kasten",
+   "name": "Sam Kasten",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Master handweaver based in Stockbridge, MA (Sam Kasten Handweaver, est. 1972), who demonstrated weaving on MSL."
+  },
+  {
+   "slug": "fairchild-tropical-botanic-garden",
+   "name": "Fairchild Tropical Botanic Garden",
+   "type": "place",
+   "kind": "garden",
+   "role": "83-acre tropical botanic garden in Coral Gables, Florida, visited in an MSL Florida field-trip segment."
+  },
+  {
+   "slug": "joes-stone-crab",
+   "name": "Joe's Stone Crab",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Landmark Miami Beach seafood restaurant, famous for stone crab claws since 1913, visited in an MSL Florida field-trip segment."
+  },
+  {
+   "slug": "belgo",
+   "name": "Belgo",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Belgian mussels-and-frites restaurant group with London and New York locations, featured in an MSL segment making a mariniere mussel pot."
+  },
+  {
+   "slug": "guastavinos",
+   "name": "Guastavino's",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Terence Conran's restaurant and event space under the Queensboro Bridge in NYC, featured in an MSL lemon tart segment."
+  },
+  {
+   "slug": "american-museum-of-natural-history",
+   "name": "American Museum of Natural History",
+   "type": "place",
+   "kind": "museum",
+   "role": "New York City's famed natural history museum, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "doughnut-plant",
+   "name": "Doughnut Plant",
+   "type": "place",
+   "kind": "business",
+   "role": "Lower East Side NYC bakery founded by Mark Isreal in 1994, famous for artisanal doughnuts; featured in an MSL segment."
+  },
+  {
+   "slug": "scharffen-berger-chocolate-maker",
+   "name": "Scharffen Berger Chocolate Maker",
+   "type": "place",
+   "kind": "business",
+   "role": "Berkeley, California artisan chocolate manufacturer founded in 1997; its chocolate-making was featured in an MSL segment."
+  },
+  {
+   "slug": "skarstad-violins",
+   "name": "Skarstad Violins",
+   "type": "place",
+   "kind": "business",
+   "role": "Violin-making shop of luthier Brian Skarstad in Pleasantville, New York, featured in an MSL field-trip segment."
+  },
+  {
+   "slug": "the-newtown-bee",
+   "name": "The Newtown Bee",
+   "type": "place",
+   "kind": "business",
+   "role": "Historic weekly newspaper in Newtown, Connecticut, known for its antiques coverage; featured in an MSL segment."
+  },
+  {
+   "slug": "hershey-chocolate-factory",
+   "name": "Hershey Chocolate Factory",
+   "type": "place",
+   "kind": "business",
+   "role": "Hershey's chocolate manufacturing plant in Hershey, Pennsylvania, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "corkys-ribs-and-bbq",
+   "name": "Corky's Ribs & BBQ",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Famous Memphis, Tennessee barbecue restaurant featured in MSL's Memphis BBQ segments."
+  },
+  {
+   "slug": "eastfield-village",
+   "name": "Eastfield Village",
+   "type": "place",
+   "kind": "museum",
+   "role": "Assembled village of relocated 18th/19th-century buildings in East Nassau, NY, run as a hands-on historic-trades school; toured in a multi-part MSL segment."
+  },
+  {
+   "slug": "kelmscott-rare-breeds-foundation",
+   "name": "Kelmscott Rare Breeds Foundation",
+   "type": "place",
+   "kind": "farm",
+   "role": "Rare-livestock-breed conservation farm in Lincolnville, Maine, visited in an MSL farm segment."
+  },
+  {
+   "slug": "huber-embroideries",
+   "name": "Huber Embroideries",
+   "type": "place",
+   "kind": "business",
+   "role": "Embroidery workshop/business featured in an MSL segment on fine embroidery."
+  },
+  {
+   "slug": "noche-flamenca",
+   "name": "Noche Flamenca",
+   "type": "place",
+   "kind": "organization",
+   "role": "New York-based touring flamenco dance company founded by Martin Santangelo and Soledad Barrio, featured in an MSL performance segment."
+  },
+  {
+   "slug": "alaska",
+   "name": "Alaska",
+   "type": "place",
+   "kind": "location",
+   "role": "U.S. state visited in an MSL field-trip segment covering Alaska and the Yukon."
+  },
+  {
+   "slug": "yukon",
+   "name": "Yukon",
+   "type": "place",
+   "kind": "location",
+   "role": "Canadian territory visited in an MSL field-trip segment covering Alaska and the Yukon."
+  },
+  {
+   "slug": "pacific-bell-park",
+   "name": "Pacific Bell Park",
+   "type": "place",
+   "kind": "location",
+   "role": "San Francisco Giants ballpark (opened 2000, now Oracle Park) visited in an MSL field segment."
+  },
+  {
+   "slug": "schrader-garden",
+   "name": "Schrader Garden",
+   "type": "place",
+   "kind": "garden",
+   "role": "Private garden named for its owner, toured in an MSL garden-visit segment."
+  },
+  {
+   "slug": "ethnicgrocer-com",
+   "name": "EthnicGrocer.com",
+   "type": "place",
+   "kind": "business",
+   "role": "Dot-com-era online retailer of international grocery ingredients featured in an MSL segment."
+  },
+  {
+   "slug": "salem-organics",
+   "name": "Salem Organics",
+   "type": "place",
+   "kind": "farm",
+   "role": "Organic farm/producer featured in an MSL segment."
+  },
+  {
+   "slug": "old-town-canoe-company",
+   "name": "Old Town Canoe Company",
+   "type": "place",
+   "kind": "business",
+   "role": "Historic canoe manufacturer in Old Town, Maine, whose canoes and workshop were featured in an MSL segment."
+  },
+  {
+   "slug": "taku-smokeries",
+   "name": "Taku Smokeries",
+   "type": "place",
+   "kind": "business",
+   "role": "Salmon smokehouse and seafood processor on the Juneau, Alaska waterfront, visited in an MSL segment."
+  },
+  {
+   "slug": "w-lffer-estate-vineyard",
+   "name": "Wölffer Estate Vineyard",
+   "type": "place",
+   "kind": "business",
+   "role": "Winery and vineyard estate in Sagaponack on Long Island's South Fork, visited in an MSL segment."
+  },
+  {
+   "slug": "longwood-gardens",
+   "name": "Longwood Gardens",
+   "type": "place",
+   "kind": "garden",
+   "role": "Renowned botanical garden in Kennett Square, Pennsylvania, visited for its Christmas display in an MSL segment."
+  },
+  {
+   "slug": "nico-de-swert",
+   "name": "Nico De Swert",
+   "type": "person",
+   "kind": "guest",
+   "role": "Belgian-born floral designer (Nicholas 'Nico' De Swert), author of Living with Flowers, who created a centerpiece in an MSL segment."
+  },
+  {
+   "slug": "mentoring-usa",
+   "name": "Mentoring USA",
+   "type": "place",
+   "kind": "organization",
+   "role": "Youth-mentoring nonprofit founded by Matilda Cuomo, featured in an MSL community-service segment."
+  },
+  {
+   "slug": "mount-auburn-cemetery",
+   "name": "Mount Auburn Cemetery",
+   "type": "place",
+   "kind": "location",
+   "role": "America's first landscaped garden cemetery, in Cambridge, Massachusetts, visited in an MSL segment."
+  },
+  {
+   "slug": "sothebys-restoration",
+   "name": "Sotheby's Restoration",
+   "type": "place",
+   "kind": "business",
+   "role": "Furniture-restoration workshop of the Sotheby's auction house in New York City, toured in an MSL factory-visit segment."
+  },
+  {
+   "slug": "hoyt-and-bond",
+   "name": "Hoyt & Bond",
+   "type": "place",
+   "kind": "business",
+   "role": "Brooklyn children's clothing shop and label founded by designer Elizabeth Beer, featured in an MSL segment on children's clothing."
+  },
+  {
+   "slug": "keb-mo",
+   "name": "Keb' Mo'",
+   "type": "person",
+   "kind": "guest",
+   "role": "Grammy-winning American blues singer-guitarist profiled in an MSL guest segment."
+  },
+  {
+   "slug": "necco",
+   "name": "Necco",
+   "type": "place",
+   "kind": "business",
+   "role": "New England Confectionery Company, the Massachusetts candy maker of Necco Wafers, whose factory MSL toured in a field-trip segment."
+  },
+  {
+   "slug": "pier-antiques-show",
+   "name": "Pier Antiques Show",
+   "type": "place",
+   "kind": "event",
+   "role": "Large New York City antiques show held on Manhattan's Hudson River passenger-ship piers, visited by MSL in a two-part field-trip segment."
+  },
+  {
+   "slug": "rhodes-ragen-and-smith",
+   "name": "Rhodes, Ragen & Smith",
+   "type": "place",
+   "kind": "business",
+   "role": "Seattle architectural-stone company (now Rhodes Architectural Stone) featured in an MSL field-trip segment."
+  },
+  {
+   "slug": "ed-rice",
+   "name": "Ed Rice",
+   "type": "person",
+   "kind": "guest",
+   "role": "Country-ham curer who presented his cured country ham in an MSL segment."
+  },
+  {
+   "slug": "nashville-tennessee",
+   "name": "Nashville, Tennessee",
+   "type": "place",
+   "kind": "location",
+   "role": "Tennessee's capital and country-music hub, the destination of an MSL field-trip segment."
+  },
+  {
+   "slug": "gorham-silver",
+   "name": "Gorham Silver",
+   "type": "place",
+   "kind": "business",
+   "role": "Historic Rhode Island silver manufacturer (Gorham Manufacturing Company) whose factory was profiled in an MSL segment."
+  },
+  {
+   "slug": "viking-range",
+   "name": "Viking Range",
+   "type": "place",
+   "kind": "business",
+   "role": "Kitchen-appliance manufacturer headquartered in Greenwood, Mississippi, featured in an MSL company segment."
+  },
+  {
+   "slug": "south-river-miso-company",
+   "name": "South River Miso Company",
+   "type": "place",
+   "kind": "business",
+   "role": "Artisan wood-fired organic miso maker in Conway, Massachusetts, featured in an MSL segment; rundown misspells it 'Southern River Miso'."
+  },
+  {
+   "slug": "portland-classical-chinese-garden",
+   "name": "Portland Classical Chinese Garden",
+   "type": "place",
+   "kind": "garden",
+   "role": "Classical Chinese garden in Portland, Oregon (opened 2000, now Lan Su Chinese Garden), featured in an MSL field-trip segment."
+  },
+  {
+   "slug": "scalamandr",
+   "name": "Scalamandré",
+   "type": "place",
+   "kind": "business",
+   "role": "Historic New York textile house famed for silk trimmings and passementerie, visited in an MSL trimming segment."
+  },
+  {
+   "slug": "savatree",
+   "name": "SavATree",
+   "type": "place",
+   "kind": "business",
+   "role": "Bedford Hills, NY-based tree- and lawn-care company featured in an MSL tree-safety training segment."
+  },
+  {
+   "slug": "pezzini-farms",
+   "name": "Pezzini Farms",
+   "type": "place",
+   "kind": "farm",
+   "role": "Family artichoke farm in Castroville, California, visited for an MSL artichoke segment."
+  },
+  {
+   "slug": "gallup-and-stribling-orchids",
+   "name": "Gallup & Stribling Orchids",
+   "type": "place",
+   "kind": "business",
+   "role": "Large orchid grower in Carpinteria, California, toured in a multi-part MSL field-trip segment."
+  },
+  {
+   "slug": "dorothy-timberlake-candies",
+   "name": "Dorothy Timberlake Candies",
+   "type": "place",
+   "kind": "business",
+   "role": "Eaton Center, New Hampshire maker of molded barley candy using antique molds, featured in an MSL barley-candy segment."
+  },
+  {
+   "slug": "darcy-miller",
+   "name": "Darcy Miller",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Darcy Miller (Nussbaum), longtime Martha Stewart Weddings editor and celebrations expert, appeared in an MSL wedding special."
+  },
+  {
+   "slug": "antique-rose-emporium",
+   "name": "Antique Rose Emporium",
+   "type": "place",
+   "kind": "garden",
+   "role": "Texas rose nursery near Brenham specializing in old garden roses and display gardens, visited in an MSL rose segment."
+  },
+  {
+   "slug": "monarch-watch",
+   "name": "Monarch Watch",
+   "type": "place",
+   "kind": "organization",
+   "role": "University of Kansas-based monarch butterfly tagging and conservation program featured in an MSL segment."
+  },
+  {
+   "slug": "ray-bliss-rich",
+   "name": "Ray Bliss Rich",
+   "type": "person",
+   "kind": "guest",
+   "role": "Artist who demonstrated fish printing (gyotaku) with Martha in an MSL craft segment."
+  },
+  {
+   "slug": "aretha-franklin",
+   "name": "Aretha Franklin",
+   "type": "person",
+   "kind": "guest",
+   "role": "The Queen of Soul, who appeared on the show in 1999 to teach Martha her ginger ale-glazed 'Queen of Soul Ham'."
+  },
+  {
+   "slug": "tony-bennett",
+   "name": "Tony Bennett",
+   "type": "person",
+   "kind": "guest",
+   "role": "Legendary American pop and jazz singer who appeared as a special guest on the show."
+  },
+  {
+   "slug": "cyndi-lauper",
+   "name": "Cyndi Lauper",
+   "type": "person",
+   "kind": "guest",
+   "role": "Grammy-winning pop singer who appeared as a special guest on the show."
+  },
+  {
+   "slug": "ana-gasteyer",
+   "name": "Ana Gasteyer",
+   "type": "person",
+   "kind": "guest",
+   "role": "Comedian and actress, known for her Saturday Night Live Martha Stewart impression, who appeared as a special guest on the show."
+  },
+  {
+   "slug": "carlos-cort-s",
+   "name": "Carlos Cortés",
+   "type": "person",
+   "kind": "contributor",
+   "role": "San Antonio faux bois artist, heir to the trabajo rústico concrete-sculpture tradition, visited in an MSL field-trip segment."
+  },
+  {
+   "slug": "san-antonio-tx",
+   "name": "San Antonio, TX",
+   "type": "place",
+   "kind": "location",
+   "role": "Texas city the show visited for a field-trip segment on faux bois artist Carlos Cortés."
+  },
+  {
+   "slug": "sonoma-ca",
+   "name": "Sonoma, CA",
+   "type": "place",
+   "kind": "location",
+   "role": "Northern California wine-country town where the show filmed an on-location show open."
+  },
+  {
+   "slug": "daisy-schwartzberg-toye",
+   "name": "Daisy Schwartzberg Toye",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Martha's personal makeup artist, who demonstrated turning daytime makeup into a festive holiday-party look on the show."
+  },
+  {
+   "slug": "anduin-havens",
+   "name": "Anduin Havens",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Martha Stewart Living creative director who cooked a creamy crudite dip with Martha for an office-potluck segment."
+  },
+  {
+   "slug": "jodi-levine",
+   "name": "Jodi Levine",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Longtime Martha Stewart Living crafts editor who made graham-cracker cottages with Martha in a holiday craft segment."
+  },
+  {
+   "slug": "colin-van-dervort",
+   "name": "Colin Van Dervort",
+   "type": "person",
+   "kind": "guest",
+   "role": "Louisiana groom whose Bahamas destination wedding was planned on the show with the Martha Stewart Weddings creative team."
+  },
+  {
+   "slug": "liz-wilks",
+   "name": "Liz Wilks",
+   "type": "person",
+   "kind": "guest",
+   "role": "Louisiana bride whose Bahamas destination wedding was planned with help from the Martha Stewart Weddings creative team in this wedding segment."
+  },
+  {
+   "slug": "bahamas",
+   "name": "Bahamas",
+   "type": "place",
+   "kind": "location",
+   "role": "Caribbean island nation that hosted the destination wedding planned by the Martha Stewart Weddings creative team in this segment."
+  },
+  {
+   "slug": "rosine-green",
+   "name": "Rosine Green",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Founder of Rosine Green Associates, the noted Brookline, Mass. antiques- and art-restoration studio; demonstrated restoration in an MSL segment."
+  },
+  {
+   "slug": "jamaica-kincaid",
+   "name": "Jamaica Kincaid",
+   "type": "person",
+   "kind": "guest",
+   "role": "Antiguan-American novelist and gardener; author of My Garden (Book); interviewed on MSL about the book."
+  }
+ ],
+ "appearances": [
+  {
+   "slug": "mrs-kostyra",
+   "type": "person",
+   "vhx_id": 348385,
+   "evidence": "Computer 101 with Mom"
+  },
+  {
+   "slug": "ft-the-monogram-shop",
+   "type": "place",
+   "vhx_id": 348739,
+   "evidence": "The Monogram Shop"
+  },
+  {
+   "slug": "todd-english",
+   "type": "person",
+   "vhx_id": 350299,
+   "evidence": "Todd English Restaurant Opening"
+  },
+  {
+   "slug": "julia-child",
+   "type": "person",
+   "vhx_id": 658308,
+   "evidence": "Croquembouche with Julia Child"
+  },
+  {
+   "slug": "lorraine-bracco",
+   "type": "person",
+   "vhx_id": 658311,
+   "evidence": "Special Guests: Tony Bennett, Cyndi Lauper, Lorraine Bracco, Ana Gasteyer"
+  },
+  {
+   "slug": "alexis-stewart",
+   "type": "person",
+   "vhx_id": 337240,
+   "evidence": "COOKIE OF THE WEEK: Alexis' Chocolate Chip Cookies"
+  },
+  {
+   "slug": "alexis-stewart",
+   "type": "person",
+   "vhx_id": 337808,
+   "evidence": "Alexis' Cake"
+  },
+  {
+   "slug": "alexis-stewart",
+   "type": "person",
+   "vhx_id": 348627,
+   "evidence": "Alexis' Egg Salad Sandwich"
+  },
+  {
+   "slug": "alexis-stewart",
+   "type": "person",
+   "vhx_id": 348795,
+   "evidence": "Alexis' Chopped Vegetable Salad"
+  },
+  {
+   "slug": "urban-archaeology",
+   "type": "place",
+   "vhx_id": 333492,
+   "evidence": "FT Urban archaeology"
+  },
+  {
+   "slug": "urban-archaeology",
+   "type": "place",
+   "vhx_id": 337931,
+   "evidence": "Field Trip to Urban Archaeology"
+  },
+  {
+   "slug": "puerto-rico",
+   "type": "place",
+   "vhx_id": 334738,
+   "evidence": "Puerto Rico Episode"
+  },
+  {
+   "slug": "puerto-rico",
+   "type": "place",
+   "vhx_id": 342262,
+   "evidence": "Puerto Rican Episode"
+  },
+  {
+   "slug": "chappellet-winery",
+   "type": "place",
+   "vhx_id": 351405,
+   "evidence": "Field Trip to Chappellet Winery"
+  },
+  {
+   "slug": "chappellet-winery",
+   "type": "place",
+   "vhx_id": 342265,
+   "evidence": "Field Trip to Chappellet Winery"
+  },
+  {
+   "slug": "sean-conway",
+   "type": "person",
+   "vhx_id": 352730,
+   "evidence": "Window Boxes with Sean"
+  },
+  {
+   "slug": "sean-conway",
+   "type": "person",
+   "vhx_id": 349566,
+   "evidence": "Sean's Buffalo Wings with Blue"
+  },
+  {
+   "slug": "brooklyn-botanic-garden",
+   "type": "place",
+   "vhx_id": 347423,
+   "evidence": "Planting Tulips & Pansies at Brooklyn Botanical Gardens"
+  },
+  {
+   "slug": "brooklyn-botanic-garden",
+   "type": "place",
+   "vhx_id": 348629,
+   "evidence": "Magnolia Tour BBG"
+  },
+  {
+   "slug": "new-orleans",
+   "type": "place",
+   "vhx_id": 342275,
+   "evidence": "Field trip to New Orleans"
+  },
+  {
+   "slug": "new-orleans",
+   "type": "place",
+   "vhx_id": 348435,
+   "evidence": "Field Trip to New Orleans"
+  },
+  {
+   "slug": "james-david",
+   "type": "person",
+   "vhx_id": 349989,
+   "evidence": "James David Gardens"
+  },
+  {
+   "slug": "james-david",
+   "type": "person",
+   "vhx_id": 350428,
+   "evidence": "James David Private Garden"
+  },
+  {
+   "slug": "harvard-university",
+   "type": "place",
+   "vhx_id": 350312,
+   "evidence": "Glass Flowers  at Harvard"
+  },
+  {
+   "slug": "harvard-university",
+   "type": "place",
+   "vhx_id": 350710,
+   "evidence": "Butterfly Exhibit at Harvard"
+  },
+  {
+   "slug": "dani-fiori",
+   "type": "person",
+   "vhx_id": 396895,
+   "evidence": "Martha and cookie decorator Dani Fiori make a magical forest of Christmas tree cupcakes using an unexpected store-bought ingredient."
+  },
+  {
+   "slug": "dani-fiori",
+   "type": "person",
+   "vhx_id": 396898,
+   "evidence": "Go into Martha’s kitchen with cookie decorator Dani Fiori as they bedazzle gingerbread cookies with shiny icing and shimmering glitter."
+  },
+  {
+   "slug": "sage-street-antiques",
+   "type": "place",
+   "vhx_id": 333477,
+   "evidence": "sage street antique store"
+  },
+  {
+   "slug": "bark-frameworks",
+   "type": "place",
+   "vhx_id": 333480,
+   "evidence": "Bark Frameworks"
+  },
+  {
+   "slug": "mr-cooper",
+   "type": "person",
+   "vhx_id": 333481,
+   "evidence": "Mr. Cooper's sandblasting"
+  },
+  {
+   "slug": "guthman-antiques",
+   "type": "place",
+   "vhx_id": 333486,
+   "evidence": "Guthman antiques"
+  },
+  {
+   "slug": "consignmart",
+   "type": "place",
+   "vhx_id": 334205,
+   "evidence": "Consignmart"
+  },
+  {
+   "slug": "allied-down",
+   "type": "place",
+   "vhx_id": 334343,
+   "evidence": "Allied Down"
+  },
+  {
+   "slug": "boston-turning-works",
+   "type": "place",
+   "vhx_id": 334355,
+   "evidence": "Boston Turning"
+  },
+  {
+   "slug": "fischer-and-page",
+   "type": "place",
+   "vhx_id": 334511,
+   "evidence": "Fisher & Page"
+  },
+  {
+   "slug": "brooklyn-rose-garden",
+   "type": "place",
+   "vhx_id": 334533,
+   "evidence": "Brooklyn Rose Garden"
+  },
+  {
+   "slug": "disney-institute",
+   "type": "place",
+   "vhx_id": 334795,
+   "evidence": "Disney Institute GT Winner"
+  },
+  {
+   "slug": "manhattan-fruitier",
+   "type": "place",
+   "vhx_id": 334809,
+   "evidence": "Manhattan Fruitier"
+  },
+  {
+   "slug": "edible-schoolyard",
+   "type": "place",
+   "vhx_id": 337241,
+   "evidence": "FT Edible School Yard"
+  },
+  {
+   "slug": "bellocchio",
+   "type": "place",
+   "vhx_id": 337241,
+   "evidence": "FT Bellocchio"
+  },
+  {
+   "slug": "strawberry-hill",
+   "type": "place",
+   "vhx_id": 337377,
+   "evidence": "Strawberry Hill Gardens"
+  },
+  {
+   "slug": "balthazar-restaurant",
+   "type": "place",
+   "vhx_id": 337707,
+   "evidence": "FT - Balthazar Three Tier Seafood"
+  },
+  {
+   "slug": "newfoundland",
+   "type": "place",
+   "vhx_id": 342263,
+   "evidence": "Newfoundland Field Trip"
+  },
+  {
+   "slug": "jane-heller",
+   "type": "person",
+   "vhx_id": 337720,
+   "evidence": "Jane Heller"
+  },
+  {
+   "slug": "tinsel-trading-company",
+   "type": "place",
+   "vhx_id": 337793,
+   "evidence": "Tinsel Trading Ornament"
+  },
+  {
+   "slug": "allen-haskell",
+   "type": "person",
+   "vhx_id": 337873,
+   "evidence": "Forced Branches with Allen II"
+  },
+  {
+   "slug": "jamaica",
+   "type": "place",
+   "vhx_id": 337878,
+   "evidence": "Jamaica Field Trip"
+  },
+  {
+   "slug": "bendheim-glass",
+   "type": "place",
+   "vhx_id": 337929,
+   "evidence": "Field Trip to Bendheim Glass"
+  },
+  {
+   "slug": "cycle-path-bikes",
+   "type": "place",
+   "vhx_id": 337955,
+   "evidence": "Field Trip Cycle Path Bikes"
+  },
+  {
+   "slug": "secondhand-rose",
+   "type": "place",
+   "vhx_id": 337956,
+   "evidence": "Field Trip to Secondhand Rose - NY"
+  },
+  {
+   "slug": "beds-and-borders",
+   "type": "place",
+   "vhx_id": 337973,
+   "evidence": "Field trip to Beds & Borders"
+  },
+  {
+   "slug": "nevis",
+   "type": "place",
+   "vhx_id": 337982,
+   "evidence": "Nevis Details"
+  },
+  {
+   "slug": "cutchogue",
+   "type": "place",
+   "vhx_id": 337984,
+   "evidence": "FT Cutchogue BBQ"
+  },
+  {
+   "slug": "eve-stone-antiques",
+   "type": "place",
+   "vhx_id": 337988,
+   "evidence": "FT Eve Stone's  Copper and Brass"
+  },
+  {
+   "slug": "hinckley-yachts",
+   "type": "place",
+   "vhx_id": 340362,
+   "evidence": "Field trip to Hinckley Boats"
+  },
+  {
+   "slug": "mrs-dipaola",
+   "type": "person",
+   "vhx_id": 340379,
+   "evidence": "Mrs. DiPaola's Fig Cake Pts 1 and 2"
+  },
+  {
+   "slug": "fortuny",
+   "type": "place",
+   "vhx_id": 340378,
+   "evidence": "Field Trip to Fortuny"
+  },
+  {
+   "slug": "israel-sack-inc",
+   "type": "place",
+   "vhx_id": 351285,
+   "evidence": "Field Trip to Israel Sack"
+  },
+  {
+   "slug": "steinway-and-sons",
+   "type": "place",
+   "vhx_id": 340590,
+   "evidence": "The Making of a Steinway Piano Pts. 1 and 2"
+  },
+  {
+   "slug": "raos",
+   "type": "place",
+   "vhx_id": 340732,
+   "evidence": "Field trip to Rao's NYC"
+  },
+  {
+   "slug": "sony",
+   "type": "place",
+   "vhx_id": 351843,
+   "evidence": "Field Trip to Sony"
+  },
+  {
+   "slug": "colin-powell",
+   "type": "person",
+   "vhx_id": 341081,
+   "evidence": "Interview with Colin Powell Pt. 1 and 2"
+  },
+  {
+   "slug": "mobee-weinstein",
+   "type": "person",
+   "vhx_id": 341136,
+   "evidence": "Seed Starting with Mobee Pt. 1 and 2"
+  },
+  {
+   "slug": "new-york-public-library",
+   "type": "place",
+   "vhx_id": 352188,
+   "evidence": "Field Trip to the NY Public Library"
+  },
+  {
+   "slug": "preston-bailey",
+   "type": "person",
+   "vhx_id": 341148,
+   "evidence": "Preston Bailey Bouquet"
+  },
+  {
+   "slug": "holland",
+   "type": "place",
+   "vhx_id": 341827,
+   "evidence": "FT - Martha in Holland Parts 1 and 2"
+  },
+  {
+   "slug": "anny-seavey",
+   "type": "person",
+   "vhx_id": 352337,
+   "evidence": "Hot Flash Anny Stained Glass"
+  },
+  {
+   "slug": "fernleigh-topiary-gardens",
+   "type": "place",
+   "vhx_id": 352335,
+   "evidence": "Fernleigh Topiary Gardens Parts 1 and 2"
+  },
+  {
+   "slug": "vermont",
+   "type": "place",
+   "vhx_id": 341859,
+   "evidence": "Field Trip to Vermont"
+  },
+  {
+   "slug": "middleton-place",
+   "type": "place",
+   "vhx_id": 352680,
+   "evidence": "Field Trips to Middleton Place, South Carolina"
+  },
+  {
+   "slug": "old-chatham-sheepherding-company",
+   "type": "place",
+   "vhx_id": 352729,
+   "evidence": "Old Chatham Field Trip"
+  },
+  {
+   "slug": "habitat-for-humanity",
+   "type": "place",
+   "vhx_id": 341955,
+   "evidence": "Habitat for Humanity"
+  },
+  {
+   "slug": "robert-kinnaman",
+   "type": "person",
+   "vhx_id": 342050,
+   "evidence": "Robert Kinnaman Collection"
+  },
+  {
+   "slug": "little-and-lewis",
+   "type": "place",
+   "vhx_id": 342051,
+   "evidence": "Little & Lewis Hosta Leaves Part 1"
+  },
+  {
+   "slug": "heronswood",
+   "type": "place",
+   "vhx_id": 353128,
+   "evidence": "Field Trip to Heronswood Gardens and Bloedel Moss Garden"
+  },
+  {
+   "slug": "bloedel-reserve",
+   "type": "place",
+   "vhx_id": 353128,
+   "evidence": "Field Trip to Heronswood Gardens and Bloedel Moss Garden"
+  },
+  {
+   "slug": "atlantic-art",
+   "type": "place",
+   "vhx_id": 353315,
+   "evidence": "Glass Blowing at Atlantic Art"
+  },
+  {
+   "slug": "mikimoto",
+   "type": "place",
+   "vhx_id": 353319,
+   "evidence": "Mikimoto Part 1 and 2"
+  },
+  {
+   "slug": "ralph-kovel",
+   "type": "person",
+   "vhx_id": 353321,
+   "evidence": "Collecting with Kovels Parts 1-4"
+  },
+  {
+   "slug": "terry-kovel",
+   "type": "person",
+   "vhx_id": 353321,
+   "evidence": "Collecting with Kovels Parts 1-4"
+  },
+  {
+   "slug": "arthur-avenue",
+   "type": "place",
+   "vhx_id": 347207,
+   "evidence": "Shopping at Arthur Avenue"
+  },
+  {
+   "slug": "college-of-the-atlantic",
+   "type": "place",
+   "vhx_id": 347232,
+   "evidence": "College of the Atlantic"
+  },
+  {
+   "slug": "great-duck-island",
+   "type": "place",
+   "vhx_id": 347232,
+   "evidence": "Island Life at Great Duck Island"
+  },
+  {
+   "slug": "acadia-national-park",
+   "type": "place",
+   "vhx_id": 347235,
+   "evidence": "Field Trip to Acadia National Park"
+  },
+  {
+   "slug": "iowa-state-fair",
+   "type": "place",
+   "vhx_id": 347418,
+   "evidence": "Field Trip to Iowa State Fair"
+  },
+  {
+   "slug": "horton-brasses",
+   "type": "place",
+   "vhx_id": 347501,
+   "evidence": "Horton Brasses"
+  },
+  {
+   "slug": "charles-h-baldwin-and-sons",
+   "type": "place",
+   "vhx_id": 347464,
+   "evidence": "Vanilla - Baldwin & Sons"
+  },
+  {
+   "slug": "estiatorio-milos",
+   "type": "place",
+   "vhx_id": 347767,
+   "evidence": "FT - Fresh Fish at Milo's"
+  },
+  {
+   "slug": "rabbit-goody",
+   "type": "person",
+   "vhx_id": 347835,
+   "evidence": "Rabbit Goody Thistle Hill Weavers"
+  },
+  {
+   "slug": "radio-city-music-hall",
+   "type": "place",
+   "vhx_id": 347835,
+   "evidence": "Radio City Part 1 and 2"
+  },
+  {
+   "slug": "thistle-hill-weavers",
+   "type": "place",
+   "vhx_id": 347835,
+   "evidence": "Rabbit Goody Thistle Hill Weavers"
+  },
+  {
+   "slug": "new-york-chinese-scholars-garden",
+   "type": "place",
+   "vhx_id": 348384,
+   "evidence": "Chinese Scholar Garden"
+  },
+  {
+   "slug": "sam-kasten",
+   "type": "person",
+   "vhx_id": 348412,
+   "evidence": "Sam Kasten Weaver"
+  },
+  {
+   "slug": "westminster-dog-show",
+   "type": "place",
+   "vhx_id": 348467,
+   "evidence": "Westminster Small Dogs Part 1 and 2"
+  },
+  {
+   "slug": "fairchild-tropical-botanic-garden",
+   "type": "place",
+   "vhx_id": 348464,
+   "evidence": "Field trip to Fairchild Tropical Gardens, Kerry's Nursery, and Joe's Stone Crab"
+  },
+  {
+   "slug": "joes-stone-crab",
+   "type": "place",
+   "vhx_id": 348464,
+   "evidence": "Field trip to Fairchild Tropical Gardens, Kerry's Nursery, and Joe's Stone Crab"
+  },
+  {
+   "slug": "belgo",
+   "type": "place",
+   "vhx_id": 348631,
+   "evidence": "Belgo - Mariniere Mussel Pot"
+  },
+  {
+   "slug": "guastavinos",
+   "type": "place",
+   "vhx_id": 348629,
+   "evidence": "Lemon Tart Gustavino's"
+  },
+  {
+   "slug": "american-museum-of-natural-history",
+   "type": "place",
+   "vhx_id": 348642,
+   "evidence": "Field Trip to the Museum of Natural History"
+  },
+  {
+   "slug": "doughnut-plant",
+   "type": "place",
+   "vhx_id": 348664,
+   "evidence": "The Doughnut Plant"
+  },
+  {
+   "slug": "scharffen-berger-chocolate-maker",
+   "type": "place",
+   "vhx_id": 348666,
+   "evidence": "Sharffen Berger Chocolates"
+  },
+  {
+   "slug": "skarstad-violins",
+   "type": "place",
+   "vhx_id": 348665,
+   "evidence": "Skarstad Violins"
+  },
+  {
+   "slug": "the-newtown-bee",
+   "type": "place",
+   "vhx_id": 348702,
+   "evidence": "Newtown Bee"
+  },
+  {
+   "slug": "hershey-chocolate-factory",
+   "type": "place",
+   "vhx_id": 348744,
+   "evidence": "Hershey Factory"
+  },
+  {
+   "slug": "corkys-ribs-and-bbq",
+   "type": "place",
+   "vhx_id": 348781,
+   "evidence": "Corky's"
+  },
+  {
+   "slug": "eastfield-village",
+   "type": "place",
+   "vhx_id": 348782,
+   "evidence": "Eastfield Village Pt. 1"
+  },
+  {
+   "slug": "kelmscott-rare-breeds-foundation",
+   "type": "place",
+   "vhx_id": 349301,
+   "evidence": "Kelmscott Rare Breeds"
+  },
+  {
+   "slug": "huber-embroideries",
+   "type": "place",
+   "vhx_id": 349304,
+   "evidence": "Huber Embroideries"
+  },
+  {
+   "slug": "noche-flamenca",
+   "type": "place",
+   "vhx_id": 349308,
+   "evidence": "Noche Flamenca"
+  },
+  {
+   "slug": "alaska",
+   "type": "place",
+   "vhx_id": 342274,
+   "evidence": "Field Trip to Alaska and the Yukon"
+  },
+  {
+   "slug": "yukon",
+   "type": "place",
+   "vhx_id": 342274,
+   "evidence": "Field Trip to Alaska and the Yukon"
+  },
+  {
+   "slug": "pacific-bell-park",
+   "type": "place",
+   "vhx_id": 349316,
+   "evidence": "Pac Bell Baseball Stadium"
+  },
+  {
+   "slug": "schrader-garden",
+   "type": "place",
+   "vhx_id": 349319,
+   "evidence": "Schrader Garden"
+  },
+  {
+   "slug": "ethnicgrocer-com",
+   "type": "place",
+   "vhx_id": 349351,
+   "evidence": "EthnicGrocer.com"
+  },
+  {
+   "slug": "salem-organics",
+   "type": "place",
+   "vhx_id": 349369,
+   "evidence": "Salem Organics"
+  },
+  {
+   "slug": "old-town-canoe-company",
+   "type": "place",
+   "vhx_id": 349386,
+   "evidence": "Old Town Canoe"
+  },
+  {
+   "slug": "taku-smokeries",
+   "type": "place",
+   "vhx_id": 349388,
+   "evidence": "Taku Smokeries"
+  },
+  {
+   "slug": "w-lffer-estate-vineyard",
+   "type": "place",
+   "vhx_id": 349388,
+   "evidence": "Wolffer Estates"
+  },
+  {
+   "slug": "longwood-gardens",
+   "type": "place",
+   "vhx_id": 349422,
+   "evidence": "Christmas at Longwood Gardens"
+  },
+  {
+   "slug": "nico-de-swert",
+   "type": "person",
+   "vhx_id": 349524,
+   "evidence": "Nicholas de Swert Centerpiece"
+  },
+  {
+   "slug": "scott-arboretum",
+   "type": "place",
+   "vhx_id": 349524,
+   "evidence": "Holly Arboretum at Swarthmore"
+  },
+  {
+   "slug": "mentoring-usa",
+   "type": "place",
+   "vhx_id": 349523,
+   "evidence": "Help Mentoring USA"
+  },
+  {
+   "slug": "mount-auburn-cemetery",
+   "type": "place",
+   "vhx_id": 349527,
+   "evidence": "Mount Auburn Cemetary"
+  },
+  {
+   "slug": "sothebys-restoration",
+   "type": "place",
+   "vhx_id": 349564,
+   "evidence": "Sotheby's Restoration Factory"
+  },
+  {
+   "slug": "hoyt-and-bond",
+   "type": "place",
+   "vhx_id": 349565,
+   "evidence": "Hoyt & Bond Childrens Clothing"
+  },
+  {
+   "slug": "keb-mo",
+   "type": "person",
+   "vhx_id": 349606,
+   "evidence": "Keb Mo Profile"
+  },
+  {
+   "slug": "necco",
+   "type": "place",
+   "vhx_id": 349628,
+   "evidence": "Necco Factory"
+  },
+  {
+   "slug": "pier-antiques-show",
+   "type": "place",
+   "vhx_id": 343432,
+   "evidence": "Pier Show Part 1 and 2"
+  },
+  {
+   "slug": "american-museum-of-natural-history",
+   "type": "place",
+   "vhx_id": 349630,
+   "evidence": "Butterfly Exhibit at Natural History"
+  },
+  {
+   "slug": "rhodes-ragen-and-smith",
+   "type": "place",
+   "vhx_id": 349987,
+   "evidence": "Rhodes Ragen & Smith"
+  },
+  {
+   "slug": "ed-rice",
+   "type": "person",
+   "vhx_id": 349991,
+   "evidence": "Ed Rice Cured Country Ham"
+  },
+  {
+   "slug": "nashville-tennessee",
+   "type": "place",
+   "vhx_id": 349991,
+   "evidence": "Field Trip to Nashville"
+  },
+  {
+   "slug": "gorham-silver",
+   "type": "place",
+   "vhx_id": 349996,
+   "evidence": "Gorham Silver Factory Profile"
+  },
+  {
+   "slug": "viking-range",
+   "type": "place",
+   "vhx_id": 345898,
+   "evidence": "Viking Range"
+  },
+  {
+   "slug": "south-river-miso-company",
+   "type": "place",
+   "vhx_id": 350005,
+   "evidence": "Southern River  Miso"
+  },
+  {
+   "slug": "portland-classical-chinese-garden",
+   "type": "place",
+   "vhx_id": 350005,
+   "evidence": "Portland Chinese Garden"
+  },
+  {
+   "slug": "scalamandr",
+   "type": "place",
+   "vhx_id": 350301,
+   "evidence": "Scalamandre Trimming"
+  },
+  {
+   "slug": "savatree",
+   "type": "place",
+   "vhx_id": 350297,
+   "evidence": "SavATree Safety Training"
+  },
+  {
+   "slug": "pezzini-farms",
+   "type": "place",
+   "vhx_id": 350316,
+   "evidence": "Pezzini Artichokes"
+  },
+  {
+   "slug": "gallup-and-stribling-orchids",
+   "type": "place",
+   "vhx_id": 350313,
+   "evidence": "Gallup & Stribling Orchids Part 1"
+  },
+  {
+   "slug": "dorothy-timberlake-candies",
+   "type": "place",
+   "vhx_id": 350408,
+   "evidence": "Dorothy Timberlake Barley"
+  },
+  {
+   "slug": "darcy-miller",
+   "type": "person",
+   "vhx_id": 350426,
+   "evidence": "Darcy Miller Wedding Special"
+  },
+  {
+   "slug": "antique-rose-emporium",
+   "type": "place",
+   "vhx_id": 350427,
+   "evidence": "Rose Emporium"
+  },
+  {
+   "slug": "monarch-watch",
+   "type": "place",
+   "vhx_id": 350923,
+   "evidence": "Monarch Watch"
+  },
+  {
+   "slug": "ray-bliss-rich",
+   "type": "person",
+   "vhx_id": 456147,
+   "evidence": "+ Fish Prints with Ray Bliss Rich"
+  },
+  {
+   "slug": "aretha-franklin",
+   "type": "person",
+   "vhx_id": 658309,
+   "evidence": "Aretha Franklin's Queen of Soul Ham"
+  },
+  {
+   "slug": "tony-bennett",
+   "type": "person",
+   "vhx_id": 658311,
+   "evidence": "Special Guests: Tony Bennett, Cyndi Lauper, Lorraine Bracco, Ana Gasteyer"
+  },
+  {
+   "slug": "cyndi-lauper",
+   "type": "person",
+   "vhx_id": 658311,
+   "evidence": "Special Guests: Tony Bennett, Cyndi Lauper, Lorraine Bracco, Ana Gasteyer"
+  },
+  {
+   "slug": "ana-gasteyer",
+   "type": "person",
+   "vhx_id": 658311,
+   "evidence": "Special Guests: Tony Bennett, Cyndi Lauper, Lorraine Bracco, Ana Gasteyer"
+  },
+  {
+   "slug": "carlos-cort-s",
+   "type": "person",
+   "vhx_id": 346732,
+   "evidence": "FIELD TRIP: Faux Bois Artist (Carlos Cortez, San Antonio, TX)"
+  },
+  {
+   "slug": "san-antonio-tx",
+   "type": "place",
+   "vhx_id": 346732,
+   "evidence": "FIELD TRIP: Faux Bois Artist (Carlos Cortez, San Antonio, TX)"
+  },
+  {
+   "slug": "sonoma-ca",
+   "type": "place",
+   "vhx_id": 359885,
+   "evidence": "SHOW OPEN: Sonoma, CA"
+  },
+  {
+   "slug": "daisy-schwartzberg-toye",
+   "type": "person",
+   "vhx_id": 396883,
+   "evidence": "Martha’s makeup artist, Daisy Schwartzberg Toye, turns daytime makeup into a festive look perfect for holiday parties."
+  },
+  {
+   "slug": "anduin-havens",
+   "type": "person",
+   "vhx_id": 396884,
+   "evidence": "Martha and Creative Director Anduin Havens whip up a creamy crudite dip to bring to a potluck lunch at the Martha Stewart Living offices."
+  },
+  {
+   "slug": "jodi-levine",
+   "type": "person",
+   "vhx_id": 396896,
+   "evidence": "Martha and crafter Jodi Levine make cute cottages out of graham crackers. Make a whole village and they’d be perfect for a Christmas centerpiece."
+  },
+  {
+   "slug": "colin-van-dervort",
+   "type": "person",
+   "vhx_id": 360232,
+   "evidence": "The Martha Stewart Weddings creative team assists Louisiana natives Colin Van Dervort and Liz Wilks plan a classic and elegant destination wedding in the Bahamas."
+  },
+  {
+   "slug": "liz-wilks",
+   "type": "person",
+   "vhx_id": 360232,
+   "evidence": "The Martha Stewart Weddings creative team assists Louisiana natives Colin Van Dervort and Liz Wilks plan a classic and elegant destination wedding in the Bahamas."
+  },
+  {
+   "slug": "bahamas",
+   "type": "place",
+   "vhx_id": 360232,
+   "evidence": "The Martha Stewart Weddings creative team assists Louisiana natives Colin Van Dervort and Liz Wilks plan a classic and elegant destination wedding in the Bahamas."
+  },
+  {
+   "slug": "rosine-green",
+   "type": "person",
+   "vhx_id": 334343,
+   "evidence": "Rosine Green"
+  },
+  {
+   "slug": "jamaica-kincaid",
+   "type": "person",
+   "vhx_id": 341136,
+   "evidence": "Interview with Jamaica Pt. 1 and 2 Book"
+  }
+ ]
+}
