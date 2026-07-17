@@ -20,7 +20,7 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
   const id = c.req.param("id");
   const detail = await fetchEpisodeDetail(id);
   if (!detail) return c.notFound();
-  const { ep, show, guests, recipes, topics, themes, tags, segments, prev, next } = detail;
+  const { ep, show, guests, recipes, topics, themes, tags, segments, entities, prev, next } = detail;
   const [lastImport, counts] = await Promise.all([fetchLastImport(), fetchRowCounts()]);
   const date = formatDate(ep.airDate as any, ep.airYear, ep.airPrecision);
   const ogTitle = `${show?.name ?? "Episode"}${ep.season !== null && ep.episodeNumber !== null ? `, S${ep.season}E${ep.episodeNumber}` : ""} — "${ep.title}"`;
@@ -139,6 +139,20 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
                 <li>
                   <a href={`/episodes?guest=${encodeURIComponent(g.name)}`} style="text-decoration:none;">{g.name}</a>
                   {g.role && <span class="item-note">— {g.role}</span>}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {entities.length > 0 && (
+          <section>
+            <h2>People &amp; places in this episode</h2>
+            <ul>
+              {entities.map((e) => (
+                <li>
+                  <a href={`/${e.entity_type === "person" ? "people" : "places"}/${e.slug}`} style="text-decoration:none;">{e.name}</a>
+                  {e.context && <span class="item-note">— “{e.context}”</span>}
                 </li>
               ))}
             </ul>

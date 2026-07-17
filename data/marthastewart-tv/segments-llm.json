@@ -1,6 +1,6 @@
 {
  "generated": "2026-07-17",
- "method": "LLM extraction over vhx segment rundowns; 2-vote adversarial verification; deep-research identification pass (TheTVDB/Plex cross-referencing + web corroboration, skeptic-checked); researched bios. Audit: llm-review/",
+ "method": "LLM extraction over vhx segment rundowns; 2-vote adversarial verification; deep-research identification pass (TheTVDB/Plex cross-referencing + web corroboration, skeptic-checked); researched bios. Audit: llm-review/ NOTE: entities[] lists only NEW entities; appearances[] may also credit pre-existing curated slugs defined in the extractor allowlists / entities.json.",
  "entities": [
   {
    "slug": "alexis-stewart",

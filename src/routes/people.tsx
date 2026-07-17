@@ -75,7 +75,7 @@ peopleRoute.get("/people", async (c) => {
 
   return c.html(
     <Layout
-      title="People — Martha Stewart Archive"
+      title="People"
       description={`${people.length} people who appeared on a Martha Stewart television program across four decades — Marc Morrone, Mrs. Kostyra, Snoop Dogg, Aretha Franklin, Bill Clinton, Conan O'Brien, Mario Batali, Helen Mirren, Jacques Pépin, and many more.`}
       canonical={canonical("/people")}
       jsonLd={[breadcrumbsJsonLd([{ name: "Archive", url: canonical("/") }, { name: "People", url: canonical("/people") }])]}
@@ -179,7 +179,7 @@ peopleRoute.get("/people/:slug", async (c) => {
 
   return c.html(
     <Layout
-      title={`${person.name} — Martha Stewart Archive`}
+      title={person.name}
       description={person.role ?? `${person.name} appeared on Martha Stewart television.`}
       canonical={canonical(`/people/${person.slug}`)}
       jsonLd={[breadcrumbsJsonLd([

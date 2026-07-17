@@ -177,7 +177,7 @@ ${topicLines}
 
 ## Provenance
 
-Source data is in github.com/thetimechain/martha. The episode set was
+Source data is in github.com/thetimechain/martha-archive. The episode set was
 assembled from broadcast schedules, marthastewart.tv, network programming
 records, and TheTVDB. Each episode page links back to its sources.
 

@@ -1175,20 +1175,34 @@ if (llmData) {
   }
 }
 
-const out = { people: peopleOut, places: placesOut, appearances };
+// Dedupe: multiple sources (collection, description-regex, manual-credit, llm-segment)
+// can credit the same entity for the same video; keep the first record per (slug, vhx_id)
+// so downstream mention counts equal distinct episode credits.
+const seenPair = new Set();
+const dedupedAppearances = appearances.filter((a) => {
+  const key = a.slug + "|" + a.vhx_id;
+  if (seenPair.has(key)) return false;
+  seenPair.add(key);
+  return true;
+});
+if (dedupedAppearances.length !== appearances.length) {
+  console.log(`[entities] deduped ${appearances.length - dedupedAppearances.length} duplicate (slug, vhx_id) appearance records`);
+}
+
+const out = { people: peopleOut, places: placesOut, appearances: dedupedAppearances };
 await writeFile(OUT, JSON.stringify(out, null, 2));
 
 // Summary
 const personCounts = new Map();
 const placeCounts = new Map();
-for (const a of appearances) {
+for (const a of dedupedAppearances) {
   const map = a.kind === "person" ? personCounts : placeCounts;
   map.set(a.slug, (map.get(a.slug) || 0) + 1);
 }
 console.log(`\n[entities] wrote ${OUT}`);
 console.log(`  ${peopleOut.length} unique people`);
 console.log(`  ${placesOut.length} unique places`);
-console.log(`  ${appearances.length} total appearances`);
+console.log(`  ${dedupedAppearances.length} total appearances`);
 console.log(`\n[entities] top 20 people by appearances:`);
 for (const [slug, n] of [...personCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 20)) {
   const p = peopleOut.find((x) => x.slug === slug);

@@ -10,7 +10,6 @@
     "start": "node dist/server.js",
     "prebuild": "node scripts/fetch-fonts.mjs || true",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint . --ext .ts,.tsx || true",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx src/db/migrate.ts",
     "db:push": "drizzle-kit push",
@@ -19,10 +18,7 @@
     "import": "tsx src/import/run.ts",
     "import:verify": "tsx src/import/verify.ts",
     "test": "vitest run",
-    "test:unit": "vitest run tests/unit",
-    "test:integration": "vitest run tests/integration",
-    "test:e2e": "playwright test",
-    "test:all": "pnpm test:unit && pnpm test:integration"
+    "test:unit": "vitest run tests/unit"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.7",

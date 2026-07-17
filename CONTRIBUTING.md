@@ -10,9 +10,12 @@ all welcome.
   misattributed place, enrich a bio. The people/places dataset is built by
   `scripts/mst-extract-entities.mjs`; see the "Extending the people/places
   dataset" section of the README for exactly where each kind of fact goes.
-  Unresolved leads live in `data/marthastewart-tv/llm-review/` — every
-  rejected or ambiguous extraction is listed there with its evidence, waiting
-  for someone to identify it.
+  Note that re-running the extractor needs crawl files that aren't in this
+  repo — just submit the allowlist edit with your source and a maintainer
+  will regenerate. Unresolved leads live in
+  `data/marthastewart-tv/llm-review/` — every rejected or ambiguous
+  extraction is listed there with its evidence, waiting for someone to
+  identify it.
 - **Fix or add episode data** — wrong date, missing title, unrecorded guest.
   Episode JSON lives in `data/` and is imported by `pnpm data:import`.
 - **Research the gaps** — `/gaps` on the live site documents what's missing

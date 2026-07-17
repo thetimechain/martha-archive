@@ -19,6 +19,7 @@ type PlaceRow = {
 
 const KIND_LABEL: Record<string, string> = {
   business: "Business",
+  restaurant: "Restaurant",
   museum: "Museum",
   garden: "Garden",
   farm: "Farm",
@@ -34,6 +35,7 @@ const KIND_LABEL: Record<string, string> = {
 
 const KIND_GROUP: Record<string, string> = {
   business: "Businesses she visited",
+  restaurant: "Businesses she visited",
   museum: "Museums",
   garden: "Gardens",
   farm: "Farms & nurseries",
@@ -91,7 +93,7 @@ placesRoute.get("/places", async (c) => {
 
   return c.html(
     <Layout
-      title="Field Trips & Places — Martha Stewart Living Archive"
+      title="Field Trips & Places"
       description="Every farm, bakery, museum, gallery, garden, and location featured on Martha Stewart Living. From Murray McMurray Hatchery to Balthazar Bakery to Peckerwood Garden."
       canonical={canonical("/places")}
       jsonLd={[breadcrumbsJsonLd([{ name: "Archive", url: canonical("/") }, { name: "Places", url: canonical("/places") }])]}
@@ -101,11 +103,18 @@ placesRoute.get("/places", async (c) => {
         <header style="border-bottom:var(--hairline-bold);padding-bottom:var(--space-4);margin-bottom:var(--space-6);">
           <p class="smallcap-eyebrow" style="color:var(--body-text);margin-bottom:var(--space-2);">Martha Stewart Living Television</p>
           <h1 class="display">Where Martha went.</h1>
-          <p class="caption" style="font-size:var(--size-body);font-style:italic;color:var(--mid-gray);margin-top:var(--space-2);max-width:var(--measure-prose);">
-            {places.length} farms, bakeries, museums, gardens, and field-trip destinations drawn from
-            the marthastewart.tv archive. Some you've heard of (Balthazar, the Metropolitan Museum).
-            Some you haven't (Murray McMurray Hatchery, Peckerwood Garden, Gilberties Herb Farm).
-          </p>
+          {places.length > 0 ? (
+            <p class="caption" style="font-size:var(--size-body);font-style:italic;color:var(--mid-gray);margin-top:var(--space-2);max-width:var(--measure-prose);">
+              {places.length} farms, bakeries, museums, gardens, and field-trip destinations drawn from
+              the marthastewart.tv archive. Some you've heard of (Balthazar, the Metropolitan Museum).
+              Some you haven't (Murray McMurray Hatchery, Peckerwood Garden, Gilberties Herb Farm).
+            </p>
+          ) : (
+            <p class="caption" style="font-size:var(--size-body);font-style:italic;color:var(--mid-gray);margin-top:var(--space-2);max-width:var(--measure-prose);">
+              No places are loaded yet — this hub is populated by the entity pipeline
+              (see “A note on data completeness” in the README).
+            </p>
+          )}
           <p style="margin-top:var(--space-3);">
             <a href="/places/map" class="smallcap-eyebrow" style="color:var(--body-text);text-decoration-thickness:0.5px;">
               View on the atlas →
@@ -357,7 +366,7 @@ placesRoute.get("/places/:slug", async (c) => {
 
   return c.html(
     <Layout
-      title={`${place.name} — Martha Stewart Living Archive`}
+      title={place.name}
       description={place.role ?? `${place.name} was featured on Martha Stewart Living Television.`}
       canonical={canonical(`/places/${slug}`)}
       jsonLd={[breadcrumbsJsonLd([

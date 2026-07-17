@@ -15,6 +15,7 @@ data/*
 !data/marthastewart-tv
 data/marthastewart-tv/*
 !data/marthastewart-tv/segments-llm.json
+!data/marthastewart-tv/entities.json
 !data/marthastewart-tv/llm-review
 drizzle/meta/_journal.json.bak
 .build-state.json

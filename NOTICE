@@ -1,0 +1,8 @@
+The MIT License above covers the CODE in this repository: the website
+(HTML, CSS, JavaScript), the data-pipeline scripts, and the
+configuration files.
+
+The DATA in this repository — the episode dataset (all `*.json` files) and the
+original episode descriptions — is licensed separately under the Creative
+Commons Attribution 4.0 International License. See `LICENSE-DATA`.
+

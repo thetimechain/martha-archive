@@ -58,18 +58,26 @@ pnpm dev               # http://localhost:8080
 
 ### A note on data completeness
 
-This public repo ships the **code** and the **curated entity dataset**. Two
-things are deliberately *not* redistributed:
+This public repo ships the **code**, the **CC-BY episode dataset**, and the
+**derived entity dataset**. A fresh clone is close to — but not identical to —
+the live site. Concretely, after `pnpm data:import` you get:
 
-- **Episode thumbnails** (`public/episode-images/`) — stills are fetched at
-  build time from the streaming service's public CDN by
+- **2,497 episodes** (the live site shows 2,842 — the extra ~345 are
+  Hallmark-era rows reconstructed from the marthastewart.tv catalog crawl,
+  which is not redistributed; `scripts/mst-augment.mjs` re-adds them if you
+  have your own crawl).
+- **/people and /places populate** once you additionally run
+  `node scripts/mst-persist-entities.mjs` (reads the committed
+  `data/marthastewart-tv/entities.json`). Entity → episode appearance links
+  need the crawl-derived `episodes.mst_vhx_id` mapping, so on a fresh clone
+  the hubs show entities and bios but few episode cross-links.
+- **No episode thumbnails** (`public/episode-images/`) — stills are fetched at
+  deploy time from the streaming service's public CDN by
   `scripts/mst-download-thumbs.mjs`; we don't republish them in git.
-- **The raw marthastewart.tv catalog crawl** (`data/marthastewart-tv/raw/`,
-  `videos.json`, etc.) — regenerate it with `scripts/mst-crawl.mjs` (requires
-  your own marthastewart.tv subscription; see script header).
 
-Everything needed to run the site with full episode data is in `data/`'s
-committed JSON; the hubs simply show fewer images without the crawl.
+The raw marthastewart.tv catalog crawl (`data/marthastewart-tv/raw/`,
+`videos.json`, `items.json`, …) requires your own marthastewart.tv
+subscription — see `scripts/mst-crawl.mjs` and `docs/data-sources.md`.
 
 ## Extending the people/places dataset
 
@@ -77,8 +85,13 @@ committed JSON; the hubs simply show fewer images without the crawl.
   `scripts/mst-extract-entities.mjs` (aliases + researched `role`).
 - **New researched business** → add to `CURATED_PLACES` with a `role`.
 - **Chef known only by signature dish** → add a `MANUAL_CREDITS` entry.
-- Re-run: `node scripts/mst-extract-entities.mjs && node scripts/mst-persist-entities.mjs`.
 - False positives → `NAME_STOP` / `PLACE_STOP` sets.
+
+Note: **re-running the extractor requires the non-redistributed crawl**
+(`data/marthastewart-tv/items.json` + `raw/`), so outside contributors should
+submit allowlist edits by PR without re-running — a maintainer regenerates
+`entities.json` and re-persists. `node scripts/mst-persist-entities.mjs`
+(which loads the committed `entities.json` into Postgres) works on any clone.
 
 ## Licensing
 

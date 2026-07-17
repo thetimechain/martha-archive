@@ -6,6 +6,7 @@ import { join, dirname } from "node:path";
 import { Header } from "./Header.js";
 import { Footer } from "./Footer.js";
 import { safeJsonForScriptTag } from "../../lib/safe-json.js";
+import { canonical as absoluteUrl } from "../../lib/seo.js";
 
 // Cache-buster derived from the contents of every CSS file in public/styles/.
 // Because the hash depends only on file contents — not machine boot time —
@@ -63,15 +64,15 @@ export const Layout: FC<
         {description && <meta name="description" content={description} />}
         {canonical && <link rel="canonical" href={canonical} />}
         <meta property="og:title" content={og?.title ?? fullTitle} />
-        {og?.description && <meta property="og:description" content={og.description} />}
-        {og?.url && <meta property="og:url" content={og.url} />}
+        {(og?.description ?? description) && <meta property="og:description" content={og?.description ?? description} />}
+        {(og?.url ?? canonical) && <meta property="og:url" content={og?.url ?? canonical} />}
         <meta property="og:type" content={og?.type ?? "website"} />
         <meta property="og:site_name" content="Martha Stewart Living: An Archive" />
-        <meta property="og:image" content={og?.image ?? "/static/og-wordmark.png"} />
+        <meta property="og:image" content={og?.image ?? absoluteUrl("/static/og-wordmark.png")} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={og?.title ?? fullTitle} />
-        {og?.description && <meta name="twitter:description" content={og.description} />}
-        <meta name="twitter:image" content={og?.image ?? "/static/og-wordmark.png"} />
+        {(og?.description ?? description) && <meta name="twitter:description" content={og?.description ?? description} />}
+        <meta name="twitter:image" content={og?.image ?? absoluteUrl("/static/og-wordmark.png")} />
         <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
         <link rel="stylesheet" href={`/static/styles/tokens.css?v=${BUILD_ID}`} />
         <link rel="stylesheet" href={`/static/styles/base.css?v=${BUILD_ID}`} />

@@ -2,8 +2,8 @@
 // github.com/thetimechain/random/blob/main/wiki/topics/martha-stewart-living-tv/.
 //
 // Source data: data/entity-wiki-links.json (editorial map).
-// GitHub URLs are used so the wiki stays password-protected at random-wiki.fly.dev
-// while the underlying source remains publicly reachable for visitors.
+// NOTE: the wiki repo is currently private, so rendering is gated behind
+// WIKI_IS_PUBLIC below — flip it once the articles are publicly reachable.
 
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -48,8 +48,15 @@ export type WikiLink = { href: string; label: string };
 /**
  * Returns "Main article" links for the given entity slug, or [] if none.
  * `entityType` is 'person' | 'place'.
+ *
+ * DISABLED: the target repo (github.com/thetimechain/random) is private, so every
+ * hatnote link 404s for visitors. The editorial map in data/entity-wiki-links.json is
+ * kept intact — flip WIKI_IS_PUBLIC once the wiki articles are public.
  */
+const WIKI_IS_PUBLIC = false;
+
 export function wikiLinksFor(slug: string, entityType: "person" | "place"): WikiLink[] {
+  if (!WIKI_IS_PUBLIC) return [];
   const data = load();
   const bucket = entityType === "person" ? data.people : data.places;
   const refs = bucket[slug];

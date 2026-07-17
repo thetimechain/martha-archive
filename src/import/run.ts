@@ -406,6 +406,10 @@ async function main() {
   const totalAttempted = merged.length + calUnique.length;
   const failPct = (errors.length / Math.max(1, totalAttempted)) * 100;
   console.log(`[import] errors=${errors.length} (${failPct.toFixed(2)}%) threshold=${FAIL_THRESHOLD_PCT}%`);
+  for (const e of errors.slice(0, 25)) {
+    console.log(`[import]   error: [${e.table}] ${e.id ?? ""} ${e.message}`);
+  }
+  if (errors.length > 25) console.log(`[import]   … ${errors.length - 25} more (see reconciliation report)`);
 
   await pg.end();
   const exitOk = failPct <= FAIL_THRESHOLD_PCT;

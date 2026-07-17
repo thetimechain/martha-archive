@@ -16,8 +16,11 @@ const epRows = await sql`SELECT id, mst_vhx_id FROM episodes WHERE mst_vhx_id IS
 const epByVhx = new Map(epRows.map((r) => [r.mst_vhx_id, r.id]));
 console.log(`[persist] ${epByVhx.size} episodes have mst_vhx_id linkage`);
 
-// Tally mentions per entity (count only appearances that resolve to a known episode).
+// Tally mentions per entity as DISTINCT resolved episodes — several vhx videos can map
+// to one episode, and the (episode_id, entity_slug) unique index collapses those rows,
+// so counting raw appearance records would overstate what the site actually lists.
 const mentions = new Map();
+const mentionEpisodes = new Map(); // slug -> Set<episode_id>
 const resolvedApps = [];
 const orphanCounts = new Map();
 for (const a of data.appearances) {
@@ -26,8 +29,13 @@ for (const a of data.appearances) {
     orphanCounts.set(a.slug, (orphanCounts.get(a.slug) || 0) + 1);
     continue;
   }
-  mentions.set(a.slug, (mentions.get(a.slug) || 0) + 1);
-  resolvedApps.push({ episode_id: epId, entity_slug: a.slug, source: a.source, context: a.context });
+  if (!mentionEpisodes.has(a.slug)) mentionEpisodes.set(a.slug, new Set());
+  const eps = mentionEpisodes.get(a.slug);
+  if (!eps.has(epId)) {
+    eps.add(epId);
+    mentions.set(a.slug, eps.size);
+    resolvedApps.push({ episode_id: epId, entity_slug: a.slug, source: a.source, context: a.context });
+  }
 }
 console.log(`[persist] ${resolvedApps.length} resolved appearances (of ${data.appearances.length} total)`);
 
@@ -85,5 +93,15 @@ const epsCovered = await sql`
 `;
 console.log(`[persist] ${peopleCount[0].c} people, ${placesCount[0].c} places`);
 console.log(`[persist] ${epsCovered[0].c} unique episodes have at least one entity credit`);
+
+// Record the update as an import run so the site footer, sitemap <lastmod>, and
+// llms.txt "Last updated" advance when entity data changes (they read the latest row).
+await sql`
+  INSERT INTO import_runs (started_at, finished_at, source_files, rows_per_table, errors)
+  VALUES (now(), now(), ${sql.json(["data/marthastewart-tv/entities.json"])},
+          ${sql.json({ mst_entities: insertable.length, mst_episode_entities: inserted })},
+          ${sql.json([])})
+`;
+console.log(`[persist] recorded import_runs row (freshness signal for sitemap/footer)`);
 
 await sql.end();

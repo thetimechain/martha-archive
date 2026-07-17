@@ -208,13 +208,22 @@ export async function fetchEpisodeDetail(id: string) {
     ? await pg<Array<typeof shows.$inferSelect>>`SELECT * FROM shows WHERE slug = ${ep.show_slug} LIMIT 1`
     : [];
   const show = showRows[0] ?? null;
-  const [guests, recipes, topics, themes, tags, segments] = await Promise.all([
+  const [guests, recipes, topics, themes, tags, segments, entities] = await Promise.all([
     db.select().from(episodeGuests).where(eq(episodeGuests.episodeId, id)).orderBy(asc(episodeGuests.position)),
     db.select().from(episodeRecipes).where(eq(episodeRecipes.episodeId, id)).orderBy(asc(episodeRecipes.position)),
     db.select().from(episodeTopics).where(eq(episodeTopics.episodeId, id)),
     db.select().from(episodeThemes).where(eq(episodeThemes.episodeId, id)),
     db.select().from(episodeTags).where(eq(episodeTags.episodeId, id)),
     db.select().from(mslSegments).where(eq(mslSegments.episodeId, id)).orderBy(asc(mslSegments.position)),
+    // People & places credited to this episode by the entity pipeline (curated allowlists,
+    // manual credits, and the LLM segment extraction). `context` is the verbatim segment line.
+    pg<Array<{ slug: string; name: string; kind: string; entity_type: string; context: string | null }>>`
+      SELECT me.slug, me.name, me.kind, me.entity_type, mee.context
+      FROM mst_episode_entities mee
+      JOIN mst_entities me ON me.slug = mee.entity_slug
+      WHERE mee.episode_id = ${id}
+      ORDER BY me.entity_type, me.name
+    `,
   ]);
 
   let prev: EpisodeRow | null = null;
@@ -256,6 +265,7 @@ export async function fetchEpisodeDetail(id: string) {
     themes,
     tags,
     segments,
+    entities,
     prev,
     next,
   };
