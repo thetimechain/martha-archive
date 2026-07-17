@@ -1,0 +1,1103 @@
+[
+ {
+  "id": "amb-2",
+  "identified": true,
+  "canonical_name": "Sal Gilbertie",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "Second-generation owner of Gilbertie's Herb Gardens in Westport, Connecticut (family firm founded 1922), one of the country's leading herb growers and author of several herb-gardening books. A Martha Stewart plant supplier for over 30 years, he appeared on Martha Stewart Living as its herb authority and later donated the plants for Martha's culinary herb garden exhibit at the New York Botanical Garden.",
+  "evidence_note": "Publisher bio states he 'appeared on many television and radio shows, including Martha Stewart Living'; NYBG's Plant Talk blog documents him supplying Martha's culinary herb garden, and Martha blurbed his book ('I can think of no better guide... than Sal Gilbertie'). The segment 'sal's herb garden' airs in Season 1 (Jan 1994), the Westport/Turkey Hill era — Gilbertie's Westport herb farm is the only 'Sal'-owned herb garden in Martha's orbit, and the local research wiki lists Gilbertie's Herb Gardens among MSL-featured locations. First name + specialty + hometown + documented MSL appearances make this unambiguous.",
+  "source_urls": [
+   "https://www.hachettebookgroup.com/contributor/sal-gilbertie/",
+   "https://www.nybg.org/blogs/plant-talk/2009/07/exhibit-news/designing-martha-stewart%E2%80%99s-culinary-herb-gardening/",
+   "http://www.gilbertiesherbs.com/about/"
+  ],
+  "appearance_vhx_ids": [
+   333489
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-4",
+  "identified": true,
+  "canonical_name": "Fred Klatt",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Tinsmith who appeared on Martha Stewart Living's first season, demonstrating traditional tin-smithing in a March 1994 segment logged in the show's archive simply as 'Tin man'.",
+  "evidence_note": "TheTVDB's official MSL episode guide describes S1E25 (March 5, 1994) as 'Poppies; tinsmith Fred Klatt; vinaigrette; madeleines; picnic lapkins' — an exact match for vhx 333468's segments (Poppies / Tin man / salad dressing 1 / Tea & Madeleines / Napkins). The local research wiki independently records 'Fred Klatt the tinsmith' as a named on-screen craft guest in MSL S1 E25.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/allseasons/official"
+  ],
+  "appearance_vhx_ids": [
+   333468
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-8",
+  "identified": true,
+  "canonical_name": "Greenwich Orchids",
+  "type": "place",
+  "kind": "business",
+  "role_line": "Orchid grower and floral boutique at 106 Mason Street in Greenwich, Connecticut, founded in 1981 by Ted and Wendy Siegel, who built their own greenhouses and supplied orchids to florists up and down the East Coast. Martha visited for an orchid segment that aired in January 1996.",
+  "evidence_note": "TheTVDB's episode guide describes S3E22 (Jan 27, 1996) as 'Chocolate souffle; laminating; Greenwich orchids' — matching vhx 334525's segments exactly, and confirming 'Greenwich Orchid' is the proper business name (capitalized in the listing), not a generic phrase. Greenwich Orchids is a unique, still-operating orchid specialist of the right place and era; the local research wiki's gap-fill table independently maps this episode to Greenwich Orchids (CT).",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/allseasons/official",
+   "https://greenwichorchids.com/",
+   "https://patch.com/connecticut/greenwich/greenwich-orchids-opens-in-bedford-hills"
+  ],
+  "appearance_vhx_ids": [
+   334525
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-13",
+  "identified": true,
+  "canonical_name": "Selody Sod Farm",
+  "type": "place",
+  "kind": "farm",
+  "role_line": "The Selody family's turf-grass farm in Somerset County, New Jersey, cutting sod for New York landscapers since the 1930s. It is the family farm on which Ken Selody — the topiary specialist, Atlock Farm founder, and Martha Stewart contributing editor — was raised.",
+  "evidence_note": "TVDB's listing for this exact episode (MSL S05E25, 'Applesauce Snack Cake; Selody Sod Farm; Apple Votives') matches the vhx segment list (Applesauce Snack Cake / FT-Sod Farming / Apple Votives GT) one-for-one and names the farm. Selody Sod Farm is a real, documented Somerset/Skillman NJ business, and NJ Monthly confirms Atlock Farm was founded on a piece of the family turf-grass farm — explaining how MSL's cameras got there.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/episodes/9535757",
+   "https://thetvdb.com/series/martha-stewart-living/seasons/official/5",
+   "https://www.yelp.com/biz/selody-sod-farm-somerset",
+   "https://www.themontynews.org/single-post/the-old-selody-sod-farm-is-now-princeton-farms-and-preserves-in-skillman-to-specialize-in-banquets",
+   "https://njmonthly.com/articles/jersey-living/home-style/atlock-farm-somerset-topiaries/"
+  ],
+  "appearance_vhx_ids": [
+   337388
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-14",
+  "identified": true,
+  "canonical_name": "Breezy Hill Orchard",
+  "type": "place",
+  "kind": "farm",
+  "role_line": "Hudson Valley apple orchard and cider mill in Staatsburg, New York (est. 1949), owned since the 1980s by Cornell-trained pomologist Elizabeth Ryan, the 'Grand Dame of Hudson Valley Cider.' Grows some 50 apple varieties and presses fresh and European-style ciders.",
+  "evidence_note": "TVDB's listing for this exact episode (MSL S05E28, 'Breezy Hill Apple Orchard; Roasted Apples; Ironing') matches the vhx segment list (FT - Apple Orchard / Roasted Apples with Cider Sabayon / Ironing Flat Items) and names the orchard. Breezy Hill's own materials note it has been featured in Martha Stewart Living.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/episodes/9535762",
+   "https://thetvdb.com/series/martha-stewart-living/seasons/official/5",
+   "https://www.breezyhillorchard.com/our-story.html",
+   "https://www.yelp.com/biz/breezy-hill-orchard-staatsburg-2"
+  ],
+  "appearance_vhx_ids": [
+   337427
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-15",
+  "identified": true,
+  "canonical_name": "Penn & Fletcher",
+  "type": "place",
+  "kind": "business",
+  "role_line": "New York custom-embroidery atelier founded in 1986 by designers Andrew B. Marlay and Ernest A. Smith, one of the last embroidery houses in the city. Its workroom produces embroidered curtains, valances, and furnishings for Broadway, opera, film, museums, and top interior designers.",
+  "evidence_note": "TVDB's overview for this exact episode (MSL S05E31, aired 1997-10-13, 'Potting Soil; Forcing Bulbs; White Onion Sandwich') reads 'potting soil; forcing bulbs; cutting onion; white onion sandwich; curtains at Penn and Fletcher' — matching the vhx segment list segment-for-segment and naming the business behind 'FT - Curtains'. Penn & Fletcher's specialty (custom curtain embroidery, NYC workroom) matches the segment subject exactly.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/episodes/9535787",
+   "https://www.pennandfletcher.com/about",
+   "https://www.pennandfletcher.com/interior-architecture"
+  ],
+  "appearance_vhx_ids": [
+   337424
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-16",
+  "identified": true,
+  "canonical_name": "Belleclare Nursery",
+  "type": "place",
+  "kind": "business",
+  "role_line": "Legendary fig nursery in Plainview, Long Island, run for nearly 50 years by brothers Chris and Bill DiPaola, whose collection of rare Mediterranean fig varieties made 'Belleclare' figs prized by collectors to this day. The DiPaolas were among the most influential fig propagators in America.",
+  "evidence_note": "TVDB's listing for this exact episode (MSL S05E32, 'Growing Bulbs With a Cold Frame; Figs at Belleclare Nursery') matches the vhx segment list (Cold Frame with Bulbs / South African Bulbs / FT- Fig Nursery / Tempura Onion Rings) and names the nursery. Fig-collector histories independently record that the DiPaolas were 'best known for their interview and visit by Martha Stewart,' corroborating the MSL field trip.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/seasons/official/5",
+   "https://www.ourfigs.com/forum/figs-home/944910-found-fig-history-belleclare-nursery-caring-for-your-fig-tree-potting-instructions",
+   "https://www.ourfigs.com/forum/figs-home/575263-need-help-identifying-old-figs-from-belleclare-nursery"
+  ],
+  "appearance_vhx_ids": [
+   337438
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-17",
+  "identified": true,
+  "canonical_name": "Atlock Farm",
+  "type": "place",
+  "kind": "farm",
+  "role_line": "Renowned seven-acre topiary nursery at 545 Weston Canal Road, Somerset, New Jersey, founded in 1987 by Ken Selody on a piece of his family's turf-grass farm. Selody — a former Martha Stewart contributing editor trained under topiary master Allen Haskell — made Atlock the East Coast's premier source for sculpted myrtle, rosemary, and coleus standards, with clients including Martha Stewart and the White House.",
+  "evidence_note": "TVDB titles this exact episode (MSL S05E38) 'Unusual Topiaries at Atlock Farms; Pumpkin Carving' — a one-for-one match with the vhx segment list (FT -Unusual Topiaries Pt.1/Pt.2 / Pumpkin Carving). Atlock Farm's topiary specialty, NJ location, and Ken Selody's documented role as a Martha Stewart contributing editor make the identification unambiguous.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/episodes/9535822",
+   "https://njmonthly.com/articles/jersey-living/home-style/atlock-farm-somerset-topiaries/",
+   "https://www.hgtv.com/outdoors/gardens/garden-styles-and-types/tour-atlock-farm-topiary-nursery-pictures",
+   "https://visitsomersetnj.org/fun-somerset-nj/atlock-farm/"
+  ],
+  "appearance_vhx_ids": [
+   337444
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-18",
+  "identified": true,
+  "canonical_name": "Atlock Farm",
+  "type": "place",
+  "kind": "farm",
+  "role_line": "Renowned seven-acre topiary nursery and display garden in Somerset, New Jersey, founded in 1987 by former Martha Stewart contributing editor Ken Selody, whose annual display beds and glasshouses made the farm a recurring MSL field-trip destination in fall 1997.",
+  "evidence_note": "TVDB's overview for this exact episode (MSL S05E45, aired 1997-10-29, 'Beef Ghoul-ash; Paper Bag Luminaria; Annual Garden') reads 'beef goulash; paper bag luminaries; annual garden at Atlock Farms' — matching the vhx segment list (Beef Ghoul Ash / Paper Bag Luminaria / FT - Annual Garden) and naming the location. Same venue as the 'Unusual Topiaries' field trip three episodes earlier.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/episodes/9535838",
+   "https://njmonthly.com/articles/jersey-living/home-style/atlock-farm-somerset-topiaries/",
+   "https://visitsomersetnj.org/fun-somerset-nj/atlock-farm/"
+  ],
+  "appearance_vhx_ids": [
+   337457
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-19",
+  "identified": true,
+  "canonical_name": "The Lobster Club",
+  "type": "place",
+  "kind": "restaurant",
+  "role_line": "Chef Anne Rosenzweig's Upper East Side Manhattan restaurant (1995-2001), an American-comfort-food sequel to her acclaimed Arcadia, famous for its signature lobster club sandwich and upscale takes on homey dishes like the hamburger.",
+  "evidence_note": "TVDB's overview for this exact episode (MSL S05E51, aired 1997-11-05, titled 'Lobster Club Burgers; Herb Garnishes; Bottle Gourd Vase') reads 'Burgers at Lobel's Prime Meats; burgers at Lobster Club; deep-fried herb garnishes; bottle gourd vase; wheelbarrow care' — an ordered one-for-one match with the vhx segment list in which 'Burgers' = Lobel's Prime Meats and 'FT- Burgers' = the Lobster Club. Note for the curator: Lobel's Prime Meats (the Madison Avenue butcher shop) should also be credited to this episode for the companion 'Burgers' segment.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/episodes/9535864",
+   "https://en.wikipedia.org/wiki/Anne_Rosenzweig"
+  ],
+  "appearance_vhx_ids": [
+   337698
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-21",
+  "identified": true,
+  "canonical_name": "Breezy Hill Orchard",
+  "type": "place",
+  "kind": "farm",
+  "role_line": "Hudson Valley apple orchard and cider mill in Staatsburg, New York, owned by pomologist and cider maker Elizabeth Ryan, where MSL returned in November 1997 to film traditional cider pressing weeks after its apple-orchard field trip there.",
+  "evidence_note": "TVDB's overview for this exact episode (MSL S05E59, aired 1997-11-14, 'Buckwheat Pillows; Lipstick Stains; Pressing Cider') reads 'buckwheat pillows; removing lipstick stains; pressing cider at Breezy Hill Orchard; chocolate macadamia nut tart' — matching the vhx segment list (Lipstick Stains / FT - Pressing Cider / Chocolate Macadamia Nut Tart) and naming the mill. Breezy Hill is a documented working cider mill (Elizabeth Ryan, 828 Centre Rd, Staatsburg NY).",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/episodes/9535881",
+   "https://www.breezyhillorchard.com/our-story.html",
+   "https://www.yelp.com/biz/breezy-hill-orchard-staatsburg-2"
+  ],
+  "appearance_vhx_ids": [
+   337708
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-24",
+  "identified": true,
+  "canonical_name": "Charles H. Beckley, Inc.",
+  "type": "place",
+  "kind": "business",
+  "role_line": "Charles H. Beckley, Inc. is a South Bronx, New York custom mattress workshop founded in 1931, hand-making mattresses, box springs, headboards, and daybeds for the interior-design trade. Martha Stewart is a documented client — she ordered her own favorite firm mattresses and box springs from Beckley — and the company appeared on the Martha Stewart Living television program.",
+  "evidence_note": "Beckley's business listing states the firm 'appeared on the Martha Stewart Living program and was mentioned in the New York Times,' and a syndicated Seattle Times piece ('When Martha makes a bed, she makes a bed') records that Martha ordered her personal mattresses from Charles H. Beckley. Beckley is the archetypal hand-made mattress maker of the MSL era (NYC, est. 1931), and this Season 5 'Mattress Maker' segment is the only mattress-maker field trip in the crawled catalog. The only other Martha/mattress-factory tie found (McRoskey, San Francisco) is a 2010s marthastewart.com video, wrong era. Residual caveat: the segment-to-company match rests on Beckley's own claim of an MSL appearance plus era/specialty uniqueness rather than an episode-level citation.",
+  "source_urls": [
+   "https://www.yellowpages.com/bronx-ny/mip/charles-h-beckley-inc-5971150",
+   "https://www.seattletimes.com/life/lifestyle/when-martha-makes-a-bed-she-makes-a-bed/",
+   "https://www.newyorksocialdiary.com/charles-h-beckley-mattresses/",
+   "http://www.chbeckley.com/"
+  ],
+  "appearance_vhx_ids": [
+   337765
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-29",
+  "identified": true,
+  "canonical_name": "Patroon",
+  "type": "place",
+  "kind": "restaurant",
+  "role_line": "Patroon (now Aretsky's Patroon) is restaurateur Ken Aretsky's clubby Midtown Manhattan restaurant at 160 East 46th Street, opened in 1995 and awarded three New York Times stars in the late 1990s under chef Franck Deletrain. Aretsky, a former '21' Club operator, has known Martha Stewart for decades and counts her among the restaurant's prominent regulars.",
+  "evidence_note": "'Patroon Salad' carries the restaurant's unique proper name — 'Patroon' is not a generic dish or style, and no independent 'patroon salad' recipe tradition exists. The era is exact: MSL Season 5 (1997-98) coincides with Patroon's three-star peak. The Martha nexus is corroborated twice: Patroon's own site records Aretsky's decades-long friendship with Martha and her patronage, and the project wiki (raw/articles/2026-05-26-master-chefs-roster.md, 2026-05-27-business-empires.md) confirms Patroon's late-1990s chef Franck Deletrain later got his own From Martha's Kitchen episode (2001). Same segment-naming convention as 'Tavern on the Green Christmas.'",
+  "source_urls": [
+   "https://patroon.com/the-gatekeepers-ken-aretsky-patroon/",
+   "https://patroon.com/",
+   "https://www.tripadvisor.com/Restaurant_Review-g60763-d425721-Reviews-Aretsky_s_Patroon-New_York_City_New_York.html"
+  ],
+  "appearance_vhx_ids": [
+   337930
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-38",
+  "identified": true,
+  "canonical_name": "Ruth Rogers",
+  "type": "person",
+  "kind": "chef",
+  "role_line": "American-born chef who co-founded The River Café in Hammersmith, London with Rose Gray in 1987; the Thames-side Italian restaurant won a Michelin star in 1998 and its River Café cookbooks became modern classics. She presented River Café dishes with Gray on MSL in July 1998.",
+  "evidence_note": "The 'Ruth & Rose' of this segment are the famous River Café duo Ruth Rogers and Rose Gray. The thetvdb record for this exact episode (MSL S5E260, aired 1998-07-07) is titled 'The River Cafe Recipes (Field Trip): Whole Salmon; Almond Tart', and the vhx segment list (Frittata / Whole Salmon & Sauce / Almond Tart with Strawberries) matches the River Café's signature repertoire — its whole wild salmon baked in sea salt and its famous Almond Tart with Strawberries are documented River Café dishes. Two first names + exact restaurant attribution in the episode title + exact menu match make this unambiguous. (Paired entry: see the Rose Gray result for the same item.)",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Ruth_Rogers",
+   "https://thetvdb.com/series/martha-stewart-living",
+   "https://www.greatbritishchefs.com/restaurants/river-cafe"
+  ],
+  "appearance_vhx_ids": [
+   344679
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-38",
+  "identified": true,
+  "canonical_name": "Rose Gray",
+  "type": "person",
+  "kind": "chef",
+  "role_line": "British chef (1939-2010) who co-founded The River Café in Hammersmith, London with Ruth Rogers in 1987, championing seasonal Italian farmhouse cooking; co-author of the River Café cookbooks and co-presenter of the 1998 Channel 4 series 'The Italian Kitchen'. She presented River Café dishes with Rogers on MSL in July 1998.",
+  "evidence_note": "Second half of the 'Ruth & Rose' duo in this segment (see Ruth Rogers entry for the same item). thetvdb titles this exact episode (MSL S5E260, 1998-07-07) 'The River Cafe Recipes (Field Trip): Whole Salmon; Almond Tart', and the vhx segments (Frittata / Whole Salmon & Sauce / Almond Tart with Strawberries) match documented River Café signatures. Rose Gray + Ruth Rogers are the only famous 'Ruth & Rose' chef pair of the era, and they were actively promoting River Café books/TV in 1998.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Rose_Gray_(chef)",
+   "https://thetvdb.com/series/martha-stewart-living",
+   "https://www.greatbritishchefs.com/restaurants/river-cafe"
+  ],
+  "appearance_vhx_ids": [
+   344679
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-40",
+  "identified": true,
+  "canonical_name": "The Four Seasons Restaurant",
+  "type": "place",
+  "kind": "restaurant",
+  "role_line": "Landmark Manhattan restaurant (1959-2019) in Philip Johnson-designed rooms inside Mies van der Rohe's Seagram Building at 99 East 52nd Street; birthplace of the 'power lunch', famed for menus that changed with the seasons and for its signature crisp duck. MSL devoted a full July 1998 episode to preparing its classic duck in four parts.",
+  "evidence_note": "The prior pass suspected but could not prove the Four Seasons allusion. The thetvdb record for this exact episode (MSL S5E268, aired 1998-07-16) is titled 'Four Seasons Restaurant Classic (Field Trip): Four Seasons Duck', directly tying the vhx 'Four Season Duck Pts. 1-4' episode to the Four Seasons Restaurant and its classic duck — the allusion is confirmed, not a dish-theme coincidence.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Four_Seasons_Restaurant",
+   "https://thetvdb.com/series/martha-stewart-living"
+  ],
+  "appearance_vhx_ids": [
+   337972
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-44",
+  "identified": true,
+  "canonical_name": "Cutchogue Fire Department Chicken Barbecue",
+  "type": "place",
+  "kind": "event",
+  "role_line": "Annual chicken barbecue held since the 1950s by the Cutchogue Fire Department and its Ladies Auxiliary in Cutchogue on Long Island's North Fork, cooking thousands of chickens over open pits with a famously secret basting sauce. Martha attended for a 1998 MSL episode, tried (unsuccessfully) to get the sauce recipe, and later hired the department to cater her company clambake.",
+  "evidence_note": "A 2024 Northforker feature on the barbecue explicitly states Martha Stewart attended it for a 1998 'Martha Stewart Living' episode and recounts the aftermath (catering the MSLO clambake; catering her sister Laura Plimpton's wedding). The Roku Channel lists the matching episode as 'Cutchogue Barbecue', and thetvdb titles it 'Cutchogue Barbecue; Jalapeno Poppers; Brownies' — matching this vhx episode's 'FT Cutchogue BBQ' + 'Brownies' segments.",
+  "source_urls": [
+   "https://northforker.com/2024/08/the-secret-sauce-chicken-barbecues-are-the-north-forks-hottest-summer-tradition/",
+   "https://therokuchannel.roku.com/details/f4ef9c432d02550d8e4f4fef488e4296/martha-stewart-living-s5-e185-martha-stewart-living",
+   "https://thetvdb.com/series/martha-stewart-living"
+  ],
+  "appearance_vhx_ids": [
+   337984
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-46",
+  "identified": true,
+  "canonical_name": "Hog Island Oyster Company",
+  "type": "place",
+  "kind": "farm",
+  "role_line": "Oyster farm founded in 1983 by marine biologists on Tomales Bay in Marshall, California, famed for its Sweetwater oysters and its farm-side oyster roasts and cookouts. MSL Season 5 visited the farm repeatedly, with field-trip segments on oyster farming, an oyster roast, and this oyster pizza.",
+  "evidence_note": "thetvdb titles the matching episode (MSL S5E287, aired 1998-08-07) 'Salpicao Salad; Bamboo; Hog Island Oyster Pizza', naming the oyster-pizza segment's source explicitly. marthastewart.tv's own field-trip index also lists companion segments 'FT Hog Island Oyster Farming' and 'FT Hog Island Oyster Roast' (Season 5, episode 013V), confirming the show's Hog Island shoot in the same season.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living",
+   "https://www.marthastewart.tv/travel-field-trips?html=1&page=4",
+   "https://hogislandoysters.com/"
+  ],
+  "appearance_vhx_ids": [
+   337985
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-47",
+  "identified": true,
+  "canonical_name": "Westport Digital Studios",
+  "type": "place",
+  "kind": "business",
+  "role_line": "A 1929 office-and-warehouse complex at 19 Newtown Turnpike in Westport, CT that Martha Stewart Living Omnimedia leased from 1998 to 2004 and converted into the show's television production home — three sound stages, a broadcast control room, two prep kitchens, and six wooded acres for outdoor filming, with Studio A's kitchen set modeled on Martha's East Hampton (Lily Pond Lane) kitchen. The September 1998 season-six opener toured the newly built facility in a 'Studio A Before & After' segment.",
+  "evidence_note": "The vhx segments ('Studio Tour', 'Studio A Before & After', 'How to Cure Soapstone') match the episode listed as MSL S6E2 'Westport TV Studio Tour Before and After (Field Trip); Soapstone' (aired 1998-09-08, premiere week of the studio's first season). Martha Moments' history of the Westport studios documents the facility as Westport Digital Studios, Inc., 19 Newtown Turnpike, leased by MSLO 1998-2004, with Studio A modeled on the East Hampton kitchen; the building's later sale/reuse coverage (Westport Arts Center move) confirms it as a real, named place. The prior pass read this as production self-reference, but the segment is literally a tour of this documented facility — the strongest real-world referent behind 'Studio A'. Curators can still exclude it as self-referential if the archive prefers.",
+  "source_urls": [
+   "http://marthamoments.blogspot.com/2014/07/remembering-marthas-westport-television.html",
+   "https://westfaironline.com/arts-leisure/westport-arts-center-confirms-move-to-martha-stewarts-old-tv-studio/"
+  ],
+  "appearance_vhx_ids": [
+   351090
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-49",
+  "identified": true,
+  "canonical_name": "Michael Hughes",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "Master craftsman and thrower at Josiah Wedgwood & Sons in Barlaston, England, who spent most of his working life at the factory and demonstrated the potter's wheel at the Wedgwood Visitor Centre and in exhibitions for the company worldwide. He threw pots on the wheel for Martha during her Wedgwood factory field trip.",
+  "evidence_note": "The prior pass assumed 'Potter' was generic, but Plex's Season 6 listing for this exact episode ('Wedgwood Factory Tour (Field Trip)') reads verbatim: 'A visit with Lord Wedgwood, potter's wheel with potter Michael Hughes' — matching both segments of vhx 340363. Potteries Auctions independently profiles Michael Hughes as a Wedgwood Master Craftsperson who demonstrated at the Barlaston Visitors Centre, confirming name + specialty + employer.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://www.potteriesauctions.com/news/the-artists-behind-wedgwood-pottery"
+  ],
+  "appearance_vhx_ids": [
+   340363
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-50",
+  "identified": true,
+  "canonical_name": "Metropolitan Museum of Art",
+  "type": "place",
+  "kind": "museum",
+  "role_line": "New York City's encyclopedic art museum on Fifth Avenue, famous for the fresh flower arrangements that have filled its Great Hall since 1970 under an endowment from Lila Acheson Wallace. Martha visited for a fall flower-arranging field trip; the Met's longtime in-house floral designer Chris Giftos was a recurring Martha Stewart guest.",
+  "evidence_note": "MMA is the Metropolitan Museum of Art's own standard abbreviation. Plex's Season 6 listing 'Flower Arranging at the Met (Field Trip)' carries the description 'Fall flower arrangements; Metropolitan Museum of Art; autumnal gardens', matching this episode's segments (Flower Arranging at MMA + Arranging Fall Flowers). Artsy's profile of the Met flower program notes Great Hall florist Chris Giftos was 'a regular on Martha Stewart', tying the museum's flower-arranging program directly to the show.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://www.artsy.net/article/artsy-editorial-dutch-florist-mets-grandiose-bouquets"
+  ],
+  "appearance_vhx_ids": [
+   340815
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-52",
+  "identified": true,
+  "canonical_name": "Pierre Hermé",
+  "type": "person",
+  "kind": "chef",
+  "role_line": "French pâtissier dubbed the 'Picasso of Pastry', who led the pastry kitchens of Fauchon and then Ladurée before founding Maison Pierre Hermé Paris in 1998. He demonstrated classic French pastry work — génoise, his signature Carioca chocolate-coffee cake, and quenelles — on this Season 6 episode.",
+  "evidence_note": "'Carioca' itself is a dish (Hermé's chocolate-coffee gâteau), but the person behind the segment is confirmed: Plex's Season 6 listing 'French Pastry Classics With Pierre Herme' has the description 'Chef Pierre Herme; Genoise; carloca; quenelle' — an exact match to vhx 340845's segments (Genoise; Carioca Pt.1 and 2; Quenelle GT). Unique name, matching specialty, and the 1998–99 era fits Hermé's rise at Ladurée/launch of his own maison.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://en.wikipedia.org/wiki/Pierre_Herm%C3%A9"
+  ],
+  "appearance_vhx_ids": [
+   340845
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-53",
+  "identified": true,
+  "canonical_name": "Madeleine Kamman",
+  "type": "person",
+  "kind": "chef",
+  "role_line": "French-born cooking teacher, chef, and author (When French Women Cook; The New Making of a Cook) who directed the School for American Chefs at Beringer Vineyards and hosted PBS's Madeleine Cooks. She joined Martha for an egg-technique episode, making chocolate soufflé among omelets and crème anglaise.",
+  "evidence_note": "The prior pass guessed 'Madeleine' meant madeleine cookies, but Plex's Season 6 listing for this exact episode is titled 'Anatomy of an Egg With Madeleine Kamman' with description 'Omelets; chocolate souffle; creme anglaise...' — a one-to-one match to vhx 344680's segments. So 'Chocolate Souffle with Madeleine II' is part 2 of a soufflé demo with Madeleine Kamman, not a cookie recipe.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://en.wikipedia.org/wiki/Madeleine_Kamman"
+  ],
+  "appearance_vhx_ids": [
+   344680
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-54",
+  "identified": true,
+  "canonical_name": "Bill Gates",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Co-founder and then-CEO of Microsoft, the world's best-known software executive, interviewed by Martha for a technology-themed episode built around sending and receiving email and email etiquette.",
+  "evidence_note": "Plex's Season 6 listing for this exact episode is titled 'Interview With Bill Gates; Email Etiquette; Computer Care' with description 'Interview with Bill Gates; sending and receiving email; email etiquette; computer cleaning...' — matching vhx 341095's segments (Interview with Bill; Sending & Receiving Email Pt.1 and 2; Email Etiquette GT). The surname the segment text omitted is supplied by the episode's own listing.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://en.wikipedia.org/wiki/Bill_Gates"
+  ],
+  "appearance_vhx_ids": [
+   341095
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-56",
+  "identified": true,
+  "canonical_name": "Prime Steakhouse (Bellagio, Las Vegas)",
+  "type": "place",
+  "kind": "restaurant",
+  "role_line": "Jean-Georges Vongerichten's celebrated steakhouse overlooking the fountains at the Bellagio Resort & Casino in Las Vegas, opened with the resort in 1998 and long regarded as one of the city's premier fine-dining rooms. Martha's field-trip segments toured its potato and sauce work and steak presentation shortly after it opened.",
+  "evidence_note": "Plex's Season 6 listing 'Prime Restaurant at the Bellagio Hotel Las Vegas' carries the description 'Prime Restaurant at the Bellagio Hotel in Las Vegas (Field Trip); Prime restaurant potatoes; steaks and sauces; roses in the cold; garlic odor; pie bird' — matching vhx 344730's segments (FT - Potatoes; FT - Sauces; Steak & Presentation; Ask Martha, whose listed topics match the Ask Martha questions). Prime's 1998 opening with the Bellagio fits the Season 6 (1998–99) timeline.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://www.jean-georges.com/restaurants/united-states/las-vegas/prime-steakhouse",
+   "https://fabulousnevada.com/food-drink/prime-steakhouse-at-bellagio-enters-a-new-era-with-chef-jean-georges-vongerichten/"
+  ],
+  "appearance_vhx_ids": [
+   344730
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-57",
+  "identified": true,
+  "canonical_name": "Prime Steakhouse (Bellagio, Las Vegas)",
+  "type": "place",
+  "kind": "restaurant",
+  "role_line": "Jean-Georges Vongerichten's celebrated steakhouse overlooking the fountains at the Bellagio Resort & Casino in Las Vegas, opened with the resort in 1998. The sauces field-trip segment is part of the same restaurant visit as the potatoes and steak segments in this episode.",
+  "evidence_note": "Same identification as the FT - Potatoes segment in this episode: Plex's Season 6 listing 'Prime Restaurant at the Bellagio Hotel Las Vegas' describes the episode as a field trip to Prime covering 'potatoes; steaks and sauces', matching vhx 344730's FT - Sauces segment. Both FT segments credit the same place entity.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://www.jean-georges.com/restaurants/united-states/las-vegas/prime-steakhouse"
+  ],
+  "appearance_vhx_ids": [
+   344730
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-58",
+  "identified": true,
+  "canonical_name": "David Macaulay",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "British-born American author and illustrator of the bestselling explainer classics The Way Things Work and its 1998 update The New Way Things Work, and winner of the 1991 Caldecott Medal for Black and White. He appeared on the show's Bookshelf segment to present the newly published update.",
+  "evidence_note": "The prior pass treated this as a book title with no author present, but Plex's Season 6 listing for this exact episode ('Cookie of the Week: Lime Cornmeal-Glazed') reads 'Author David Macaulay; lime cornmeal glazed cookie; meteorologist Craig Allen' — matching vhx 341133's segments one-to-one (Bookshelf - New Way Things Work; Lime Cornmeal Glazed Cookies COW; Weather Pts. 1-3, the last being meteorologist Craig Allen). 'Author David Macaulay' confirms an in-person author appearance, and the book's October 1998 publication matches the Season 6 air window.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://www.cbsnews.com/news/david-macaulay-on-the-way-things-work/"
+  ],
+  "appearance_vhx_ids": [
+   341133
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-59",
+  "identified": true,
+  "canonical_name": "Rick Bayless",
+  "type": "person",
+  "kind": "chef",
+  "role_line": "Chef-owner of Frontera Grill and Topolobampo in Chicago and America's leading interpreter of regional Mexican cuisine, author of Authentic Mexican and Rick Bayless's Mexican Kitchen and later host of PBS's Mexico: One Plate at a Time. He cooked chipotle chicken with creamy spinach and stocked a Mexican pantry with Martha.",
+  "evidence_note": "The vhx episode title itself credits 'Ricky Bayless' (a typo for Rick Bayless), Plex lists the episode as 'Frontera Bar and Grill Chipotle Chicken with Creamy Spinach' (his restaurant), and the project's research wiki already confirms 'Rick Bayless — Frontera Grill / Topolobampo, Chicago... Confirmed on... S6 E244V Chipotle Chicken with Creamy Spinach' (E:/github/random/wiki/topics/martha-stewart-living-tv/raw/articles/2026-05-26-master-chefs-roster.md). Unique name + Mexican-cuisine specialty + era make this unambiguous.",
+  "source_urls": [
+   "https://watch.plex.tv/show/martha-stewart-living/season/6",
+   "https://en.wikipedia.org/wiki/Rick_Bayless"
+  ],
+  "appearance_vhx_ids": [
+   352032
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-70",
+  "identified": true,
+  "canonical_name": "Presidential Luncheon for President Bill Clinton",
+  "type": "place",
+  "kind": "event",
+  "role_line": "The luncheon Martha and her crew prepared for President Bill Clinton's June 1998 visit to Westport, taped as a Martha Stewart Living episode intended to crown the Season 6 premiere week but shelved that September amid the impeachment controversy. The preparation footage surfaced a year later as this Season 7 segment, 'Preparing for the Presidential Luncheon.'",
+  "evidence_note": "The Washington Post (Sept 11, 1998) documents that MSL taped an episode in June 1998 'devoted entirely to a lunch visit by Clinton' at Stewart's Westport, CT studio, planned for the sixth-season premiere and scrubbed after the Lewinsky affair escalated; Getty Images archives Clinton's June 8, 1998 reception with Martha Stewart in Westport. TheTVDB-derived title for this exact episode (aired 1999-09-30) is 'Presidential Luncheon; Teaching Children Table Manners', and MSL has no other documented presidential luncheon, so 'The Presidential' resolves to this unique, show-produced event. Residual caveat: that the aired Season 7 segment is the 1998 prep footage is an inference from the title, the definite article, and the post-impeachment timing; whether Clinton himself appears on screen in the aired cut is unverified.",
+  "source_urls": [
+   "https://www.washingtonpost.com/archive/lifestyle/1998/09/11/martha-stewart-not-doing-lunch-with-the-president/8cec037e-d766-4eb2-8e4c-50a6eb01f0ab/",
+   "https://www.gettyimages.com/photos/martha-stewart-westport",
+   "https://www.marthastewart.tv/martha-stewart-living-television-2/season:7"
+  ],
+  "appearance_vhx_ids": [
+   347406
+  ],
+  "disposition": "excluded: identified but not modeled in places hub"
+ },
+ {
+  "id": "amb-72",
+  "identified": true,
+  "canonical_name": "Leonards New England",
+  "type": "place",
+  "kind": "business",
+  "role_line": "Antiques dealer in Seekonk, Massachusetts (founded 1933 by Lester and Hazel Leonard), famous for the country's largest collection of antique beds and for pioneering the resizing of antique bed frames to fit modern mattresses. Martha visited with owner Jeffrey Jenkins, who bought the family business in 1988, for the 'Leonards Beds' segment.",
+  "evidence_note": "Leonard's own 'In the Press' page archives this exact segment under the title 'Martha Stewart Living Television: Leonards Beds', describing Martha's visit with owner Jeffrey Jenkins to learn how antique beds are adapted for modern mattresses — matching the segment title and the episode's all-bedding lineup (Once Upon a Mattress, One Bed Three Ways, Duvet GT).",
+  "source_urls": [
+   "https://www.leonardsantiques.com/in-the-press/2017/7/21/martha-stewart-living-television-leonards-beds",
+   "https://www.leonardsantiques.com/leonards-history"
+  ],
+  "appearance_vhx_ids": [
+   347450
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-74",
+  "identified": true,
+  "canonical_name": "Sara Foster",
+  "type": "person",
+  "kind": "chef",
+  "role_line": "Chef and cookbook author who cooked for Martha Stewart's Westport catering company after graduating from the New York Restaurant School in 1981, then founded Foster's Market, the Durham, North Carolina gourmet cafe and market, in 1990. She returned to Martha's show to cook Southern dishes including her shrimp and grit cakes.",
+  "evidence_note": "'with Seven' is a transcription garble of 'with Sara'. The same episode contains 'Profile Fosters Market' and 'Cranberry Relish with Sara', and Foster's Market's own website hosts the recipe as 'Sara's Shrimp and Grit Cakes', stating it 'is a recipe from Martha Stewart Living Magazine and also shown on Martha's television show'. Sara Foster's documented history as a chef for Martha's catering company completes the tie.",
+  "source_urls": [
+   "https://www.fostersmarket.com/saras-shrimp-and-grit-cakes",
+   "https://en.wikipedia.org/wiki/Sara_Foster_(chef)"
+  ],
+  "appearance_vhx_ids": [
+   347520
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-85",
+  "identified": true,
+  "canonical_name": "Ian Ingersoll",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "Ian Ingersoll is a master cabinetmaker whose workshop in West Cornwall, Connecticut — founded in the late 1970s — became nationally known for faithful Shaker chair reproductions after the 1986 Whitney Museum Shaker exhibition. His interlocking-tenon slat-back and rocker designs adapt classic Mount Lebanon Shaker patterns for modern use.",
+  "evidence_note": "The segment title itself names the maker ('Ingersoll Shaker Chairs'). Ian Ingersoll Cabinetmakers is the only notable Shaker chairmaker by that surname — there is no 'Ingersoll' chair style or brand in Shaker literature — and he was actively producing Shaker chairs in Litchfield County, CT (the show's home state, near Westport) throughout the Season 7 era (~2000). Unique name + exact specialty + era + geography make the identification unambiguous, though no press item directly documenting the MSL taping was found.",
+  "source_urls": [
+   "https://www.ianingersoll.com/",
+   "https://www.ianingersoll.com/chairs",
+   "https://berkshirestyle.com/features/Ian_Ingersoll.html",
+   "https://litchfieldmagazine.com/onourradar/ian-ingersoll/",
+   "https://www.cbsnews.com/news/shaker-furniture-simplicity-is-all-2/"
+  ],
+  "appearance_vhx_ids": [
+   348434
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-87",
+  "identified": true,
+  "canonical_name": "John D. Williams Jr.",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "John D. Williams Jr. served 25 years as the first and only executive director of the National Scrabble Association and was the game's official media spokesman, co-authoring 'Everything Scrabble' with three-time national champion Joe Edley. His 2015 memoir 'Word Nerd' recounts promoting Scrabble on Martha Stewart's show.",
+  "evidence_note": "Multiple independent sources tie Williams to Martha: the publisher's description of 'Word Nerd' says his job 'included appearances on Jimmy Kimmel Live and Martha Stewart's show'; Kirkus notes he 'seems quite happy that his appearance on an episode of Martha Stewart's show is still on YouTube'; The New Republic records Martha telling him she sharpened her Scrabble skills while incarcerated; the Boston Globe review mentions him 'hobnobbing with Jimmy Kimmel and Martha Stewart.' This episode's three-part Scrabble feature (Lessons / Match / Archive) is exactly the NSA promotional visit its spokesman conducted — the 'Scrabble Archive' segment matches the NSA's game archive, and Williams was the association's designated TV representative throughout the era.",
+  "source_urls": [
+   "https://books.apple.com/us/book/word-nerd/id891009044",
+   "https://www.kirkusreviews.com/book-reviews/john-d-williams-jr/word-nerd/",
+   "https://newrepublic.com/article/122079/under-spell",
+   "https://www.bostonglobe.com/arts/books/2015/07/10/book-review-word-nerd-dispatches-from-games-grammar-and-geek-underground-john-williams/vYv91HyZ1l77HFCT17x9EL/story.html"
+  ],
+  "appearance_vhx_ids": [
+   348519
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-89",
+  "identified": true,
+  "canonical_name": "Maurice Sendak",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Maurice Sendak (1928-2012), author-illustrator of 'Where the Wild Things Are' and one of the most celebrated children's-book artists of the 20th century, lived and worked in Ridgefield, Connecticut. He visited Martha's Connecticut television studio in 2000 to discuss his work, the books that shaped him — including 'Mickey Mouse in Pigmy Land' and 'The Prince and the Pauper' — and the importance of reading to children.",
+  "evidence_note": "Flavorwire's roundup of Sendak interviews dates his Martha Stewart appearance to 2000, squarely in the MSL Season 7 window, and lists the favorite books he brought on air — matching the segment title 'Interview with Maurice book.' Martha's own blog ('Honoring Maurice Sendak,' May 2012) confirms she hosted Sendak at her Connecticut television studio (the Westport-era MSL studio) to talk about his work and reading to children. A clip titled 'Author Maurice Sendak's Favorite Books Martha Stewart' survives on YouTube.",
+  "source_urls": [
+   "https://www.themarthablog.com/2012/05/honoring-maurice-sendak.html",
+   "https://www.flavorwire.com/396862/10-fascinating-interviews-with-maurice-sendak",
+   "https://www.youtube.com/watch?v=ed5vR7F8N3g"
+  ],
+  "appearance_vhx_ids": [
+   348583
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-92",
+  "identified": true,
+  "canonical_name": "William Cahill",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "William P. Cahill is a Galway-born master roof thatcher who completed a five-year apprenticeship in Ireland — training under English master thatcher Peter Brockett and Donegal master Peter Slevin — before emigrating to the U.S., where he thatches roofs nationwide from his base in Ohio. His commissions include the Smithsonian-sponsored rethatching of the historic Jamestown church in Virginia.",
+  "evidence_note": "Cahill's own site states he 'was the subject of a feature with host Martha Stewart' and that his custom thatch projects have been featured on 'the Martha Stewart Show and numerous television stations' — a direct, first-party corroboration of a Martha feature that matches this episode's 'Irish Roof Thatcher' segment. He is the prominent Irish-trained roof thatcher working in America in this era (a vanishingly small field), making the match unambiguous.",
+  "source_urls": [
+   "https://roofthatch.com/about/",
+   "https://roofthatch.com/about-thatch/"
+  ],
+  "appearance_vhx_ids": [
+   348701
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-97",
+  "identified": true,
+  "canonical_name": "Brooklyn Museum",
+  "type": "place",
+  "kind": "museum",
+  "role_line": "Major art museum in Brooklyn, New York, holding one of the world's finest complete sets of Hiroshige's woodblock series 'One Hundred Famous Views of Edo.' Martha Stewart Living visited during the museum's 2000 showing of the celebrated prints, part of a Japanese-themed episode with soba, sashimi, and woodblock-printing segments.",
+  "evidence_note": "The segment title itself names the museum ('Hiroshige at Brooklyn Museum'); the entity is the museum, not the long-dead artist. Corroboration: the Brooklyn Museum exhibited its complete Hiroshige 'One Hundred Famous Views of Edo' set in 2000 (Feb 18-Apr 23, 2000, with a series of rotations celebrating publication of the complete set) — exactly matching this Season 7 (1999-2000) episode's Japan-themed lineup including two woodblock-printing how-to segments.",
+  "source_urls": [
+   "https://www.brooklynmuseum.org/opencollection/exhibitions/720",
+   "https://www.brooklynmuseum.org/press/brooklyn-museum-s-renowned-edition-of-japanese-prints-by-hiroshige-to-go-on-view-series-of-exhibitions-to-celebrate-publication-of-the-complete-set"
+  ],
+  "appearance_vhx_ids": [
+   348794
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-101",
+  "identified": true,
+  "canonical_name": "The Windsor Institute",
+  "type": "place",
+  "kind": "business",
+  "role_line": "Windsor chairmaking school in Hampton, New Hampshire, founded in 1994 by Mike Dunbar — the craftsman credited with reviving American Windsor chairmaking — and his wife Susanna. It taught five-day chair-building courses year-round until closing in 2016.",
+  "evidence_note": "The Windsor Institute was America's dedicated 'Windsor chair school' in 2000, matching the segment title exactly, and founder Mike Dunbar's Fine Woodworking author bio documents his television appearances including Martha Stewart Living. Unique specialty + era + documented MSL appearance by the school's founder.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Windsor_Institute",
+   "https://www.finewoodworking.com/author/michael-dunbar",
+   "https://makeawindsor.com/about"
+  ],
+  "appearance_vhx_ids": [
+   349303
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-102",
+  "identified": true,
+  "canonical_name": "Betlan Corporation",
+  "type": "place",
+  "kind": "business",
+  "role_line": "Custom architectural fabrication shop in Ansonia, Connecticut, founded in 1985, known for bespoke metal countertops, range hoods, sinks, and cabinetry for high-end residential kitchens (its work has also appeared in This Old House idea houses).",
+  "evidence_note": "'Betlan' is not a countertop material or generic term — it is the distinctive proper name of this one company, which fabricates custom countertops and has operated since 1985 (well before this fall-2000 segment). Located in Connecticut minutes from MSL's Westport home turf, making a shop-visit/demo segment titled 'Betlan Countertop' a natural fit. Unique name + exact specialty + era.",
+  "source_urls": [
+   "https://www.betlan.com/",
+   "https://www.betlan.com/about",
+   "https://www.betlan.com/contact",
+   "https://www.thisoldhouse.com/farmhouse-in-fairfield-idea-house/21499404/prep-cook-and-cleanup"
+  ],
+  "appearance_vhx_ids": [
+   349307
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-103",
+  "identified": true,
+  "canonical_name": "Green Animals Topiary Garden",
+  "type": "place",
+  "kind": "garden",
+  "role_line": "The oldest topiary garden in the United States, on a seven-acre estate in Portsmouth, Rhode Island, maintained by the Preservation Society of Newport County. Its more than 80 sculpted privet, yew, and boxwood figures — many shaped as animals — were created by gardeners Joseph Carreiro and George Mendonca over eight decades.",
+  "evidence_note": "The segment title 'Green Animal Topiary' is a direct (lightly truncated) match for the garden's unique proper name — 'green animal' is not a generic craft phrase (all topiary is green), and no other entity carries this name. Specialty matches exactly (animal topiary), the garden has been a public horticultural destination throughout the era, and MSL routinely ran garden field trips in this slot. Unique name + matching specialty + era.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Green_Animals_Topiary_Garden",
+   "https://www.newportmansions.org/mansions-and-gardens/green-animals-topiary-garden/history/"
+  ],
+  "appearance_vhx_ids": [
+   349309
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-108",
+  "identified": true,
+  "canonical_name": "Frankoma Pottery",
+  "type": "place",
+  "kind": "business",
+  "role_line": "Oklahoma pottery company founded in 1933 by ceramicist John Frank and based in Sapulpa from 1938, famed for Southwestern-inspired dinnerware and art pottery made from local Ada and Sapulpa clay in signature glazes like Prairie Green and Desert Gold. Its wares became a sought-after mid-century collectible, and on Martha Stewart Living the collection was presented by MSL garden editor Margaret Roach, the collector who introduced Martha to Frankoma.",
+  "evidence_note": "The Frankoma Collectors Association links page cites both Margaret Roach's 'Collecting Frankoma' article in Martha Stewart Living magazine (July/August 1997) and a marthastewart.com video titled 'Margaret Roach introduces Martha Stewart to Frankoma Pottery' (marthastewart.com/917430/frankoma-pottery-collection), plus a 'Frankoma with Margaret Roach, Martha Stewart Media' clip document. This directly corroborates that MSL's 'Collecting Frankoma' coverage is about this specific pottery, presented by Roach. Frankoma is a unique brand name with no ambiguity.",
+  "source_urls": [
+   "https://frankomacollectors.org/frankoma-links/",
+   "https://www.marthastewart.com/917430/frankoma-pottery-collection",
+   "http://thewisecollector.com/frankoma-pottery.html"
+  ],
+  "appearance_vhx_ids": [
+   349369
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-111",
+  "identified": true,
+  "canonical_name": "David Moses Bridges",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Passamaquoddy birch bark artist and canoe builder (1962-2017) from Pleasant Point, Maine, who revived traditional Wabanaki birchbark canoe-making, baskets, and winter-bark etching learned from his great-grandfather Sylvester Gabriel. He served on the board of the Abbe Museum in Bar Harbor, was named a Maine Arts Commission Traditional Arts Fellow, and won first prize for traditional basketmaking at the Heard Museum Guild Indian Fair.",
+  "evidence_note": "His Bangor Daily News obituary states that among those compelled to document and preserve his birch bark legacy was 'part-time MDI resident Martha Stewart' — a published, specific Martha-Bridges connection. The 'Birch Bark Art' segment airs in the same fall-2000 episode as the Abbe Museum visit (Bar Harbor), the museum on whose board Bridges served and which holds his canoe; he was the leading contemporary Wabanaki birch bark artist associated with the Abbe in that era. Caveat: no source names the MSL segment itself, so the segment-level attribution rests on the obituary's Martha connection plus the Abbe Museum pairing.",
+  "source_urls": [
+   "https://goingcoastal.bangordailynews.com/2017/01/23/island-life/cancer-claims-life-of-renown-passamaquoddy-birch-bark-canoe-maker",
+   "https://en.wikipedia.org/wiki/David_Moses_Bridges",
+   "https://www.abbemuseum.org/"
+  ],
+  "appearance_vhx_ids": [
+   349372
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-127",
+  "identified": true,
+  "canonical_name": "Shepaug Dam Bald Eagle Observation Area",
+  "type": "place",
+  "kind": "location",
+  "role_line": "Winter bald-eagle viewing site at the Shepaug hydroelectric dam on the Housatonic River in Southbury, Connecticut. Open December through early March since 1985, its volunteer-staffed observation blind overlooks the open water below the dam where wintering eagles gather to fish.",
+  "evidence_note": "'Shepaug' is a unique Connecticut place name, and 'Shepaug Eagle' can only refer to this observation area — the state's best-known eagle-watching destination, an easy MSL field trip from Westport. The segment sits in a mid-winter Season 8 episode (aired ~late Jan/Feb 2001), squarely inside the site's Dec-Mar viewing season.",
+  "source_urls": [
+   "https://firstlight.energy/stewardship/shepaug/",
+   "https://en.wikipedia.org/wiki/Shepaug_Dam",
+   "https://www.tripadvisor.com/Attraction_Review-g33930-d596859-Reviews-Shepaug_Eagle_Observation_Area-Southbury_Connecticut.html"
+  ],
+  "appearance_vhx_ids": [
+   349565
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-128",
+  "identified": true,
+  "canonical_name": "Flying Disc Ranch",
+  "type": "place",
+  "kind": "farm",
+  "role_line": "Permaculture date farm in Thermal, California, in the heart of the Coachella Valley, founded in 1979 by former champion frisbee player Robert Lower. The roughly eleven-acre grove grows organic dates alongside citrus, figs, and pomegranates, and remains a farmers-market fixture across California.",
+  "evidence_note": "TheTVDB's listing for this exact episode (S08E133, aired Feb 5, 2001) is titled 'Date Appetizers; Date Harvest at the Flying Disc Ranch (Field Trip)' — matching this vhx episode's paired 'Date Appetizers'/'Date Harvest' segments — so the field-trip location is named explicitly in an independent episode guide.",
+  "source_urls": [
+   "https://thetvdb.com/series/martha-stewart-living/seasons/official/8",
+   "https://flyingdiscranchdates.com/",
+   "https://californiagrown.org/blog/flying-disc-ranch/"
+  ],
+  "appearance_vhx_ids": [
+   349563
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-138",
+  "identified": true,
+  "canonical_name": "Marc Morrone",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "Pet expert and co-owner of Parrots of the World pet store in Rockville Centre, NY, who served as Martha Stewart Living's resident petkeeping authority from 1997. His '101' breed-segment franchise (Bird Breed, Dog Breed, Fish Breed, etc.) ran through the late-1990s and early-2000s seasons and was spun off into his own MSLO show, Petkeeping with Marc Morrone, in 2003.",
+  "evidence_note": "The '<Category> Breed – <Topic> 101' production-title pattern is exclusive to Morrone's petkeeping franchise: Martha's official 'Petkeeping with Marc Morrone' hub lists the sibling segments (Bird Breed – Cockatiels 101, Reptile Breed – Reptiles 101, Pocket Breed – Pocket Pets 101, Cat Breed – Does a Persian Cat Suit, Dog Breed – Apartment Dogs), and same-season episodes carrying Breed segments (msl8312v, msl8331v) are filed in that collection in marthastewart.tv's sitemap. 'Fish Breed - Goldfish 101' matches the pattern exactly, and Morrone's pet store also dealt in fish. Local research wiki (E:/github/random/wiki/topics/martha-stewart-living-tv/raw/articles/2026-05-26-animals-and-marc-morrone-breeds.md) catalogs the franchise as his.",
+  "source_urls": [
+   "https://www.marthastewart.tv/petkeeping-with-marc-morrone",
+   "https://en.wikipedia.org/wiki/Marc_Morrone"
+  ],
+  "appearance_vhx_ids": [
+   350408
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-140",
+  "identified": true,
+  "canonical_name": "Martha by Mail",
+  "type": "place",
+  "kind": "business",
+  "role_line": "Martha Stewart's own mail-order catalog and e-commerce business, launched in 1995 and folded into Martha Stewart Living Omnimedia's Internet/Direct Commerce division, selling exclusive housewares, craft kits, and baking tools until it wound down in 2004. MSL aired occasional behind-the-scenes segments on how its products were developed.",
+  "evidence_note": "'MbM' is a documented MSL segment-code abbreviation for Martha by Mail — the local research wiki (wiki/topics/seasonal-arc.md) confirms 'MbM = Martha by Mail' in Season 7/8 segment titles. 'MbM - Development' is therefore a behind-the-scenes look at Martha by Mail product development. Note this is MSLO's in-house catalog division, not an external business — include only if in-house entities are creditable in the archive.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Martha_Stewart_Living_Omnimedia"
+  ],
+  "appearance_vhx_ids": [
+   350429
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "amb-143",
+  "identified": true,
+  "canonical_name": "Ben Krupinski",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "East Hampton master builder known as the Hamptons' 'builder to the stars,' whose clients included Martha Stewart herself (he restored her Lily Pond Lane house). In the 1995 CBS special Martha Stewart's Home for the Holidays he appeared as Martha's 'handsome builder friend Ben,' helping construct the elaborate gingerbread mansion in the Miss Piggy segment. He died in a 2018 plane crash off Amagansett, NY.",
+  "evidence_note": "Miss Piggy herself is a fictional Muppet and not creditable, but the real person in the segment is corroborated: Muppet Wiki's page on the special documents Ben Krupinski, the famed Hamptons builder, assisting with the gingerbread mansion in the Miss Piggy segment and being introduced as the man who built Martha's actual house; the local research wiki (raw/articles/2026-05-27-polish-verify-and-craft-taxonomy.md) independently records Krupinski helping construct the 1995 special's gingerbread mansion with Miss Piggy. Unique name + documented MSL appearance.",
+  "source_urls": [
+   "https://muppet.fandom.com/wiki/Martha_Stewart's_Home_for_the_Holidays",
+   "https://www.easthamptonstar.com/archive/ben-krupinski-70"
+  ],
+  "appearance_vhx_ids": [
+   658308
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-147",
+  "identified": true,
+  "canonical_name": "Mrs. Maus",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "Nutley, New Jersey neighbor of the young Martha Kostyra who, with her husband, owned a local bakery; Martha grew up helping the couple make their buttery fruitcakes packed with nuts and hand-cut candied fruit, and 'Mrs. Maus's Fruitcake' remained a signature recipe of Martha's Christmas baking repertoire.",
+  "evidence_note": "Direct Martha tie: the marthastewart.com recipe headnote (preserved verbatim on recipe aggregators) reads 'Growing up in Nutley, New Jersey, Martha used to help her neighbors Mr. and Mrs. Maus, who owned a bakery, make these delicious, buttery cakes filled with nuts and candied fruits.' The local research wiki independently lists 'Mr. and Mrs. Maus Fruitcake' in Martha's Christmas Cookbook (2003). This exactly matches the S5 rundown line \"Mrs. Maus' Fruit Cake COM\" and the archive's Mrs. DiPaola honorific-neighbor pattern.",
+  "source_urls": [
+   "https://www.tfrecipes.com/mrs-maus-fruitcake/",
+   "https://www.punchfork.com/recipe/Mrs-Mauss-Fruitcake-Martha-Stewart",
+   "https://www.marthastewart.com/1104720/mrs-mauss-fruitcake",
+   "https://www.astray.com/recipes/?show=Mrs+maus's+fruitcake"
+  ],
+  "appearance_vhx_ids": [
+   337761
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-148",
+  "identified": true,
+  "canonical_name": "Memrie Lewis",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "Landscape designer and one of Martha's closest friends, known for gardens from Charleston to New York to Maine and for Manhattan terrace and rooftop gardens; her namesake layered omelet recipe aired as a Season 5 cooking segment.",
+  "evidence_note": "'Memrie' is a near-unique given name, and Memrie (Fraser) Lewis is squarely in Martha's inner circle: fan blog Living Martha's Life tags her as 'Martha's landscape designer', Martha's own blog describes touring the New York Botanical Garden with her, her 2004 wedding to Matthew Edwards was featured in Martha Stewart Weddings, and she spoke to press as a close friend during Martha's 2004-05 prison term. A 'Layered Spring Omelet' recipe credited to Memrie Lewis survives in the BigOven recipe archive (1990s recipe-file provenance), matching the 'Memrie's Layered Omelet' segment title. Unique name + documented Martha intimate of the era + matching dish in recipe archives makes this identification effectively unambiguous.",
+  "source_urls": [
+   "https://livingmarthaslife.wordpress.com/tag/memrie-lewis/",
+   "https://www.themarthablog.com/2010/05/join-me-for-a-private-tour-of-the-new-york-botanical-garden.html",
+   "https://www.bigoven.com/recipe/layered-spring-omelet/138170",
+   "https://www.dinarothport.com/clips/2004-spring-martha-stewart-weddings.pdf"
+  ],
+  "appearance_vhx_ids": [
+   337902
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-150",
+  "identified": true,
+  "canonical_name": "Eve Stone",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Antiques dealer and nationally recognized authority on 16th-19th-century English and Continental copper and brass; founded Eve Stone Antiques, Ltd. in 1970, running it with her daughter Susan from Woodbridge, Connecticut, with earlier shops on Martha's Vineyard and at Manhattan's Place des Antiquaires.",
+  "evidence_note": "Direct MSL corroboration: the company's own About page states Eve Stone Antiques, Ltd. 'has had the honor of appearing on Martha Stewart Living Television three times', matching the S5 rundown 'FT Eve Stone's Copper and Brass'. Eve Stone herself is the named expert (regular lecturer at major antiques shows). Note for the curator: the earlier pass dropped this person only because the visit is already captured by the Eve Stone Antiques place entry, so adding her as a person may duplicate that credit; the identification itself is solid.",
+  "source_urls": [
+   "https://evestoneantiques.com/about/",
+   "https://ctvisit.com/listings/eve-stone-antiques-ltd",
+   "https://www.newtownbee.com/03192007/eve-stone-antiques-ltd-of-woodbridge-conn-is-a-returning-dealer-to-our-s/"
+  ],
+  "appearance_vhx_ids": [
+   337988
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-152",
+  "identified": true,
+  "canonical_name": "Quincy Jones",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Legendary record producer, composer, and arranger whose credits run from Frank Sinatra and the score of 'The Color Purple' to Michael Jackson's 'Thriller' and 'We Are the World'; interviewed by Martha on a Valentine's 1999 episode, the week his two-disc love-song compilation 'From Q, With Love' was released.",
+  "evidence_note": "Contextual triangulation to the point of no plausible alternative: marthastewart.tv groups episode MSL6235V in its Valentine's Day collection (segments: Interview with Quincy; Valentine Hors d'oeuvres Pts. 1-2; Musical Performance; Ask Martha), placing it mid-February of the 1998-99 season. Quincy Jones — the one American celebrity known mononymically as 'Quincy' — released the Valentine-timed love-ballad compilation 'From Q, With Love' (Qwest/Warner Bros.) on February 9, 1999, an exact promotional-cycle match for an interview-plus-musical-performance episode. MSL rundowns used bare first names for celebrity interviews (cf. 'Interview with Jamaica' for Jamaica Kincaid in the same season). No contemporary TV listing naming Jones directly was found, so a reviewer may wish to spot-check the video.",
+  "source_urls": [
+   "https://www.marthastewart.tv/valentine-s-day",
+   "https://en.wikipedia.org/wiki/From_Q_with_Love",
+   "https://www.discogs.com/release/816727-Quincy-Jones-From-Q-With-Love"
+  ],
+  "appearance_vhx_ids": [
+   352031
+  ],
+  "disposition": "excluded: unproven (skeptic)"
+ },
+ {
+  "id": "drop-153",
+  "identified": true,
+  "canonical_name": "Jamaica Kincaid",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Antiguan-born novelist, longtime New Yorker writer, and devoted Vermont gardener whose garden writing — the anthology 'My Favorite Plant: Writers and Gardeners on the Plants They Love' (1998) and 'My Garden (Book):' (1999) — made her one of the era's leading literary voices on gardening; Martha interviewed her in a two-part book segment.",
+  "evidence_note": "The full episode rundown (MSL6242V, fetched from marthastewart.tv) settles the ambiguity the earlier passes could not: 'Interview with Jamaica Pt. 1 and 2 Book' airs inside a gardening-centric episode alongside 'Seed Starting with Mobee Pt. 1 and 2' — Mobee Weinstein, the New York Botanical Garden's Foreman of Gardeners and a self-described 'veteran guest on the Martha Stewart Living TV show'. A two-part book interview with a gardener-writer named 'Jamaica' in early 1999, weeks after Kincaid published her garden anthology 'My Favorite Plant' (FSG, fall 1998) and while writing 'My Garden (Book):', is unambiguous: Jamaica Kincaid is the only public literary/garden figure with that unique name. Unique name + matching specialty + era, with the gardening episode context as corroboration.",
+  "source_urls": [
+   "https://www.marthastewart.tv/martha-stewart-living-television-2/videos/msl6242v-hi-res",
+   "https://us.macmillan.com/books/9781250908223/myfavoriteplant/",
+   "https://openroadmedia.com/contributor/mobee-weinstein",
+   "https://www.kirkusreviews.com/book-reviews/jamaica-kincaid/my-favorite-plant/"
+  ],
+  "appearance_vhx_ids": [
+   341136
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-157",
+  "identified": true,
+  "canonical_name": "Eleanora Scarpetta",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "Naples-born Italian-American home cook whom Martha heralded as an 'Old World cook'; she was such a hit on Martha Stewart Living that she returned about a dozen times to cook family dishes. Her 2004 cookbook Eleanora's Kitchen (with Sarah Belk King) collects the Italian-American classics viewers saw on the show.",
+  "evidence_note": "The publisher's description of Eleanora's Kitchen (by Eleanora Russo Scarpetta) states she appeared on Martha's show 'a dozen times in all' after being a hit, and marthastewart.com carries recipes credited to her (e.g. 'Eleanora's Spaghetti Pie'). A two-part 'Eggplant Parmigiana with Eleanora' segment in Season 7 matches her exact specialty and era; 'Eleanora' is a distinctive name with no competing MSL candidate.",
+  "source_urls": [
+   "https://www.amazon.com/Eleanoras-Kitchen-Fabulous-Authentic-Italian-American/dp/0767912217",
+   "https://www.mastercook.com/app/Recipe/WebRecipeDetails?recipeId=1888542"
+  ],
+  "appearance_vhx_ids": [
+   347451
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-159",
+  "identified": true,
+  "canonical_name": "Bon Yagi",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Japanese-American restaurateur behind New York's T.I.C. Restaurant Group, whose East Village sake bar Decibel (1993) and Sakagura (1997) helped introduce premium sake to American diners. He came on Martha Stewart Living to teach Martha about sake following Decibel's success.",
+  "evidence_note": "Village Preservation's 2021 Village Award profile of Yagi includes a photo captioned 'Yagi teaching Martha Stewart about Sake on her show, following the success of Decibel' — direct documentation of this exact segment. Episode context confirms a Japanese-themed show (New Style Sashimi, Shoji Screens, Japanese Garden), and 'Sake with Bon' matches his rare given name and singular specialty.",
+  "source_urls": [
+   "https://www.villagepreservation.org/2021/05/20/2021-village-awardee-bon-yagi/",
+   "https://en.wikipedia.org/wiki/Bon_Yagi"
+  ],
+  "appearance_vhx_ids": [
+   347466
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-160",
+  "identified": true,
+  "canonical_name": "Sara Foster",
+  "type": "person",
+  "kind": "chef",
+  "role_line": "Chef and founder of Foster's Market, the Durham, North Carolina gourmet market and cafe she opened in 1990 after years cooking for Martha Stewart's catering company. A frequent Martha Stewart Living guest since 1995; Martha wrote the foreword to The Foster's Market Cookbook.",
+  "evidence_note": "The same episode (vhx 347520) contains the already-credited segment 'Profile Fosters Market', so 'Cranberry Relish with Sara' in that episode is unambiguously Sara Foster. Corroborating: Foster's Market's own 'Cranberry Relish Two Ways' recipe page carries the line 'This recipe appears courtesy of Martha Stewart Living', and her Wikipedia entry documents the catering-company history and frequent MSL appearances.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Sara_Foster_(chef)",
+   "https://www.fostersmarket.com/cranberry-relish-two-ways"
+  ],
+  "appearance_vhx_ids": [
+   347520
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-163",
+  "identified": true,
+  "canonical_name": "Sharon Lebewohl",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Daughter of Second Avenue Deli founder Abe Lebewohl and co-author of The 2nd Ave Deli Cookbook (1999), which preserved the recipes of the landmark New York Jewish deli. She shared her family's latke recipe with Martha Stewart Living, published as 'Sharon's Potato Latkes.'",
+  "evidence_note": "marthastewart.com's recipe 'Sharon's Potato Latkes' is explicitly attributed: 'Sharon Lebewohl, author of The 2nd Ave Deli Cookbook, shares her family's recipe for potato latkes' — the recipe title mirrors the segment naming ('Potato Pancakes with Sharon'). The same Hanukkah-timed episode (vhx 347770, with her cookbook newly released fall 1999) also features 'Chopped Liver', the 2nd Ave Deli's signature dish, cementing the match.",
+  "source_urls": [
+   "https://www.pinterest.com/pin/sharons-potato-latkes--262334747013907314/",
+   "https://www.amazon.com/2nd-Ave-Deli-Cookbook-Lebewohls/dp/037550267X"
+  ],
+  "appearance_vhx_ids": [
+   347770
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-164",
+  "identified": true,
+  "canonical_name": "Necy Guimaraes",
+  "type": "person",
+  "kind": "contributor",
+  "role_line": "Senior set decorator in Martha Stewart Living Television's art department (c. 1999-2001), listed among the show's Daytime Emmy set-decoration nominees. The tablescapes seen on the program were her professional craft, showcased on air in 'Necy's Tablesetting.'",
+  "evidence_note": "IMDb credits Necy Guimaraes as senior set decorator on Martha Stewart Living for 2000-2001 — the exact production window of this Season 7 segment — and her name appears in the Daytime Emmy nominee listings for the show's design team. 'Necy' is an extremely rare name, and a first-name-basis tablesetting segment matches an in-house set decorator precisely. She is very likely also the 'Necy' Martha describes on her blog as one of her first housekeepers who became 'a talented flower arranger and cook.'",
+  "source_urls": [
+   "https://www.imdb.com/name/nm1209848/",
+   "https://www.themarthablog.com/2025/11/relaunching-my-first-book-entertaining.html"
+  ],
+  "appearance_vhx_ids": [
+   348441
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-166",
+  "identified": true,
+  "canonical_name": "City Park (New Orleans)",
+  "type": "place",
+  "kind": "garden",
+  "role_line": "New Orleans's 1,300-acre municipal park, founded in 1854, home to the world's largest collection of mature live oaks as well as the New Orleans Museum of Art and Botanical Garden. Visited as a field trip during the show's New Orleans episode.",
+  "evidence_note": "The prior pass lacked city context, but the full episode rundown (vhx 348435) reads 'Field Trip to New Orleans', 'Bayou', 'Confiture', and 'New Orleans Hors d'oeuvres' alongside 'Field Trip to City Park' — this is unambiguously New Orleans's famous City Park, for which 'City Park' is the proper name.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/City_Park_(New_Orleans)",
+   "https://neworleanscitypark.org/"
+  ],
+  "appearance_vhx_ids": [
+   348435
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-170",
+  "identified": true,
+  "canonical_name": "Take Our Daughters to Work Day",
+  "type": "place",
+  "kind": "event",
+  "role_line": "National observance created in 1993 by the Ms. Foundation for Women that brings girls into their parents' workplaces on the fourth Thursday of April (expanded to Take Our Daughters and Sons to Work Day in 2003). Martha Stewart Living marked the day on-air in late April 2000, with the show's own workplace participating.",
+  "evidence_note": "The segment 'Take Daughters to Work Day' (episode 344V) airs exactly in the late-April slot of Season 7's calendar — the 2000 observance fell on April 27 — and the surrounding episodes (351V early May, 362V Mother's Day) confirm the timing. The event name is unique and unambiguous; the prior pass itself noted it was 'a real named national event the show participated in on-air.'",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Take_Our_Daughters_and_Sons_to_Work_Day",
+   "https://www.marthastewart.tv/martha-stewart-living-season-7/videos/msl7344v"
+  ],
+  "appearance_vhx_ids": [
+   348630
+  ],
+  "disposition": "excluded: not an archive entity (national observance)"
+ },
+ {
+  "id": "drop-171",
+  "identified": true,
+  "canonical_name": "Terence Conran",
+  "type": "person",
+  "kind": "guest",
+  "role_line": "Sir Terence Conran (1931-2020), British designer, retailer, and restaurateur — founder of Habitat and The Conran Shop and one of the most influential figures in modern home design. In February 2000 he opened Guastavino's, his first American restaurant, in the landmark tile-vaulted Bridgemarket space under Manhattan's Queensboro Bridge, and sat for an interview on Martha Stewart Living that spring.",
+  "evidence_note": "Episode 351V's rundown pairs 'Interview with Terrance' directly with 'Lemon Tart Gustavino's' — a recipe from Guastavino's, the restaurant Terence Conran had opened on February 14, 2000, roughly three months before this episode aired (the episode sits in early May 2000 between the Take Daughters to Work Day episode and Mother's Day). An 'interview' format fits the design-world magnate rather than a cooking-demo chef, and no other Terence/Terrance is associated with Guastavino's (its chef was Daniel Orr). MSL rundowns habitually misspell names ('Gustavino's', 'Wild Main'), and even chef-bio sources spell Conran 'Terrence.' Unique name + specialty + era all match.",
+  "source_urls": [
+   "https://guastavinos.com/history/",
+   "https://designmuseum.org/designers/terence-conran",
+   "https://businessofhome.com/articles/remembering-home-furnishings-legend-terence-conran",
+   "https://www.marthastewart.tv/martha-stewart-living-season-7/videos/msl7351v"
+  ],
+  "appearance_vhx_ids": [
+   348629
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-175",
+  "identified": true,
+  "canonical_name": "Pino Luongo",
+  "type": "person",
+  "kind": "chef",
+  "role_line": "Tuscan-born Manhattan restaurateur and cookbook author behind Le Madri, Coco Pazzo, Centolire, and Morso, credited with bringing Tuscan home cooking to New York fine dining in the late 1980s and 1990s. His signature robiola pizza — a split focaccia spread with robiola cheese and finished with white truffle oil, made famous at Le Madri — was published by Martha Stewart Living, and he demonstrated pizza dough on the show in 2000.",
+  "evidence_note": "Episode 373V pairs 'Pizza Dough with Pino II' with 'Robiola Pizza GT' plus a Tuscan fava bean and pecorino salad — the robiola pizza is Pino Luongo's documented signature (created at his Le Madri), and the robiola pizza recipe published by Martha Stewart Living is explicitly credited to 'chef and restaurateur Pino Luongo'; a robiola-truffle pizza also appears in Martha Stewart's Hors d'Oeuvres Handbook (1999). Unique first name + signature dish + era make this unambiguous; his Coco Pazzo colleague Mark Strausman was likewise a frequent MSL guest.",
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/Pino_Luongo",
+   "https://www.broadwayworld.com/bwwfood-wine/article/Chef-Spotlight-Executive-Chef-and-Owner-Ciro-Verde-of-COCO-PAZZERIA-20211208",
+   "https://www.pinterest.com/pin/robiola-pizza-recipe--384987468117886132/",
+   "https://www.marthastewart.tv/martha-stewart-living-season-7/videos/msl7373v"
+  ],
+  "appearance_vhx_ids": [
+   348704
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-184",
+  "identified": true,
+  "canonical_name": "Young Concert Artists",
+  "type": "place",
+  "kind": "organization",
+  "role_line": "New York City nonprofit founded in 1961 by Susan Wadsworth that discovers young classical musicians through auditions and launches their careers — alumni include Pinchas Zukerman, Emanuel Ax, Murray Perahia, and Dawn Upshaw. Its young musicians were interviewed on a Season 9 Thanksgiving-week episode as part of the show's classical-music arc.",
+  "evidence_note": "The ambiguity ('Young Concert Artists' as proper noun vs. generic phrase) is resolved by the episode's own rundown: the interview segment airs immediately after 'Field Trip: Morel & Gradoux-Matt Violins,' a visit to the famed Manhattan rare-violin dealer/restorer — a deliberately paired classical-music mini-arc that only makes sense with the actual NYC organization supplying its roster musicians. Unique, famous proper name + matching specialty + NYC production orbit + era all align.",
+  "source_urls": [
+   "https://www.yca.org/about/susan-wadsworth/",
+   "https://symphony.org/considering-young-concert-artists-founder-susan-wadsworths-58-year-legacy/",
+   "https://www.marthastewart.tv/videos/msl9123v"
+  ],
+  "appearance_vhx_ids": [
+   343284
+  ],
+  "disposition": "merged"
+ },
+ {
+  "id": "drop-185",
+  "identified": true,
+  "canonical_name": "Sophie Herbert",
+  "type": "person",
+  "kind": "family",
+  "role_line": "Martha's niece, daughter of Martha's sister Laura Plimpton; a visual artist who later studied at the Cooper Union School of Art and became a longtime on-air contributor across Martha's media world (regular Martha Stewart Show segments, host of 'Life Coaching with Sophie' on Martha Stewart Living Radio). As a high-schooler she joined this back-to-school episode to craft button necklaces. Now known as Sophie Herbert Slater.",
+  "evidence_note": "The segment 'Button Necklaces with Sophie' airs in the family-celebration episode for Mrs. Kostyra's birthday — Mrs. Kostyra is Sophie Herbert's grandmother — and the show's convention was to first-name family members (Mrs. Kostyra, Alexis). Sophie was a teenager in 2003 (Cooper Union at 18, ca. 2005-06; high school during Martha's 2004 trial per her Global Table interview), fitting a back-to-school craft, and she is the documented 'niece Sophie' who repeatedly crafts and cooks on Martha's shows (spritz cookies clip, guest post on The Martha Blog). No other Sophie exists in Martha's family orbit.",
+  "source_urls": [
+   "https://www.themarthablog.com/2013/06/a-guest-blog-from-my-niece-sophie.html",
+   "https://globaltableadventure.com/2011/07/08/interview-with-sophie-herbert/",
+   "https://www.facebook.com/marthastewart/videos/martha-makes-holiday-spritz-cookies/383775436054101/"
+  ],
+  "appearance_vhx_ids": [
+   343286
+  ],
+  "disposition": "excluded: unproven (skeptic)"
+ }
+]

@@ -1,972 +1,1301 @@
 {
  "generated": "2026-07-17",
- "method": "LLM extraction over vhx segment rundowns; 2-vote adversarial verification; see llm-review/",
+ "method": "LLM extraction over vhx segment rundowns; 2-vote adversarial verification; deep-research identification pass (TheTVDB/Plex cross-referencing + web corroboration, skeptic-checked); researched bios. Audit: llm-review/",
  "entities": [
   {
    "slug": "alexis-stewart",
    "name": "Alexis Stewart",
    "type": "person",
    "kind": "family",
-   "role": "Martha Stewart's daughter, a frequent on-air presence whose namesake recipes (chocolate chip cookies, egg salad, chopped vegetable salad) appeared in MSL cooking segments."
+   "role": "Martha Stewart's only child, born 1965, a frequent on-air presence whose namesake recipes — chocolate chip cookies, egg salad sandwich, chopped vegetable salad — appeared throughout MSL cooking segments. She later became a broadcaster in her own right, co-hosting the SiriusXM radio show 'Whatever with Alexis' and Hallmark Channel's 'Whatever, Martha!' (2008–2012) with Jennifer Koppelman Hutt, and co-authored the 2011 book 'Whateverland: Learning to Live Here.'"
   },
   {
    "slug": "urban-archaeology",
    "name": "Urban Archaeology",
    "type": "place",
    "kind": "business",
-   "role": "New York City architectural-salvage and restoration-lighting dealer visited in MSL field-trip segments."
+   "role": "Architectural-salvage pioneer founded by Gil Shapiro in SoHo in 1978, when its crews combed New York demolition sites and dumpsters for ornament, lighting, and fixtures; early customers included Andy Warhol. From its TriBeCa flagship the company later evolved into a leading maker of restoration lighting, bath fittings, and artisan tile drawn from its salvage archive — MSL toured the operation in two field-trip segments."
   },
   {
    "slug": "puerto-rico",
    "name": "Puerto Rico",
    "type": "place",
    "kind": "location",
-   "role": "Caribbean island and U.S. territory that MSL visited for dedicated travel episodes."
+   "role": "Caribbean island and U.S. territory that MSL visited for a two-part Season 4 travel special, with stops including the Ron Barrilito rum works in Bayamón and field segments on plantains and bananas."
   },
   {
    "slug": "chappellet-winery",
    "name": "Chappellet Winery",
    "type": "place",
    "kind": "business",
-   "role": "Family-owned winery on Pritchard Hill in Napa Valley, California, visited in an MSL field-trip segment."
+   "role": "Family-owned winery founded in 1967 by Donn and Molly Chappellet on Pritchard Hill, high above Napa Valley — the valley's second new winery established after the repeal of Prohibition. Its pyramid-shaped winery building, designed with artist Ed Moses, and its pioneering high-elevation hillside Cabernet Sauvignon made Pritchard Hill famous; visited in an MSL field-trip segment."
   },
   {
    "slug": "brooklyn-botanic-garden",
    "name": "Brooklyn Botanic Garden",
    "type": "place",
    "kind": "garden",
-   "role": "Major public botanic garden in Brooklyn, N.Y., where MSL filmed tulip and pansy planting and a magnolia tour."
+   "role": "52-acre public garden founded in 1910 beside Prospect Park, renowned for its Cherry Esplanade, Japanese Hill-and-Pond Garden, and Magnolia Plaza. MSL filmed tulip and pansy planting there and toured its magnolia collection at peak spring bloom."
   },
   {
    "slug": "new-orleans",
    "name": "New Orleans",
    "type": "place",
    "kind": "location",
-   "role": "Louisiana city that MSL visited for field-trip segments."
+   "role": "Louisiana's storied port city on the Mississippi, founded in 1718 and famous for its French Quarter, Creole cooking, and historic garden districts; MSL made two Season 7 field trips there."
   },
   {
    "slug": "james-david",
    "name": "James David",
    "type": "person",
    "kind": "guest",
-   "role": "Austin, Texas landscape designer and founder of the GARDENS nursery whose celebrated two-acre private garden was toured in MSL segments."
+   "role": "Austin, Texas landscape architect who, with partner Gary Peese, ran the influential garden shop and boutique nursery Gardens for nearly three decades along with the design studio David/Peese Design. Their steeply terraced, plant-rich two-acre garden in Austin's Rollingwood neighborhood — developed over 36 years and a fixture of Garden Conservancy Open Days tours — was the private garden toured in MSL segments; the couple later relocated to Santa Fe, New Mexico."
   },
   {
    "slug": "harvard-university",
    "name": "Harvard University",
    "type": "place",
    "kind": "organization",
-   "role": "Cambridge, Massachusetts university whose Blaschka Glass Flowers collection and a butterfly exhibit were visited in MSL segments."
+   "role": "America's oldest university, founded in 1636 in Cambridge, Massachusetts. MSL visited two of its natural-history treasures: the Ware Collection of Blaschka Glass Flowers — some 4,300 astonishingly lifelike botanical models crafted by Leopold and Rudolf Blaschka between 1887 and 1936 — and a butterfly exhibit on campus."
   },
   {
    "slug": "dani-fiori",
    "name": "Dani Fiori",
    "type": "person",
    "kind": "contributor",
-   "role": "Cookie decorator and founder of Sweet Dani B Cookie Kitchen who joined Martha on air to decorate gingerbread cookies and Christmas-tree cupcakes."
+   "role": "Emmy-winning set and prop stylist turned cookie artist who spent years with Martha Stewart's television operation as its resident cookie expert. She went on to found Sweet Dani B Cookie Kitchen, a couture-cookie bakery and hands-on workshop space in Asbury Park, New Jersey; on air she joined Martha to bedazzle gingerbread cookies and build forests of Christmas-tree cupcakes."
   },
   {
    "slug": "sage-street-antiques",
    "name": "Sage Street Antiques",
    "type": "place",
    "kind": "business",
-   "role": "Weekend antiques shop on Division Street in Sag Harbor, N.Y., featured in an MSL antiquing segment."
+   "role": "Weekends-only antiques shop at the corner of Sage and Division Streets in Sag Harbor, N.Y., a cult favorite among Hamptons treasure hunters for its ever-changing, priced-to-sell stock of vintage glass, china, silver, and country furnishings — lines form before opening. Featured in a first-season MSL antiquing segment."
   },
   {
    "slug": "bark-frameworks",
    "name": "Bark Frameworks",
    "type": "place",
    "kind": "business",
-   "role": "Renowned New York fine-art picture-framing company founded by Jared Bark, featured in an MSL framing segment."
+   "role": "Fine-art framing house founded by artist Jared Bark in his SoHo loft in 1969, which grew into one of the country's foremost preservation framers, designing museum-grade frames for major institutions and contemporary artists — later from a Long Island City workshop, employee-owned since 2017. Featured in a first-season MSL framing segment."
   },
   {
    "slug": "mr-cooper",
    "name": "Mr. Cooper",
    "type": "person",
    "kind": "contributor",
-   "role": "Sandblasting craftsman featured in an early MSL segment on sandblasting; known only by his honorific in the rundown."
+   "role": "Sandblasting craftsman who demonstrated the technique in an early MSL segment; the Season 1 rundown records him only by his honorific, and no fuller identification survives in the public record."
   },
   {
    "slug": "guthman-antiques",
    "name": "Guthman Antiques",
    "type": "place",
    "kind": "business",
-   "role": "Connecticut antiques dealer featured in an MSL antiques segment; the Guthman family of Westport/Southport dealt in Americana and hearth antiques."
+   "role": "Connecticut antiques dealership tied to Fairfield County's noted Guthman dealers: Pat Guthman Antiques of Southport specialized in 18th- and early 19th-century hearth-cooking antiques and keeping-room furnishings — copper, brass, pottery, and iron — while William H. Guthman's Guthman Americana in Westport was a nationally known source of Colonial and Federal-period Americana and a longtime Antiques Roadshow appraiser's shop. Featured in a first-season MSL antiques segment."
   },
   {
    "slug": "consignmart",
    "name": "Consignmart",
    "type": "place",
    "kind": "business",
-   "role": "Consignment shop visited in an MSL segment on secondhand furnishings; directory listings place a Consignmart in Westport, Conn., Martha's hometown."
+   "role": "Consignment shop in Westport, Connecticut — Martha's longtime hometown — visited in an early MSL segment on secondhand furnishings."
   },
   {
    "slug": "allied-down",
    "name": "Allied Down",
    "type": "place",
    "kind": "business",
-   "role": "Down-and-feather bedding company featured in an MSL segment on down pillows and comforters."
+   "role": "Down-and-feather bedding company featured in a Season 3 segment on down pillows and comforters."
   },
   {
    "slug": "boston-turning-works",
    "name": "Boston Turning Works",
    "type": "place",
    "kind": "business",
-   "role": "Watertown, Mass. architectural wood-turning shop known for finials, balusters, and newel posts, featured in an MSL segment."
+   "role": "Custom architectural wood-turning shop long based in Watertown, Massachusetts, producing balusters, newel posts, porch posts, and a collection of historically accurate finials researched from period models for restoration work. Featured in a Season 3 MSL segment."
   },
   {
    "slug": "fischer-and-page",
    "name": "Fischer & Page",
    "type": "place",
    "kind": "business",
-   "role": "Wholesale florist in Manhattan's 28th Street flower district, known for unusual flower varieties, visited in an MSL flower segment."
+   "role": "Wholesale florist on West 28th Street in Manhattan's historic Flower District, prized by floral designers for unusual varieties — fritillaria, ranunculus, and tree peonies in season. Visited in a Season 3 MSL flower segment."
   },
   {
    "slug": "brooklyn-rose-garden",
    "name": "Brooklyn Rose Garden",
    "type": "place",
    "kind": "garden",
-   "role": "Rose garden in Brooklyn, N.Y. — most likely the Cranford Rose Garden at Brooklyn Botanic Garden — visited in an MSL gardening segment."
+   "role": "Rose garden in Brooklyn, N.Y., visited in a Season 3 MSL gardening segment — most likely the Cranford Rose Garden at Brooklyn Botanic Garden, which opened in 1928 with a gift from subway engineer Walter Cranford and holds one of North America's broadest rose collections, with well over 5,000 plants."
   },
   {
    "slug": "disney-institute",
    "name": "Disney Institute",
    "type": "place",
    "kind": "business",
-   "role": "Walt Disney World's hands-on learning resort in Orlando, Fla., featured on MSL in a contest-winner segment; the show taped there in the late 1990s."
+   "role": "Walt Disney World's hands-on learning resort near Orlando, opened by Michael Eisner in February 1996 and modeled in part on New York's Chautauqua Institution, with more than 80 programs in cooking, gardening, animation, and the arts. Featured on MSL in a Season 4 contest-winner segment. The resort campus closed in 2003 to become Disney's Saratoga Springs Resort, and the name survives as Disney's corporate-training arm."
   },
   {
    "slug": "manhattan-fruitier",
    "name": "Manhattan Fruitier",
    "type": "place",
    "kind": "business",
-   "role": "New York City purveyor of hand-arranged fruit gift baskets, founded 1987, featured in an MSL segment."
+   "role": "New York City purveyor of hand-arranged fresh-fruit gift baskets, founded in 1987 with arrangements inspired by Dutch still-life painting; it grew into a national mail-order business pairing fruit with cheeses, chocolates, and New York artisan foods. Featured in a Season 4 MSL segment."
   },
   {
    "slug": "edible-schoolyard",
    "name": "Edible Schoolyard",
    "type": "place",
    "kind": "garden",
-   "role": "Alice Waters's garden-and-kitchen classroom program at Martin Luther King Jr. Middle School in Berkeley, visited in an MSL field-trip segment."
+   "role": "Chef Alice Waters's pioneering garden-and-kitchen classroom, founded in 1995 at Martin Luther King Jr. Middle School in Berkeley, California, where students grow, cook, and share food from a one-acre organic garden; it became the model for the national Edible Schoolyard Project. Visited in a Season 5 MSL field-trip segment."
   },
   {
    "slug": "bellocchio",
    "name": "Bell'occhio",
    "type": "place",
    "kind": "business",
-   "role": "San Francisco specialty shop famed for ribbons, boxes, and Parisian ephemera, visited in an MSL field-trip segment."
+   "role": "San Francisco specialty shop opened in 1988 by Claudia Schwartz at 10 Brady Street — the name is Italian for \"beautiful eye\" — famed for antique French ribbons, handmade boxes, stationery, and Parisian ephemera sourced from small European ateliers. Visited in a Season 5 MSL field-trip segment."
   },
   {
    "slug": "strawberry-hill",
    "name": "Strawberry Hill",
    "type": "place",
    "kind": "business",
-   "role": "Strawberry Hill, the Blue Mountains resort in Irish Town, Jamaica; MSL Season 5 field-trip segments toured its gardens and hand-carved fretwork."
+   "role": "Eighteenth-century estate at Irish Town, some 3,000 feet up in Jamaica's Blue Mountains above Kingston, bought in 1972 by Island Records founder Chris Blackwell — Bob Marley recuperated there after his 1976 shooting — and opened in 1994 as the first Caribbean hotel of Blackwell's Island Outpost group, rebuilt in traditional Jamaican Georgian style with hand-carved fretwork. MSL Season 5 segments toured its gardens and fretwork."
   },
   {
    "slug": "newfoundland",
    "name": "Newfoundland",
    "type": "place",
    "kind": "location",
-   "role": "Newfoundland, Canada, the destination of an MSL field-trip segment."
+   "role": "Rugged North Atlantic island that, with Labrador, forms Canada's easternmost province — known for its fishing outports, icebergs, and the Norse landing site at L'Anse aux Meadows. Destination of a Season 5 MSL field-trip segment."
   },
   {
    "slug": "jane-heller",
    "name": "Jane Heller",
    "type": "person",
    "kind": "guest",
-   "role": "Guest who appeared under her own full name in an MSL segment."
+   "role": "Martha's longtime friend and private banker, who took Stewart on as a client around her 1987 Kmart deal and remained her banker — later a top private banker at Bank of America — through the building of her media empire. Her Season 5 appearance, cooking her signature unglazed Easter ham, is a favorite among fans of the show."
   },
   {
    "slug": "tinsel-trading-company",
    "name": "Tinsel Trading Company",
    "type": "place",
    "kind": "business",
-   "role": "Historic Manhattan vintage-trims and metallic-thread shop (founded 1933), featured in an MSL ornament-making segment."
+   "role": "Garment District institution born in 1933 when Arch Bergoffen bought a French metallic-thread importer and renamed it, amassing antique tinsel threads, metallic trims, tassels, and vintage millinery flowers; his granddaughter Marcia Ceppos took over the West 37th Street shop in 1989, and Martha featured it repeatedly from the 1990s on. Seen here in a Season 5 ornament-making segment; the shop later relocated to Berkeley, California."
   },
   {
    "slug": "allen-haskell",
    "name": "Allen Haskell",
    "type": "person",
    "kind": "contributor",
-   "role": "Allen C. Haskell, renowned New Bedford, Massachusetts nurseryman and topiary expert; recurring MSL gardening contributor, here demonstrating forced branches."
+   "role": "Allen C. Haskell (1935–2004), the celebrated New Bedford, Massachusetts nurseryman called \"the king of topiary,\" whose six-acre nursery of rare plants and flawless myrtle and rosemary standards drew patrons from Jacqueline Kennedy Onassis to Queen Beatrix of the Netherlands. A recurring MSL gardening contributor, here demonstrating forced branches; his nursery is preserved today as the Trustees' Allen C. Haskell Public Gardens."
   },
   {
    "slug": "jamaica",
    "name": "Jamaica",
    "type": "place",
    "kind": "location",
-   "role": "Caribbean island nation Martha visited in an MSL field-trip episode."
+   "role": "Caribbean island nation south of Cuba, third-largest island of the Greater Antilles, visited in a Season 5 MSL field-trip episode — part of a run of Jamaica segments that also toured Strawberry Hill in the Blue Mountains above Kingston."
   },
   {
    "slug": "bendheim-glass",
    "name": "Bendheim Glass",
    "type": "place",
    "kind": "business",
-   "role": "S.A. Bendheim, the specialty architectural and restoration glass company, visited in an MSL field-trip segment."
+   "role": "S.A. Bendheim, the family-run specialty architectural glass house founded in Greenwich Village in 1927 by Sem and Margaret Bendheim, is best known for Restoration Glass — mouth-blown window glass made with Germany's Lamberts glassworks whose gentle waviness suits historic buildings, and which has been installed at the White House, Monticello, and Mount Vernon. Toured in an MSL field-trip segment."
   },
   {
    "slug": "cycle-path-bikes",
    "name": "Cycle Path Bikes",
    "type": "place",
    "kind": "business",
-   "role": "Bicycle shop visited in an MSL field-trip segment."
+   "role": "Bicycle shop toured in an MSL field-trip segment."
   },
   {
    "slug": "secondhand-rose",
    "name": "Secondhand Rose",
    "type": "place",
    "kind": "business",
-   "role": "Suzanne Lipschutz's famed New York City vintage-wallpaper and antiques shop, visited in an MSL field-trip segment."
+   "role": "Suzanne Lipschutz's celebrated New York shop, opened on Hudson Street in 1965, grew into the country's premier source of rare vintage wallpaper — tens of thousands of rolls hunted down over five decades for clients ranging from film sets to celebrities, with a major donation of swatches to the Cooper Hewitt design museum in 1991. Visited in an MSL field-trip segment."
   },
   {
    "slug": "beds-and-borders",
    "name": "Beds & Borders",
    "type": "place",
    "kind": "business",
-   "role": "Wholesale container-plant nursery in Laurel on Long Island's North Fork, visited in an MSL field-trip segment."
+   "role": "Wholesale nursery founded in 1988 by Kathryn Pufahl in Laurel, on Long Island's North Fork, known for sophisticated container plantings and an unusual range of annuals, perennials, and grasses supplied to garden centers and designers across the Northeast. Visited in an MSL field-trip segment."
   },
   {
    "slug": "nevis",
    "name": "Nevis",
    "type": "place",
    "kind": "location",
-   "role": "Caribbean island in the Federation of St. Kitts and Nevis, featured in an MSL travel segment ('Nevis Details')."
+   "role": "Small volcanic island in the Caribbean's Leeward chain and the smaller half of the Federation of St. Kitts and Nevis; the birthplace of Alexander Hamilton, it is known for the quiet plantation-inn retreats built into its restored sugar estates. Featured in the MSL travel segment 'Nevis Details'."
   },
   {
    "slug": "cutchogue",
    "name": "Cutchogue",
    "type": "place",
    "kind": "location",
-   "role": "Hamlet on Long Island's North Fork in Southold, New York, site of an MSL barbecue field-trip segment."
+   "role": "Hamlet in the Town of Southold on Long Island's North Fork, settled by English colonists in the 1600s and home to the circa-1649 Old House, a National Historic Landmark on the village green; today it sits amid North Fork farmland and wine country. Site of an MSL barbecue field-trip segment."
   },
   {
    "slug": "eve-stone-antiques",
    "name": "Eve Stone Antiques",
    "type": "place",
    "kind": "business",
-   "role": "Connecticut antiques shop (founded 1970) specializing in 16th-19th-century copper and brass; visited in an MSL field-trip segment and appeared on MSL TV multiple times."
+   "role": "Eve Stone Antiques, Ltd., founded in 1970 in the carriage house of Stone's Martha's Vineyard home and later based in Woodbridge, Connecticut, specializes in 16th–19th-century English and Continental copper and brass — cookware, candlesticks, chandeliers, and fireplace equipment. Stone is a nationally known expert and lecturer in the field. Toured in an MSL field-trip segment."
   },
   {
    "slug": "hinckley-yachts",
    "name": "Hinckley Yachts",
    "type": "place",
    "kind": "business",
-   "role": "Storied yacht builder (The Hinckley Company) based in Southwest Harbor, Maine, visited in an MSL field-trip segment."
+   "role": "Storied Maine boatbuilder founded in 1928 in Southwest Harbor on Mount Desert Island, famed for elegant sailing yachts like the fiberglass Bermuda 40 (launched 1960) and, from the mid-1990s, the jet-drive Picnic Boat. Its Southwest Harbor yard was toured in an MSL field-trip segment."
   },
   {
    "slug": "mrs-dipaola",
    "name": "Mrs. DiPaola",
    "type": "person",
    "kind": "guest",
-   "role": "Home cook who baked her fig cake with Martha in a two-part MSL kitchen segment."
+   "role": "Home cook who joined Martha in the MSL kitchen to bake her treasured fig cake in a two-part segment."
   },
   {
    "slug": "fortuny",
    "name": "Fortuny",
    "type": "place",
    "kind": "business",
-   "role": "Venetian luxury textile house famed for its printed fabrics, visited in an MSL field-trip segment."
+   "role": "Venetian textile house founded by Spanish-born designer Mariano Fortuny y Madrazo, whose Giudecca factory — opened in the early 1920s in a former convent — still hand-prints his richly patterned cotton fabrics using techniques kept secret since his lifetime. Visited in an MSL field-trip segment."
   },
   {
    "slug": "israel-sack-inc",
    "name": "Israel Sack, Inc.",
    "type": "place",
    "kind": "business",
-   "role": "Preeminent Manhattan dealer in early American antique furniture, visited in an MSL field-trip segment."
+   "role": "Manhattan firm built by Lithuanian-born cabinetmaker Israel Sack (1883–1959), who opened his first shop on Boston's Charles Street and became the preeminent dealer in early American antique furniture, supplying collectors such as Henry Ford and Henry Francis du Pont and virtually every major American museum; his sons ran the firm until it closed in 2002. Visited in an MSL field-trip segment."
   },
   {
    "slug": "steinway-and-sons",
    "name": "Steinway & Sons",
    "type": "place",
    "kind": "business",
-   "role": "Legendary piano maker whose Astoria, Queens factory was toured in the two-part MSL segment 'The Making of a Steinway Piano'."
+   "role": "Piano maker founded in Manhattan in 1853 by German immigrant Henry E. Steinway, whose Astoria, Queens factory has hand-built its concert grands since the 1870s. The factory was toured in the two-part MSL segment 'The Making of a Steinway Piano'."
   },
   {
    "slug": "raos",
    "name": "Rao's",
    "type": "place",
    "kind": "restaurant",
-   "role": "Famously exclusive century-old Southern Italian restaurant in East Harlem, NYC, visited in an MSL field-trip segment."
+   "role": "Southern Italian restaurant opened in 1896 on the corner of Pleasant Avenue and East 114th Street in East Harlem — famously the hardest table in New York, its handful of tables informally 'owned' by regulars since the late 1970s. Visited in an MSL field-trip segment."
   },
   {
    "slug": "sony",
    "name": "Sony",
    "type": "place",
    "kind": "business",
-   "role": "Electronics and entertainment corporation whose facility was toured in an MSL field-trip segment."
+   "role": "Global electronics and entertainment corporation founded in Tokyo in 1946; one of its facilities was toured in an MSL field-trip segment."
   },
   {
    "slug": "colin-powell",
    "name": "Colin Powell",
    "type": "person",
    "kind": "guest",
-   "role": "Retired U.S. Army four-star general and former Chairman of the Joint Chiefs of Staff, interviewed in a two-part MSL segment."
+   "role": "Retired U.S. Army four-star general who served as National Security Advisor and as Chairman of the Joint Chiefs of Staff (1989–1993) during the Gulf War, and later became the 65th U.S. Secretary of State. At the time of this two-part sit-down he chaired America's Promise, the youth-mentoring alliance he founded after the 1997 Presidents' Summit — the subject of the episode, listed as \"America's Promise with Colin Powell.\""
   },
   {
    "slug": "mobee-weinstein",
    "name": "Mobee Weinstein",
    "type": "person",
    "kind": "contributor",
-   "role": "Mobee Weinstein, Foreman of Gardeners at the New York Botanical Garden and veteran MSL gardening guest; led a two-part seed-starting segment."
+   "role": "Foreman of Gardeners for Outdoor Gardens at the New York Botanical Garden, where she trained at the School of Professional Horticulture, and a veteran gardening guest across many MSL seasons. She later wrote The Complete Book of Ferns (2019); here she leads a two-part seed-starting lesson."
   },
   {
    "slug": "new-york-public-library",
    "name": "New York Public Library",
    "type": "place",
    "kind": "organization",
-   "role": "Landmark New York City library system visited in an MSL field-trip segment."
+   "role": "Landmark research and lending library system founded in 1895, whose Beaux-Arts main branch on Fifth Avenue — opened in 1911 and guarded by the marble lions Patience and Fortitude — is one of New York City's great civic buildings. Visited in an MSL field-trip segment."
   },
   {
    "slug": "preston-bailey",
    "name": "Preston Bailey",
    "type": "person",
    "kind": "contributor",
-   "role": "Renowned New York event and floral designer who demonstrated a bouquet on MSL."
+   "role": "Panamanian-born, New York-based event and floral designer whose studio, opened in 1980, became famous for transforming venues into lavish floral environments for celebrity weddings and galas; he went on to publish a shelf of entertaining-design books. Demonstrated one of his signature bouquets on MSL."
   },
   {
    "slug": "holland",
    "name": "Holland",
    "type": "place",
    "kind": "location",
-   "role": "The Netherlands, which Martha visited in a two-part MSL travel field-trip segment."
+   "role": "Holland — the Netherlands — is the heart of the world's flower-bulb industry, famed for its tulip fields, canals, and vast flower markets. Martha toured the country in a two-part travel field trip."
   },
   {
    "slug": "anny-seavey",
    "name": "Anny Seavey",
    "type": "person",
    "kind": "contributor",
-   "role": "Stained-glass artist Anny Seavey of the Hot Flash Anny's studio (Southwest Harbor, Maine), featured in an MSL stained-glass segment."
+   "role": "Stained-glass artist and proprietor of Hot Flash Anny's studio and gallery in Southwest Harbor, Maine, on Mount Desert Island, with decades spent designing, making, and restoring stained glass around the country; her children's window hangs over the main desk of the Southwest Harbor Public Library. Demonstrated her stained-glass craft in an MSL segment."
   },
   {
    "slug": "fernleigh-topiary-gardens",
    "name": "Fernleigh Topiary Gardens",
    "type": "place",
    "kind": "garden",
-   "role": "Topiary garden featured in a two-part MSL garden-visit segment."
+   "role": "Topiary garden toured in a two-part MSL garden-visit segment; the episode guide titles the March 1999 outing \"New York Botanical Garden: Fernleigh Topiary Garden,\" pairing it with a Botanical Garden field trip."
   },
   {
    "slug": "vermont",
    "name": "Vermont",
    "type": "place",
    "kind": "location",
-   "role": "U.S. state visited in an MSL field-trip segment."
+   "role": "The Green Mountain State — northern New England's land of dairy farms, covered bridges, fall foliage, and maple syrup, of which it is the nation's leading producer. Visited in an MSL field-trip segment."
   },
   {
    "slug": "middleton-place",
    "name": "Middleton Place",
    "type": "place",
    "kind": "garden",
-   "role": "Historic plantation near Charleston, South Carolina with America's oldest landscaped gardens, visited in an MSL field-trip segment."
+   "role": "National Historic Landmark plantation on the Ashley River near Charleston, South Carolina, seat of the Middleton family — including Arthur Middleton, a signer of the Declaration of Independence. Its terraced gardens, begun by Henry Middleton around 1741, are considered the oldest landscaped gardens in the United States. Visited in an MSL field-trip segment."
   },
   {
    "slug": "old-chatham-sheepherding-company",
    "name": "Old Chatham Sheepherding Company",
    "type": "place",
    "kind": "farm",
-   "role": "Sheep dairy farm and creamery in Old Chatham, New York known for sheep's-milk cheeses, visited in an MSL field-trip segment."
+   "role": "Sheep dairy and creamery founded in 1993 by Tom and Nancy Clark in the Columbia County village of Old Chatham, New York; it grew into the largest sheep dairy in the United States, and its Hudson Valley Camembert and sheep's-milk yogurts won national acclaim. Visited in an MSL field-trip segment."
   },
   {
    "slug": "habitat-for-humanity",
    "name": "Habitat for Humanity",
    "type": "place",
    "kind": "organization",
-   "role": "Nonprofit home-building organization featured in an MSL segment on volunteer house construction."
+   "role": "International nonprofit founded in 1976 by Millard and Linda Fuller in Americus, Georgia, that builds simple, affordable houses with volunteer labor and homeowners' own \"sweat equity.\" Featured in an MSL segment on volunteer house construction."
   },
   {
    "slug": "robert-kinnaman",
    "name": "Robert Kinnaman",
    "type": "person",
    "kind": "guest",
-   "role": "American folk-art and antiques dealer of Kinnaman & Ramaekers in Bridgehampton, NY, whose Americana collection was featured in an MSL segment."
+   "role": "American folk-art and antiques dealer (d. 2005) who, with partner Brian Ramaekers, founded Kinnaman & Ramaekers in Houston in 1969, later a fixture of Bridgehampton on Long Island's East End. A longtime Winter Antiques Show exhibitor, he wrote for The Magazine Antiques and helped build several important collections of 18th- and 19th-century self-taught American art; his Americana collection was featured in an MSL segment."
   },
   {
    "slug": "little-and-lewis",
    "name": "Little & Lewis",
    "type": "place",
    "kind": "business",
-   "role": "Bainbridge Island, Washington garden-art studio of George Little and David Lewis, known for cast-concrete hosta leaves, featured in an MSL segment."
+   "role": "Garden-art studio and celebrated display garden of sculptors George Little and David Lewis on Bainbridge Island, Washington, begun in 1992 and known for water-inspired cast-concrete botanical sculpture — giant leaves, columns, and fountains — photographed for books and television nationwide. The pair later chronicled the garden in the award-winning A Garden Gallery (2005); on MSL they demonstrated casting concrete hosta leaves."
   },
   {
    "slug": "heronswood",
    "name": "Heronswood",
    "type": "place",
    "kind": "garden",
-   "role": "Renowned botanical garden and nursery in Kingston, Washington founded by plantsman Dan Hinkley, toured in an MSL field-trip segment."
+   "role": "Botanical garden and famed specialty nursery in Kingston, Washington, founded in 1987 by plant explorer Dan Hinkley and architect Robert Jones; its mail-order catalog introduced rare, wild-collected plants to American gardeners before the nursery was sold to Burpee in 2000 (the garden is now run by the Port Gamble S'Klallam Tribe). Toured alongside the Bloedel Reserve's moss garden in an MSL field trip."
   },
   {
    "slug": "bloedel-reserve",
    "name": "Bloedel Reserve",
    "type": "place",
    "kind": "garden",
-   "role": "Public garden on Bainbridge Island, Washington whose famous moss garden MSL toured in a field-trip segment."
+   "role": "Public garden on Bainbridge Island, Washington — the former 140-acre estate of timber executive Prentice Bloedel (MacMillan Bloedel) and his wife Virginia, opened to the public in 1988. Its famed moss garden, laid out by landscape architect Richard Haag in 1982 from roughly 275,000 hand-planted moss plugs, is among the largest in the country; MSL toured it alongside nearby Heronswood in a Puget Sound gardens field trip."
   },
   {
    "slug": "atlantic-art",
    "name": "Atlantic Art",
    "type": "place",
    "kind": "business",
-   "role": "Glass studio visited for an MSL glass-blowing demonstration segment; likely the coastal-Maine studio Atlantic Art Glass."
+   "role": "Almost certainly Atlantic Art Glass, the Maine hot-glass studio and gallery of glass artists Linda and Ken Perrin — founded in the early 1990s in Bar Harbor and relocated to a brick warehouse in downtown Ellsworth in 2005. Perrin's blown glass is held in the permanent collections of the Corning Museum of Glass and Venice's Murano Glass Museum; MSL taped a glassblowing demonstration at the studio during its Bar Harbor years."
   },
   {
    "slug": "mikimoto",
    "name": "Mikimoto",
    "type": "place",
    "kind": "business",
-   "role": "Japanese cultured-pearl company founded by Kokichi Mikimoto, featured in a two-part MSL segment on pearl cultivation."
+   "role": "Japanese pearl house founded in 1893 in Toba by Kokichi Mikimoto, who produced the world's first cultured pearl that year and by 1913 had opened stores from London to New York; production centered on the island near Toba now known as Mikimoto Pearl Island. MSL's two-part segment followed the company's pearl-cultivation process."
   },
   {
    "slug": "ralph-kovel",
    "name": "Ralph Kovel",
    "type": "person",
    "kind": "guest",
-   "role": "Antiques expert and co-author of the Kovels' price guides; appeared with wife Terry in the multi-part 'Collecting with Kovels' MSL segments."
+   "role": "Ralph Kovel (1920–2008), half of America's best-known antiques-writing team with his wife Terry: together they published nearly 100 books beginning with 1953's Dictionary of Marks — Pottery and Porcelain, launched their annual antiques price guide in 1968, and wrote the longest-running syndicated antiques column in U.S. newspapers. The pair walked Martha through collecting fundamentals in the four-part 'Collecting with Kovels' segments."
   },
   {
    "slug": "terry-kovel",
    "name": "Terry Kovel",
    "type": "person",
    "kind": "guest",
-   "role": "Antiques expert and co-author of the Kovels' price guides; appeared with husband Ralph in the multi-part 'Collecting with Kovels' MSL segments."
+   "role": "Terry Kovel (b. 1928) of Shaker Heights, Ohio — co-author with her husband Ralph of nearly 100 antiques books, including the annual Kovels' Antiques & Collectibles Price Guide (over 4 million copies sold), and of the longest-running syndicated antiques column in America, a franchise she carried on after Ralph's death in 2008. Appeared with Ralph in MSL's four-part 'Collecting with Kovels' segments."
   },
   {
    "slug": "arthur-avenue",
    "name": "Arthur Avenue",
    "type": "place",
    "kind": "location",
-   "role": "The Bronx's 'Little Italy' shopping street, famed for its Italian food markets; visited in an MSL shopping segment."
+   "role": "Main street of the Belmont section of the Bronx — New York's 'real Little Italy', settled by Italian immigrants around the turn of the twentieth century. Its centerpiece, the Arthur Avenue Retail Market, opened in 1940 when Mayor Fiorello La Guardia moved the neighborhood's pushcart vendors indoors; MSL went shopping among its Italian butchers, bakers, and delis."
   },
   {
    "slug": "college-of-the-atlantic",
    "name": "College of the Atlantic",
    "type": "place",
    "kind": "organization",
-   "role": "Small ecology-focused college in Bar Harbor, Maine, which runs the Great Duck Island research station; featured in MSL's Maine coverage."
+   "role": "Small college on Frenchman Bay in Bar Harbor, Maine, founded in 1969, where every student pursues a single self-designed major: human ecology. It operates offshore research stations including the Alice Eno Field Research Station on Great Duck Island, and was featured during MSL's Mount Desert Island-area Maine coverage."
   },
   {
    "slug": "great-duck-island",
    "name": "Great Duck Island",
    "type": "place",
    "kind": "location",
-   "role": "Island off the Maine coast known for its seabird colonies and College of the Atlantic research station; visited in an 'Island Life' MSL segment."
+   "role": "Island south of Mount Desert Island, Maine, supporting some of the largest breeding colonies of Leach's storm-petrels and black guillemots in the lower 48, plus a historic lighthouse. College of the Atlantic students summer there studying seabirds at the college's field research station (named for trustee Alice Eno in 2000); MSL's 'Island Life' segment visited the island."
   },
   {
    "slug": "acadia-national-park",
    "name": "Acadia National Park",
    "type": "place",
    "kind": "location",
-   "role": "National park on Mount Desert Island, Maine; destination of an MSL field-trip segment."
+   "role": "The first national park east of the Mississippi — established as Lafayette National Park in 1919 and renamed Acadia in 1929 — covering much of Mount Desert Island, Maine, with its Rockefeller-built carriage roads and Cadillac Mountain, the highest point on the U.S. Atlantic coast. The park sits minutes from Martha's Skylands estate in Seal Harbor, and MSL's Maine-summer episodes made it a natural field-trip destination."
   },
   {
    "slug": "iowa-state-fair",
    "name": "Iowa State Fair",
    "type": "place",
    "kind": "event",
-   "role": "The annual state fair in Des Moines, Iowa, one of the largest in the U.S.; destination of an MSL field-trip segment."
+   "role": "Iowa's annual August fair, first held in 1854 and settled on its permanent Des Moines fairgrounds in 1886 — one of the largest state fairs in the country, famous for its life-size butter-cow sculpture, its livestock and food competitions, and for inspiring the novel and musical 'State Fair'. MSL made it a classic late-summer field trip."
   },
   {
    "slug": "horton-brasses",
    "name": "Horton Brasses",
    "type": "place",
    "kind": "business",
-   "role": "Cromwell, Connecticut maker of reproduction antique cabinet and furniture hardware, featured in an MSL segment."
+   "role": "Cromwell, Connecticut manufacturer of reproduction antique furniture and cabinet hardware, founded in 1936 by tool-and-die maker Frank Horton and run by his family for generations. Its more than 1,000 brass pieces are made from dies and patterns taken off actual antique hardware, making it a longtime favorite of period furniture makers and restorers — the craft MSL's segment showcased."
   },
   {
    "slug": "charles-h-baldwin-and-sons",
    "name": "Charles H. Baldwin & Sons",
    "type": "place",
    "kind": "business",
-   "role": "Historic West Stockbridge, Massachusetts extract shop (est. 1888) famous for barrel-aged pure vanilla extract, featured in an MSL vanilla segment."
+   "role": "West Stockbridge, Massachusetts extract maker founded in 1888, operating out of the same storefront since 1912. Its signature pure vanilla extract is still blended from Madagascar bourbon vanilla beans in a decades-old copper still and aged in oak barrels — the old-fashioned process MSL's vanilla segment featured."
   },
   {
    "slug": "estiatorio-milos",
    "name": "Estiatorio Milos",
    "type": "place",
    "kind": "restaurant",
-   "role": "Greek seafood restaurant in Manhattan famed for its iced fresh-fish display, visited in an MSL field-trip segment on fresh fish."
+   "role": "Manhattan outpost of restaurateur Costas Spiliadis's Greek seafood restaurant — the original opened in Montreal in 1979, with the West 55th Street location following in 1997 — renowned for its market-style display of whole Mediterranean fish on ice from which diners choose their meal. MSL's fresh-fish field trip toured the display shortly after the New York opening."
   },
   {
    "slug": "rabbit-goody",
    "name": "Rabbit Goody",
    "type": "person",
    "kind": "contributor",
-   "role": "Textile historian and master weaver who owns Thistle Hill Weavers in Cherry Valley, NY; demonstrated historic weaving on MSL."
+   "role": "Textile historian and master weaver who founded Thistle Hill Weavers in 1989 in a converted feed mill near Cherry Valley, New York. Her mill's short-run reproductions of historic fabrics have appeared in more than 70 films and television productions — from 'Road to Perdition' to HBO's 'John Adams' — and she demonstrated historic weaving techniques on MSL."
   },
   {
    "slug": "radio-city-music-hall",
    "name": "Radio City Music Hall",
    "type": "place",
    "kind": "location",
-   "role": "Landmark Art Deco theater at Rockefeller Center in New York City, toured in a two-part MSL segment."
+   "role": "Landmark Art Deco theater at Rockefeller Center, opened December 27, 1932, with interiors by Donald Deskey — the self-styled \"Showplace of the Nation\" and home of the Rockettes. MSL's two-part backstage tour came on the heels of the theater's celebrated 1999 top-to-bottom restoration."
   },
   {
    "slug": "thistle-hill-weavers",
    "name": "Thistle Hill Weavers",
    "type": "place",
    "kind": "business",
-   "role": "Custom weaving mill in Cherry Valley, NY, run by textile historian Rabbit Goody, featured in an MSL weaving segment."
+   "role": "Custom weaving mill founded by textile historian Rabbit Goody in 1989 in an old feed mill near Cherry Valley, New York, specializing in historically accurate reproduction fabrics, carpet, and trim for museums, designers, and Hollywood — its textiles have appeared in more than 70 films and television productions. Goody, formerly curator of textiles at the Farmers' Museum in Cooperstown, demonstrated the mill's work on MSL."
   },
   {
    "slug": "new-york-chinese-scholars-garden",
    "name": "New York Chinese Scholar's Garden",
    "type": "place",
    "kind": "garden",
-   "role": "Authentic Ming-style Chinese garden at Snug Harbor Cultural Center on Staten Island (opened 1999), visited in an MSL segment."
+   "role": "Authentic Ming-style scholar's garden at the Staten Island Botanical Garden, Snug Harbor Cultural Center, opened in June 1999 after a team of 40 artisans from Suzhou, China assembled its pavilions, rockeries, and courtyards on site. MSL visited not long after the garden's debut."
   },
   {
    "slug": "sam-kasten",
    "name": "Sam Kasten",
    "type": "person",
    "kind": "contributor",
-   "role": "Master handweaver based in Stockbridge, MA (Sam Kasten Handweaver, est. 1972), who demonstrated weaving on MSL."
+   "role": "Master handweaver of custom textiles for the interior and architectural trades, based in the Berkshires — first Stockbridge, later Pittsfield, Massachusetts. Trained at Nantucket Looms, Kasten wove wide wall coverings for architects including Skidmore, Owings & Merrill and I.M. Pei, with work in the National Gallery of Art and the Neue Galerie; he demonstrated handweaving on MSL."
   },
   {
    "slug": "fairchild-tropical-botanic-garden",
    "name": "Fairchild Tropical Botanic Garden",
    "type": "place",
    "kind": "garden",
-   "role": "83-acre tropical botanic garden in Coral Gables, Florida, visited in an MSL Florida field-trip segment."
+   "role": "83-acre tropical botanic garden in Coral Gables, Florida, established in 1938 and named for plant explorer David Fairchild; renowned for its palm and cycad collections. One of three stops on MSL's Miami-area field trip, alongside Kerry's Nursery and Joe's Stone Crab."
   },
   {
    "slug": "joes-stone-crab",
    "name": "Joe's Stone Crab",
    "type": "place",
    "kind": "restaurant",
-   "role": "Landmark Miami Beach seafood restaurant, famous for stone crab claws since 1913, visited in an MSL Florida field-trip segment."
+   "role": "Miami Beach institution founded by Joseph Weiss in 1913, credited with popularizing the stone crab; its seasonal claws with mustard sauce made it one of the highest-grossing restaurants in America. Visited on MSL's Florida field trip."
   },
   {
    "slug": "belgo",
    "name": "Belgo",
    "type": "place",
    "kind": "restaurant",
-   "role": "Belgian mussels-and-frites restaurant group with London and New York locations, featured in an MSL segment making a mariniere mussel pot."
+   "role": "Belgian mussels-and-frites restaurant group founded in London in 1992 by Denis Blais and André Plisnier, known for its cavernous beer-hall design, monk-robed waiters, and vast list of Belgian beers. Its Manhattan outpost, Belgo Nieuw York at 415 Lafayette Street, supplied MSL's marinière mussel-pot segment."
   },
   {
    "slug": "guastavinos",
    "name": "Guastavino's",
    "type": "place",
    "kind": "restaurant",
-   "role": "Terence Conran's restaurant and event space under the Queensboro Bridge in NYC, featured in an MSL lemon tart segment."
+   "role": "Restaurant and event space opened by British design impresario Sir Terence Conran on Valentine's Day 2000 beneath the Queensboro Bridge, in the landmark Bridgemarket space whose soaring tiled vaults were built by Rafael Guastavino's firm. MSL's lemon tart segment caught it in its early days as Conran's splashy New York venture."
   },
   {
    "slug": "american-museum-of-natural-history",
    "name": "American Museum of Natural History",
    "type": "place",
    "kind": "museum",
-   "role": "New York City's famed natural history museum, visited in an MSL field-trip segment."
+   "role": "Founded in 1869, the vast natural history museum on Central Park West is one of the largest in the world. MSL made a field trip through its halls and returned for the Butterfly Conservatory, the live-butterfly vivarium the museum has mounted annually since 1998."
   },
   {
    "slug": "doughnut-plant",
    "name": "Doughnut Plant",
    "type": "place",
    "kind": "business",
-   "role": "Lower East Side NYC bakery founded by Mark Isreal in 1994, famous for artisanal doughnuts; featured in an MSL segment."
+   "role": "Lower East Side bakery started by Mark Isreal in 1994, baking doughnuts from his grandfather Herman's recipe in a tenement basement and delivering them by bicycle to gourmet shops; its first storefront opened on the Lower East Side in 2000. Its all-natural, inventive doughnuts — credited with launching New York's artisanal-doughnut wave — were featured on MSL."
   },
   {
    "slug": "scharffen-berger-chocolate-maker",
    "name": "Scharffen Berger Chocolate Maker",
    "type": "place",
    "kind": "business",
-   "role": "Berkeley, California artisan chocolate manufacturer founded in 1997; its chocolate-making was featured in an MSL segment."
+   "role": "Artisan chocolate company founded in 1996 in the San Francisco Bay Area by winemaker John Scharffenberger and physician Robert Steinberg — the first new American bean-to-bar chocolate maker in some 50 years and a pioneer of cacao-percentage labeling, later famous for its Berkeley factory. Acquired by Hershey in 2005; its chocolate-making process was featured on MSL."
   },
   {
    "slug": "skarstad-violins",
    "name": "Skarstad Violins",
    "type": "place",
    "kind": "business",
-   "role": "Violin-making shop of luthier Brian Skarstad in Pleasantville, New York, featured in an MSL field-trip segment."
+   "role": "Violin-making and restoration shop of luthier Brian Skarstad, crafting instruments in Pleasantville, New York since 1979. Skarstad, who trained with Peter Prier in Salt Lake City, models his violins and violas on classic Italian examples and has sold instruments to New York Philharmonic players; MSL paid his workshop a field-trip visit."
   },
   {
    "slug": "the-newtown-bee",
    "name": "The Newtown Bee",
    "type": "place",
    "kind": "business",
-   "role": "Historic weekly newspaper in Newtown, Connecticut, known for its antiques coverage; featured in an MSL segment."
+   "role": "Weekly newspaper of Newtown, Connecticut, published since 1877 and run by the Smith family since 1880. Its companion publication Antiques and the Arts Weekly, spun off from the paper's antiques pages in 1969, made \"The Bee\" a national authority on the antiques trade — the angle MSL picked up in its segment."
   },
   {
    "slug": "hershey-chocolate-factory",
    "name": "Hershey Chocolate Factory",
    "type": "place",
    "kind": "business",
-   "role": "Hershey's chocolate manufacturing plant in Hershey, Pennsylvania, visited in an MSL field-trip segment."
+   "role": "The original Hershey's plant on East Chocolate Avenue in Hershey, Pennsylvania, built by Milton S. Hershey between 1903 and 1905 — for decades the largest chocolate factory in the world and the heart of the company town that grew up around it (production there ceased in 2012). MSL toured the factory in a Season 7 field trip."
   },
   {
    "slug": "corkys-ribs-and-bbq",
    "name": "Corky's Ribs & BBQ",
    "type": "place",
    "kind": "restaurant",
-   "role": "Famous Memphis, Tennessee barbecue restaurant featured in MSL's Memphis BBQ segments."
+   "role": "Memphis barbecue institution founded in 1984 by Don Pelts on Poplar Avenue in East Memphis, famous for hickory-smoked pork ribs and repeatedly voted the city's #1 BBQ joint. An early pioneer of overnight rib shipping (from 1987), it later franchised across the South — featured in MSL's Memphis barbecue segment."
   },
   {
    "slug": "eastfield-village",
    "name": "Eastfield Village",
    "type": "place",
    "kind": "museum",
-   "role": "Assembled village of relocated 18th/19th-century buildings in East Nassau, NY, run as a hands-on historic-trades school; toured in a multi-part MSL segment."
+   "role": "Village of 28 condemned or abandoned 18th- and 19th-century buildings — a 1793 tavern, 1836 church, and 1811 general store among them — dismantled board-by-board, moved, and reassembled by self-taught craftsman Don Carpentier on his family's farmland in East Nassau, NY, beginning in 1971. Home of the Historic Eastfield Foundation's workshops, the longest-running school of historic trades in the country; toured in a multi-part MSL segment."
   },
   {
    "slug": "kelmscott-rare-breeds-foundation",
    "name": "Kelmscott Rare Breeds Foundation",
    "type": "place",
    "kind": "farm",
-   "role": "Rare-livestock-breed conservation farm in Lincolnville, Maine, visited in an MSL farm segment."
+   "role": "Nonprofit conservation farm founded by Robyn Metcalfe on 150 acres in Lincolnville, Maine (farm established 1993, foundation incorporated 1994), keeping some 200 animals across twenty varieties of rare and endangered sheep, pigs, cattle, horses, and poultry. Instrumental in reestablishing Gloucestershire Old Spots pigs in North America; visited in an MSL farm segment with Marc Morrone."
   },
   {
    "slug": "huber-embroideries",
    "name": "Huber Embroideries",
    "type": "place",
    "kind": "business",
-   "role": "Embroidery workshop/business featured in an MSL segment on fine embroidery."
+   "role": "Embroidery atelier featured in an MSL segment on fine embroidery work."
   },
   {
    "slug": "noche-flamenca",
    "name": "Noche Flamenca",
    "type": "place",
    "kind": "organization",
-   "role": "New York-based touring flamenco dance company founded by Martin Santangelo and Soledad Barrio, featured in an MSL performance segment."
+   "role": "Touring flamenco company formed in New York in 1993 by director Martín Santangelo and his wife, Bessie Award-winning dancer Soledad Barrio, dedicated to keeping alive the authentic form of flamenco. Known for regular New York seasons at the Joyce Theater and Lincoln Center; featured in an MSL performance segment."
   },
   {
    "slug": "alaska",
    "name": "Alaska",
    "type": "place",
    "kind": "location",
-   "role": "U.S. state visited in an MSL field-trip segment covering Alaska and the Yukon."
+   "role": "The 49th U.S. state (statehood 1959) and by far the largest, purchased from Russia in 1867 — known for its salmon fisheries, glaciers, and Inside Passage ports. Destination of MSL's Alaska-and-Yukon field trip."
   },
   {
    "slug": "yukon",
    "name": "Yukon",
    "type": "place",
    "kind": "location",
-   "role": "Canadian territory visited in an MSL field-trip segment covering Alaska and the Yukon."
+   "role": "Canadian territory in the country's northwest corner, bordering Alaska, with its capital at Whitehorse; famed as the setting of the Klondike Gold Rush of 1896–99. Visited in MSL's Alaska-and-Yukon field trip."
   },
   {
    "slug": "pacific-bell-park",
    "name": "Pacific Bell Park",
    "type": "place",
    "kind": "location",
-   "role": "San Francisco Giants ballpark (opened 2000, now Oracle Park) visited in an MSL field segment."
+   "role": "Waterfront ballpark of the San Francisco Giants at China Basin, opened in April 2000 as the first privately financed major-league park in decades; later renamed SBC Park, then AT&T Park, and today Oracle Park. Visited in an MSL field segment shortly after it opened."
   },
   {
    "slug": "schrader-garden",
    "name": "Schrader Garden",
    "type": "place",
    "kind": "garden",
-   "role": "Private garden named for its owner, toured in an MSL garden-visit segment."
+   "role": "Private garden toured in an MSL garden-visit segment — likely the Mattituck, Long Island garden of horticulturist Dennis Schrader and Bill Smith, co-founders of the tropical-plant nursery Landcraft Environments (est. 1992). Schrader appeared on Martha Stewart Living TV, and the garden later became the nonprofit Landcraft Garden Foundation, with Martha on its advisory board."
   },
   {
    "slug": "ethnicgrocer-com",
    "name": "EthnicGrocer.com",
    "type": "place",
    "kind": "business",
-   "role": "Dot-com-era online retailer of international grocery ingredients featured in an MSL segment."
+   "role": "Chicago dot-com founded in 1999 by Kellogg MBA Parry Singh with co-founder Subhash Bedi, selling hard-to-find international grocery ingredients online through country-specific storefronts (Namaste.com, QueRico.com, gongshee.com). Backed by roughly $47 million from marquee investors including Benchmark and Kleiner Perkins at the height of the e-commerce boom; featured in an MSL segment of the same era."
   },
   {
    "slug": "salem-organics",
    "name": "Salem Organics",
    "type": "place",
    "kind": "farm",
-   "role": "Organic farm/producer featured in an MSL segment."
+   "role": "Salem Organic Soils, the New York company (founded 1986) behind Sweet Peet, a patented organic mulch made by composting shavings-based horse manure with plant tannins into a fine coffee-colored soil dressing. Featured on MSL and used by the gardeners on Martha's own property."
   },
   {
    "slug": "old-town-canoe-company",
    "name": "Old Town Canoe Company",
    "type": "place",
    "kind": "business",
-   "role": "Historic canoe manufacturer in Old Town, Maine, whose canoes and workshop were featured in an MSL segment."
+   "role": "America's most storied canoe maker, building wood-and-canvas canoes in Old Town, Maine since 1898 on designs inspired by Penobscot birchbark craft. By the late 1920s it was the largest canoe manufacturer in the country, ultimately producing more than 200,000 wood-and-canvas boats; its canoes and workshop were featured in an MSL segment."
   },
   {
    "slug": "taku-smokeries",
    "name": "Taku Smokeries",
    "type": "place",
    "kind": "business",
-   "role": "Salmon smokehouse and seafood processor on the Juneau, Alaska waterfront, visited in an MSL segment."
+   "role": "Smokehouse and seafood processor founded in the early 1980s by Italian-born, Berkeley-trained marine biologist Sandro Lane on the Juneau, Alaska waterfront, producing hot- and cold-smoked wild Alaska salmon shipped nationwide. Visited in an MSL segment."
   },
   {
    "slug": "w-lffer-estate-vineyard",
    "name": "Wölffer Estate Vineyard",
    "type": "place",
    "kind": "business",
-   "role": "Winery and vineyard estate in Sagaponack on Long Island's South Fork, visited in an MSL segment."
+   "role": "Winery founded in 1988 by Hamburg-born entrepreneur Christian Wölffer (originally as Sagpond Vineyards) in Sagaponack on Long Island's South Fork, with a 55-acre sustainably farmed vineyard whose rosé — first released in 1993 — helped define Hamptons wine culture. Visited in an MSL segment."
   },
   {
    "slug": "longwood-gardens",
    "name": "Longwood Gardens",
    "type": "place",
    "kind": "garden",
-   "role": "Renowned botanical garden in Kennett Square, Pennsylvania, visited for its Christmas display in an MSL segment."
+   "role": "One of America's premier botanical gardens, on the former Pierre S. du Pont estate in Kennett Square, Pennsylvania — du Pont bought the property in 1906 to save its historic trees and completed its famed four-acre Conservatory in 1921. Its annual \"A Longwood Christmas\" display of lights, trees, and conservatory plantings drew MSL's cameras for a holiday visit."
   },
   {
    "slug": "nico-de-swert",
    "name": "Nico De Swert",
    "type": "person",
    "kind": "guest",
-   "role": "Belgian-born floral designer (Nicholas 'Nico' De Swert), author of Living with Flowers, who created a centerpiece in an MSL segment."
+   "role": "Belgian-born floral designer and interior stylist, trained at Antwerp's Royal Academy of Fine Art and based in New York, whose work appeared in Martha Stewart Living and O, The Oprah Magazine; he later published the book Living with Flowers (Abrams, 2004), which treats flowers as an artistic medium organized by color. He built a centerpiece on-air in an MSL segment."
   },
   {
    "slug": "mentoring-usa",
    "name": "Mentoring USA",
    "type": "place",
    "kind": "organization",
-   "role": "Youth-mentoring nonprofit founded by Matilda Cuomo, featured in an MSL community-service segment."
+   "role": "One-to-one youth-mentoring nonprofit founded in 1995 by Matilda Raffa Cuomo, former First Lady of New York, as the national successor to the New York State Mentoring Program she began in 1984; it pairs volunteer mentors with children ages 7–21. Featured in an MSL community-service segment."
   },
   {
    "slug": "mount-auburn-cemetery",
    "name": "Mount Auburn Cemetery",
    "type": "place",
    "kind": "location",
-   "role": "America's first landscaped garden cemetery, in Cambridge, Massachusetts, visited in an MSL segment."
+   "role": "Consecrated in 1831 in Cambridge and Watertown, Massachusetts, America's first landscaped rural \"garden\" cemetery — a model that helped inspire the nation's public-parks movement. Its 175 acres of horticulture and monuments hold Henry Wadsworth Longfellow, Winslow Homer, and Mary Baker Eddy, and drew an MSL visit."
   },
   {
    "slug": "sothebys-restoration",
    "name": "Sotheby's Restoration",
    "type": "place",
    "kind": "business",
-   "role": "Furniture-restoration workshop of the Sotheby's auction house in New York City, toured in an MSL factory-visit segment."
+   "role": "The furniture-conservation arm of the Sotheby's auction house, founded in the late 1970s by John Stair, whose team of master cabinetmakers, gilders, polishers, and lacquer specialists restored fine antique furniture in New York City and, from the mid-1980s, Claverack, New York; it was later acquired by Stair's son Colin and renamed Stair Restoration. MSL toured the workshop in a factory-visit segment."
   },
   {
    "slug": "hoyt-and-bond",
    "name": "Hoyt & Bond",
    "type": "place",
    "kind": "business",
-   "role": "Brooklyn children's clothing shop and label founded by designer Elizabeth Beer, featured in an MSL segment on children's clothing."
+   "role": "Children's clothing label and shop founded by former documentary filmmaker Elizabeth Beer, named for two neighboring Brooklyn streets, with a storefront opened in 1998 at 246 Smith Street; it was known for hand-knit woolens and washable cotton-velvet pieces in unusually rich colors, later adding adult sizes by parental demand. Featured in an MSL segment on children's clothing."
   },
   {
    "slug": "keb-mo",
    "name": "Keb' Mo'",
    "type": "person",
    "kind": "guest",
-   "role": "Grammy-winning American blues singer-guitarist profiled in an MSL guest segment."
+   "role": "Stage name of Kevin Moore (b. 1951, Los Angeles), the singer-guitarist whose warm, Delta-rooted acoustic blues made him one of the genre's leading modern voices and a multiple Grammy winner for contemporary blues. Profiled in an MSL guest segment."
   },
   {
    "slug": "necco",
    "name": "Necco",
    "type": "place",
    "kind": "business",
-   "role": "New England Confectionery Company, the Massachusetts candy maker of Necco Wafers, whose factory MSL toured in a field-trip segment."
+   "role": "The New England Confectionery Company, formed in a 1901 Boston-area merger with roots in Oliver Chase's 1847 lozenge-cutting machine — long billed as the oldest continuously operating candy company in the United States, and maker of Necco Wafers and Sweethearts conversation hearts. MSL toured its longtime Cambridge, Massachusetts factory in a field-trip segment."
   },
   {
    "slug": "pier-antiques-show",
    "name": "Pier Antiques Show",
    "type": "place",
    "kind": "event",
-   "role": "Large New York City antiques show held on Manhattan's Hudson River passenger-ship piers, visited by MSL in a two-part field-trip segment."
+   "role": "Semiannual antiques fair created by Irene Stella of Stella Show Management in the passenger-ship terminals on Manhattan's Hudson River waterfront; at its \"Triple Pier\" peak it filled Piers 88, 90, and 92 with hundreds of dealers, ranking among New York City's largest antiques events. MSL browsed the show in a two-part field-trip segment."
   },
   {
    "slug": "rhodes-ragen-and-smith",
    "name": "Rhodes, Ragen & Smith",
    "type": "place",
    "kind": "business",
-   "role": "Seattle architectural-stone company (now Rhodes Architectural Stone) featured in an MSL field-trip segment."
+   "role": "Seattle architectural-stone firm founded by master stonemason Richard Rhodes, who apprenticed in the ancient masons' guild of Siena, Italy; the company became known for reclaiming antique stone — including material from villages displaced by China's Three Gorges Dam — for American building projects, and continues today as Rhodes Architectural Stone. Featured in an MSL field-trip segment."
   },
   {
    "slug": "ed-rice",
    "name": "Ed Rice",
    "type": "person",
    "kind": "guest",
-   "role": "Country-ham curer who presented his cured country ham in an MSL segment."
+   "role": "Second-generation Tennessee ham curer behind Rice's Country Hams of Mt. Juliet, east of Nashville — a family smokehouse business started by Ed Rice Sr. and carried on by Ed Rice Jr., whose slow-cured hams have won dozens of Grand Champion titles at state and county fairs since 1971. He presented his dry-cured country ham in the show's Nashville field-trip episode."
   },
   {
    "slug": "nashville-tennessee",
    "name": "Nashville, Tennessee",
    "type": "place",
    "kind": "location",
-   "role": "Tennessee's capital and country-music hub, the destination of an MSL field-trip segment."
+   "role": "Tennessee's capital and the heart of the American country-music industry — home of the Grand Ole Opry, the Ryman Auditorium, and Music Row — long nicknamed \"Music City.\" Destination of an MSL field-trip episode that also featured nearby ham curer Ed Rice of Rice's Country Hams."
   },
   {
    "slug": "gorham-silver",
    "name": "Gorham Silver",
    "type": "place",
    "kind": "business",
-   "role": "Historic Rhode Island silver manufacturer (Gorham Manufacturing Company) whose factory was profiled in an MSL segment."
+   "role": "Founded in Providence, Rhode Island in 1831 by silversmith Jabez Gorham, the Gorham Manufacturing Company grew into the world's leading silverware maker by the 1860s, producing everything from coin-silver spoons and sterling flatware to monumental bronze casting. MSL profiled its Rhode Island factory in a segment on fine silver."
   },
   {
    "slug": "viking-range",
    "name": "Viking Range",
    "type": "place",
    "kind": "business",
-   "role": "Kitchen-appliance manufacturer headquartered in Greenwood, Mississippi, featured in an MSL company segment."
+   "role": "Greenwood, Mississippi appliance maker founded by fourth-generation builder Fred E. Carl Jr., who designed the first professional-grade range for home use — Viking's first ranges shipped in 1987 and launched the entire \"pro-style\" residential kitchen category. Featured in an MSL company segment."
   },
   {
    "slug": "south-river-miso-company",
    "name": "South River Miso Company",
    "type": "place",
    "kind": "business",
-   "role": "Artisan wood-fired organic miso maker in Conway, Massachusetts, featured in an MSL segment; rundown misspells it 'Southern River Miso'."
+   "role": "Family-run maker of traditional wood-fired, unpasteurized organic miso, founded in 1982 by Christian and Gaella Elwell on a farm along the South River in Conway, Massachusetts. Beans and grains are cooked over wood fire in a timber-frame building warmed by a masonry stove, then aged in wooden vats — featured in an MSL segment (the rundown misspells it 'Southern River Miso')."
   },
   {
    "slug": "portland-classical-chinese-garden",
    "name": "Portland Classical Chinese Garden",
    "type": "place",
    "kind": "garden",
-   "role": "Classical Chinese garden in Portland, Oregon (opened 2000, now Lan Su Chinese Garden), featured in an MSL field-trip segment."
+   "role": "Ming-dynasty-style walled garden in Portland, Oregon's Old Town Chinatown, built by 65 artisans from Portland's sister city Suzhou and opened in September 2000, only about two years before this MSL field trip. Renamed Lan Su Chinese Garden in 2010 — 'Lan' from Portland, 'Su' from Suzhou, poetically 'Garden of Awakening Orchids.'"
   },
   {
    "slug": "scalamandr",
    "name": "Scalamandré",
    "type": "place",
    "kind": "business",
-   "role": "Historic New York textile house famed for silk trimmings and passementerie, visited in an MSL trimming segment."
+   "role": "Luxury textile house founded in 1929 by Italian immigrant Franco Scalamandré and his designer wife Flora Baranzelli, who wove their first fine silks in a Long Island City, New York mill. Famed for passementerie — ornamental trimmings, tassels, and fringe — and for historic restorations from the Kennedy White House to Hearst Castle; MSL visited for a trimming segment."
   },
   {
    "slug": "savatree",
    "name": "SavATree",
    "type": "place",
    "kind": "business",
-   "role": "Bedford Hills, NY-based tree- and lawn-care company featured in an MSL tree-safety training segment."
+   "role": "Tree, shrub, and lawn-care company headquartered in Bedford Hills, New York, founded in 1978 by Ralph Robbins to save Northeast trees from gypsy moth caterpillar defoliation; it grew into one of the country's largest arboriculture firms. MSL featured its arborists in a tree-safety training segment."
   },
   {
    "slug": "pezzini-farms",
    "name": "Pezzini Farms",
    "type": "place",
    "kind": "farm",
-   "role": "Family artichoke farm in Castroville, California, visited for an MSL artichoke segment."
+   "role": "Family farm in Castroville, California — the self-proclaimed Artichoke Center of the World — growing heirloom Green Globe artichokes from rootstock the Pezzini family brought from Italy in 1929. Its farm stand on Nashua Road just off Highway 1, opened in 1974, is beloved for fried artichoke hearts; visited for an MSL artichoke segment."
   },
   {
    "slug": "gallup-and-stribling-orchids",
    "name": "Gallup & Stribling Orchids",
    "type": "place",
    "kind": "business",
-   "role": "Large orchid grower in Carpinteria, California, toured in a multi-part MSL field-trip segment."
+   "role": "Orchid nursery established in 1954 in Carpinteria, California by horticulturist Aleck Stribling — who grew up on Montecito's orchid-laden Riven Rock estate — with father-and-son partners Emmet and Gary Gallup. It became the largest grower and distributor of cymbidium orchids in the United States, with roughly 48 acres of greenhouses; toured in a multi-part MSL field-trip segment."
   },
   {
    "slug": "dorothy-timberlake-candies",
    "name": "Dorothy Timberlake Candies",
    "type": "place",
    "kind": "business",
-   "role": "Eaton Center, New Hampshire maker of molded barley candy using antique molds, featured in an MSL barley-candy segment."
+   "role": "Family candy kitchen in Eaton Center, New Hampshire that made old-fashioned molded barley candy from 1971 to 2009, casting lollipops and clear-toy candies from a collection of more than 13,000 antique molds. Dorothy Timberlake started the business after asking for candy molds for her birthday — the candy she remembered from childhood; featured in an MSL barley-candy segment."
   },
   {
    "slug": "darcy-miller",
    "name": "Darcy Miller",
    "type": "person",
    "kind": "contributor",
-   "role": "Darcy Miller (Nussbaum), longtime Martha Stewart Weddings editor and celebrations expert, appeared in an MSL wedding special."
+   "role": "Founding editor of Martha Stewart Weddings at its 1995 launch and its longtime editorial director; a celebrations expert and illustrator who went on to write Our Wedding Scrapbook and the bestselling Celebrate Everything! (2016), with a foreword by Martha. Appeared in an MSL wedding special."
   },
   {
    "slug": "antique-rose-emporium",
    "name": "Antique Rose Emporium",
    "type": "place",
    "kind": "garden",
-   "role": "Texas rose nursery near Brenham specializing in old garden roses and display gardens, visited in an MSL rose segment."
+   "role": "Nursery and display garden in Independence, Texas, near Brenham, founded in 1983 by horticulturist Mike Shoup, the 'Rose Rustler,' who propagated old garden roses rescued from abandoned homesteads and cemeteries. Its display gardens of time-tested antique varieties made it a pilgrimage site for rose lovers; visited in an MSL rose segment."
   },
   {
    "slug": "monarch-watch",
    "name": "Monarch Watch",
    "type": "place",
    "kind": "organization",
-   "role": "University of Kansas-based monarch butterfly tagging and conservation program featured in an MSL segment."
+   "role": "Education, conservation, and research program founded in 1992 by insect ecologist Orley 'Chip' Taylor at the University of Kansas. Its volunteer network of students, teachers, and citizen scientists has tagged millions of monarch butterflies to map the fall migration to the mountains of central Mexico; featured in an MSL segment."
   },
   {
    "slug": "ray-bliss-rich",
    "name": "Ray Bliss Rich",
    "type": "person",
    "kind": "guest",
-   "role": "Artist who demonstrated fish printing (gyotaku) with Martha in an MSL craft segment."
+   "role": "Artist who joined Martha for a segment on fish prints — the Japanese craft of gyotaku, in which a fresh-caught fish is inked and pressed onto paper to record its image."
   },
   {
    "slug": "aretha-franklin",
    "name": "Aretha Franklin",
    "type": "person",
    "kind": "guest",
-   "role": "The Queen of Soul, who appeared on the show in 1999 to teach Martha her ginger ale-glazed 'Queen of Soul Ham'."
+   "role": "The Queen of Soul — 18-time Grammy winner and, in 1987, the first woman inducted into the Rock and Roll Hall of Fame. She joined Martha on the 1999 holiday special Home for the Holidays: The Family Tree to make her ginger ale-glazed 'Queen of Soul Ham.'"
   },
   {
    "slug": "tony-bennett",
    "name": "Tony Bennett",
    "type": "person",
    "kind": "guest",
-   "role": "Legendary American pop and jazz singer who appeared as a special guest on the show."
+   "role": "Legendary American crooner (1926-2023) whose seven-decade career ran from 'I Left My Heart in San Francisco' through the MTV Unplugged revival and late-life duet albums, collecting some 20 Grammy Awards including a Lifetime Achievement Award. He sang 'White Christmas' as a special guest on the 2000 special Martha Stewart's Christmas Dream."
   },
   {
    "slug": "cyndi-lauper",
    "name": "Cyndi Lauper",
    "type": "person",
    "kind": "guest",
-   "role": "Grammy-winning pop singer who appeared as a special guest on the show."
+   "role": "Pop icon who broke through with She's So Unusual (1983) and won the Best New Artist Grammy, later becoming the first woman to win a solo Tony for Best Original Score for Kinky Boots (2013). She sang 'Winter Wonderland' as a special guest on the 2000 special Martha Stewart's Christmas Dream."
   },
   {
    "slug": "ana-gasteyer",
    "name": "Ana Gasteyer",
    "type": "person",
    "kind": "guest",
-   "role": "Comedian and actress, known for her Saturday Night Live Martha Stewart impression, who appeared as a special guest on the show."
+   "role": "Comedian, actress, and Saturday Night Live cast member (1996–2002) whose recurring SNL impression of Martha Stewart became famous in its own right; Martha played along, welcoming her as a special guest on the CBS holiday special Martha Stewart's Christmas Dream (2000) alongside Tony Bennett and Cyndi Lauper. The two reunited decades later for the 2024 Roku special Martha Stewart's Christmas Fever Dream."
   },
   {
    "slug": "carlos-cort-s",
    "name": "Carlos Cortés",
    "type": "person",
    "kind": "contributor",
-   "role": "San Antonio faux bois artist, heir to the trabajo rústico concrete-sculpture tradition, visited in an MSL field-trip segment."
+   "role": "Third-generation San Antonio faux bois (trabajo rústico) artisan, heir to the concrete-sculpture tradition his great-uncle Dionicio Rodríguez brought to Texas around 1924 and passed on to his father Máximo Cortés. Best known for The Grotto (2009) on the San Antonio River Walk, he has also made faux bois furniture for Martha Stewart; MSL visited him for a field-trip segment on his craft."
   },
   {
    "slug": "san-antonio-tx",
    "name": "San Antonio, TX",
    "type": "place",
    "kind": "location",
-   "role": "Texas city the show visited for a field-trip segment on faux bois artist Carlos Cortés."
+   "role": "South Texas city that has been the American home of trabajo rústico — the Mexican faux bois concrete-sculpture tradition — since sculptor Dionicio Rodríguez arrived in 1924, leaving works that still dot Brackenridge Park. MSL came to town for a field-trip visit with Carlos Cortés, the tradition's third-generation master."
   },
   {
    "slug": "sonoma-ca",
    "name": "Sonoma, CA",
    "type": "place",
    "kind": "location",
-   "role": "Northern California wine-country town where the show filmed an on-location show open."
+   "role": "Historic plaza town at the heart of Sonoma Valley wine country — site of Mission San Francisco Solano (1823), the last of California's Spanish missions, and of the 1846 Bear Flag Revolt, and a birthplace of California winemaking. The show opened an 'American Made' episode on location here during its final season."
   },
   {
    "slug": "daisy-schwartzberg-toye",
    "name": "Daisy Schwartzberg Toye",
    "type": "person",
    "kind": "contributor",
-   "role": "Martha's personal makeup artist, who demonstrated turning daytime makeup into a festive holiday-party look on the show."
+   "role": "New York celebrity makeup artist, based out of the Rita Hazan Salon, who has been Martha's personal makeup artist — and close friend — for some two decades, and who later joined the cast of Bravo's The Real Housewives of New York City. In this segment she turns daytime makeup into a festive holiday-party look."
   },
   {
    "slug": "anduin-havens",
    "name": "Anduin Havens",
    "type": "person",
    "kind": "contributor",
-   "role": "Martha Stewart Living creative director who cooked a creamy crudite dip with Martha for an office-potluck segment."
+   "role": "Theatre-trained set designer and art director who rose through Martha Stewart Living Omnimedia as supervising production designer, special-event designer, and on-air contributor, and later became creative director of video for the Martha Stewart and Emeril Lagasse brands at Marquee Brands. Here she joins Martha to whip up a creamy crudité dip for a potluck lunch at the Martha Stewart Living offices."
   },
   {
    "slug": "jodi-levine",
    "name": "Jodi Levine",
    "type": "person",
    "kind": "contributor",
-   "role": "Longtime Martha Stewart Living crafts editor who made graham-cracker cottages with Martha in a holiday craft segment."
+   "role": "RISD-trained crafter who spent 19 years at Martha Stewart Living, rising from craft editor of the magazine to editorial director of Martha Stewart Kids and Martha Stewart Baby; she went on to found the kids-craft brand SuperMakeIt and to write the craft books Candy Aisle Crafts (2014) and Paper Goods Projects. Here she makes graham-cracker cottages with Martha — a whole village of them makes a Christmas centerpiece."
   },
   {
    "slug": "colin-van-dervort",
    "name": "Colin Van Dervort",
    "type": "person",
    "kind": "guest",
-   "role": "Louisiana groom whose Bahamas destination wedding was planned on the show with the Martha Stewart Weddings creative team."
+   "role": "Metairie, Louisiana groom who, with fiancée Liz Wilks, won the grand prize in the 'Sandals Wedding by Martha Stewart' contest: a customized destination wedding at Sandals Emerald Bay on Great Exuma, Bahamas, planned by the Martha Stewart Weddings creative team and chronicled in the 2010 special Bayou to Bahamas."
   },
   {
    "slug": "liz-wilks",
    "name": "Liz Wilks",
    "type": "person",
    "kind": "guest",
-   "role": "Louisiana bride whose Bahamas destination wedding was planned with help from the Martha Stewart Weddings creative team in this wedding segment."
+   "role": "Metairie, Louisiana bride (Elizabeth Wilks) who, with fiancé Colin Van Dervort, won a customized 'Sandals Wedding by Martha Stewart' dream wedding at Sandals Emerald Bay on Great Exuma, Bahamas; the Martha Stewart Weddings creative team planned the classic, elegant ceremony chronicled in the 2010 special Bayou to Bahamas."
   },
   {
    "slug": "bahamas",
    "name": "Bahamas",
    "type": "place",
    "kind": "location",
-   "role": "Caribbean island nation that hosted the destination wedding planned by the Martha Stewart Weddings creative team in this segment."
+   "role": "Atlantic archipelago nation of some 700 islands and cays southeast of Florida. The Martha Stewart Weddings team staged Colin Van Dervort and Liz Wilks's destination wedding at the Sandals Emerald Bay resort on Great Exuma for the 2010 special Bayou to Bahamas."
   },
   {
-   "slug": "rosine-green",
-   "name": "Rosine Green",
-   "type": "person",
-   "kind": "contributor",
-   "role": "Founder of Rosine Green Associates, the noted Brookline, Mass. antiques- and art-restoration studio; demonstrated restoration in an MSL segment."
+   "slug": "rosine-green-associates",
+   "name": "Rosine Green Associates",
+   "type": "place",
+   "kind": "business",
+   "role": "Brookline, Massachusetts antiques- and art-restoration studio (founded 1970) whose craftsmen restore furniture, metalwork, paintings, and objets d'art; credited in an early-season MSL segment."
   },
   {
    "slug": "jamaica-kincaid",
    "name": "Jamaica Kincaid",
    "type": "person",
    "kind": "guest",
-   "role": "Antiguan-American novelist and gardener; author of My Garden (Book); interviewed on MSL about the book."
+   "role": "Antiguan-American novelist, essayist, and longtime New Yorker staff writer (Annie John, Lucy, A Small Place) who became an equally celebrated garden writer from her home in North Bennington, Vermont. She visited MSL to discuss My Garden (Book):, her 1999 collection of gardening essays."
+  },
+  {
+   "slug": "sal-gilbertie",
+   "name": "Sal Gilbertie",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Second-generation owner of Gilbertie's Herb Gardens in Westport, Connecticut (family firm founded 1922), one of the country's leading herb growers and author of several herb-gardening books. A Martha Stewart plant supplier for over 30 years, he appeared on Martha Stewart Living as its herb authority and later donated the plants for Martha's culinary herb garden exhibit at the New York Botanical Garden."
+  },
+  {
+   "slug": "fred-klatt",
+   "name": "Fred Klatt",
+   "type": "person",
+   "kind": "guest",
+   "role": "Tinsmith who appeared on Martha Stewart Living's first season, demonstrating traditional tin-smithing in a March 1994 segment logged in the show's archive simply as 'Tin man'."
+  },
+  {
+   "slug": "greenwich-orchids",
+   "name": "Greenwich Orchids",
+   "type": "place",
+   "kind": "business",
+   "role": "Orchid grower and floral boutique at 106 Mason Street in Greenwich, Connecticut, founded in 1981 by Ted and Wendy Siegel, who built their own greenhouses and supplied orchids to florists up and down the East Coast. Martha visited for an orchid segment that aired in January 1996."
+  },
+  {
+   "slug": "selody-sod-farm",
+   "name": "Selody Sod Farm",
+   "type": "place",
+   "kind": "farm",
+   "role": "The Selody family's turf-grass farm in Somerset County, New Jersey, cutting sod for New York landscapers since the 1930s. It is the family farm on which Ken Selody — the topiary specialist, Atlock Farm founder, and Martha Stewart contributing editor — was raised."
+  },
+  {
+   "slug": "breezy-hill-orchard",
+   "name": "Breezy Hill Orchard",
+   "type": "place",
+   "kind": "farm",
+   "role": "Hudson Valley apple orchard and cider mill in Staatsburg, New York (est. 1949), owned since the 1980s by Cornell-trained pomologist Elizabeth Ryan, the 'Grand Dame of Hudson Valley Cider.' Grows some 50 apple varieties and presses fresh and European-style ciders."
+  },
+  {
+   "slug": "penn-and-fletcher",
+   "name": "Penn & Fletcher",
+   "type": "place",
+   "kind": "business",
+   "role": "New York custom-embroidery atelier founded in 1986 by designers Andrew B. Marlay and Ernest A. Smith, one of the last embroidery houses in the city. Its workroom produces embroidered curtains, valances, and furnishings for Broadway, opera, film, museums, and top interior designers."
+  },
+  {
+   "slug": "belleclare-nursery",
+   "name": "Belleclare Nursery",
+   "type": "place",
+   "kind": "business",
+   "role": "Legendary fig nursery in Plainview, Long Island, run for nearly 50 years by brothers Chris and Bill DiPaola, whose collection of rare Mediterranean fig varieties made 'Belleclare' figs prized by collectors to this day. The DiPaolas were among the most influential fig propagators in America."
+  },
+  {
+   "slug": "atlock-farm",
+   "name": "Atlock Farm",
+   "type": "place",
+   "kind": "farm",
+   "role": "Renowned seven-acre topiary nursery at 545 Weston Canal Road, Somerset, New Jersey, founded in 1987 by Ken Selody on a piece of his family's turf-grass farm. Selody — a former Martha Stewart contributing editor trained under topiary master Allen Haskell — made Atlock the East Coast's premier source for sculpted myrtle, rosemary, and coleus standards, with clients including Martha Stewart and the White House."
+  },
+  {
+   "slug": "the-lobster-club",
+   "name": "The Lobster Club",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Chef Anne Rosenzweig's Upper East Side Manhattan restaurant (1995-2001), an American-comfort-food sequel to her acclaimed Arcadia, famous for its signature lobster club sandwich and upscale takes on homey dishes like the hamburger."
+  },
+  {
+   "slug": "charles-h-beckley-inc",
+   "name": "Charles H. Beckley, Inc.",
+   "type": "place",
+   "kind": "business",
+   "role": "Charles H. Beckley, Inc. is a South Bronx, New York custom mattress workshop founded in 1931, hand-making mattresses, box springs, headboards, and daybeds for the interior-design trade. Martha Stewart is a documented client — she ordered her own favorite firm mattresses and box springs from Beckley — and the company appeared on the Martha Stewart Living television program."
+  },
+  {
+   "slug": "patroon",
+   "name": "Patroon",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Patroon (now Aretsky's Patroon) is restaurateur Ken Aretsky's clubby Midtown Manhattan restaurant at 160 East 46th Street, opened in 1995 and awarded three New York Times stars in the late 1990s under chef Franck Deletrain. Aretsky, a former '21' Club operator, has known Martha Stewart for decades and counts her among the restaurant's prominent regulars."
+  },
+  {
+   "slug": "ruth-rogers",
+   "name": "Ruth Rogers",
+   "type": "person",
+   "kind": "chef",
+   "role": "American-born chef who co-founded The River Café in Hammersmith, London with Rose Gray in 1987; the Thames-side Italian restaurant won a Michelin star in 1998 and its River Café cookbooks became modern classics. She presented River Café dishes with Gray on MSL in July 1998."
+  },
+  {
+   "slug": "rose-gray",
+   "name": "Rose Gray",
+   "type": "person",
+   "kind": "chef",
+   "role": "British chef (1939-2010) who co-founded The River Café in Hammersmith, London with Ruth Rogers in 1987, championing seasonal Italian farmhouse cooking; co-author of the River Café cookbooks and co-presenter of the 1998 Channel 4 series 'The Italian Kitchen'. She presented River Café dishes with Rogers on MSL in July 1998."
+  },
+  {
+   "slug": "the-four-seasons-restaurant",
+   "name": "The Four Seasons Restaurant",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Landmark Manhattan restaurant (1959-2019) in Philip Johnson-designed rooms inside Mies van der Rohe's Seagram Building at 99 East 52nd Street; birthplace of the 'power lunch', famed for menus that changed with the seasons and for its signature crisp duck. MSL devoted a full July 1998 episode to preparing its classic duck in four parts."
+  },
+  {
+   "slug": "cutchogue-fire-department-chicken-barbecue",
+   "name": "Cutchogue Fire Department Chicken Barbecue",
+   "type": "place",
+   "kind": "event",
+   "role": "Annual chicken barbecue held since the 1950s by the Cutchogue Fire Department and its Ladies Auxiliary in Cutchogue on Long Island's North Fork, cooking thousands of chickens over open pits with a famously secret basting sauce. Martha attended for a 1998 MSL episode, tried (unsuccessfully) to get the sauce recipe, and later hired the department to cater her company clambake."
+  },
+  {
+   "slug": "westport-digital-studios",
+   "name": "Westport Digital Studios",
+   "type": "place",
+   "kind": "business",
+   "role": "A 1929 office-and-warehouse complex at 19 Newtown Turnpike in Westport, CT that Martha Stewart Living Omnimedia leased from 1998 to 2004 and converted into the show's television production home — three sound stages, a broadcast control room, two prep kitchens, and six wooded acres for outdoor filming, with Studio A's kitchen set modeled on Martha's East Hampton (Lily Pond Lane) kitchen. The September 1998 season-six opener toured the newly built facility in a 'Studio A Before & After' segment."
+  },
+  {
+   "slug": "michael-hughes",
+   "name": "Michael Hughes",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Master craftsman and thrower at Josiah Wedgwood & Sons in Barlaston, England, who spent most of his working life at the factory and demonstrated the potter's wheel at the Wedgwood Visitor Centre and in exhibitions for the company worldwide. He threw pots on the wheel for Martha during her Wedgwood factory field trip."
+  },
+  {
+   "slug": "pierre-herme",
+   "name": "Pierre Hermé",
+   "type": "person",
+   "kind": "chef",
+   "role": "French pâtissier dubbed the 'Picasso of Pastry', who led the pastry kitchens of Fauchon and then Ladurée before founding Maison Pierre Hermé Paris in 1998. He demonstrated classic French pastry work — génoise, his signature Carioca chocolate-coffee cake, and quenelles — on this Season 6 episode."
+  },
+  {
+   "slug": "madeleine-kamman",
+   "name": "Madeleine Kamman",
+   "type": "person",
+   "kind": "chef",
+   "role": "French-born cooking teacher, chef, and author (When French Women Cook; The New Making of a Cook) who directed the School for American Chefs at Beringer Vineyards and hosted PBS's Madeleine Cooks. She joined Martha for an egg-technique episode, making chocolate soufflé among omelets and crème anglaise."
+  },
+  {
+   "slug": "bill-gates",
+   "name": "Bill Gates",
+   "type": "person",
+   "kind": "guest",
+   "role": "Co-founder and then-CEO of Microsoft, the world's best-known software executive, interviewed by Martha for a technology-themed episode built around sending and receiving email and email etiquette."
+  },
+  {
+   "slug": "prime-steakhouse-bellagio-las-vegas",
+   "name": "Prime Steakhouse (Bellagio, Las Vegas)",
+   "type": "place",
+   "kind": "restaurant",
+   "role": "Jean-Georges Vongerichten's celebrated steakhouse overlooking the fountains at the Bellagio Resort & Casino in Las Vegas, opened with the resort in 1998 and long regarded as one of the city's premier fine-dining rooms. Martha's field-trip segments toured its potato and sauce work and steak presentation shortly after it opened."
+  },
+  {
+   "slug": "david-macaulay",
+   "name": "David Macaulay",
+   "type": "person",
+   "kind": "guest",
+   "role": "British-born American author and illustrator of the bestselling explainer classics The Way Things Work and its 1998 update The New Way Things Work, and winner of the 1991 Caldecott Medal for Black and White. He appeared on the show's Bookshelf segment to present the newly published update."
+  },
+  {
+   "slug": "leonards-new-england",
+   "name": "Leonards New England",
+   "type": "place",
+   "kind": "business",
+   "role": "Antiques dealer in Seekonk, Massachusetts (founded 1933 by Lester and Hazel Leonard), famous for the country's largest collection of antique beds and for pioneering the resizing of antique bed frames to fit modern mattresses. Martha visited with owner Jeffrey Jenkins, who bought the family business in 1988, for the 'Leonards Beds' segment."
+  },
+  {
+   "slug": "sara-foster",
+   "name": "Sara Foster",
+   "type": "person",
+   "kind": "chef",
+   "role": "Chef and cookbook author who cooked for Martha Stewart's Westport catering company after graduating from the New York Restaurant School in 1981, then founded Foster's Market, the Durham, North Carolina gourmet cafe and market, in 1990. She returned to Martha's show to cook Southern dishes including her shrimp and grit cakes."
+  },
+  {
+   "slug": "ian-ingersoll",
+   "name": "Ian Ingersoll",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Ian Ingersoll is a master cabinetmaker whose workshop in West Cornwall, Connecticut — founded in the late 1970s — became nationally known for faithful Shaker chair reproductions after the 1986 Whitney Museum Shaker exhibition. His interlocking-tenon slat-back and rocker designs adapt classic Mount Lebanon Shaker patterns for modern use."
+  },
+  {
+   "slug": "john-d-williams-jr",
+   "name": "John D. Williams Jr.",
+   "type": "person",
+   "kind": "guest",
+   "role": "John D. Williams Jr. served 25 years as the first and only executive director of the National Scrabble Association and was the game's official media spokesman, co-authoring 'Everything Scrabble' with three-time national champion Joe Edley. His 2015 memoir 'Word Nerd' recounts promoting Scrabble on Martha Stewart's show."
+  },
+  {
+   "slug": "maurice-sendak",
+   "name": "Maurice Sendak",
+   "type": "person",
+   "kind": "guest",
+   "role": "Maurice Sendak (1928-2012), author-illustrator of 'Where the Wild Things Are' and one of the most celebrated children's-book artists of the 20th century, lived and worked in Ridgefield, Connecticut. He visited Martha's Connecticut television studio in 2000 to discuss his work, the books that shaped him — including 'Mickey Mouse in Pigmy Land' and 'The Prince and the Pauper' — and the importance of reading to children."
+  },
+  {
+   "slug": "william-cahill",
+   "name": "William Cahill",
+   "type": "person",
+   "kind": "contributor",
+   "role": "William P. Cahill is a Galway-born master roof thatcher who completed a five-year apprenticeship in Ireland — training under English master thatcher Peter Brockett and Donegal master Peter Slevin — before emigrating to the U.S., where he thatches roofs nationwide from his base in Ohio. His commissions include the Smithsonian-sponsored rethatching of the historic Jamestown church in Virginia."
+  },
+  {
+   "slug": "the-windsor-institute",
+   "name": "The Windsor Institute",
+   "type": "place",
+   "kind": "business",
+   "role": "Windsor chairmaking school in Hampton, New Hampshire, founded in 1994 by Mike Dunbar — the craftsman credited with reviving American Windsor chairmaking — and his wife Susanna. It taught five-day chair-building courses year-round until closing in 2016."
+  },
+  {
+   "slug": "betlan-corporation",
+   "name": "Betlan Corporation",
+   "type": "place",
+   "kind": "business",
+   "role": "Custom architectural fabrication shop in Ansonia, Connecticut, founded in 1985, known for bespoke metal countertops, range hoods, sinks, and cabinetry for high-end residential kitchens (its work has also appeared in This Old House idea houses)."
+  },
+  {
+   "slug": "green-animals-topiary-garden",
+   "name": "Green Animals Topiary Garden",
+   "type": "place",
+   "kind": "garden",
+   "role": "The oldest topiary garden in the United States, on a seven-acre estate in Portsmouth, Rhode Island, maintained by the Preservation Society of Newport County. Its more than 80 sculpted privet, yew, and boxwood figures — many shaped as animals — were created by gardeners Joseph Carreiro and George Mendonca over eight decades."
+  },
+  {
+   "slug": "frankoma-pottery",
+   "name": "Frankoma Pottery",
+   "type": "place",
+   "kind": "business",
+   "role": "Oklahoma pottery company founded in 1933 by ceramicist John Frank and based in Sapulpa from 1938, famed for Southwestern-inspired dinnerware and art pottery made from local Ada and Sapulpa clay in signature glazes like Prairie Green and Desert Gold. Its wares became a sought-after mid-century collectible, and on Martha Stewart Living the collection was presented by MSL garden editor Margaret Roach, the collector who introduced Martha to Frankoma."
+  },
+  {
+   "slug": "david-moses-bridges",
+   "name": "David Moses Bridges",
+   "type": "person",
+   "kind": "guest",
+   "role": "Passamaquoddy birch bark artist and canoe builder (1962-2017) from Pleasant Point, Maine, who revived traditional Wabanaki birchbark canoe-making, baskets, and winter-bark etching learned from his great-grandfather Sylvester Gabriel. He served on the board of the Abbe Museum in Bar Harbor, was named a Maine Arts Commission Traditional Arts Fellow, and won first prize for traditional basketmaking at the Heard Museum Guild Indian Fair."
+  },
+  {
+   "slug": "shepaug-dam-bald-eagle-observation-area",
+   "name": "Shepaug Dam Bald Eagle Observation Area",
+   "type": "place",
+   "kind": "location",
+   "role": "Winter bald-eagle viewing site at the Shepaug hydroelectric dam on the Housatonic River in Southbury, Connecticut. Open December through early March since 1985, its volunteer-staffed observation blind overlooks the open water below the dam where wintering eagles gather to fish."
+  },
+  {
+   "slug": "flying-disc-ranch",
+   "name": "Flying Disc Ranch",
+   "type": "place",
+   "kind": "farm",
+   "role": "Permaculture date farm in Thermal, California, in the heart of the Coachella Valley, founded in 1979 by former champion frisbee player Robert Lower. The roughly eleven-acre grove grows organic dates alongside citrus, figs, and pomegranates, and remains a farmers-market fixture across California."
+  },
+  {
+   "slug": "martha-by-mail",
+   "name": "Martha by Mail",
+   "type": "place",
+   "kind": "business",
+   "role": "Martha Stewart's own mail-order catalog and e-commerce business, launched in 1995 and folded into Martha Stewart Living Omnimedia's Internet/Direct Commerce division, selling exclusive housewares, craft kits, and baking tools until it wound down in 2004. MSL aired occasional behind-the-scenes segments on how its products were developed."
+  },
+  {
+   "slug": "mrs-maus",
+   "name": "Mrs. Maus",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Nutley, New Jersey neighbor of the young Martha Kostyra who, with her husband, owned a local bakery; Martha grew up helping the couple make their buttery fruitcakes packed with nuts and hand-cut candied fruit, and 'Mrs. Maus's Fruitcake' remained a signature recipe of Martha's Christmas baking repertoire."
+  },
+  {
+   "slug": "memrie-lewis",
+   "name": "Memrie Lewis",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Landscape designer and one of Martha's closest friends, known for gardens from Charleston to New York to Maine and for Manhattan terrace and rooftop gardens; her namesake layered omelet recipe aired as a Season 5 cooking segment."
+  },
+  {
+   "slug": "eve-stone",
+   "name": "Eve Stone",
+   "type": "person",
+   "kind": "guest",
+   "role": "Antiques dealer and nationally recognized authority on 16th-19th-century English and Continental copper and brass; founded Eve Stone Antiques, Ltd. in 1970, running it with her daughter Susan from Woodbridge, Connecticut, with earlier shops on Martha's Vineyard and at Manhattan's Place des Antiquaires."
+  },
+  {
+   "slug": "eleanora-scarpetta",
+   "name": "Eleanora Scarpetta",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Naples-born Italian-American home cook whom Martha heralded as an 'Old World cook'; she was such a hit on Martha Stewart Living that she returned about a dozen times to cook family dishes. Her 2004 cookbook Eleanora's Kitchen (with Sarah Belk King) collects the Italian-American classics viewers saw on the show."
+  },
+  {
+   "slug": "bon-yagi",
+   "name": "Bon Yagi",
+   "type": "person",
+   "kind": "guest",
+   "role": "Japanese-American restaurateur behind New York's T.I.C. Restaurant Group, whose East Village sake bar Decibel (1993) and Sakagura (1997) helped introduce premium sake to American diners. He came on Martha Stewart Living to teach Martha about sake following Decibel's success."
+  },
+  {
+   "slug": "sharon-lebewohl",
+   "name": "Sharon Lebewohl",
+   "type": "person",
+   "kind": "guest",
+   "role": "Daughter of Second Avenue Deli founder Abe Lebewohl and co-author of The 2nd Ave Deli Cookbook (1999), which preserved the recipes of the landmark New York Jewish deli. She shared her family's latke recipe with Martha Stewart Living, published as 'Sharon's Potato Latkes.'"
+  },
+  {
+   "slug": "necy-guimaraes",
+   "name": "Necy Guimaraes",
+   "type": "person",
+   "kind": "contributor",
+   "role": "Senior set decorator in Martha Stewart Living Television's art department (c. 1999-2001), listed among the show's Daytime Emmy set-decoration nominees. The tablescapes seen on the program were her professional craft, showcased on air in 'Necy's Tablesetting.'"
+  },
+  {
+   "slug": "city-park-new-orleans",
+   "name": "City Park (New Orleans)",
+   "type": "place",
+   "kind": "garden",
+   "role": "New Orleans's 1,300-acre municipal park, founded in 1854, home to the world's largest collection of mature live oaks as well as the New Orleans Museum of Art and Botanical Garden. Visited as a field trip during the show's New Orleans episode."
+  },
+  {
+   "slug": "terence-conran",
+   "name": "Terence Conran",
+   "type": "person",
+   "kind": "guest",
+   "role": "Sir Terence Conran (1931-2020), British designer, retailer, and restaurateur — founder of Habitat and The Conran Shop and one of the most influential figures in modern home design. In February 2000 he opened Guastavino's, his first American restaurant, in the landmark tile-vaulted Bridgemarket space under Manhattan's Queensboro Bridge, and sat for an interview on Martha Stewart Living that spring."
+  },
+  {
+   "slug": "pino-luongo",
+   "name": "Pino Luongo",
+   "type": "person",
+   "kind": "chef",
+   "role": "Tuscan-born Manhattan restaurateur and cookbook author behind Le Madri, Coco Pazzo, Centolire, and Morso, credited with bringing Tuscan home cooking to New York fine dining in the late 1980s and 1990s. His signature robiola pizza — a split focaccia spread with robiola cheese and finished with white truffle oil, made famous at Le Madri — was published by Martha Stewart Living, and he demonstrated pizza dough on the show in 2000."
+  },
+  {
+   "slug": "young-concert-artists",
+   "name": "Young Concert Artists",
+   "type": "place",
+   "kind": "organization",
+   "role": "New York City nonprofit founded in 1961 by Susan Wadsworth that discovers young classical musicians through auditions and launches their careers — alumni include Pinchas Zukerman, Emanuel Ax, Murray Perahia, and Dawn Upshaw. Its young musicians were interviewed on a Season 9 Thanksgiving-week episode as part of the show's classical-music arc."
   }
  ],
  "appearances": [
@@ -1919,8 +2248,8 @@
    "evidence": "The Martha Stewart Weddings creative team assists Louisiana natives Colin Van Dervort and Liz Wilks plan a classic and elegant destination wedding in the Bahamas."
   },
   {
-   "slug": "rosine-green",
-   "type": "person",
+   "slug": "rosine-green-associates",
+   "type": "place",
    "vhx_id": 334343,
    "evidence": "Rosine Green"
   },
@@ -1929,6 +2258,391 @@
    "type": "person",
    "vhx_id": 341136,
    "evidence": "Interview with Jamaica Pt. 1 and 2 Book"
+  },
+  {
+   "slug": "sal-gilbertie",
+   "type": "person",
+   "vhx_id": 333489,
+   "evidence": "sal's herb garden",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "fred-klatt",
+   "type": "person",
+   "vhx_id": 333468,
+   "evidence": "Tin man",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "greenwich-orchids",
+   "type": "place",
+   "vhx_id": 334525,
+   "evidence": "Greenwich Orchid",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "selody-sod-farm",
+   "type": "place",
+   "vhx_id": 337388,
+   "evidence": "FT-Sod Farming",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "breezy-hill-orchard",
+   "type": "place",
+   "vhx_id": 337427,
+   "evidence": "FT - Apple Orchard",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "breezy-hill-orchard",
+   "type": "place",
+   "vhx_id": 337708,
+   "evidence": "FT - Pressing Cider",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "penn-and-fletcher",
+   "type": "place",
+   "vhx_id": 337424,
+   "evidence": "FT - Curtains",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "belleclare-nursery",
+   "type": "place",
+   "vhx_id": 337438,
+   "evidence": "FT- Fig Nursery",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "atlock-farm",
+   "type": "place",
+   "vhx_id": 337444,
+   "evidence": "FT -Unusual Topiaries Pt.1",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "atlock-farm",
+   "type": "place",
+   "vhx_id": 337457,
+   "evidence": "FT - Annual Garden",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "the-lobster-club",
+   "type": "place",
+   "vhx_id": 337698,
+   "evidence": "FT- Burgers",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "charles-h-beckley-inc",
+   "type": "place",
+   "vhx_id": 337765,
+   "evidence": "Mattress Maker",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "patroon",
+   "type": "place",
+   "vhx_id": 337930,
+   "evidence": "Patroon Salad",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "ruth-rogers",
+   "type": "person",
+   "vhx_id": 344679,
+   "evidence": "Presentation with Ruth & Rose",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "rose-gray",
+   "type": "person",
+   "vhx_id": 344679,
+   "evidence": "Presentation with Ruth & Rose",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "the-four-seasons-restaurant",
+   "type": "place",
+   "vhx_id": 337972,
+   "evidence": "Four Season Duck Pts. 1-4",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "cutchogue-fire-department-chicken-barbecue",
+   "type": "place",
+   "vhx_id": 337984,
+   "evidence": "FT Cutchogue BBQ",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "hog-island-oyster-farm",
+   "type": "place",
+   "vhx_id": 337985,
+   "evidence": "FT Oyster Pizza",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "westport-digital-studios",
+   "type": "place",
+   "vhx_id": 351090,
+   "evidence": "Studio A Before & After",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "michael-hughes",
+   "type": "person",
+   "vhx_id": 340363,
+   "evidence": "Potter's Wheel with Potter Pt. 1 and Pt. 2",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "metropolitan-museum-of-art",
+   "type": "place",
+   "vhx_id": 340815,
+   "evidence": "Flower Arranging at MMA",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "pierre-herme",
+   "type": "person",
+   "vhx_id": 340845,
+   "evidence": "Carioca Pt.1 and 2",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "madeleine-kamman",
+   "type": "person",
+   "vhx_id": 344680,
+   "evidence": "Chocolate Souffle with Madeleine II",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "bill-gates",
+   "type": "person",
+   "vhx_id": 341095,
+   "evidence": "Interview with Bill",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "prime-steakhouse-bellagio-las-vegas",
+   "type": "place",
+   "vhx_id": 344730,
+   "evidence": "FT - Potatoes Pt. 1 and Pt. 2",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "david-macaulay",
+   "type": "person",
+   "vhx_id": 341133,
+   "evidence": "Bookshelf - New Way Things Work Pts. 1 and 2",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "rick-bayless",
+   "type": "person",
+   "vhx_id": 352032,
+   "evidence": "Chipotle Chicken with Creamy Spinach",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "leonards-new-england",
+   "type": "place",
+   "vhx_id": 347450,
+   "evidence": "Leonard's Beds",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "sara-foster",
+   "type": "person",
+   "vhx_id": 347520,
+   "evidence": "Shrimp & Grit Cakes with Seven Parts 1 and 2",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "ian-ingersoll",
+   "type": "person",
+   "vhx_id": 348434,
+   "evidence": "Ingersoll Shaker Chairs",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "john-d-williams-jr",
+   "type": "person",
+   "vhx_id": 348519,
+   "evidence": "Scrabble Lessons / Scrabble Match / Scrabble Archive",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "maurice-sendak",
+   "type": "person",
+   "vhx_id": 348583,
+   "evidence": "Interview with Maurice book",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "william-cahill",
+   "type": "person",
+   "vhx_id": 348701,
+   "evidence": "Irish Roof Thatcher",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "brooklyn-museum",
+   "type": "place",
+   "vhx_id": 348794,
+   "evidence": "Hiroshige at Brooklyn Museum",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "the-windsor-institute",
+   "type": "place",
+   "vhx_id": 349303,
+   "evidence": "Windsor Chair School",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "betlan-corporation",
+   "type": "place",
+   "vhx_id": 349307,
+   "evidence": "Betlan Countertop",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "green-animals-topiary-garden",
+   "type": "place",
+   "vhx_id": 349309,
+   "evidence": "Green Animal Topiary",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "frankoma-pottery",
+   "type": "place",
+   "vhx_id": 349369,
+   "evidence": "Collecting Frankoma",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "david-moses-bridges",
+   "type": "person",
+   "vhx_id": 349372,
+   "evidence": "Birch Bark Art",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "shepaug-dam-bald-eagle-observation-area",
+   "type": "place",
+   "vhx_id": 349565,
+   "evidence": "Shepaug Eagle",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "flying-disc-ranch",
+   "type": "place",
+   "vhx_id": 349563,
+   "evidence": "Date Harvest",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "marc-morrone",
+   "type": "person",
+   "vhx_id": 350408,
+   "evidence": "Fish Breed - Goldfish 101",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "martha-by-mail",
+   "type": "place",
+   "vhx_id": 350429,
+   "evidence": "MbM - Development",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "ben-krupinski",
+   "type": "person",
+   "vhx_id": 658308,
+   "evidence": "Gingerbread House with Miss Piggy",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "mrs-maus",
+   "type": "person",
+   "vhx_id": 337761,
+   "evidence": "Mrs. Maus' Fruit Cake COM",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "memrie-lewis",
+   "type": "person",
+   "vhx_id": 337902,
+   "evidence": "Memrie's Layered Omelet",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "eve-stone",
+   "type": "person",
+   "vhx_id": 337988,
+   "evidence": "FT Eve Stone's  Copper and Brass",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "eleanora-scarpetta",
+   "type": "person",
+   "vhx_id": 347451,
+   "evidence": "Eggplant Parmigiana with Eleanora Part 1 and 2",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "bon-yagi",
+   "type": "person",
+   "vhx_id": 347466,
+   "evidence": "Sake with Bon",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "sharon-lebewohl",
+   "type": "person",
+   "vhx_id": 347770,
+   "evidence": "Potato Pancakes with Sharon",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "necy-guimaraes",
+   "type": "person",
+   "vhx_id": 348441,
+   "evidence": "Necy's Tablesetting",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "city-park-new-orleans",
+   "type": "place",
+   "vhx_id": 348435,
+   "evidence": "Field Trip to City Park",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "terence-conran",
+   "type": "person",
+   "vhx_id": 348629,
+   "evidence": "Interview with Terrance",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "pino-luongo",
+   "type": "person",
+   "vhx_id": 348704,
+   "evidence": "Pizza Dough with Pino II",
+   "source_note": "deep-research identification"
+  },
+  {
+   "slug": "young-concert-artists",
+   "type": "place",
+   "vhx_id": 343284,
+   "evidence": "Interview with Young Concert Artists",
+   "source_note": "deep-research identification"
   }
  ]
 }
