@@ -1,3 +1,14 @@
+> **Maintainer research notes — not read by the application.** These are informal
+> notes tracking coverage gaps as a maintainer investigated them, kept for
+> historical/research context only; no code in this repo reads this file. They
+> reflect the state of a specific live deployment's dataset, which includes
+> episodes augmented from `marthastewart.tv` beyond what's in the committed
+> CC-BY dataset (`data/episodes.json` et al.) — so counts below may not match
+> what you get from a fresh import of the data in this repo. The `/gaps` page
+> generated at import time from `episodes.json`'s `meta.gaps` (see
+> `buildGapsMarkdown()` in `src/import/run.ts`) is the source of truth for
+> coverage gaps in any given deployment.
+
 # What we don't know yet
 
 This archive prefers to say what it does not know.

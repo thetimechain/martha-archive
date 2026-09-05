@@ -36,7 +36,7 @@ appeared on the shows and the **places** Martha visited.
 - [Hono](https://hono.dev) + TypeScript JSX, fully server-rendered
 - Drizzle ORM + Postgres (Neon in production)
 - fly.io (`fly.toml`, app `martha`)
-- Self-hosted Cormorant Garamond / Libre Caslon Text / EB Garamond
+- Self-hosted Cormorant Garamond / Libre Caslon Text / EB Garamond / Cormorant SC
 
 ## Run locally
 
