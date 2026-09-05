@@ -48,16 +48,19 @@ const SHORTHAND_RE = new RegExp(
 /**
  * Wrap each known shorthand acronym in an <abbr title="…"> element.
  *
- * Input is treated as plain text (no HTML). It is HTML-escaped first; the
- * <abbr> tags are then injected into the escaped output. Safe to use as
- * the value of a `dangerouslySetInnerHTML` prop.
+ * Contract: `text` is RAW, untrusted plain text (no HTML) — scraped /
+ * imported data with no upstream sanitization. It is ALWAYS HTML-escaped
+ * first, unconditionally, with no exceptions or shortcuts; the <abbr> tags
+ * are then injected into the escaped output. Safe to use as the value of a
+ * `dangerouslySetInnerHTML` prop.
  *
- * Idempotent: if the input already contains `class="shorthand"`, returns it
- * unchanged.
+ * Callers must not pass already-decorated HTML (e.g. this function's own
+ * prior output) back in as `text` — there is no idempotency guard, so doing
+ * so will double-escape and re-wrap it. Each raw field should be decorated
+ * exactly once, at render time.
  */
 export function decorateShorthand(text: string): string {
   if (!text) return "";
-  if (text.includes('class="shorthand"')) return text;
   const escaped = escapeHtml(text);
   return escaped.replace(SHORTHAND_RE, (m) => {
     const expansion = SHORTHAND[m] ?? "";

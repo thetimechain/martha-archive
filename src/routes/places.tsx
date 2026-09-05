@@ -133,9 +133,9 @@ placesRoute.get("/places", async (c) => {
                   <a href={`/places/${p.slug}`} style="text-decoration:none;color:inherit;display:block;padding:var(--space-2) 0;border-bottom:var(--hairline-thin);">
                     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
                       <span style="font-family:var(--font-body);font-size:1.05rem;color:var(--body-text);">{p.name}</span>
-                      <span style="font-family:var(--font-display);font-size:1.2rem;color:var(--bedford-gray);">{p.mentions}</span>
+                      <span style="font-family:var(--font-display);font-size:1.2rem;color:var(--mid-gray);">{p.mentions}</span>
                     </div>
-                    <p class="caption" style="margin-top:4px;color:var(--bedford-gray);font-size:0.75rem;">
+                    <p class="caption" style="margin-top:4px;color:var(--mid-gray);font-size:0.75rem;">
                       {KIND_LABEL[p.kind] ?? p.kind}
                     </p>
                     {p.role && (
@@ -162,12 +162,12 @@ placesRoute.get("/places", async (c) => {
           </nav>
           {letters.map((l) => (
             <section id={`letter-${l}`} style="margin-bottom:var(--space-3);">
-              <p style="font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--bedford-gray);margin-bottom:var(--space-1);">{l}</p>
+              <p style="font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--mid-gray);margin-bottom:var(--space-1);">{l}</p>
               <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--space-1) var(--space-4);">
                 {(alpha.get(l) ?? []).map((p) => (
                   <a href={`/places/${p.slug}`} style="text-decoration:none;color:inherit;padding:2px 0;border-bottom:var(--hairline-thin);display:flex;justify-content:space-between;gap:var(--space-2);">
                     <span>{p.name}</span>
-                    <span style="color:var(--bedford-gray);font-size:0.75rem;">{KIND_LABEL[p.kind] ?? p.kind}</span>
+                    <span style="color:var(--mid-gray);font-size:0.75rem;">{KIND_LABEL[p.kind] ?? p.kind}</span>
                   </a>
                 ))}
               </div>
@@ -175,7 +175,7 @@ placesRoute.get("/places", async (c) => {
           ))}
         </section>
 
-        <p class="caption" style="margin-top:var(--space-7);color:var(--bedford-gray);max-width:var(--measure-prose);">
+        <p class="caption" style="margin-top:var(--space-7);color:var(--mid-gray);max-width:var(--measure-prose);">
           Field-trip subjects are extracted from MSL TV segment descriptions on marthastewart.tv.
           Curated entries include researched context (founding, location, link to Martha); discovered
           entries show only the segment they appeared in.
@@ -380,14 +380,14 @@ placesRoute.get("/places/:slug", async (c) => {
           <a href="/places" style="color:var(--body-text);">Places</a>
         </p>
         <h1 class="display" style="margin-bottom:var(--space-2);">{place.name}</h1>
-        <p class="caption" style="color:var(--bedford-gray);margin-bottom:var(--space-3);">
+        <p class="caption" style="color:var(--mid-gray);margin-bottom:var(--space-3);">
           {KIND_LABEL[place.kind] ?? place.kind} · {place.mentions} appearance{place.mentions === 1 ? "" : "s"}
         </p>
         {place.role && (
           <p class="lede" style="max-width:var(--measure-prose);margin-bottom:var(--space-5);">{place.role}</p>
         )}
         {wikiLinks.length > 0 && (
-          <p class="caption" style="font-style:italic;color:var(--bedford-gray);max-width:var(--measure-prose);margin-top:calc(-1 * var(--space-3));margin-bottom:var(--space-5);">
+          <p class="caption" style="font-style:italic;color:var(--mid-gray);max-width:var(--measure-prose);margin-top:calc(-1 * var(--space-3));margin-bottom:var(--space-5);">
             Main article on the research wiki:{" "}
             {wikiLinks.map((l, i) => (
               <>
@@ -409,9 +409,9 @@ placesRoute.get("/places/:slug", async (c) => {
                    style="text-decoration:none;color:inherit;display:block;padding:var(--space-1) 0;border-bottom:var(--hairline-thin);">
                   <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
                     <span style="font-family:var(--font-body);">{c.name}</span>
-                    <span style="font-family:var(--font-display);color:var(--bedford-gray);font-size:1.05rem;">{c.shared}</span>
+                    <span style="font-family:var(--font-display);color:var(--mid-gray);font-size:1.05rem;">{c.shared}</span>
                   </div>
-                  <p class="caption" style="margin-top:2px;color:var(--bedford-gray);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;">
+                  <p class="caption" style="margin-top:2px;color:var(--mid-gray);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;">
                     {c.entity_type === "person" ? c.kind : `${c.kind} · place`}
                   </p>
                 </a>
@@ -422,7 +422,7 @@ placesRoute.get("/places/:slug", async (c) => {
 
         <p class="smallcap-eyebrow" style="margin-bottom:var(--space-3);">Featured in</p>
         {eps.length === 0 && (
-          <p class="caption" style="color:var(--bedford-gray);font-style:italic;max-width:var(--measure-prose);">
+          <p class="caption" style="color:var(--mid-gray);font-style:italic;max-width:var(--measure-prose);">
             Documented as a Martha-orbit location in the research notes above; matching it to a specific
             MSL TV episode is open work. The vhx segment descriptions don't name it directly.
           </p>
@@ -438,11 +438,11 @@ placesRoute.get("/places/:slug", async (c) => {
                 <div style="aspect-ratio:16/9;background:var(--eggshell);" aria-hidden="true" />
               )}
               <p style="margin-top:var(--space-1);font-family:var(--font-body);">{e.title}</p>
-              <p class="caption" style="color:var(--bedford-gray);font-size:var(--size-caption);">
+              <p class="caption" style="color:var(--mid-gray);font-size:var(--size-caption);">
                 Season {e.season ?? "—"} · {e.air_year ?? "—"}
               </p>
               {e.context && (
-                <p class="caption" style="font-style:italic;color:var(--bedford-gray);font-size:0.75rem;margin-top:2px;">
+                <p class="caption" style="font-style:italic;color:var(--mid-gray);font-size:0.75rem;margin-top:2px;">
                   {e.context.length > 90 ? e.context.slice(0, 90) + "…" : e.context}
                 </p>
               )}

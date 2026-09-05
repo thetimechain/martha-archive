@@ -412,6 +412,15 @@ async function main() {
   if (errors.length > 25) console.log(`[import]   … ${errors.length - 25} more (see reconciliation report)`);
 
   await pg.end();
+  // Note: this script always runs as its own OS process (spawned by
+  // src/routes/admin.tsx, or invoked directly via `pnpm import`), so it has
+  // no access to the running web server's in-memory footer-stats cache
+  // (src/db/queries.ts's fetchLastImport/fetchRowCounts memoization) — there
+  // is no shared JS heap to clear across a process boundary, and calling
+  // `process.exit()` below rules out ever importing this file in-process.
+  // The admin route invalidates that cache itself when it observes this
+  // process exit; for imports run any other way, the cache's TTL is what
+  // bounds staleness.
   const exitOk = failPct <= FAIL_THRESHOLD_PCT;
   process.exit(exitOk ? 0 : 1);
 }

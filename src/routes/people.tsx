@@ -53,15 +53,15 @@ peopleRoute.get("/people", async (c) => {
     <a href={`/people/${p.slug}`} style="text-decoration:none;color:inherit;display:block;padding:var(--space-2) 0;border-bottom:var(--hairline-thin);">
       <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
         <span style="font-family:var(--font-body);">{p.name}</span>
-        <span style="font-family:var(--font-display);color:var(--bedford-gray);font-size:1.2rem;">{p.total}</span>
+        <span style="font-family:var(--font-display);color:var(--mid-gray);font-size:1.2rem;">{p.total}</span>
       </div>
       <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px;align-items:center;">
         {p.shows.slice(0, 4).map((s) => (
-          <span style="font-family:var(--font-display);font-size:9px;letter-spacing:0.08em;padding:1px 5px;border:1px solid var(--bedford-gray);color:var(--bedford-gray);">
+          <span style="font-family:var(--font-display);font-size:9px;letter-spacing:0.08em;padding:1px 5px;border:1px solid var(--bedford-gray);color:var(--mid-gray);">
             {SHOW_SHORT[s] ?? s.toUpperCase().slice(0, 7)}
           </span>
         ))}
-        <span class="caption" style="font-size:0.7rem;color:var(--bedford-gray);">
+        <span class="caption" style="font-size:0.7rem;color:var(--mid-gray);">
           {KIND_LABEL[p.kind] ?? p.kind}
         </span>
       </div>
@@ -106,7 +106,7 @@ peopleRoute.get("/people", async (c) => {
           <div>
             <p style="font-family:var(--font-display);font-size:var(--size-display-xl);line-height:1;">{people[0]?.total ?? 0}</p>
             <p class="caption" style="margin-top:var(--space-1);">most appearances</p>
-            <p style="font-size:var(--size-caption);color:var(--bedford-gray);margin-top:4px;">{people[0]?.name}</p>
+            <p style="font-size:var(--size-caption);color:var(--mid-gray);margin-top:4px;">{people[0]?.name}</p>
           </div>
         </div>
 
@@ -147,7 +147,7 @@ peopleRoute.get("/people", async (c) => {
 
             {letters.map((l) => (
               <section id={`letter-${l}`} style="margin-bottom:var(--space-4);">
-                <p style="font-family:var(--font-display);font-size:2.5rem;line-height:1;color:var(--bedford-gray);margin-bottom:var(--space-1);">{l}</p>
+                <p style="font-family:var(--font-display);font-size:2.5rem;line-height:1;color:var(--mid-gray);margin-bottom:var(--space-1);">{l}</p>
                 {(alpha.get(l) ?? []).map((p) => <PersonRow p={p} />)}
               </section>
             ))}
@@ -155,7 +155,7 @@ peopleRoute.get("/people", async (c) => {
 
         </div>
 
-        <p class="caption" style="margin-top:var(--space-7);color:var(--bedford-gray);max-width:var(--measure-prose);">
+        <p class="caption" style="margin-top:var(--space-7);color:var(--mid-gray);max-width:var(--measure-prose);">
           People come from two sources: structured guest records seeded from broadcast research (mostly
           The Martha Stewart Show, Cooking School, and Martha & Snoop's), plus entities extracted from
           marthastewart.tv segment descriptions (mostly Martha Stewart Living Television, 1993–2004).
@@ -193,7 +193,7 @@ peopleRoute.get("/people/:slug", async (c) => {
           <a href="/people" style="color:var(--body-text);">People</a>
         </p>
         <h1 class="display" style="margin-bottom:var(--space-2);">{person.name}</h1>
-        <p class="caption" style="color:var(--bedford-gray);margin-bottom:var(--space-3);">
+        <p class="caption" style="color:var(--mid-gray);margin-bottom:var(--space-3);">
           {KIND_LABEL[person.kind] ?? person.kind} ·{" "}
           {person.total} appearance{person.total === 1 ? "" : "s"}
           {person.shows.length > 0 && (
@@ -202,7 +202,7 @@ peopleRoute.get("/people/:slug", async (c) => {
               {person.shows.map((s, i) => (
                 <>
                   {i > 0 && ", "}
-                  <a href={`/shows/${s}`} style="color:var(--bedford-gray);">{SHOW_SHORT[s] ?? s}</a>
+                  <a href={`/shows/${s}`} style="color:var(--mid-gray);">{SHOW_SHORT[s] ?? s}</a>
                 </>
               ))}
             </>
@@ -212,7 +212,7 @@ peopleRoute.get("/people/:slug", async (c) => {
           <p class="lede" style="max-width:var(--measure-prose);margin-bottom:var(--space-5);">{person.role}</p>
         )}
         {wikiLinks.length > 0 && (
-          <p class="caption" style="font-style:italic;color:var(--bedford-gray);max-width:var(--measure-prose);margin-top:calc(-1 * var(--space-3));margin-bottom:var(--space-5);">
+          <p class="caption" style="font-style:italic;color:var(--mid-gray);max-width:var(--measure-prose);margin-top:calc(-1 * var(--space-3));margin-bottom:var(--space-5);">
             Main article on the research wiki:{" "}
             {wikiLinks.map((l, i) => (
               <>
@@ -234,9 +234,9 @@ peopleRoute.get("/people/:slug", async (c) => {
                    style="text-decoration:none;color:inherit;display:block;padding:var(--space-1) 0;border-bottom:var(--hairline-thin);">
                   <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
                     <span style="font-family:var(--font-body);">{c.name}</span>
-                    <span style="font-family:var(--font-display);color:var(--bedford-gray);font-size:1.05rem;">{c.shared}</span>
+                    <span style="font-family:var(--font-display);color:var(--mid-gray);font-size:1.05rem;">{c.shared}</span>
                   </div>
-                  <p class="caption" style="margin-top:2px;color:var(--bedford-gray);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;">
+                  <p class="caption" style="margin-top:2px;color:var(--mid-gray);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;">
                     {c.entity_type === "person" ? c.kind : `${c.kind} · place`}
                   </p>
                 </a>
@@ -247,7 +247,7 @@ peopleRoute.get("/people/:slug", async (c) => {
 
         <p class="smallcap-eyebrow" style="margin-bottom:var(--space-3);">Appearances</p>
         {appearances.length === 0 && (
-          <p class="caption" style="color:var(--bedford-gray);font-style:italic;max-width:var(--measure-prose);">
+          <p class="caption" style="color:var(--mid-gray);font-style:italic;max-width:var(--measure-prose);">
             No specific episode appearances have been cross-referenced yet. Their connection to Martha
             is documented in the bio above; matching them to a specific MSL TV episode is open work.
           </p>
@@ -263,12 +263,12 @@ peopleRoute.get("/people/:slug", async (c) => {
                 <div style="aspect-ratio:16/9;background:var(--eggshell);" aria-hidden="true" />
               )}
               <p style="margin-top:var(--space-1);font-family:var(--font-body);">{e.title}</p>
-              <p class="caption" style="color:var(--bedford-gray);font-size:var(--size-caption);">
+              <p class="caption" style="color:var(--mid-gray);font-size:var(--size-caption);">
                 {e.show_name ?? e.show_slug}
                 {e.air_year ? ` · ${e.air_year}` : ""}
               </p>
               {e.context && (
-                <p class="caption" style="font-style:italic;color:var(--bedford-gray);font-size:0.75rem;margin-top:2px;">
+                <p class="caption" style="font-style:italic;color:var(--mid-gray);font-size:0.75rem;margin-top:2px;">
                   {e.context.length > 120 ? e.context.slice(0, 120) + "…" : e.context}
                 </p>
               )}

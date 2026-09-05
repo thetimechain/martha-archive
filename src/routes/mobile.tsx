@@ -23,9 +23,8 @@ const SHELL = `<!DOCTYPE html>
   <!-- PWA manifest -->
   <link rel="manifest" href="/static/m/manifest.json">
 
-  <!-- Apple touch icons -->
-  <link rel="apple-touch-icon" href="/static/icons/icon-192.svg">
-  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-192.svg">
+  <!-- Apple touch icon (iOS ignores SVG here; must be a real PNG) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/icon-180.png">
 
   <!-- Favicon -->
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
@@ -35,7 +34,7 @@ const SHELL = `<!DOCTYPE html>
   <meta property="og:title" content="Martha Episodes — A complete archive">
   <meta property="og:description" content="2,842 episodes across 12 Martha Stewart programs, 1986 to now.">
   <meta property="og:url" content="https://martha.fly.dev/m/">
-  <meta property="og:image" content="/static/icons/og-wordmark.svg">
+  <meta property="og:image" content="/static/icons/og-wordmark.png">
 
   <!-- Preconnect for fonts (already self-hosted — but vhx image CDN) -->
   <link rel="preconnect" href="https://vhx.imgix.net" crossorigin>

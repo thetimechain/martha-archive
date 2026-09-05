@@ -68,11 +68,11 @@ export const Layout: FC<
         {(og?.url ?? canonical) && <meta property="og:url" content={og?.url ?? canonical} />}
         <meta property="og:type" content={og?.type ?? "website"} />
         <meta property="og:site_name" content="Martha Stewart Living: An Archive" />
-        <meta property="og:image" content={og?.image ?? absoluteUrl("/static/og-wordmark.png")} />
+        <meta property="og:image" content={og?.image ?? absoluteUrl("/static/icons/og-wordmark.png")} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={og?.title ?? fullTitle} />
         {(og?.description ?? description) && <meta name="twitter:description" content={og?.description ?? description} />}
-        <meta name="twitter:image" content={og?.image ?? absoluteUrl("/static/og-wordmark.png")} />
+        <meta name="twitter:image" content={og?.image ?? absoluteUrl("/static/icons/og-wordmark.png")} />
         <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
         <link rel="stylesheet" href={`/static/styles/tokens.css?v=${BUILD_ID}`} />
         <link rel="stylesheet" href={`/static/styles/base.css?v=${BUILD_ID}`} />

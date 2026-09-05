@@ -26,4 +26,6 @@ public/episode-images/
 !data/msl_s5_s9.json
 !data/mss_calendar.json
 !data/1990s-martha-stewart-design-system.md
-!data/gaps.md
+
+# Local audit/worker scratch notes
+.scratch/

@@ -103,13 +103,13 @@ todayRoute.get("/today/:md", async (c) => {
                   <div style="aspect-ratio:16/9;background:var(--eggshell);" aria-hidden="true" />
                 )}
                 <div>
-                  <p style="font-family:var(--font-display);font-size:2.4rem;line-height:1;color:var(--bedford-gray);">
+                  <p style="font-family:var(--font-display);font-size:2.4rem;line-height:1;color:var(--mid-gray);">
                     {e.air_year ?? "—"}
                   </p>
                   <p style="font-family:var(--font-body);font-size:1.1rem;margin-top:var(--space-2);">
                     {e.title}
                   </p>
-                  <p class="caption" style="color:var(--bedford-gray);font-size:var(--size-caption);margin-top:4px;">
+                  <p class="caption" style="color:var(--mid-gray);font-size:var(--size-caption);margin-top:4px;">
                     {e.show_name ?? e.show_slug}
                   </p>
                 </div>
@@ -119,7 +119,7 @@ todayRoute.get("/today/:md", async (c) => {
         )}
 
         <hr class="hairline" style="margin-top:var(--space-7);" />
-        <p class="caption" style="margin-top:var(--space-3);color:var(--bedford-gray);max-width:var(--measure-prose);">
+        <p class="caption" style="margin-top:var(--space-3);color:var(--mid-gray);max-width:var(--measure-prose);">
           Anniversaries are computed from <code style="font-family:var(--font-body);background:var(--eggshell);padding:1px 5px;">air_date</code> on episodes with day-precision broadcasts —
           primarily The Martha Stewart Show (2005–2012) and a handful of holiday specials.
           MSL Television (1993–2004) episodes are dated by year/season only and are not listed

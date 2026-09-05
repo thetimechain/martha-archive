@@ -35,7 +35,7 @@
 
 .section { padding: var(--space-5) 0; }
 .section h2 { font-family: var(--font-display); font-size: var(--size-h2); margin: 0 0 var(--space-3); }
-.section .section-eyebrow { font-family: var(--font-smallcap); font-size: var(--size-eyebrow); letter-spacing: var(--track-eyebrow); text-transform: uppercase; color: var(--bedford-gray); margin-bottom: var(--space-1); }
+.section .section-eyebrow { font-family: var(--font-smallcap); font-size: var(--size-eyebrow); letter-spacing: var(--track-eyebrow); text-transform: uppercase; color: var(--mid-gray); margin-bottom: var(--space-1); }
 
 .results-header { padding: var(--space-3) 0 var(--space-1); }
 .results-header h1 { font-family: var(--font-display); font-size: var(--size-h2); margin: 0; }
@@ -46,6 +46,6 @@
 .good-things { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); padding: var(--space-3) 0; }
 @media (max-width: 900px) { .good-things { grid-template-columns: 1fr; } }
 .good-thing blockquote { font-family: var(--font-display); font-style: italic; font-size: var(--size-h2); margin: 0 0 var(--space-2); line-height: 1.25; }
-.good-thing cite { font-family: var(--font-smallcap); font-size: var(--size-eyebrow); letter-spacing: var(--track-eyebrow); text-transform: uppercase; color: var(--bedford-gray); font-style: normal; }
+.good-thing cite { font-family: var(--font-smallcap); font-size: var(--size-eyebrow); letter-spacing: var(--track-eyebrow); text-transform: uppercase; color: var(--mid-gray); font-style: normal; }
 .good-thing a { text-decoration: none; color: inherit; display: block; padding: var(--space-2) 0; border-top: var(--hairline-bold); }
 .good-thing a:hover blockquote { color: var(--terracotta); }
