@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: var(--size-eyebrow);
   letter-spacing: var(--track-eyebrow);
   text-transform: uppercase;
-  color: var(--bedford-gray);
+  color: var(--mid-gray);
 }
 
 .eyebrow { /* alias */
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: var(--size-eyebrow);
   letter-spacing: var(--track-eyebrow);
   text-transform: uppercase;
-  color: var(--bedford-gray);
+  color: var(--mid-gray);
 }
 
 .body {
@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-body);
   font-size: var(--size-caption);
   font-style: italic;
-  color: var(--bedford-gray);
+  color: var(--mid-gray);
   line-height: var(--lh-caption);
 }
 

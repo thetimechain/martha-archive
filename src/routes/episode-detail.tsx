@@ -191,7 +191,7 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
             <p>
               {tags.map((t, i) => (
                 <>
-                  <a href={`/episodes?tag=${encodeURIComponent(t.tag)}`} style="text-decoration:none;font-style:italic;color:var(--bedford-gray);">
+                  <a href={`/episodes?tag=${encodeURIComponent(t.tag)}`} style="text-decoration:none;font-style:italic;color:var(--mid-gray);">
                     {t.tag}
                   </a>
                   {i < tags.length - 1 ? "  ·  " : ""}

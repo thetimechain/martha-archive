@@ -178,17 +178,17 @@ factsRoute.get("/facts", async (c) => {
             <div>
               <p style="font-family:var(--font-display);font-size:var(--size-display-xl);line-height:1;color:var(--body-text);">{facts.total.toLocaleString()}</p>
               <p class="caption" style="margin-top:var(--space-1);">episodes documented</p>
-              <p style="font-size:var(--size-caption);color:var(--bedford-gray);margin-top:4px;">{confirmedCount.toLocaleString()} confirmed by primary source</p>
+              <p style="font-size:var(--size-caption);color:var(--mid-gray);margin-top:4px;">{confirmedCount.toLocaleString()} confirmed by primary source</p>
             </div>
             <div>
               <p style="font-family:var(--font-display);font-size:var(--size-display-xl);line-height:1;color:var(--body-text);">11</p>
               <p class="caption" style="margin-top:var(--space-1);">seasons, 1993 – 2004</p>
-              <p style="font-size:var(--size-caption);color:var(--bedford-gray);margin-top:4px;">S1–S9 on CBS / Syndicated; S10–S11 on Hallmark</p>
+              <p style="font-size:var(--size-caption);color:var(--mid-gray);margin-top:4px;">S1–S9 on CBS / Syndicated; S10–S11 on Hallmark</p>
             </div>
             <div>
               <p style="font-family:var(--font-display);font-size:var(--size-display-xl);line-height:1;color:var(--body-text);">{peakYear?.air_year}</p>
               <p class="caption" style="margin-top:var(--space-1);">the peak year</p>
-              <p style="font-size:var(--size-caption);color:var(--bedford-gray);margin-top:4px;">{peakYear?.c.toLocaleString()} episodes that year alone</p>
+              <p style="font-size:var(--size-caption);color:var(--mid-gray);margin-top:4px;">{peakYear?.c.toLocaleString()} episodes that year alone</p>
             </div>
           </div>
 
@@ -223,7 +223,7 @@ factsRoute.get("/facts", async (c) => {
         {/* ── Topics breakdown ──────────────────────────────────────────── */}
         <section style="margin-bottom:var(--space-7);">
           <p class="smallcap-eyebrow" style="color:var(--body-text);margin-bottom:var(--space-3);">What she covered</p>
-          <p style="font-size:var(--size-caption);color:var(--bedford-gray);margin-bottom:var(--space-3);">Episode count by primary topic (seed episodes only)</p>
+          <p style="font-size:var(--size-caption);color:var(--mid-gray);margin-bottom:var(--space-3);">Episode count by primary topic (seed episodes only)</p>
           <div style="display:flex;flex-direction:column;gap:var(--space-2);">
             {facts.topics.map(t => (
               <div style="display:grid;grid-template-columns:11rem 1fr auto;align-items:center;gap:var(--space-3);">
@@ -246,7 +246,7 @@ factsRoute.get("/facts", async (c) => {
             the Westminster Kennel Club Dog Show, Vera Wang's studio, Bobbi Brown's makeup room, the Bronx Zoo, Balthazar,
             Aquavit, the Four Seasons, and hundreds of farms, workshops, and restaurants across the country and the world.
           </p>
-          <p style="font-size:var(--size-caption);color:var(--bedford-gray);">
+          <p style="font-size:var(--size-caption);color:var(--mid-gray);">
             Each one was an education. The field trip was her most durable format.
           </p>
         </section>
@@ -296,7 +296,7 @@ factsRoute.get("/facts", async (c) => {
                  style="text-decoration:none;border-top:2px solid var(--rule);padding-top:var(--space-2);display:block;">
                 <p style="font-family:var(--font-display);font-size:1.75rem;line-height:1;color:var(--body-text);">S{s.season}</p>
                 <p style="font-size:var(--size-caption);color:var(--body-text);margin-top:4px;">{s.c} episodes</p>
-                <p style="font-size:var(--size-caption);color:var(--bedford-gray);">{s.confirmed} confirmed</p>
+                <p style="font-size:var(--size-caption);color:var(--mid-gray);">{s.confirmed} confirmed</p>
               </a>
             ))}
           </div>
@@ -327,7 +327,7 @@ factsRoute.get("/facts", async (c) => {
               <a href={`/episodes?tag=${encodeURIComponent(t.tag)}&show=martha-stewart-living`}
                  style={`text-decoration:none;font-family:var(--font-body);font-style:italic;color:var(--body-text);font-size:${0.75 + (facts.tags.length - i) / facts.tags.length * 0.5}rem;`}>
                 {t.tag}
-                <span style="font-size:0.7rem;color:var(--bedford-gray);font-style:normal;margin-left:2px;">{t.c}</span>
+                <span style="font-size:0.7rem;color:var(--mid-gray);font-style:normal;margin-left:2px;">{t.c}</span>
               </a>
             ))}
           </div>
@@ -344,7 +344,7 @@ factsRoute.get("/facts", async (c) => {
             The photographs come from Martha's own streaming archive and are the images her team selected.
             The remaining {(facts.total - facts.withPhotos).toLocaleString()} carry a plain tile — honest about what we don't have.
           </p>
-          <p style="margin-top:var(--space-3);font-size:var(--size-caption);color:var(--bedford-gray);">
+          <p style="margin-top:var(--space-3);font-size:var(--size-caption);color:var(--mid-gray);">
             Images sourced from marthastewart.tv (Vimeo OTT), courtesy of Martha Stewart Living Omnimedia.
             This is a non-commercial research archive.
           </p>

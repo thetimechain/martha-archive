@@ -99,7 +99,7 @@ guestsRoute.get("/guests", async (c) => {
         <span style="font-family:var(--font-body);font-size:var(--size-body);color:var(--body-text);">
           {g.name}
         </span>
-        <span style="font-family:var(--font-display);font-size:1.4rem;color:var(--bedford-gray);flex-shrink:0;">
+        <span style="font-family:var(--font-display);font-size:1.4rem;color:var(--mid-gray);flex-shrink:0;">
           {g.appearances}
         </span>
       </div>
@@ -113,13 +113,13 @@ guestsRoute.get("/guests", async (c) => {
           </span>
         ))}
         {g.roles?.[0] && (
-          <span class="caption" style="font-size:0.75rem;font-style:italic;color:var(--bedford-gray);">
+          <span class="caption" style="font-size:0.75rem;font-style:italic;color:var(--mid-gray);">
             {g.roles[0].slice(0, 60)}
           </span>
         )}
       </div>
       {g.appearances >= 3 && g.sample_titles?.[0] && (
-        <p class="caption" style="margin-top:4px;font-style:italic;color:var(--bedford-gray);">
+        <p class="caption" style="margin-top:4px;font-style:italic;color:var(--mid-gray);">
           First: {g.sample_titles[0].slice(0, 70)}{g.sample_titles[0].length > 70 ? "…" : ""}
         </p>
       )}
@@ -159,7 +159,7 @@ guestsRoute.get("/guests", async (c) => {
               {guests[0]?.appearances ?? 0}
             </p>
             <p class="caption" style="margin-top:var(--space-1);">most appearances by one guest</p>
-            <p style="font-size:var(--size-caption);color:var(--bedford-gray);margin-top:4px;">
+            <p style="font-size:var(--size-caption);color:var(--mid-gray);margin-top:4px;">
               {guests[0]?.name}
             </p>
           </div>
@@ -204,7 +204,7 @@ guestsRoute.get("/guests", async (c) => {
 
             {letters.map((l) => (
               <section id={`letter-${l}`} style="margin-bottom:var(--space-4);">
-                <p style="font-family:var(--font-display);font-size:2.5rem;line-height:1;color:var(--bedford-gray);margin-bottom:var(--space-1);">{l}</p>
+                <p style="font-family:var(--font-display);font-size:2.5rem;line-height:1;color:var(--mid-gray);margin-bottom:var(--space-1);">{l}</p>
                 {(alpha.get(l) ?? []).map((g) => <GuestCard g={g} />)}
               </section>
             ))}
@@ -213,7 +213,7 @@ guestsRoute.get("/guests", async (c) => {
         </div>
 
         {/* ── Method note ──────────────────────────────────────────────── */}
-        <p class="caption" style="margin-top:var(--space-7);color:var(--bedford-gray);max-width:var(--measure-prose);">
+        <p class="caption" style="margin-top:var(--space-7);color:var(--mid-gray);max-width:var(--measure-prose);">
           Guest records come from episode metadata in the source archive. Coverage is incomplete —
           only episodes with explicit guest data in the source files are represented here.
           Many MSL episodes had guests but were catalogued without names.
