@@ -36,6 +36,26 @@ counted as findings.)
 
 ---
 
+## Remediation status (2026-09-05)
+
+Status of each "Fix first" item below, as of the four remediation commits on top of this audit
+(`1074e78..HEAD`):
+
+| # | Fix-first item | Status | Commit | Key file |
+|---|---|---|---|---|
+| 1 | Stored-XSS bypass in `decorateShorthand()` | **FIXED** | `371445e` | `src/lib/shorthand.ts` |
+| 2 | Site-wide text-contrast failure | **FIXED** | `179bc05` | `public/styles/components.css` (and other stylesheets/routes) |
+| 3 | Default OG/social-share image 404s | **FIXED** | `179bc05` | `public/icons/og-wordmark.png` (+ `scripts/gen-icons.mjs`) |
+| 4 | PWA manifest icons and screenshot 404 | **FIXED** | `179bc05` | `public/icons/icon-192.png`, `icon-512.png`; `public/m/manifest.json` |
+| 5 | Admin token accepted via `?key=` query string | **OPEN** | — | Kept for now by maintainer decision; hardening tracked in [issue #1](https://github.com/thetimechain/martha-archive/issues/1) |
+| 6 | Per-request footer-stats fan-out, uncached | **FIXED** | `73d8e11` | `src/lib/cache.ts` |
+| 7 | Static assets ship with no HTTP caching | **FIXED** | `73d8e11` | `src/server.tsx` |
+| 8 | No response compression anywhere | **FIXED** | `73d8e11` | `src/server.tsx` (`compress()`/`etag()`) |
+| 9 | Dockerfile installs with `npm install`, bypassing the lockfile | **FIXED** | `73d8e11` | `Dockerfile` |
+| 10 | Free-text search does leading-wildcard `ILIKE` with no index | **FIXED** | `73d8e11` | `drizzle/0004_familiar_captain_universe.sql` |
+
+---
+
 ## 1. Fix first (Critical/High)
 
 1. **[Critical] Stored-XSS bypass in `decorateShorthand()`.** `src/lib/shorthand.ts:58-60`
@@ -166,7 +186,7 @@ so it isn't mistaken for a defect.
 | Medium | No documentation of how the live Postgres DB is actually seeded — `data:import`/entity-persistence scripts have no path to run inside the deployed container at all (runtime image strips `tsx` and the raw data JSON files) | `README.md:103-107` ("Deploy" section); `Dockerfile:21,27-33` | Document the real production seeding process (run `data:import` locally against `DATABASE_URL_UNPOOLED` before deploying) | Verified by auditor |
 | Medium | `docs/data-sources.md` and `data/gaps.md` give three different counts for the same claim (The Martha Stewart Show broadcast days: 1,216 vs. ~1,207 vs. 1,106 actual rows) | `data/gaps.md:14`; `data/episodes.json` → `meta.gaps[2]`; `data/mss_calendar.json` (1,106 entries, counted directly) | Pick one source of truth; compute at render time rather than hand-typing in markdown | Verified by auditor |
 | Medium | `SESSION_SECRET` is documented as a config knob (README, `.env.example`) and parsed by `env.ts`, but is never read anywhere else in the codebase — dead config, and the admin cookie is set unsigned | `README.md:56`; `.env.example:10`; `src/lib/env.ts:10`; admin cookie at `src/routes/admin.tsx:25-31` | Wire it into cookie signing or remove it from docs/env schema (**maintainer call — see §6**; duplicated in Secrets §5 below, listed once) | Verified by auditor |
-| Low | README's font-stack line omits a fourth self-hosted family actively in use (Cormorant SC); separately, `BodoniModa-*` fonts are committed but never declared via `@font-face` on the main site and not mentioned in any doc | `README.md:39`; `public/styles/tokens.css:46-48`; `scripts/fetch-fonts.mjs:15-18` — BodoniModa detail duplicates the Performance finding above | Add Cormorant SC to the README stack line; resolve the BodoniModa question (**maintainer call — see §6**) | Verified by auditor |
+| Low | README's font-stack line omits a fourth self-hosted family actively in use (Cormorant SC); separately, `BodoniModa-*` fonts are committed and were originally reported (wrongly — see correction below) as never declared via `@font-face` anywhere | `README.md:39`; `public/styles/tokens.css:46-48`; `scripts/fetch-fonts.mjs:15-18` — BodoniModa detail duplicates the Performance finding above | Add Cormorant SC to the README stack line; resolved (**see §9**) | Verified by auditor, correction below |
 | Low | `BUILD_ID` is an env var read in code (optional CSS cache-buster override) but appears in no doc or `.env.example` | `src/views/components/Layout.tsx:15` | Add a one-line commented entry to `.env.example` | Verified by auditor |
 | Low | Standalone `mst-*.mjs` scripts require `DATABASE_URL_UNPOOLED` with no fallback, unlike the app itself (`env.ts` marks it optional; `run.ts` falls back to `DATABASE_URL`) — a likely footgun for anyone following the README's minimal `.env` setup | `scripts/mst-persist-entities.mjs:10`, `mst-augment.mjs:12`, `mst-match.mjs:12`, `mst-match-v2.mjs:15`, `mst-persist.mjs:7`, `tag-enrich.mjs:6` | Document both DB URL vars as mandatory for entity scripts, or add the same `?? DATABASE_URL` fallback | Inferred (code path reasoned, not reproduced against an incomplete `.env`) |
 | Low | README's entity counts ("110+ named chefs," "340+ farms...") are stale lower bounds — actual committed data has 133 people / 366 places | `README.md:22-27`; `data/marthastewart-tv/entities.json` (counted directly) | Update counts, or compute at render time (DB already has the true counts) | Verified by auditor |
@@ -183,6 +203,18 @@ First item above. The verification pass's finding wins; the docs-audit statement
 as incorrect on this specific point (the general escaping *policy* it describes is real and
 correctly implemented elsewhere — the bug is a gap in one function's contract, not an absence of
 policy).
+
+**Second correction, to the BodoniModa font-face finding (row above and its Performance-section
+duplicate):** the source docs-audit stated `BodoniModa-*.woff2` are "never declared via
+`@font-face` anywhere" in the repo. That is wrong: `public/m/style.css:11,18` declares
+`@font-face` for `BodoniModa-Regular`/`BodoniModa-ItalicRegular`, which serve as the `/m` mobile
+shell's real display font — the docs-audit's search for `@font-face` usage missed
+`public/m/style.css` because it lives outside `public/styles/`, the main site's stylesheet
+directory. The finding is accurate only for the *main* site (`public/styles/typography.css`
+never references BodoniModa); it should not have been read as "unused" or "dead" repo-wide.
+`BodoniModa-Bold.woff2` was correctly flagged as unreferenced anywhere and has since been
+removed; Regular/Italic were kept because `/m` actually uses them (see Remediation status above
+and §9).
 
 ---
 
@@ -309,30 +341,45 @@ Checked and found fine — listed here so a future pass doesn't re-litigate them
   `/places` cross-links are sparse without the non-redistributed marthastewart.tv crawl — so
   local dynamic testing (had it been possible) would not fully match production content density
   (UI/Documentation data-completeness caveat, not a defect).
+- **The `pg_trgm` migration (`drizzle/0004_familiar_captain_universe.sql`, added in `73d8e11`)
+  has not been run against a live database.** Applying it requires `CREATE EXTENSION pg_trgm`,
+  which needs elevated (superuser/`CREATE`) privilege on the target Postgres role; this was not
+  verified against the project's actual Neon database, only checked to build correctly offline.
+  Confirm the Neon role has the needed privilege (or that the extension is pre-enabled) before
+  deploying this migration.
+- **Footer-stats cache invalidation (added in `73d8e11`, `src/lib/cache.ts`) only covers
+  admin-triggered reimports** — the admin route clears the cache on the import child process's
+  exit. An import run directly from a shell (e.g. `pnpm data:import` outside the admin UI) has
+  no invalidation hook and is bounded only by the cache's 3-minute TTL, so footer stats can lag
+  up to ~3 minutes after a shell-run import before reflecting the new counts.
 
 ---
 
 ## 9. Open decisions for the maintainer
 
-These are product/editorial calls the audits deliberately did not make on the maintainer's
-behalf:
+These were product/editorial calls the audits deliberately did not make on the maintainer's
+behalf. As of 2026-09-05, all four have been decided:
 
-1. **LLM-bio personal facts.** Should the archive trim Marc Morrone's exact DOB + birthplace to
-   birth-year-only, keep or reframe the named childhood-neighbor detail (already public via
-   Martha's own site), and keep or trim the "close friend during Martha's 2004-05 prison term"
-   personal-relationship framing for the friend's wedding entry? All three are low-to-moderate
-   sensitivity and traceable to public sources — this is an editorial-tone call, not a
-   compliance requirement.
-2. **The `?key=` admin login flow.** Keep the current query-string hand-off (simple, but a
-   secret-in-URL anti-pattern that can land in third-party logs) or move to a POST/header-only
-   hand-off for the initial token exchange? This trades implementation simplicity against a
-   real, if modest, credential-hygiene improvement.
-3. **`data/gaps.md`.** Delete it as a stale, disconnected file, or wire its content into
-   `buildGapsMarkdown()` / update `episodes.json`'s `meta.gaps` so the two actually agree? Either
-   is a legitimate choice; leaving them silently contradictory is the one option that isn't.
-4. **Unused `BodoniModa` fonts.** Drop `BodoniModa-Bold.woff2` (referenced nowhere) and confirm
-   whether `BodoniModa-Regular`/`ItalicRegular` are still wanted for the `/m` PWA shell, or wire
-   the family into the main site's `@font-face` declarations if it was meant to ship there too.
+1. **LLM-bio personal facts.** *Decided: leave as-is.* Marc Morrone's exact DOB + birthplace, the
+   named childhood-neighbor detail, and the "close friend during Martha's 2004-05 prison term"
+   framing all stay unchanged — all three are low-to-moderate sensitivity and traceable to
+   public sources; no edit was made.
+2. **The `?key=` admin login flow.** *Decided: keep for now.* The query-string hand-off stays in
+   place rather than moving to POST/header-only; the credential-hygiene hardening this implies
+   is tracked separately in
+   [GitHub issue #1](https://github.com/thetimechain/martha-archive/issues/1) rather than
+   done as part of this remediation pass.
+3. **`data/gaps.md`.** *Decided: not wired in.* The file was not connected to
+   `buildGapsMarkdown()`/`meta.gaps`. Instead it was relocated to `docs/gaps-notes.md` as
+   maintainer-facing notes, with a new header on the file explicitly stating it is not read by
+   the app and does not back any on-site content (commit `0c85bde`).
+4. **Unused `BodoniModa` fonts.** *Decided: drop only the unused file.*
+   `BodoniModa-Bold.woff2` was confirmed unreferenced anywhere and removed (commit `0c85bde`).
+   `BodoniModa-Regular`/`ItalicRegular` were **not** dropped — they were found to be in real use
+   as the `/m` display font, declared via `@font-face` in `public/m/style.css`. See the
+   correction to the Documentation-section finding above: the original claim that no
+   `@font-face` declaration existed for BodoniModa anywhere was wrong for `/m` — the docs-audit's
+   search simply missed `public/m/style.css`.
 
 Related but smaller documentation-only calls bundled into the same maintainer-facing bucket:
 whether to add a `packageManager` field / document the Dockerfile's deliberate npm-vs-pnpm
