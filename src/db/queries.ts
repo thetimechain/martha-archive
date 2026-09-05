@@ -12,6 +12,7 @@ import {
   importRuns,
 } from "./schema.js";
 import type { EpisodeQuery } from "../lib/query.js";
+import { memoizeWithTtl } from "../lib/cache.js";
 
 export type FacetEntry = { value: string; label: string; count: number };
 export type Facets = {
@@ -319,12 +320,23 @@ export async function fetchCalendarYearsAvailable(): Promise<number[]> {
   return rows.map((r) => Number(r.y));
 }
 
-export async function fetchLastImport() {
+// ---------------------------------------------------------------------------
+// Footer stats (`fetchLastImport` / `fetchRowCounts`) are read on nearly every
+// HTML route purely to populate `Layout.tsx`'s footer, but the data only
+// changes when an import runs. Memoize both with a short TTL so a page load
+// doesn't cost 2 extra full-table-scan round-trips on top of the route's own
+// queries; the TTL alone bounds staleness, and `clearFooterStatsCache()`
+// (called by the admin route right after a triggered re-import finishes)
+// drops it immediately for the interactive case.
+// ---------------------------------------------------------------------------
+const FOOTER_STATS_TTL_MS = 1000 * 60 * 3; // a few minutes — see note above
+
+async function fetchLastImportUncached() {
   const rows = await db.select().from(importRuns).orderBy(desc(importRuns.id)).limit(1);
   return rows[0] ?? null;
 }
 
-export async function fetchRowCounts(): Promise<Record<string, number>> {
+async function fetchRowCountsUncached(): Promise<Record<string, number>> {
   const r = await pg<Array<{ t: string; c: number }>>`
     SELECT 'shows' as t, count(*)::int as c FROM shows UNION ALL
     SELECT 'episodes', count(*)::int FROM episodes UNION ALL
@@ -340,6 +352,24 @@ export async function fetchRowCounts(): Promise<Record<string, number>> {
   const out: Record<string, number> = {};
   for (const row of r) out[row.t] = Number(row.c);
   return out;
+}
+
+const lastImportCache = memoizeWithTtl(fetchLastImportUncached, FOOTER_STATS_TTL_MS);
+const rowCountsCache = memoizeWithTtl(fetchRowCountsUncached, FOOTER_STATS_TTL_MS);
+
+export async function fetchLastImport() {
+  return lastImportCache.get();
+}
+
+export async function fetchRowCounts(): Promise<Record<string, number>> {
+  return rowCountsCache.get();
+}
+
+/** Drop the memoized footer stats so the next call re-reads the DB. Call this
+ * once an import run has finished writing. */
+export function clearFooterStatsCache(): void {
+  lastImportCache.clear();
+  rowCountsCache.clear();
 }
 
 export async function fetchTopGuests(limit = 30) {

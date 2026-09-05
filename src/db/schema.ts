@@ -84,6 +84,14 @@ export const episodes = pgTable(
     airDateIdx: index("episodes_air_date_idx").on(t.airDate),
     yearIdx: index("episodes_year_idx").on(t.airYear),
     titleIdx: index("episodes_title_idx").on(t.title),
+    // Leading-wildcard ILIKE search (queries.ts whereFor()) can't use a btree
+    // index — pg_trgm + GIN lets `title/description ILIKE '%term%'` use an
+    // index scan instead of a sequential scan.
+    titleTrgmIdx: index("episodes_title_trgm_idx").using("gin", sql`${t.title} gin_trgm_ops`),
+    descriptionTrgmIdx: index("episodes_description_trgm_idx").using(
+      "gin",
+      sql`${t.description} gin_trgm_ops`,
+    ),
   }),
 );
 export type Episode = typeof episodes.$inferSelect;
@@ -103,6 +111,9 @@ export const episodeGuests = pgTable(
   (t) => ({
     epIdx: index("episode_guests_ep_idx").on(t.episodeId),
     nameIdx: index("episode_guests_name_idx").on(t.name),
+    // Supports the leading-wildcard `g.name ILIKE '%term%'` guest search in
+    // queries.ts whereFor() — a plain btree index can't be used for that.
+    nameTrgmIdx: index("episode_guests_name_trgm_idx").using("gin", sql`${t.name} gin_trgm_ops`),
   }),
 );
 export type EpisodeGuest = typeof episodeGuests.$inferSelect;

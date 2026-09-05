@@ -3,22 +3,24 @@ ARG NODE_VERSION=20.18.0
 
 FROM node:${NODE_VERSION}-alpine AS base
 WORKDIR /app
+# Install pnpm directly via npm — corepack's pnpm signing verification fails
+# on this image — pinned to the major version matching pnpm-lock.yaml's
+# lockfileVersion (9.x) so the lockfile format always matches.
+RUN npm install -g pnpm@9.15.9
 
 FROM base AS deps
-COPY package.json ./
-# Use npm — corepack pnpm signing fails on this image, and we don't need
-# pnpm's hoisting for a single-package app.
-RUN npm install --no-audit --no-fund
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 FROM base AS prune
-COPY --from=build /app/package.json ./
+COPY --from=build /app/package.json /app/pnpm-lock.yaml ./
 COPY --from=build /app/node_modules ./node_modules
-RUN npm prune --omit=dev --no-audit --no-fund
+RUN pnpm prune --prod --no-optional
 
 FROM node:${NODE_VERSION}-alpine AS runtime
 ENV NODE_ENV=production

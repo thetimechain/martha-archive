@@ -5,7 +5,7 @@ import { desc } from "drizzle-orm";
 import { Layout } from "../views/components/Layout.js";
 import { db } from "../db/client.js";
 import { importRuns } from "../db/schema.js";
-import { fetchLastImport, fetchRowCounts } from "../db/queries.js";
+import { fetchLastImport, fetchRowCounts, clearFooterStatsCache } from "../db/queries.js";
 import { env } from "../lib/env.js";
 
 export const adminRoute = new Hono();
@@ -112,6 +112,12 @@ adminRoute.post("/admin/reimport", async (c) => {
   const cookie = getCookie(c, "admin");
   if (!checkToken(cookie)) return c.notFound();
   // We do not exec the import in-process to avoid blocking. Schedule a child process.
+  // `src/import/run.ts` always runs as a separate OS process (here, or via the
+  // `pnpm import` CLI), so it can't reach into this server's in-memory footer
+  // stats cache directly — the TTL in queries.ts bounds staleness for those
+  // out-of-band runs. For this admin-triggered path specifically, we *can*
+  // drop the cache the moment the child exits (success or failure — either
+  // way the on-disk data may have changed and is worth re-reading).
   setImmediate(() => {
     void import("node:child_process").then(({ spawn }) => {
       const child = spawn(process.execPath, ["node_modules/tsx/dist/cli.mjs", "src/import/run.ts"], {
@@ -119,6 +125,7 @@ adminRoute.post("/admin/reimport", async (c) => {
         detached: true,
         env: process.env,
       });
+      child.on("exit", () => clearFooterStatsCache());
       child.unref();
     });
   });
