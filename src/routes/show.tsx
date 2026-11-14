@@ -78,7 +78,7 @@ showRoute.get("/shows/:slug", async (c) => {
           {show.gapNote && <p class="lede">{show.gapNote}</p>}
           <p class="caption" style="margin-top:var(--space-2);">
             {cov.titled.toLocaleString()} titled episodes of {known.toLocaleString()} known broadcasts ·{" "}
-            <span class="completeness-bar" aria-label={`${docPct}% of known broadcasts have a title on record`}>
+            <span class="completeness-bar" role="img" aria-label={`${docPct}% of known broadcasts have a title on record`}>
               <span class="fill" style={`width:${docPct}%;`}></span>
             </span>{" "}
             {docPct}%

@@ -26,7 +26,7 @@ collectionsRoute.get("/collections", async (c) => {
   const visible = cols.filter((c) => !SKIP_SLUGS.has(c.slug));
   return c.html(
     <Layout
-      title="Collections — Martha Stewart Living: An Archive"
+      title="Collections — Martha: An Archive"
       description="Themed playlists drawn from marthastewart.tv — the same groupings you'll find in the Martha app."
       footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
     >

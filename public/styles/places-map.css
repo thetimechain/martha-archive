@@ -673,7 +673,7 @@ body.body--bare main#main { height: 100%; }
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--ink);
-  opacity: 0.55;
+  opacity: 0.8;
   background: transparent;
   border: none;
   text-decoration: none;

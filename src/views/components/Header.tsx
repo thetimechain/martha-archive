@@ -3,8 +3,8 @@ import { copy } from "../../copy.js";
 
 export const Header: FC = () => (
   <header class="site-header page" role="banner">
-    <a href="/" class="wordmark display-xl" aria-label="Martha Stewart Living, an archive — home">
-      MARTHA&nbsp;STEWART&nbsp;LIVING
+    <a href="/" class="wordmark display-xl">
+      MARTHA · AN ARCHIVE
     </a>
     <p class="caption" style="margin-top:var(--space-1);font-style:italic;">{copy.episodeIndex}</p>
     <hr class="hairline" />

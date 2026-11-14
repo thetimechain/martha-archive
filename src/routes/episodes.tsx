@@ -56,7 +56,7 @@ episodesRoute.get("/episodes", async (c) => {
 
   return c.html(
     <Layout
-      title="Episodes — Martha Stewart Living: An Archive"
+      title="Episodes — Martha: An Archive"
       description="The complete episode archive across all Martha Stewart programs."
       footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
     >

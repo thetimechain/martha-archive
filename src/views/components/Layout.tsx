@@ -53,7 +53,7 @@ export const Layout: FC<
     bare?: boolean;
   }>
 > = ({ title, description, og, canonical, jsonLd, footerMeta, head, bare, children }) => {
-  const fullTitle = title.startsWith("Martha") ? title : `${title} — Martha Stewart Living: An Archive`;
+  const fullTitle = title.startsWith("Martha") ? title : `${title} — Martha: An Archive`;
   const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
     <html lang="en">
@@ -67,7 +67,7 @@ export const Layout: FC<
         {(og?.description ?? description) && <meta property="og:description" content={og?.description ?? description} />}
         {(og?.url ?? canonical) && <meta property="og:url" content={og?.url ?? canonical} />}
         <meta property="og:type" content={og?.type ?? "website"} />
-        <meta property="og:site_name" content="Martha Stewart Living: An Archive" />
+        <meta property="og:site_name" content="Martha: An Archive" />
         <meta property="og:image" content={og?.image ?? absoluteUrl("/static/og-wordmark.png")} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={og?.title ?? fullTitle} />

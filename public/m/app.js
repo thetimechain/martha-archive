@@ -339,7 +339,7 @@
             data-fade>`
       : '';
 
-    return `<article class="ep-card" data-id="${esc(ep.id)}" role="button" tabindex="0" aria-label="${esc(ep.title)}">
+    return `<article class="ep-card" data-id="${esc(ep.id)}" role="button" tabindex="0">
       <div class="ep-card__img-wrap" style="background:${esc(placeholderColor)};">
         ${imgHTML}
         ${numHTML}
@@ -380,7 +380,7 @@
       ...tags.map(t => `<span class="pill-tag">${esc(t)}</span>`),
     ].join('');
 
-    return `<article class="ep-row" data-id="${esc(ep.id)}" role="button" tabindex="0" aria-label="${esc(ep.title)}">
+    return `<article class="ep-row" data-id="${esc(ep.id)}" role="button" tabindex="0">
       ${numCol}
       <div class="ep-body">
         <div class="ep-meta">
@@ -878,7 +878,7 @@
       const style = show ? `background:${show.bg};color:${show.fg};` : 'background:#E0D9C8;color:#5C544A;';
       return `<span class="ep-badge" style="${style}font-size:9px;padding:1px 5px;">${esc(show?.short || s.slice(0,7).toUpperCase())}</span>`;
     }).join('');
-    return `<div class="ep-row" style="cursor:pointer;" data-action="query" data-arg="${esc(g.name)}" role="button" tabindex="0" aria-label="Search ${esc(g.name)}">
+    return `<div class="ep-row" style="cursor:pointer;" data-action="query" data-arg="${esc(g.name)}" role="button" tabindex="0">
       <div class="ep-num">
         <span class="ep-num__episode" style="font-size:1.4rem;">${g.count}</span>
       </div>
@@ -1189,14 +1189,14 @@
           </svg>
           Home
         </button>
-        <button class="tab-bar__item" data-action="navigate" data-arg="/guests" aria-label="Guest index">
+        <button class="tab-bar__item" data-action="navigate" data-arg="/guests">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/>
             <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
           Guests
         </button>
-        <a class="tab-bar__item" href="/places/map" aria-label="Atlas — where Martha went">
+        <a class="tab-bar__item" href="/places/map">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <path d="M11 2.5c-3 0-5.5 2.4-5.5 5.5 0 4.2 5.5 11.5 5.5 11.5s5.5-7.3 5.5-11.5C16.5 4.9 14 2.5 11 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
             <circle cx="11" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>

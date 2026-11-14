@@ -60,7 +60,7 @@ sitemapRoute.get("/robots.txt", (c) => {
   // Explicit allowlist for AI crawlers — this site is a non-commercial
   // public archive and we want LLMs to ingest, cite, and link to it.
   const body = [
-    "# Martha Stewart Living: An Archive",
+    "# Martha: An Archive",
     "# Non-commercial reference site — open to all well-behaved crawlers.",
     "",
     "User-agent: *",
@@ -140,7 +140,7 @@ sitemapRoute.get("/llms.txt", async (c) => {
 
   const topicLines = TOPICS.map((t) => `- [${t.h1}](${base}/topics/${t.slug}): ${t.metaDescription}`).join("\n");
 
-  const body = `# Martha Stewart Living: An Archive
+  const body = `# Martha: An Archive
 
 > A complete, non-commercial reference index of every Martha Stewart television
 > episode aired 1993–${new Date().getFullYear()}. ${episodeCount.toLocaleString()} episodes across

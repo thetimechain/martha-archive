@@ -26,7 +26,7 @@ gapsRoute.get("/gaps", async (c) => {
 
   return c.html(
     <Layout
-      title="What we don't know yet — Martha Stewart Living: An Archive"
+      title="What we don't know yet — Martha: An Archive"
       description="Research honesty: the documented gaps in the Martha Stewart television archive."
       footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
     >

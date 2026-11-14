@@ -61,7 +61,7 @@
   /* Ink */
   --ink:               #2E2A24;
   --ink-soft:          #5C544A;
-  --ink-whisper:       #8B8275;
+  --ink-whisper:       #6B645A; /* was #8B8275, 3.4:1 */
 
   /* Rules */
   --rule:              #C9C1B0;
@@ -70,6 +70,7 @@
 
   /* Accents */
   --garden-hosta:      #7C8B6F;
+  --garden-hosta-text: #4A5A3E;
   --garden-tomato:     #B84A3E;
   --accent-buttercup:  #EFE0A8;
   --araucana-eggshell: #BFD3CE;
@@ -203,7 +204,7 @@ mark {
   font-family: var(--font-ui);
   font-size: 15px;
   font-weight: 400;
-  color: var(--garden-hosta);
+  color: var(--garden-hosta-text);
   padding: 8px 0;
   min-width: 44px;
   min-height: 44px;
@@ -259,7 +260,7 @@ mark {
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--ink);
-  opacity: 0.55;
+  opacity: 0.8;
   transition: opacity var(--dur-quick) var(--ease);
   min-height: 44px;
   justify-content: center;
@@ -381,8 +382,8 @@ mark {
   transition: background var(--dur-quick) var(--ease), border-color var(--dur-quick) var(--ease);
 }
 .filter-select-wrap.active {
-  background: var(--garden-hosta);
-  border-color: var(--garden-hosta);
+  background: var(--garden-hosta-text);
+  border-color: var(--garden-hosta-text);
   color: var(--page-warm-white);
 }
 .filter-select-wrap.disabled { opacity: 0.55; }
@@ -451,7 +452,7 @@ mark {
   font-family: var(--font-ui);
   font-size: 11px;
   font-weight: 500;
-  color: var(--garden-hosta);
+  color: var(--garden-hosta-text);
   text-transform: none;
   letter-spacing: 0;
   background: none;
@@ -481,7 +482,7 @@ mark {
   font-weight: 500;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--garden-hosta);
+  color: var(--garden-hosta-text);
   text-align: center;
   cursor: pointer;
   padding: 6px 0 2px;
@@ -868,7 +869,7 @@ mark {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--garden-hosta);
+  background: var(--garden-hosta-text);
   color: white;
   font-family: var(--font-ui);
   font-size: 15px;
@@ -926,7 +927,7 @@ mark {
 .prevnext__title {
   font-family: var(--font-serif);
   font-size: 13px;
-  color: var(--garden-hosta);
+  color: var(--garden-hosta-text);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -972,7 +973,7 @@ mark {
   margin: 24px 0 10px;
 }
 .about-body p { margin-bottom: 14px; }
-.about-body a { color: var(--garden-hosta); text-decoration: underline; text-underline-offset: 2px; }
+.about-body a { color: var(--garden-hosta-text); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ─── Empty / loading ────────────────────────────────────────────────────── */
 .state-empty { padding: 48px 16px; text-align: center; }
