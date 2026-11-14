@@ -46,13 +46,6 @@ const SHELL = `<!DOCTYPE html>
   <!-- Styles -->
   <link rel="stylesheet" href="/static/m/style.css">
 
-  <!-- Service worker registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/static/m/sw.js', { scope: '/m/' })
-        .catch(() => {}); // silently ignore if SW registration fails
-    }
-  </script>
 </head>
 <body>
   <div id="app"></div>
