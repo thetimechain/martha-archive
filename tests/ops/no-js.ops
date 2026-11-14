@@ -1,0 +1,8 @@
+# @nojs
+# Server-rendered pages are complete without JavaScript.
+goto /episodes?show=martha-bakes
+expect text 143 episodes
+goto /episodes/msl-s06e060
+expect text Flower Arranging at the Met
+goto /shows/martha-bakes
+expect text titled episodes

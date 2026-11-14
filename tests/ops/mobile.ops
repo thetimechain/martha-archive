@@ -1,0 +1,11 @@
+# @mobile
+# The phone app renders a page of episodes at a time.
+goto /m/
+expect count ".ep-row:not(.ep--featured), .ep-card:not(.ep--featured)" 30
+expect visible css:.more-btn
+tap css:.more-btn
+expect count ".ep-row:not(.ep--featured), .ep-card:not(.ep--featured)" 60
+expect text 60 of
+tap css:.tab-bar__item[data-arg="/guests"]
+expect url /m/guests
+expect no-errors

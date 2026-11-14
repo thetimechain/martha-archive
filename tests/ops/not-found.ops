@@ -1,0 +1,4 @@
+goto /no-such-page
+expect status 404
+goto /episodes/not-an-episode
+expect status 404

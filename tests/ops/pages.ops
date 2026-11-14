@@ -1,0 +1,15 @@
+# The main hubs render.
+goto /
+expect status 200
+expect text Martha: An Archive
+goto /episodes/msl-s06e060
+expect text Flower Arranging at the Met
+goto /people/alexis-stewart
+expect status 200
+goto /places/turkey-hill
+expect status 200
+goto /gaps
+expect status 200
+goto /collections
+expect status 200
+expect no-errors

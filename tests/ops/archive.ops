@@ -1,0 +1,9 @@
+# Filters are real links and a GET form; sort submits under the CSP.
+goto /episodes?show=martha-bakes
+expect text 143 episodes
+select css:#sort date-desc
+expect url sort=date-desc
+expect text 143 episodes
+type css:#q pound cake
+expect url q=pound
+expect no-errors
