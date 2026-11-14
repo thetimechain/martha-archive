@@ -74,13 +74,16 @@ episodesRoute.get("/episodes", async (c) => {
                 Array.isArray(v) ? v.map((vv) => <input type="hidden" name={k} value={vv} />) : <input type="hidden" name={k} value={String(v)} />,
               )}
               <label for="sort">{copy.sortBy}</label>
-              <select name="sort" id="sort" onchange="this.form.submit()">
+              <select name="sort" id="sort" data-autosubmit>
                 {SORTS.map((s) => (
                   <option value={s} selected={params.sort === s}>
                     {labelForSort(s)}
                   </option>
                 ))}
               </select>
+              <noscript>
+                <button type="submit">{copy.sortBy}</button>
+              </noscript>
               <span class="results-count">
                 {result.total.toLocaleString()} episodes
               </span>

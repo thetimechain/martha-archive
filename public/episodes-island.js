@@ -18,8 +18,10 @@
     });
   }
 
-  // Sort select submits its enclosing form on change (already wired server-side).
+  // The sort select submits its form on change (no inline handlers: the CSP forbids them).
+  for (const select of document.querySelectorAll("select[data-autosubmit]")) {
+    select.addEventListener("change", () => select.form && select.form.submit());
+  }
   // Sidebar links and tag-cloud anchors are real hrefs — they navigate naturally.
 
-  console.log("episodes island loaded");
 })();
