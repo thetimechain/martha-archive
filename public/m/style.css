@@ -1053,3 +1053,7 @@ mark {
   box-shadow: 0 2px 6px rgba(60, 50, 30, 0.4);
   pointer-events: none;
 }
+
+.more-wrap { display: flex; align-items: center; gap: 12px; padding: 16px; }
+.more-btn { font: inherit; padding: 10px 16px; min-height: 44px; border: 1px solid var(--rule-deep); background: var(--page-warm-white, #FBF8F0); color: var(--ink); border-radius: var(--radius-2); cursor: pointer; }
+.more-count { color: var(--ink-soft); font-size: 0.85rem; }

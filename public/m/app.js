@@ -83,6 +83,11 @@
   let filterYear = '';
   let filterSeason = '';
   let chipsExpanded = false;
+  // Rendering every match (up to 2,842 rows with images) blocked the main
+  // thread for seconds; show a page at a time.
+  const PAGE = 30;
+  let listLimit = PAGE;
+  let listKey = '';
   let currentRoute = { path: '/', params: {} };
   let searchInput = null;
 
@@ -437,7 +442,15 @@
   /* ───────────────────────────────────────────────────────────────────────────
    * HOME VIEW
    * ─────────────────────────────────────────────────────────────────────────── */
+  function moreButton(total) {
+    if (total <= listLimit) return '';
+    const next = Math.min(PAGE, total - listLimit);
+    return `<p class="more-wrap"><button class="more-btn" data-action="more">Show ${next} more</button> <span class="more-count">${listLimit} of ${total.toLocaleString('en-US')}</span></p>`;
+  }
+
   function renderHome() {
+    const key = [query.trim(), filterShow, filterYear, filterSeason].join('|');
+    if (key !== listKey) { listKey = key; listLimit = PAGE; }
     const result   = getFiltered();
     const chipLimit = chipsExpanded ? CHIPS_EXPANDED : CHIPS_DEFAULT;
     const chips     = ALL_CHIPS.slice(0, chipLimit);
@@ -469,7 +482,7 @@
           : result.items;
         feed = `<div class="section-hd">
           ${hasQuery ? `RESULTS <span class="section-hd__count">${result.items.length}</span>` : 'EPISODES'}
-        </div>` + featuredHTML + items.map(ep => epHTML(ep, query)).join('');
+        </div>` + featuredHTML + items.slice(0, listLimit).map(ep => epHTML(ep, query)).join('') + moreButton(items.length);
       }
     } else {
       const tonight = getThisMonthEpisodes()
@@ -483,7 +496,8 @@
         ${featuredHTML}
         ${tonight.length > 0 ? `
           <div class="section-hd">${monthName}, IN EARLIER YEARS</div>
-          ${tonight.map(ep => epHTML(ep, '')).join('')}
+          ${tonight.slice(0, listLimit).map(ep => epHTML(ep, '')).join('')}
+          ${moreButton(tonight.length)}
         ` : ''}
         <div class="section-hd">RECENT IN THE ARCHIVE <span class="section-hd__count">${recent.length}</span></div>
         ${recent.map(ep => epHTML(ep, '')).join('')}
@@ -1139,6 +1153,13 @@
       case 'query': setQueryAndGo(arg); break;
       case 'focus': document.getElementById(arg)?.focus(); break;
       case 'back': history.back(); break;
+      case 'more': {
+        const before = listLimit;
+        listLimit += PAGE;
+        renderHome();
+        document.querySelectorAll('.ep-row, .ep-card')[before]?.focus();
+        break;
+      }
     }
   }
   document.addEventListener('click', (e) => {
