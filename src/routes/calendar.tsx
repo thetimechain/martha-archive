@@ -43,7 +43,10 @@ calendarRoute.get("/calendar/:year", async (c) => {
           <h1 class="display">Broadcast calendar, {year}</h1>
           {inferredCount > 0 && (
             <p class="caption">
-              {inferredCount === byIso.size ? "Every" : `${inferredCount} of the`} marked day{inferredCount === 1 ? " is" : "s are"} placed by the season calendar: one weekday broadcast between the season's approximate start and end, less holidays.
+              {inferredCount === byIso.size
+                ? "Every marked day is"
+                : `${inferredCount} of the marked days ${inferredCount === 1 ? "is" : "are"}`}{" "}
+              placed by the season calendar: one weekday broadcast between the season's approximate start and end, less holidays.
               The dates are inferred and the titles are unknown. <a href="/gaps">Read what is missing and why.</a>
             </p>
           )}
