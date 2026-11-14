@@ -128,6 +128,15 @@ Against Neon, once:
 1. `pnpm db:migrate` applies 0004: grade and honesty columns. The unique index on (show, season, episode) becomes a plain index.
 2. `pnpm data:regrade` grades every row, including the crawl rows.
 
+3. Verify the live site with the same checks used locally. Expect 8 of 8 op scripts and 0 axe violations:
+
+   ```bash
+   BASE_URL=https://martha.fly.dev pnpm test:ops
+   BASE_URL=https://martha.fly.dev pnpm test:a11y
+   ```
+
+   Before this branch was deployed (November 14, 2026), the live site failed 7 of the 8 op scripts. Each failure was a defect this branch fixes: "101%", missing OSM attribution, the trademark wordmark, unpaged mobile lists, the missing calendar note, the sort control under the new CSP, and titled counts. Only `not-found` passed.
+
 No map key is needed: tiles default to OpenStreetMap. Set `MAP_TILE_URL` (plus attribution and max zoom) to use another provider; the CSP follows it.
 
 ## Tests
