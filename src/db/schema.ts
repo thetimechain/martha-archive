@@ -70,13 +70,22 @@ export const episodes = pgTable(
     mstCanonicalUrl: text("mst_canonical_url"),
     mstMatchScore: text("mst_match_score"),
     mstDurationSeconds: integer("mst_duration_seconds"),
+    // honesty, set by src/import/regrade.ts over every row (see src/lib/honesty.ts)
+    grade: text("grade"), // confirmed | single | partial | inferred
+    isPlaceholder: boolean("is_placeholder").default(false).notNull(),
+    synopsisGenerated: boolean("synopsis_generated").default(false).notNull(),
+    numberDisputed: boolean("number_disputed").default(false).notNull(),
+    // Originals kept when regrade replaces what is shown; reset by every import.
+    sourceTitle: text("source_title"),
+    sourceDescription: text("source_description"),
     // provenance: 'seed' (from episodes.json) | 'marthastewart-tv' (new from vhx)
     provenance: text("provenance").default("seed").notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
   },
   (t) => ({
-    showSeasonEpIdx: uniqueIndex("episodes_show_season_ep")
+    // Not unique: two source records can claim the same number (regrade flags them).
+    showSeasonEpIdx: index("episodes_show_season_ep")
       .on(t.showSlug, t.season, t.episodeNumber)
       .where(sql`season IS NOT NULL AND episode_number IS NOT NULL`),
     showSlugIdx: index("episodes_show_slug_idx").on(t.showSlug),

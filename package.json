@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20.0.0" },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "tsx watch src/server.tsx",
     "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
@@ -18,7 +20,8 @@
     "import": "tsx src/import/run.ts",
     "import:verify": "tsx src/import/verify.ts",
     "test": "vitest run",
-    "test:unit": "vitest run tests/unit"
+    "test:unit": "vitest run tests/unit",
+    "data:regrade": "tsx src/import/regrade.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.7",

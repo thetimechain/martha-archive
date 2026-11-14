@@ -14,6 +14,7 @@ import {
 } from "./normalize.js";
 import { extractPalettesFromMarkdown } from "./palette.js";
 import { writeReconciliationReport } from "./report.js";
+import { regrade } from "./regrade.js";
 
 const DATA_DIR = env.DATA_DIR;
 const BATCH = env.IMPORT_BATCH_SIZE;
@@ -125,6 +126,8 @@ async function main() {
             confidence: sql`EXCLUDED.confidence`,
             singleSource: sql`EXCLUDED.single_source`,
             sources: sql`EXCLUDED.sources`,
+            sourceTitle: sql`NULL`,
+            sourceDescription: sql`NULL`,
             updatedAt: sql`now()`,
           },
         });
@@ -400,6 +403,12 @@ async function main() {
     await writeReconciliationReport({ db, pg, meta: episodesRaw.meta, rowsPerTable, errors, startedAt, finishedAt });
   } catch (e: any) {
     console.warn(`[import] report failed: ${e.message}`);
+  }
+
+  try {
+    await regrade(pg);
+  } catch (e: any) {
+    errors.push({ table: "regrade", message: e.message } as any);
   }
 
   console.table(rowsPerTable);
