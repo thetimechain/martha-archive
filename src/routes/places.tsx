@@ -5,6 +5,7 @@ import { fetchLastImport, fetchRowCounts, fetchConnections } from "../db/queries
 import { canonical, breadcrumbsJsonLd } from "../lib/seo.js";
 import { wikiLinksFor } from "../lib/wiki-links.js";
 import { allCoords } from "../lib/places-geo.js";
+import { env } from "../lib/env.js";
 import { safeJsonForScriptTag } from "../lib/safe-json.js";
 
 export const placesRoute = new Hono();
@@ -187,8 +188,8 @@ placesRoute.get("/places", async (c) => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /places/map — illustrated atlas of every researched Martha-orbit place.
-// Hand-curated coords in data/places-geo.json. Tiles via CARTO Positron with
-// a sepia/parchment CSS filter applied client-side.
+// Hand-curated coords in data/places-geo.json. Tiles from MAP_TILE_URL
+// (OpenStreetMap by default) with a sepia/parchment CSS filter applied client-side.
 // ─────────────────────────────────────────────────────────────────────────────
 placesRoute.get("/places/map", async (c) => {
   // Force every visitor to the latest HTML — Safari was caching the older
@@ -233,7 +234,7 @@ placesRoute.get("/places/map", async (c) => {
       bare
       head={
         <>
-          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+          <link rel="stylesheet" href="/static/vendor/leaflet/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" />
           <link rel="stylesheet" href="/static/styles/places-map.css" />
         </>
       }
@@ -249,7 +250,7 @@ placesRoute.get("/places/map", async (c) => {
           <span class="atlas-bar__count">{mapPoints.length}</span>
         </header>
 
-        <div id="atlas-map" role="region" aria-label="Atlas of Martha-orbit places"></div>
+        <div id="atlas-map" data-tile-url={env.MAP_TILE_URL} data-tile-attribution={env.MAP_TILE_ATTRIBUTION} data-tile-max-zoom={String(env.MAP_TILE_MAX_ZOOM)} role="region" aria-label="Atlas of Martha-orbit places"></div>
 
         <nav class="atlas-chips" aria-label="Filter by kind">
           <button type="button" class="atlas-chip atlas-chip--all is-active" data-kind="all">All</button>
@@ -291,14 +292,14 @@ placesRoute.get("/places/map", async (c) => {
             </svg>
             <span>Home</span>
           </a>
-          <a class="atlas-tabbar__item" href="/m/guests" aria-label="Guest index">
+          <a class="atlas-tabbar__item" href="/m/guests">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               <circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/>
               <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
             <span>Guests</span>
           </a>
-          <a class="atlas-tabbar__item is-active" href="/places/map" aria-label="Atlas — where Martha went" aria-current="page">
+          <a class="atlas-tabbar__item is-active" href="/places/map" aria-current="page">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               <path d="M11 2.5c-3 0-5.5 2.4-5.5 5.5 0 4.2 5.5 11.5 5.5 11.5s5.5-7.3 5.5-11.5C16.5 4.9 14 2.5 11 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
               <circle cx="11" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>
@@ -327,7 +328,7 @@ placesRoute.get("/places/map", async (c) => {
         </nav>
 
         <script id="atlas-data" type="application/json" dangerouslySetInnerHTML={{ __html: safeJsonForScriptTag(mapPoints) }}></script>
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="/static/vendor/leaflet/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="></script>
         <script src="/static/scripts/places-map.js" defer></script>
       </div>
     </Layout>,

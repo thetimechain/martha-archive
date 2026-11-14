@@ -19,6 +19,13 @@ const schema = z.object({
   SENTRY_DSN: z.string().optional(),
   CANONICAL_HOST: z.string().optional(),
   FLY_APP_NAME: z.string().optional(),
+  // Map tiles. OpenStreetMap's standard tiles need no key; their usage policy
+  // asks for attribution and light traffic. A keyed provider is a config change.
+  MAP_TILE_URL: z.string().default("https://tile.openstreetmap.org/{z}/{x}/{y}.png"),
+  MAP_TILE_ATTRIBUTION: z
+    .string()
+    .default('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'),
+  MAP_TILE_MAX_ZOOM: z.coerce.number().default(19),
 });
 
 export type Env = z.infer<typeof schema>;

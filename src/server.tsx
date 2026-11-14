@@ -28,7 +28,7 @@ import { todayRoute } from "./routes/today.js";
 import { topicsRoute } from "./routes/topics.js";
 import { chipsRoute } from "./routes/api-chips.js";
 import { NotFoundPage } from "./views/NotFound.js";
-import { buildCsp, securityHeaders } from "./middleware/security.js";
+import { buildCsp, securityHeaders, tileOrigin } from "./middleware/security.js";
 
 const app = new Hono();
 
@@ -36,12 +36,7 @@ app.use(
   "*",
   securityHeaders({
     production: env.NODE_ENV === "production",
-    // Until the map moves off CARTO and unpkg (next commit), allow them.
-    csp: buildCsp({
-      img: ["https://*.basemaps.cartocdn.com"],
-      script: ["https://unpkg.com"],
-      style: ["https://unpkg.com"],
-    }),
+    csp: buildCsp({ img: [tileOrigin(env.MAP_TILE_URL)] }),
   }),
 );
 

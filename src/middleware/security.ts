@@ -2,6 +2,12 @@ import type { MiddlewareHandler } from "hono";
 
 export type CspSources = { img?: string[]; script?: string[]; style?: string[]; connect?: string[] };
 
+/** The origin of a tile URL template such as https://{s}.tile.example.org/{z}/{x}/{y}.png. */
+export function tileOrigin(template: string): string {
+  const host = new URL(template.replace(/\{[a-z]\}/g, "0")).host;
+  return template.includes("{s}") ? `https://*.${host.split(".").slice(1).join(".")}` : `https://${host}`;
+}
+
 const join = (base: string[], extra: string[] = []) => [...base, ...extra].join(" ");
 
 export function buildCsp(extra: CspSources = {}): string {

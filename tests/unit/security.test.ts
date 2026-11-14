@@ -34,3 +34,12 @@ describe("security headers", () => {
     expect(res.headers.get("strict-transport-security")).toBeNull();
   });
 });
+
+import { tileOrigin } from "../../src/middleware/security.js";
+
+describe("tileOrigin", () => {
+  it("derives the CSP origin from a tile URL template", () => {
+    expect(tileOrigin("https://tile.openstreetmap.org/{z}/{x}/{y}.png")).toBe("https://tile.openstreetmap.org");
+    expect(tileOrigin("https://{s}.basemaps.cartocdn.com/x/{z}/{x}/{y}{r}.png")).toBe("https://*.basemaps.cartocdn.com");
+  });
+});

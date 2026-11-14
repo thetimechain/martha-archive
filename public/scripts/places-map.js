@@ -50,34 +50,16 @@
     scrollWheelZoom: isTouch,
     tap: true,
     zoomControl: true,
-    attributionControl: false,
+    attributionControl: true,
   });
+  map.attributionControl.setPrefix(false);
 
-  // Two-layer CARTO basemap (no auth required, free for non-commercial):
-  // 1) Voyager nolabels — colored basemap (green parks, blue water).
-  // 2) Voyager labels-only overlay — subtle gray place names on top so the
-  //    user can navigate without crowding pin labels.
-  // The painted/atlas feel comes from the CSS layer: heavy filter + paper-
-  // grain SVG overlay + compass rose. Far more reliable than depending on
-  // Stadia's auth-gated watercolor tiles.
-  L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png",
-    {
-      maxZoom: 18,
-      subdomains: "abcd",
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    }
-  ).addTo(map);
-
-  L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png",
-    {
-      maxZoom: 18,
-      subdomains: "abcd",
-      opacity: 0.7,
-    }
-  ).addTo(map);
+  // Tiles come from MAP_TILE_URL (OpenStreetMap by default, no key). The
+  // painted/atlas feel is the CSS layer: filter + paper grain + compass rose.
+  L.tileLayer(mapEl.dataset.tileUrl || "https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: Number(mapEl.dataset.tileMaxZoom || 19),
+    attribution: mapEl.dataset.tileAttribution || "&copy; OpenStreetMap contributors",
+  }).addTo(map);
 
   // Zoom-aware label visibility: at < 7 the labels overlap into chaos,
   // especially around NYC where ~30 pins crowd one square mile. Hide the
