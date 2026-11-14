@@ -8,6 +8,7 @@ export type EpisodeCardData = {
   airDate: string | null | undefined;
   airYear: number | null | undefined;
   airPrecision: string | null | undefined;
+  inferred?: boolean;
   photoUrl?: string | null;
 };
 
@@ -55,7 +56,7 @@ export const EpisodeCard: FC<{ episode: EpisodeCardData }> = ({ episode }) => {
         )}
         {episode.showName && <p class="episode-card__eyebrow">{episode.showName}</p>}
         <h3 class="episode-card__title">{episode.title}</h3>
-        <p class="episode-card__airdate">{date}</p>
+        <p class="episode-card__airdate">{date}{episode.inferred ? ", inferred" : ""}</p>
         <hr class="episode-card__rule" />
       </a>
     </article>

@@ -323,8 +323,9 @@ export async function fetchCalendarYear(year: number) {
     episode_id: string | null;
     title: string | null;
     ep_title: string | null;
+    inferred: boolean | null;
   }>>`
-    SELECT to_char(mce.air_date, 'YYYY-MM-DD') as air_date, mce.episode_id, mce.title, e.title as ep_title
+    SELECT to_char(mce.air_date, 'YYYY-MM-DD') as air_date, mce.episode_id, mce.title, e.title as ep_title, e.is_placeholder as inferred
     FROM mss_calendar_entries mce
     LEFT JOIN episodes e ON e.id = mce.episode_id
     WHERE EXTRACT(YEAR FROM mce.air_date) = ${year}
@@ -345,10 +346,16 @@ export async function fetchLastImport() {
   return rows[0] ?? null;
 }
 
+export async function fetchGradeCounts(): Promise<Record<string, number>> {
+  const rows = await pg<Array<{ grade: string | null; c: number }>>`SELECT grade, count(*)::int AS c FROM episodes GROUP BY grade`;
+  return Object.fromEntries(rows.map((r) => [r.grade ?? "ungraded", Number(r.c)]));
+}
+
 export async function fetchRowCounts(): Promise<Record<string, number>> {
   const r = await pg<Array<{ t: string; c: number }>>`
     SELECT 'shows' as t, count(*)::int as c FROM shows UNION ALL
     SELECT 'episodes', count(*)::int FROM episodes UNION ALL
+    SELECT 'episodes_titled', count(*)::int FROM episodes WHERE NOT is_placeholder UNION ALL
     SELECT 'episode_guests', count(*)::int FROM episode_guests UNION ALL
     SELECT 'episode_recipes', count(*)::int FROM episode_recipes UNION ALL
     SELECT 'episode_topics', count(*)::int FROM episode_topics UNION ALL

@@ -10,7 +10,7 @@ export const Footer: FC<{ meta?: { lastImport?: string; episodeCount?: number } 
         {meta.lastImport && <>{copy.imported}: {new Date(meta.lastImport).toLocaleDateString("en-US")} · </>}
         {meta.episodeCount !== undefined && (
           <>
-            {meta.episodeCount.toLocaleString()} episodes {copy.documented} · <a href="/gaps">{copy.gaps}</a>
+            {meta.episodeCount.toLocaleString()} titled episodes on record · <a href="/gaps">{copy.gaps}</a>
           </>
         )}
       </p>

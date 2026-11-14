@@ -69,7 +69,7 @@ showRoute.get("/shows/:slug", async (c) => {
         type: "video.tv_show",
       }}
       jsonLd={[seriesLd, crumbs]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page page--wide" style="padding-top:var(--space-4);">
         <header class="show-hero">
@@ -138,6 +138,7 @@ showRoute.get("/shows/:slug", async (c) => {
                     airDate: e.air_date,
                     airYear: e.air_year,
                     airPrecision: e.air_precision,
+                    inferred: !!(e.is_placeholder ?? e.isPlaceholder),
                     photoUrl: e.photo_url ?? null,
                   }}
                 />
@@ -159,6 +160,7 @@ showRoute.get("/shows/:slug", async (c) => {
                   airDate: e.air_date ?? e.airDate,
                   airYear: e.air_year ?? e.airYear,
                   airPrecision: e.air_precision ?? e.airPrecision,
+                  inferred: !!(e.is_placeholder ?? e.isPlaceholder),
                   photoUrl: e.photo_url ?? e.photoUrl ?? null,
                 }}
               />

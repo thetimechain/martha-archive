@@ -86,7 +86,7 @@ homeRoute.get("/", async (c) => {
         url: canonical("/"),
       }}
       jsonLd={[websiteJsonLd()]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <section class="page hero">
         <p class="smallcap-eyebrow" style="margin-bottom:var(--space-2);">{copy.bestIngredients}</p>

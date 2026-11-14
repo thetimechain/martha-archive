@@ -61,13 +61,13 @@ async function gatherFacts() {
     // Episodes by month
     sql<{ m: number; c: number }[]>`
       SELECT EXTRACT(MONTH FROM air_date)::int AS m, count(*)::int c FROM episodes
-      WHERE show_slug = 'martha-stewart-living' AND air_date IS NOT NULL AND provenance = 'seed'
+      WHERE show_slug = 'martha-stewart-living' AND air_date IS NOT NULL AND provenance = 'seed' AND air_precision = 'day'
       GROUP BY m ORDER BY c DESC`,
 
     // Season stats
     sql<{ season: number; c: number; confirmed: number }[]>`
       SELECT season, count(*)::int c,
-             count(*) FILTER (WHERE confidence = 'confirmed')::int confirmed
+             count(*) FILTER (WHERE grade = 'confirmed')::int confirmed
       FROM episodes
       WHERE show_slug = 'martha-stewart-living' AND season IS NOT NULL AND provenance = 'seed'
       GROUP BY season ORDER BY season`,
@@ -98,20 +98,20 @@ async function gatherFacts() {
 
     // Confidence breakdown
     sql<{ confidence: string; c: number }[]>`
-      SELECT confidence, count(*)::int c FROM episodes WHERE show_slug = 'martha-stewart-living'
-      GROUP BY confidence ORDER BY c DESC`,
+      SELECT COALESCE(grade, confidence::text) AS confidence, count(*)::int c FROM episodes WHERE show_slug = 'martha-stewart-living'
+      GROUP BY 1 ORDER BY c DESC`,
 
     // First episode
     sql<{ title: string; air_date: string }[]>`
-      SELECT title, to_char(air_date, 'FMMonth DD, YYYY') AS air_date FROM episodes
-      WHERE show_slug = 'martha-stewart-living' AND air_date IS NOT NULL
-      ORDER BY air_date ASC LIMIT 1`,
+      SELECT e.title, to_char(e.air_date, 'FMMonth DD, YYYY') AS air_date FROM episodes e
+      WHERE e.show_slug = 'martha-stewart-living' AND e.air_date IS NOT NULL AND e.air_precision = 'day'
+      ORDER BY e.air_date ASC LIMIT 1`,
 
     // Last episode
     sql<{ title: string; air_date: string }[]>`
-      SELECT title, to_char(air_date, 'FMMonth DD, YYYY') AS air_date FROM episodes
-      WHERE show_slug = 'martha-stewart-living' AND air_date IS NOT NULL
-      ORDER BY air_date DESC LIMIT 1`,
+      SELECT e.title, to_char(e.air_date, 'FMMonth DD, YYYY') AS air_date FROM episodes e
+      WHERE e.show_slug = 'martha-stewart-living' AND e.air_date IS NOT NULL AND e.air_precision = 'day'
+      ORDER BY e.air_date DESC LIMIT 1`,
   ]);
 
   return {
@@ -156,7 +156,7 @@ factsRoute.get("/facts", async (c) => {
     <Layout
       title="Martha Stewart Living — The Numbers"
       description="Facts, patterns, and records drawn from 1,216 documented episodes of Martha Stewart Living, 1993–2004."
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <article class="page" style="padding-top:var(--space-5);padding-bottom:var(--space-8);max-width:var(--measure-page);">
 
@@ -178,7 +178,7 @@ factsRoute.get("/facts", async (c) => {
             <div>
               <p style="font-family:var(--font-display);font-size:var(--size-display-xl);line-height:1;color:var(--body-text);">{facts.total.toLocaleString()}</p>
               <p class="caption" style="margin-top:var(--space-1);">episodes documented</p>
-              <p style="font-size:var(--size-caption);color: var(--text-secondary);margin-top:4px;">{confirmedCount.toLocaleString()} confirmed by primary source</p>
+              <p style="font-size:var(--size-caption);color: var(--text-secondary);margin-top:4px;">{confirmedCount.toLocaleString()} confirmed by two or more sources</p>
             </div>
             <div>
               <p style="font-family:var(--font-display);font-size:var(--size-display-xl);line-height:1;color:var(--body-text);">11</p>

@@ -53,7 +53,7 @@ designSystemRoute.get("/design-system", async (c) => {
     <Layout
       title="The design — 1990s Martha Stewart Living"
       description="A living style guide for the 1990s Martha Stewart Living identity."
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page" style="padding-top:var(--space-4);">
         <header class="hero">

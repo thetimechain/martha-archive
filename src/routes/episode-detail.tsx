@@ -63,7 +63,7 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
         image: (ep as any).photo_url ?? undefined,
       }}
       jsonLd={[epLd, crumbs]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <article class="episode-detail page page--prose">
         {(ep as any).photo_url && (

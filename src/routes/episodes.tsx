@@ -58,7 +58,7 @@ episodesRoute.get("/episodes", async (c) => {
     <Layout
       title="Episodes — Martha: An Archive"
       description="The complete episode archive across all Martha Stewart programs."
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page page--wide" style="padding-top:var(--space-4);">
         <header class="results-header">
@@ -115,6 +115,7 @@ episodesRoute.get("/episodes", async (c) => {
                         airDate: e.air_date ?? e.airDate ?? null,
                         airYear: e.air_year ?? e.airYear ?? null,
                         airPrecision: e.air_precision ?? e.airPrecision ?? null,
+                        inferred: !!(e.is_placeholder ?? e.isPlaceholder),
                         photoUrl: e.photo_url ?? e.photoUrl ?? null,
                       }}
                     />

@@ -473,7 +473,7 @@ topicsRoute.get("/topics", async (c) => {
         { name: "Archive", url: siteHost() },
         { name: "Topics", url: canonical("/topics") },
       ])]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page page--prose" style="padding-top:var(--space-4);">
         <header class="hero">
@@ -571,7 +571,7 @@ topicsRoute.get("/topics/:slug", async (c) => {
       canonical={url}
       og={{ title: t.metaTitle, description: t.metaDescription, url, type: "website" }}
       jsonLd={jsonLd}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <article class="page page--prose" style="padding-top:var(--space-4);">
         <p class="caption" style="margin-bottom:var(--space-2);">

@@ -160,7 +160,8 @@
   function fmtDate(ep) {
     if (!ep.air_date) return ep.air_year ? String(ep.air_year) : '—';
     const d = new Date(ep.air_date + 'T00:00:00Z');
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    const s = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    return ep.untitled ? s + ', inferred' : s;
   }
 
   function fmtDuration(mins) {
@@ -191,7 +192,7 @@
     const m = now.getMonth() + 1;
     return episodes
       .filter(e => {
-        if (!e.air_date) return false;
+        if (!e.air_date || e.untitled) return false;
         const month = parseInt(e.air_date.slice(5, 7), 10);
         return month === m;
       })
@@ -218,7 +219,7 @@
     const todayMd = pad2(m) + '-' + pad2(d);
 
     const inScope = e => {
-      if (!e.air_date) return false;
+      if (!e.air_date || e.untitled) return false;
       if (filterShow && e.show_slug !== filterShow) return false;
       return true;
     };
@@ -283,7 +284,7 @@
 
   function getRecentEpisodes() {
     return [...episodes]
-      .filter(e => e.air_date)
+      .filter(e => e.air_date && !e.untitled)
       .sort((a, b) => b.air_date.localeCompare(a.air_date))
       .slice(0, 30);
   }
@@ -663,7 +664,7 @@
     // Update URL with state
     const sp = new URLSearchParams();
     if (query)       sp.set('q', query);
-    if (filterShow)  sp.set('show', filterShow);
+    sp.set('show', filterShow || 'all');
     if (filterYear)  sp.set('year', filterYear);
     if (filterSeason)sp.set('season', filterSeason);
     const qs = sp.toString();
@@ -1080,7 +1081,9 @@
     // Restore home state from URL params
     if (path === '/' || path === '') {
       query        = search.get('q') || '';
-      filterShow   = search.get('show') || 'martha-stewart-living'; // default to the OG
+      const showParam = search.get('show');
+      // No param: the default show. 'all': every show (a guest or topic search).
+      filterShow   = showParam === null || showParam === '' ? 'martha-stewart-living' : showParam === 'all' ? '' : showParam;
       filterYear   = search.get('year') || '';
       filterSeason = search.get('season') || '';
       renderHome();
@@ -1141,7 +1144,7 @@
 
   function setQueryAndGo(q) {
     query = q;
-    navigate('/');
+    navigate('/?q=' + encodeURIComponent(q) + '&show=all');
     setTimeout(() => document.getElementById('q')?.focus(), 50);
   }
 
@@ -1157,7 +1160,7 @@
         const before = listLimit;
         listLimit += PAGE;
         renderHome();
-        document.querySelectorAll('.ep-row, .ep-card')[before]?.focus();
+        document.querySelectorAll('.ep-row:not(.ep--featured), .ep-card:not(.ep--featured)')[before]?.focus();
         break;
       }
     }

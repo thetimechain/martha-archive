@@ -130,7 +130,7 @@ guestsRoute.get("/guests", async (c) => {
     <Layout
       title="Guest Index — Martha Stewart Archive"
       description={`${guests.length} documented guests across all Martha Stewart programs.`}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page" style="padding-top:var(--space-5);padding-bottom:var(--space-8);">
 

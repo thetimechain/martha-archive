@@ -400,3 +400,4 @@
 .segment-list li { margin-bottom: 0.25rem; }
 .record { margin-top: var(--space-3); }
 .record h2 { font-size: var(--size-eyebrow); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 400; }
+.calendar-cell.has-episode.is-inferred { background: transparent; box-shadow: inset 0 0 0 1px var(--araucana-eggshell-blue); color: var(--text-secondary); }

@@ -9,3 +9,8 @@ expect text 60 of
 tap css:.tab-bar__item[data-arg="/guests"]
 expect url /m/guests
 expect no-errors
+goto /m/guests
+tap css:.ep-row
+expect url q=
+expect url show=all
+expect count ".ep-row:not(.ep--featured), .ep-card:not(.ep--featured)" >=1

@@ -98,7 +98,7 @@ placesRoute.get("/places", async (c) => {
       description="Every farm, bakery, museum, gallery, garden, and location featured on Martha Stewart Living. From Murray McMurray Hatchery to Balthazar Bakery to Peckerwood Garden."
       canonical={canonical("/places")}
       jsonLd={[breadcrumbsJsonLd([{ name: "Archive", url: canonical("/") }, { name: "Places", url: canonical("/places") }])]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page" style="padding-top:var(--space-5);padding-bottom:var(--space-8);">
         <header style="border-bottom:var(--hairline-bold);padding-bottom:var(--space-4);margin-bottom:var(--space-6);">

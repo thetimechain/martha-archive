@@ -154,6 +154,10 @@ async function main() {
                 sources: n.episode.sources,
                 confidence: n.episode.confidence,
                 singleSource: n.episode.singleSource,
+                season: n.episode.season,
+                episodeNumber: n.episode.episodeNumber,
+                sourceTitle: null,
+                sourceDescription: null,
                 updatedAt: sql`now()`,
               },
             });
@@ -438,10 +442,7 @@ function buildGapsMarkdown(meta: any): string {
     for (const g of meta.gaps) lines.push(`- ${typeof g === "string" ? g : JSON.stringify(g)}`);
     lines.push("");
   }
-  if (meta?.confidence_breakdown) {
-    lines.push("## Confidence");
-    for (const [k, v] of Object.entries(meta.confidence_breakdown)) lines.push(`- ${k}: ${v}`);
-  }
+  // Grade counts are rendered live from the database on /gaps (they change on regrade).
   return lines.join("\n");
 }
 

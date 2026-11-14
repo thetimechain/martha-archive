@@ -40,7 +40,7 @@ aboutShorthandRoute.get("/about/shorthand", async (c) => {
         { name: "Archive", url: canonical("/") },
         { name: "Segment shorthand", url: canonical("/about/shorthand") },
       ])]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page" style="padding-top:var(--space-5);padding-bottom:var(--space-8);max-width:var(--measure-prose);">
         <header style="border-bottom:var(--hairline-bold);padding-bottom:var(--space-4);margin-bottom:var(--space-6);">

@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { regradeAll, type GradeInput } from "../lib/honesty.js";
+import { parseAirDate } from "./normalize.js";
 
 type Pg = import("postgres").Sql;
 
@@ -14,6 +15,7 @@ export async function regrade(pg: Pg) {
       confidence: string;
       single_source: boolean;
       air_date: string | null;
+      air_date_raw: string | null;
       air_precision: string | null;
       season: number | null;
       episode_number: number | null;
@@ -21,7 +23,7 @@ export async function regrade(pg: Pg) {
     }[]
   >`
     SELECT e.id, e.show_slug, COALESCE(e.source_title, e.title) AS title, COALESCE(e.source_description, e.description) AS description, e.confidence::text AS confidence, e.single_source,
-           to_char(e.air_date, 'YYYY-MM-DD') AS air_date, e.air_precision, e.season, e.episode_number,
+           to_char(e.air_date, 'YYYY-MM-DD') AS air_date, e.air_date_raw, e.air_precision, e.season, e.episode_number,
            (SELECT array_agg(t.tag) FROM episode_tags t WHERE t.episode_id = e.id) AS tags
     FROM episodes e`;
   const input: GradeInput[] = rows.map((r) => ({
@@ -32,7 +34,8 @@ export async function regrade(pg: Pg) {
     confidence: r.confidence,
     singleSource: r.single_source,
     airDate: r.air_date,
-    airPrecision: r.air_precision,
+    // From the raw date, not the stored value, so an earlier regrade's 'year' is not sticky.
+    airPrecision: r.air_date_raw ? parseAirDate(r.air_date_raw).precision : r.air_precision,
     season: r.season,
     episodeNumber: r.episode_number,
     tags: r.tags ?? [],

@@ -28,7 +28,7 @@ collectionsRoute.get("/collections", async (c) => {
     <Layout
       title="Collections — Martha: An Archive"
       description="Themed playlists drawn from marthastewart.tv — the same groupings you'll find in the Martha app."
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page page--wide" style="padding-top:var(--space-4);">
         <header class="hero">
@@ -116,7 +116,7 @@ collectionsRoute.get("/collections/:slug", async (c) => {
     <Layout
       title={`${col.name} — Collections`}
       description={`${col.name}: ${total} videos from marthastewart.tv.`}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page page--wide" style="padding-top:var(--space-4);">
         <p class="caption" style="margin-bottom:var(--space-2);">
