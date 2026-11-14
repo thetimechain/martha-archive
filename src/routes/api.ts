@@ -164,9 +164,10 @@ async function getCompactPayload(): Promise<CompactCache> {
   }
 
   const rows = await sql`
-    SELECT e.id, e.show_slug, e.show_name, e.season, e.episode_number,
-           e.title, e.air_date::text AS air_date, e.air_year, e.runtime_minutes,
-           e.description, e.photo_url, e.confidence, e.provenance,
+    SELECT e.id, e.show_slug, e.show_name, e.season,
+           CASE WHEN e.is_placeholder THEN NULL ELSE e.episode_number END AS episode_number,
+           e.title, CASE WHEN e.air_precision = 'year' THEN NULL ELSE e.air_date::text END AS air_date, e.air_year, e.runtime_minutes,
+           e.description, e.photo_url, e.confidence, e.grade, e.is_placeholder AS untitled, e.provenance,
            e.mst_canonical_url, e.streaming,
            COALESCE((SELECT json_agg(tag ORDER BY tag) FROM episode_tags WHERE episode_id = e.id), '[]') AS tags,
            COALESCE((SELECT json_agg(topic ORDER BY topic) FROM episode_topics WHERE episode_id = e.id), '[]') AS topics,

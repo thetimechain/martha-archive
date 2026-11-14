@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { Layout } from "../views/components/Layout.js";
-import { fetchShows, fetchLastImport, fetchRowCounts, fetchNotableEpisodes, fetchOnThisDay } from "../db/queries.js";
+import { fetchShows, fetchLastImport, fetchRowCounts, fetchNotableEpisodes, fetchOnThisDay, fetchShowCoverage } from "../db/queries.js";
 import { sql } from "../db/client.js";
 import { copy } from "../copy.js";
 import { canonical, websiteJsonLd } from "../lib/seo.js";
@@ -37,7 +37,7 @@ homeRoute.get("/", async (c) => {
     return c.redirect("/m/", 302);
   }
 
-  const [shows, lastImport, counts] = await Promise.all([fetchShows(), fetchLastImport(), fetchRowCounts()]);
+  const [shows, lastImport, counts, coverage] = await Promise.all([fetchShows(), fetchLastImport(), fetchRowCounts(), fetchShowCoverage()]);
 
   // pull a few notable episodes for the Good Things callouts
   const notable = await fetchNotableEpisodes("martha-stewart-living", 3);
@@ -197,7 +197,7 @@ homeRoute.get("/", async (c) => {
               </div>
               <span class="taxonomy-tile__label">{s.name}</span>
               <span class="taxonomy-tile__meta">
-                {s.yearsLabel ?? ""} · {(s.documented ?? 0).toLocaleString()} documented
+                {s.yearsLabel ?? ""} · {(coverage.get(s.slug)?.titled ?? 0).toLocaleString()} titled episodes
               </span>
             </a>
           ))}
