@@ -1,6 +1,6 @@
 import { env } from "./env.js";
 
-const SITE_NAME = "Martha Stewart Living: An Archive";
+const SITE_NAME = "Martha: An Archive";
 
 export function siteHost(): string {
   if (env.CANONICAL_HOST) return env.CANONICAL_HOST;

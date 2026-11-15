@@ -40,7 +40,7 @@ aboutShorthandRoute.get("/about/shorthand", async (c) => {
         { name: "Archive", url: canonical("/") },
         { name: "Segment shorthand", url: canonical("/about/shorthand") },
       ])]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page" style="padding-top:var(--space-5);padding-bottom:var(--space-8);max-width:var(--measure-prose);">
         <header style="border-bottom:var(--hairline-bold);padding-bottom:var(--space-4);margin-bottom:var(--space-6);">
@@ -63,7 +63,7 @@ aboutShorthandRoute.get("/about/shorthand", async (c) => {
                 <p style="font-family:var(--font-body);font-weight:600;margin:0 0 var(--space-1) 0;">
                   {e.expansion}
                 </p>
-                <p class="caption" style="margin:0;color:var(--bedford-gray);line-height:1.5;">
+                <p class="caption" style="margin:0;color: var(--text-secondary);line-height:1.5;">
                   {e.gloss}
                 </p>
               </dd>
@@ -71,7 +71,7 @@ aboutShorthandRoute.get("/about/shorthand", async (c) => {
           ))}
         </dl>
 
-        <p class="caption" style="margin-top:var(--space-7);color:var(--bedford-gray);">
+        <p class="caption" style="margin-top:var(--space-7);color: var(--text-secondary);">
           Sourced from the segment titles in the marthastewart.tv (Vimeo OTT) archive and
           cross-referenced against the show's known recurring franchises. Full research
           context is in <a href="/research/seasonal-arc">the seasonal episode arc</a>.

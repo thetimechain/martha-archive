@@ -1,0 +1,14 @@
+{
+  "$comment": "Gzip bytes of static assets (fonts: raw bytes), measured by `pnpm test:budgets`. Raise a number only with a reason in $notes.",
+  "css.site": 10000,
+  "css.atlas": 8500,
+  "css.mobile": 7500,
+  "js.episodes-island": 2000,
+  "js.mobile": 17000,
+  "js.atlas": 7000,
+  "vendor.leaflet": 48000,
+  "fonts.all": 480000,
+  "$notes": {
+    "fonts.all": "14 woff2 files, 461 kB. Each page loads only the faces it uses, but subsetting them is the next saving."
+  }
+}

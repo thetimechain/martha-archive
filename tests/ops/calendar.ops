@@ -1,0 +1,7 @@
+# Calendar days placed by the season calendar say so.
+goto /calendar/2007
+expect text Every marked day is placed by the season calendar
+expect count ".calendar-cell.is-inferred" >=100
+goto /gaps
+expect text Date inferred
+expect text 1,107 episodes

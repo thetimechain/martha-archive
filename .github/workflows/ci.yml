@@ -18,4 +18,47 @@ jobs:
       - run: pnpm install --frozen-lockfile || pnpm install
       - run: pnpm typecheck
       - run: pnpm test
+      - run: pnpm test:budgets
       - run: pnpm build
+
+  # Browser checks against a real server and database: op scripts (tests/ops)
+  # and axe. Not required yet; make it required once it has run green a while.
+  browser:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: martha
+          POSTGRES_DB: neondb
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://postgres:martha@localhost:5432/neondb
+      DATABASE_URL_UNPOOLED: postgres://postgres:martha@localhost:5432/neondb
+      NODE_ENV: development
+      PORT: "8080"
+      LOG_LEVEL: warn
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile || pnpm install
+      - run: pnpm db:migrate
+      - run: pnpm data:import
+      - run: node scripts/mst-persist-entities.mjs
+      - run: npx playwright install --with-deps chromium
+      - name: Start the server
+        run: |
+          nohup pnpm dev > server.log 2>&1 &
+          for i in $(seq 1 60); do curl -fsS http://127.0.0.1:8080/health >/dev/null && break; sleep 1; done
+      - run: pnpm test:ops
+      - run: pnpm test:a11y
+      - if: failure()
+        run: tail -100 server.log

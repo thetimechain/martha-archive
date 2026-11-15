@@ -25,21 +25,31 @@ calendarRoute.get("/calendar/:year", async (c) => {
   ]);
   if (!years.includes(year)) return c.notFound();
 
-  const byIso = new Map<string, { id: string; title: string }>();
+  const byIso = new Map<string, { id: string; title: string; inferred: boolean }>();
   for (const r of entriesRaw as any[]) {
-    if (r.episode_id) byIso.set(r.air_date, { id: r.episode_id, title: r.ep_title ?? r.title ?? "" });
+    if (r.episode_id) byIso.set(r.air_date, { id: r.episode_id, title: r.ep_title ?? r.title ?? "", inferred: !!r.inferred });
   }
+  const inferredCount = [...byIso.values()].filter((e) => e.inferred).length;
 
   return c.html(
     <Layout
       title={`Calendar ${year} — The Martha Stewart Show`}
       description={`Episode calendar for The Martha Stewart Show, ${year}.`}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page page--wide" style="padding-top:var(--space-4);">
         <header class="results-header">
           <p class="section-eyebrow">The Martha Stewart Show</p>
           <h1 class="display">Broadcast calendar, {year}</h1>
+          {inferredCount > 0 && (
+            <p class="caption">
+              {inferredCount === byIso.size
+                ? "Every marked day is"
+                : `${inferredCount} of the marked days ${inferredCount === 1 ? "is" : "are"}`}{" "}
+              placed by the season calendar: one weekday broadcast between the season's approximate start and end, less holidays.
+              The dates are inferred and the titles are unknown. <a href="/gaps">Read what is missing and why.</a>
+            </p>
+          )}
         </header>
         <nav class="calendar-years" aria-label="Year">
           {years.map((y) => (
@@ -64,8 +74,8 @@ calendarRoute.get("/calendar/:year", async (c) => {
                       const ep = byIso.get(cell.iso);
                       if (ep) {
                         return (
-                          <span class="calendar-cell has-episode" title={ep.title}>
-                            <a href={`/episodes/${ep.id}`} aria-label={`${cell.iso}: ${ep.title}`}>
+                          <span class={`calendar-cell has-episode${ep.inferred ? " is-inferred" : ""}`} title={ep.inferred ? "Date inferred; title unknown" : ep.title}>
+                            <a href={`/episodes/${ep.id}`} aria-label={ep.inferred ? `${cell.iso}: an untitled broadcast, date inferred` : `${cell.iso}: ${ep.title}`}>
                               {cell.day}
                             </a>
                           </span>

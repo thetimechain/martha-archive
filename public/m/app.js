@@ -83,6 +83,11 @@
   let filterYear = '';
   let filterSeason = '';
   let chipsExpanded = false;
+  // Rendering every match (up to 2,842 rows with images) blocked the main
+  // thread for seconds; show a page at a time.
+  const PAGE = 30;
+  let listLimit = PAGE;
+  let listKey = '';
   let currentRoute = { path: '/', params: {} };
   let searchInput = null;
 
@@ -155,7 +160,8 @@
   function fmtDate(ep) {
     if (!ep.air_date) return ep.air_year ? String(ep.air_year) : '—';
     const d = new Date(ep.air_date + 'T00:00:00Z');
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    const s = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    return ep.untitled ? s + ', inferred' : s;
   }
 
   function fmtDuration(mins) {
@@ -186,7 +192,7 @@
     const m = now.getMonth() + 1;
     return episodes
       .filter(e => {
-        if (!e.air_date) return false;
+        if (!e.air_date || e.untitled) return false;
         const month = parseInt(e.air_date.slice(5, 7), 10);
         return month === m;
       })
@@ -213,7 +219,7 @@
     const todayMd = pad2(m) + '-' + pad2(d);
 
     const inScope = e => {
-      if (!e.air_date) return false;
+      if (!e.air_date || e.untitled) return false;
       if (filterShow && e.show_slug !== filterShow) return false;
       return true;
     };
@@ -278,7 +284,7 @@
 
   function getRecentEpisodes() {
     return [...episodes]
-      .filter(e => e.air_date)
+      .filter(e => e.air_date && !e.untitled)
       .sort((a, b) => b.air_date.localeCompare(a.air_date))
       .slice(0, 30);
   }
@@ -336,10 +342,10 @@
             loading="lazy"
             decoding="async"
             width="640" height="360"
-            onload="this.classList.add('loaded')">`
+            data-fade>`
       : '';
 
-    return `<article class="ep-card" data-id="${esc(ep.id)}" role="button" tabindex="0" aria-label="${esc(ep.title)}">
+    return `<article class="ep-card" data-id="${esc(ep.id)}" role="button" tabindex="0">
       <div class="ep-card__img-wrap" style="background:${esc(placeholderColor)};">
         ${imgHTML}
         ${numHTML}
@@ -380,7 +386,7 @@
       ...tags.map(t => `<span class="pill-tag">${esc(t)}</span>`),
     ].join('');
 
-    return `<article class="ep-row" data-id="${esc(ep.id)}" role="button" tabindex="0" aria-label="${esc(ep.title)}">
+    return `<article class="ep-row" data-id="${esc(ep.id)}" role="button" tabindex="0">
       ${numCol}
       <div class="ep-body">
         <div class="ep-meta">
@@ -437,7 +443,15 @@
   /* ───────────────────────────────────────────────────────────────────────────
    * HOME VIEW
    * ─────────────────────────────────────────────────────────────────────────── */
+  function moreButton(total) {
+    if (total <= listLimit) return '';
+    const next = Math.min(PAGE, total - listLimit);
+    return `<p class="more-wrap"><button class="more-btn" data-action="more">Show ${next} more</button> <span class="more-count">${listLimit} of ${total.toLocaleString('en-US')}</span></p>`;
+  }
+
   function renderHome() {
+    const key = [query.trim(), filterShow, filterYear, filterSeason].join('|');
+    if (key !== listKey) { listKey = key; listLimit = PAGE; }
     const result   = getFiltered();
     const chipLimit = chipsExpanded ? CHIPS_EXPANDED : CHIPS_DEFAULT;
     const chips     = ALL_CHIPS.slice(0, chipLimit);
@@ -469,7 +483,7 @@
           : result.items;
         feed = `<div class="section-hd">
           ${hasQuery ? `RESULTS <span class="section-hd__count">${result.items.length}</span>` : 'EPISODES'}
-        </div>` + featuredHTML + items.map(ep => epHTML(ep, query)).join('');
+        </div>` + featuredHTML + items.slice(0, listLimit).map(ep => epHTML(ep, query)).join('') + moreButton(items.length);
       }
     } else {
       const tonight = getThisMonthEpisodes()
@@ -483,7 +497,8 @@
         ${featuredHTML}
         ${tonight.length > 0 ? `
           <div class="section-hd">${monthName}, IN EARLIER YEARS</div>
-          ${tonight.map(ep => epHTML(ep, '')).join('')}
+          ${tonight.slice(0, listLimit).map(ep => epHTML(ep, '')).join('')}
+          ${moreButton(tonight.length)}
         ` : ''}
         <div class="section-hd">RECENT IN THE ARCHIVE <span class="section-hd__count">${recent.length}</span></div>
         ${recent.map(ep => epHTML(ep, '')).join('')}
@@ -649,7 +664,7 @@
     // Update URL with state
     const sp = new URLSearchParams();
     if (query)       sp.set('q', query);
-    if (filterShow)  sp.set('show', filterShow);
+    sp.set('show', filterShow || 'all');
     if (filterYear)  sp.set('year', filterYear);
     if (filterSeason)sp.set('season', filterSeason);
     const qs = sp.toString();
@@ -668,7 +683,7 @@
       document.getElementById('view').innerHTML = `
         <div class="state-empty">
           <p class="state-empty__title">Episode not found</p>
-          <p class="state-empty__sub"><button onclick="navigate('/')">Back to search</button></p>
+          <p class="state-empty__sub"><button data-action="navigate" data-arg="/">Back to search</button></p>
         </div>`;
       return;
     }
@@ -707,7 +722,7 @@
           <div class="detail-section-hd">GUESTS</div>
           <ul class="detail-list">${(ep.guests || []).map(g => `<li>
             <button class="tap-target" style="font:inherit;color:var(--garden-hosta);background:none;border:none;padding:0;cursor:pointer;font-family:var(--font-serif);"
-              onclick="setQueryAndGo('${esc(g.replace(/'/g, "\\'"))}')">★ ${esc(g)}</button>
+              data-action="query" data-arg="${esc(g)}">★ ${esc(g)}</button>
           </li>`).join('')}</ul>
         </div>` : '';
 
@@ -715,7 +730,7 @@
       ? `<div class="detail-section">
           <div class="detail-section-hd">TOPICS</div>
           <div class="ep-pills" style="padding:2px 0;">
-            ${(ep.topics || []).map(t => `<button class="chip" onclick="setQueryAndGo('${esc(t.replace(/'/g, "\\'"))}')">${esc(t)}</button>`).join('')}
+            ${(ep.topics || []).map(t => `<button class="chip" data-action="query" data-arg="${esc(t)}">${esc(t)}</button>`).join('')}
           </div>
         </div>` : '';
 
@@ -723,7 +738,7 @@
       ? `<div class="detail-section">
           <div class="detail-section-hd">TAGS</div>
           <div class="ep-pills" style="padding:2px 0;">
-            ${goodTags(ep, 20).map(t => `<button class="chip" onclick="setQueryAndGo('${esc(t.replace(/'/g, "\\'"))}')">${esc(t)}</button>`).join('')}
+            ${goodTags(ep, 20).map(t => `<button class="chip" data-action="query" data-arg="${esc(t)}">${esc(t)}</button>`).join('')}
           </div>
         </div>` : '';
 
@@ -740,13 +755,13 @@
 
     const prevNextHTML = `<div class="prevnext">
       <div class="prevnext__item">
-        ${prev ? `<button onclick="navigate('/episode/${esc(prev.id)}')" style="background:none;border:none;text-align:left;cursor:pointer;padding:0;">
+        ${prev ? `<button data-action="navigate" data-arg="/episode/${esc(prev.id)}" style="background:none;border:none;text-align:left;cursor:pointer;padding:0;">
           <div class="prevnext__dir">← Previous</div>
           <div class="prevnext__title">${esc(prev.title)}</div>
         </button>` : `<div class="prevnext__dir" style="color:var(--ink-whisper)">—</div>`}
       </div>
       <div class="prevnext__item prevnext__item--next">
-        ${next ? `<button onclick="navigate('/episode/${esc(next.id)}')" style="background:none;border:none;text-align:right;cursor:pointer;padding:0;width:100%;">
+        ${next ? `<button data-action="navigate" data-arg="/episode/${esc(next.id)}" style="background:none;border:none;text-align:right;cursor:pointer;padding:0;width:100%;">
           <div class="prevnext__dir">Next →</div>
           <div class="prevnext__title">${esc(next.title)}</div>
         </button>` : `<div class="prevnext__dir" style="color:var(--ink-whisper)">—</div>`}
@@ -878,7 +893,7 @@
       const style = show ? `background:${show.bg};color:${show.fg};` : 'background:#E0D9C8;color:#5C544A;';
       return `<span class="ep-badge" style="${style}font-size:9px;padding:1px 5px;">${esc(show?.short || s.slice(0,7).toUpperCase())}</span>`;
     }).join('');
-    return `<div class="ep-row" style="cursor:pointer;" onclick="setQueryAndGo('${esc(g.name.replace(/'/g, "\\'"))}')" role="button" tabindex="0" aria-label="Search ${esc(g.name)}">
+    return `<div class="ep-row" style="cursor:pointer;" data-action="query" data-arg="${esc(g.name)}" role="button" tabindex="0">
       <div class="ep-num">
         <span class="ep-num__episode" style="font-size:1.4rem;">${g.count}</span>
       </div>
@@ -1019,13 +1034,13 @@
     topBar.innerHTML = isHome
       ? `<span class="top-bar__wordmark">Martha Episodes</span>
          <div class="top-bar__right">
-           <button class="top-bar__filter-btn" aria-label="Filter" onclick="document.getElementById('sel-show')?.focus()">
+           <button class="top-bar__filter-btn" aria-label="Filter" data-action="focus" data-arg="sel-show">
              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                <path d="M2 4h14M4 9h10M7 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
              </svg>
            </button>
          </div>`
-      : `<button class="top-bar__back" onclick="history.back()" aria-label="Go back">
+      : `<button class="top-bar__back" data-action="back" aria-label="Go back">
            <svg width="10" height="18" viewBox="0 0 10 18" fill="none" aria-hidden="true">
              <path d="M9 1L1 9l8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
            </svg>
@@ -1066,7 +1081,9 @@
     // Restore home state from URL params
     if (path === '/' || path === '') {
       query        = search.get('q') || '';
-      filterShow   = search.get('show') || 'martha-stewart-living'; // default to the OG
+      const showParam = search.get('show');
+      // No param: the default show. 'all': every show (a guest or topic search).
+      filterShow   = showParam === null || showParam === '' ? 'martha-stewart-living' : showParam === 'all' ? '' : showParam;
       filterYear   = search.get('year') || '';
       filterSeason = search.get('season') || '';
       renderHome();
@@ -1125,14 +1142,44 @@
     route(url);
   }
 
-  // Expose helpers for inline onclick handlers
-  window.navigate = navigate;
-  window.setQueryAndGo = function(q) {
+  function setQueryAndGo(q) {
     query = q;
-    navigate('/');
-    // After re-render, focus input
+    navigate('/?q=' + encodeURIComponent(q) + '&show=all');
     setTimeout(() => document.getElementById('q')?.focus(), 50);
-  };
+  }
+
+  // One delegated handler for every [data-action]; the CSP allows no inline handlers.
+  function runAction(el) {
+    const arg = el.dataset.arg ?? '';
+    switch (el.dataset.action) {
+      case 'navigate': navigate(arg); break;
+      case 'query': setQueryAndGo(arg); break;
+      case 'focus': document.getElementById(arg)?.focus(); break;
+      case 'back': history.back(); break;
+      case 'more': {
+        const before = listLimit;
+        listLimit += PAGE;
+        renderHome();
+        document.querySelectorAll('.ep-row:not(.ep--featured), .ep-card:not(.ep--featured)')[before]?.focus();
+        break;
+      }
+    }
+  }
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest?.('[data-action]');
+    if (el) { e.preventDefault(); runAction(el); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const el = e.target.closest?.('[data-action][role="button"]');
+    if (el) { e.preventDefault(); runAction(el); }
+  });
+  document.addEventListener('load', (e) => {
+    if (e.target instanceof HTMLImageElement && e.target.hasAttribute('data-fade')) e.target.classList.add('loaded');
+  }, true);
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/m/sw.js', { scope: '/m/' }).catch(() => {});
+  }
 
   /* ───────────────────────────────────────────────────────────────────────────
    * SHELL HTML
@@ -1144,7 +1191,7 @@
       <div id="view" class="view" role="main"></div>
 
       <nav class="tab-bar" role="navigation" aria-label="Main navigation">
-        <button class="tab-bar__item active" onclick="navigate('/')" aria-label="Home">
+        <button class="tab-bar__item active" data-action="navigate" data-arg="/" aria-label="Home">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <!-- Chimney — set slightly right of center, classic colonial -->
             <rect x="13.5" y="1.5" width="2.5" height="5" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
@@ -1166,21 +1213,21 @@
           </svg>
           Home
         </button>
-        <button class="tab-bar__item" onclick="navigate('/guests')" aria-label="Guest index">
+        <button class="tab-bar__item" data-action="navigate" data-arg="/guests">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/>
             <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
           Guests
         </button>
-        <a class="tab-bar__item" href="/places/map" aria-label="Atlas — where Martha went">
+        <a class="tab-bar__item" href="/places/map">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <path d="M11 2.5c-3 0-5.5 2.4-5.5 5.5 0 4.2 5.5 11.5 5.5 11.5s5.5-7.3 5.5-11.5C16.5 4.9 14 2.5 11 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
             <circle cx="11" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>
           </svg>
           Map
         </a>
-        <button class="tab-bar__item" onclick="navigate('/random')" aria-label="Random episode">
+        <button class="tab-bar__item" data-action="navigate" data-arg="/random" aria-label="Random episode">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/>
             <circle cx="11" cy="11" r="2" fill="currentColor"/>
@@ -1191,7 +1238,7 @@
           </svg>
           Random
         </button>
-        <button class="tab-bar__item" onclick="navigate('/about')" aria-label="About">
+        <button class="tab-bar__item" data-action="navigate" data-arg="/about" aria-label="About">
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
             <circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/>
             <line x1="11" y1="10" x2="11" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>

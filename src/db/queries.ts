@@ -257,7 +257,18 @@ export async function fetchEpisodeDetail(id: string) {
       airPrecision: ep.air_precision,
       runtimeMinutes: ep.runtime_minutes,
       singleSource: ep.single_source,
+      grade: (ep as any).grade,
+      isPlaceholder: (ep as any).is_placeholder,
+      synopsisGenerated: (ep as any).synopsis_generated,
+      numberDisputed: (ep as any).number_disputed,
+      sourceTitle: (ep as any).source_title,
     } as any,
+    disputedWith: (ep as any).number_disputed
+      ? await pg<Array<{ id: string; title: string }>>`
+          SELECT id, title FROM episodes
+          WHERE show_slug = ${ep.show_slug} AND season = ${ep.season} AND episode_number = ${ep.episode_number} AND id <> ${ep.id}
+          ORDER BY id`
+      : [],
     show,
     guests,
     recipes,
@@ -271,6 +282,16 @@ export async function fetchEpisodeDetail(id: string) {
   };
 }
 
+/** Titled episodes and calendar-placed placeholders per show (placeholders are never counted as documented). */
+export async function fetchShowCoverage(): Promise<Map<string, { titled: number; placeholders: number }>> {
+  const rows = await pg<Array<{ show_slug: string; titled: number; placeholders: number }>>`
+    SELECT show_slug,
+           COUNT(*) FILTER (WHERE NOT is_placeholder)::int AS titled,
+           COUNT(*) FILTER (WHERE is_placeholder)::int AS placeholders
+    FROM episodes GROUP BY show_slug`;
+  return new Map(rows.map((r) => [r.show_slug, { titled: r.titled, placeholders: r.placeholders }]));
+}
+
 export async function fetchShows() {
   return db.select().from(shows).orderBy(asc(shows.sortOrder), asc(shows.name));
 }
@@ -282,7 +303,7 @@ export async function fetchShowBySlug(slug: string) {
 export async function fetchShowSeasons(slug: string) {
   return pg<Array<{ season: number; ep_count: number; season_start: string | null; documented: number }>>`
     SELECT season, MIN(air_date)::text AS season_start, COUNT(*)::int AS ep_count,
-           SUM(CASE WHEN confidence = 'confirmed' THEN 1 ELSE 0 END)::int AS documented
+           SUM(CASE WHEN grade = 'confirmed' THEN 1 ELSE 0 END)::int AS documented
     FROM episodes WHERE show_slug = ${slug} AND season IS NOT NULL
     GROUP BY season ORDER BY season
   `;
@@ -302,8 +323,9 @@ export async function fetchCalendarYear(year: number) {
     episode_id: string | null;
     title: string | null;
     ep_title: string | null;
+    inferred: boolean | null;
   }>>`
-    SELECT to_char(mce.air_date, 'YYYY-MM-DD') as air_date, mce.episode_id, mce.title, e.title as ep_title
+    SELECT to_char(mce.air_date, 'YYYY-MM-DD') as air_date, mce.episode_id, mce.title, e.title as ep_title, e.is_placeholder as inferred
     FROM mss_calendar_entries mce
     LEFT JOIN episodes e ON e.id = mce.episode_id
     WHERE EXTRACT(YEAR FROM mce.air_date) = ${year}
@@ -324,10 +346,16 @@ export async function fetchLastImport() {
   return rows[0] ?? null;
 }
 
+export async function fetchGradeCounts(): Promise<Record<string, number>> {
+  const rows = await pg<Array<{ grade: string | null; c: number }>>`SELECT grade, count(*)::int AS c FROM episodes GROUP BY grade`;
+  return Object.fromEntries(rows.map((r) => [r.grade ?? "ungraded", Number(r.c)]));
+}
+
 export async function fetchRowCounts(): Promise<Record<string, number>> {
   const r = await pg<Array<{ t: string; c: number }>>`
     SELECT 'shows' as t, count(*)::int as c FROM shows UNION ALL
     SELECT 'episodes', count(*)::int FROM episodes UNION ALL
+    SELECT 'episodes_titled', count(*)::int FROM episodes WHERE NOT is_placeholder UNION ALL
     SELECT 'episode_guests', count(*)::int FROM episode_guests UNION ALL
     SELECT 'episode_recipes', count(*)::int FROM episode_recipes UNION ALL
     SELECT 'episode_topics', count(*)::int FROM episode_topics UNION ALL
@@ -502,7 +530,7 @@ export async function fetchFeaturedTile(month: number, day: number): Promise<Fea
   }>>`
     SELECT id, title, show_slug, show_name, air_year, air_date::text AS air_date, photo_url
     FROM episodes
-    WHERE air_precision = 'day'
+    WHERE air_precision = 'day' AND NOT is_placeholder
       AND EXTRACT(MONTH FROM air_date)::int = ${month}
       AND EXTRACT(DAY   FROM air_date)::int = ${day}
     ORDER BY (photo_url IS NOT NULL) DESC, random()
@@ -531,7 +559,7 @@ export async function fetchFeaturedTile(month: number, day: number): Promise<Fea
              365 - abs(EXTRACT(DOY FROM air_date)::int - (SELECT doy FROM today_doy))
            )::int AS days_off
     FROM episodes
-    WHERE air_precision = 'day'
+    WHERE air_precision = 'day' AND NOT is_placeholder
       AND LEAST(
             abs(EXTRACT(DOY FROM air_date)::int - (SELECT doy FROM today_doy)),
             365 - abs(EXTRACT(DOY FROM air_date)::int - (SELECT doy FROM today_doy))
@@ -564,7 +592,7 @@ export async function fetchOnThisDay(month: number, day: number): Promise<OnThis
   return pg<OnThisDayRow[]>`
     SELECT id, title, show_slug, show_name, air_year, air_date::text AS air_date, photo_url
     FROM episodes
-    WHERE air_precision = 'day'
+    WHERE air_precision = 'day' AND NOT is_placeholder
       AND EXTRACT(MONTH FROM air_date)::int = ${month}
       AND EXTRACT(DAY   FROM air_date)::int = ${day}
     ORDER BY air_year ASC NULLS LAST, title ASC

@@ -1,0 +1,6 @@
+# The map draws OpenStreetMap tiles with their attribution, under the CSP.
+goto /places/map
+expect count .leaflet-container 1
+expect count ".leaflet-tile-loaded" >=4
+expect text OpenStreetMap contributors
+expect no-errors

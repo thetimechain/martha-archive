@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { Layout } from "../views/components/Layout.js";
-import { fetchShows, fetchLastImport, fetchRowCounts, fetchNotableEpisodes, fetchOnThisDay } from "../db/queries.js";
+import { fetchShows, fetchLastImport, fetchRowCounts, fetchNotableEpisodes, fetchOnThisDay, fetchShowCoverage } from "../db/queries.js";
 import { sql } from "../db/client.js";
 import { copy } from "../copy.js";
 import { canonical, websiteJsonLd } from "../lib/seo.js";
@@ -37,7 +37,7 @@ homeRoute.get("/", async (c) => {
     return c.redirect("/m/", 302);
   }
 
-  const [shows, lastImport, counts] = await Promise.all([fetchShows(), fetchLastImport(), fetchRowCounts()]);
+  const [shows, lastImport, counts, coverage] = await Promise.all([fetchShows(), fetchLastImport(), fetchRowCounts(), fetchShowCoverage()]);
 
   // pull a few notable episodes for the Good Things callouts
   const notable = await fetchNotableEpisodes("martha-stewart-living", 3);
@@ -77,7 +77,7 @@ homeRoute.get("/", async (c) => {
 
   return c.html(
     <Layout
-      title="Martha Stewart Living: An Archive"
+      title="Martha: An Archive"
       description="A complete record of Martha Stewart television episodes, with the recipes and small good things they contained."
       canonical={canonical("/")}
       og={{
@@ -86,11 +86,11 @@ homeRoute.get("/", async (c) => {
         url: canonical("/"),
       }}
       jsonLd={[websiteJsonLd()]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <section class="page hero">
         <p class="smallcap-eyebrow" style="margin-bottom:var(--space-2);">{copy.bestIngredients}</p>
-        <h1 class="display">Martha Stewart Living: An Archive</h1>
+        <h1 class="display">Martha: An Archive</h1>
         <p class="lede">{copy.homeOpener}</p>
         <p style="margin-top:var(--space-3);">
           <a href="/episodes" class="smallcap-eyebrow" style="color:var(--body-text);text-decoration-thickness:0.5px;">
@@ -107,10 +107,10 @@ homeRoute.get("/", async (c) => {
           <div style="display:grid;gap:var(--space-3);margin-top:var(--space-4);">
             {todayEps.slice(0, 4).map((e) => (
               <a href={`/episodes/${e.id}`} style="text-decoration:none;color:inherit;display:grid;grid-template-columns:60px 1fr;gap:var(--space-4);align-items:baseline;border-bottom:var(--hairline-thin);padding-bottom:var(--space-2);">
-                <span style="font-family:var(--font-display);font-size:1.6rem;line-height:1;color:var(--bedford-gray);">{e.air_year ?? "—"}</span>
+                <span style="font-family:var(--font-display);font-size:1.6rem;line-height:1;color: var(--text-secondary);">{e.air_year ?? "—"}</span>
                 <span>
                   <span style="font-family:var(--font-body);">{e.title}</span>
-                  <span class="caption" style="display:block;color:var(--bedford-gray);font-size:0.78rem;margin-top:2px;">{e.show_name ?? e.show_slug}</span>
+                  <span class="caption" style="display:block;color: var(--text-secondary);font-size:0.78rem;margin-top:2px;">{e.show_name ?? e.show_slug}</span>
                 </span>
               </a>
             ))}
@@ -135,10 +135,10 @@ homeRoute.get("/", async (c) => {
               <a href={`/people/${p.slug}`} style="text-decoration:none;color:inherit;border-bottom:var(--hairline-thin);padding:var(--space-2) 0;display:block;">
                 <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
                   <span style="font-family:var(--font-body);">{p.name}</span>
-                  <span style="font-family:var(--font-display);color:var(--bedford-gray);">{p.mentions}</span>
+                  <span style="font-family:var(--font-display);color: var(--text-secondary);">{p.mentions}</span>
                 </div>
                 {p.role && (
-                  <p class="caption" style="margin-top:4px;font-size:0.78rem;color:var(--bedford-gray);line-height:1.35;">
+                  <p class="caption" style="margin-top:4px;font-size:0.78rem;color: var(--text-secondary);line-height:1.35;">
                     {p.role.length > 100 ? p.role.slice(0, 100) + "…" : p.role}
                   </p>
                 )}
@@ -165,10 +165,10 @@ homeRoute.get("/", async (c) => {
               <a href={`/places/${p.slug}`} style="text-decoration:none;color:inherit;border-bottom:var(--hairline-thin);padding:var(--space-2) 0;display:block;">
                 <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
                   <span style="font-family:var(--font-body);">{p.name}</span>
-                  <span style="font-family:var(--font-display);color:var(--bedford-gray);font-size:0.95rem;">{p.kind}</span>
+                  <span style="font-family:var(--font-display);color: var(--text-secondary);font-size:0.95rem;">{p.kind}</span>
                 </div>
                 {p.role && (
-                  <p class="caption" style="margin-top:4px;font-size:0.78rem;color:var(--bedford-gray);line-height:1.35;">
+                  <p class="caption" style="margin-top:4px;font-size:0.78rem;color: var(--text-secondary);line-height:1.35;">
                     {p.role.length > 120 ? p.role.slice(0, 120) + "…" : p.role}
                   </p>
                 )}
@@ -197,7 +197,7 @@ homeRoute.get("/", async (c) => {
               </div>
               <span class="taxonomy-tile__label">{s.name}</span>
               <span class="taxonomy-tile__meta">
-                {s.yearsLabel ?? ""} · {(s.documented ?? 0).toLocaleString()} documented
+                {s.yearsLabel ?? ""} · {(coverage.get(s.slug)?.titled ?? 0).toLocaleString()} titled episodes
               </span>
             </a>
           ))}

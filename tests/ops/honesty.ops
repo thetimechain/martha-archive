@@ -1,0 +1,17 @@
+# What is not known is said plainly.
+goto /shows/martha-stewart-show
+expect no-text 101%
+expect text 109 titled episodes of 1,207 known broadcasts
+expect text placed by the season calendar
+goto /episodes/mss-s01e003
+expect title Untitled broadcast
+expect text Date inferred
+expect no-text Martha Stewart Show S1E3
+goto /episodes/msl-s05e004
+expect text One listing
+expect text No synopsis is on record
+goto /episodes/msl-s09e01
+expect text also claims Season 9, Episode 1
+goto /episodes/mb-s11e01
+expect text gives the year of this episode but not the day
+expect no-errors

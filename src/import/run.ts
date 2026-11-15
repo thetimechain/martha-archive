@@ -14,6 +14,7 @@ import {
 } from "./normalize.js";
 import { extractPalettesFromMarkdown } from "./palette.js";
 import { writeReconciliationReport } from "./report.js";
+import { regrade } from "./regrade.js";
 
 const DATA_DIR = env.DATA_DIR;
 const BATCH = env.IMPORT_BATCH_SIZE;
@@ -125,6 +126,8 @@ async function main() {
             confidence: sql`EXCLUDED.confidence`,
             singleSource: sql`EXCLUDED.single_source`,
             sources: sql`EXCLUDED.sources`,
+            sourceTitle: sql`NULL`,
+            sourceDescription: sql`NULL`,
             updatedAt: sql`now()`,
           },
         });
@@ -151,6 +154,10 @@ async function main() {
                 sources: n.episode.sources,
                 confidence: n.episode.confidence,
                 singleSource: n.episode.singleSource,
+                season: n.episode.season,
+                episodeNumber: n.episode.episodeNumber,
+                sourceTitle: null,
+                sourceDescription: null,
                 updatedAt: sql`now()`,
               },
             });
@@ -402,6 +409,12 @@ async function main() {
     console.warn(`[import] report failed: ${e.message}`);
   }
 
+  try {
+    await regrade(pg);
+  } catch (e: any) {
+    errors.push({ table: "regrade", message: e.message } as any);
+  }
+
   console.table(rowsPerTable);
   const totalAttempted = merged.length + calUnique.length;
   const failPct = (errors.length / Math.max(1, totalAttempted)) * 100;
@@ -429,10 +442,7 @@ function buildGapsMarkdown(meta: any): string {
     for (const g of meta.gaps) lines.push(`- ${typeof g === "string" ? g : JSON.stringify(g)}`);
     lines.push("");
   }
-  if (meta?.confidence_breakdown) {
-    lines.push("## Confidence");
-    for (const [k, v] of Object.entries(meta.confidence_breakdown)) lines.push(`- ${k}: ${v}`);
-  }
+  // Grade counts are rendered live from the database on /gaps (they change on regrade).
   return lines.join("\n");
 }
 

@@ -8,6 +8,7 @@ import {
   fetchNotableEpisodes,
   fetchLastImport,
   fetchRowCounts,
+  fetchShowCoverage,
 } from "../db/queries.js";
 import { parseEpisodeQuery } from "../lib/query.js";
 import { canonical, siteHost, tvSeriesJsonLd, breadcrumbsJsonLd } from "../lib/seo.js";
@@ -22,12 +23,13 @@ showRoute.get("/shows/:slug", async (c) => {
   const slug = c.req.param("slug");
   const show = await fetchShowBySlug(slug);
   if (!show) return c.notFound();
-  const [seasonsRaw, notable, recent, lastImport, counts] = await Promise.all([
+  const [seasonsRaw, notable, recent, lastImport, counts, coverage] = await Promise.all([
     fetchShowSeasons(slug),
     fetchNotableEpisodes(slug, 6),
     fetchEpisodePage(parseEpisodeQuery({ show: slug, sort: "date-desc" })),
     fetchLastImport(),
     fetchRowCounts(),
+    fetchShowCoverage(),
   ]);
   const seasons = (seasonsRaw as any[]).map((r) => ({
     season: Number(r.season),
@@ -37,7 +39,9 @@ showRoute.get("/shows/:slug", async (c) => {
   }));
 
   const totalEps = recent.total;
-  const docPct = show.totalEpisodes ? Math.round(((show.documented ?? 0) / show.totalEpisodes) * 100) : 100;
+  const cov = coverage.get(slug) ?? { titled: totalEps, placeholders: 0 };
+  const known = show.totalEpisodes ?? cov.titled;
+  const docPct = known ? Math.min(100, Math.round((cov.titled / known) * 100)) : 100;
 
   const url = canonical(`/shows/${slug}`);
   const seriesLd = tvSeriesJsonLd({
@@ -65,7 +69,7 @@ showRoute.get("/shows/:slug", async (c) => {
         type: "video.tv_show",
       }}
       jsonLd={[seriesLd, crumbs]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page page--wide" style="padding-top:var(--space-4);">
         <header class="show-hero">
@@ -73,17 +77,21 @@ showRoute.get("/shows/:slug", async (c) => {
           <h1>{show.name}</h1>
           {show.gapNote && <p class="lede">{show.gapNote}</p>}
           <p class="caption" style="margin-top:var(--space-2);">
-            {totalEps.toLocaleString()} episodes documented
-            {show.totalEpisodes && (
-              <>
-                {" "}of {show.totalEpisodes.toLocaleString()} ·{" "}
-                <span class="completeness-bar" aria-label={`${docPct}% complete`}>
-                  <span class="fill" style={`width:${docPct}%;`}></span>
-                </span>{" "}
-                {docPct}%
-              </>
-            )}
+            {cov.titled.toLocaleString()} titled episodes of {known.toLocaleString()} known broadcasts ·{" "}
+            <span class="completeness-bar" role="img" aria-label={`${docPct}% of known broadcasts have a title on record`}>
+              <span class="fill" style={`width:${docPct}%;`}></span>
+            </span>{" "}
+            {docPct}%
           </p>
+          {cov.placeholders > 0 && (
+            <p class="caption">
+              Another {cov.placeholders.toLocaleString()} entries are placed by the season calendar, with dates inferred and content unknown
+              {cov.titled + cov.placeholders > known
+                ? `; together they overrun the known total by ${cov.titled + cov.placeholders - known}, so some inferred dates are wrong`
+                : ""}
+              .
+            </p>
+          )}
         </header>
 
         {seasons.length > 0 && (
@@ -130,6 +138,7 @@ showRoute.get("/shows/:slug", async (c) => {
                     airDate: e.air_date,
                     airYear: e.air_year,
                     airPrecision: e.air_precision,
+                    inferred: !!(e.is_placeholder ?? e.isPlaceholder),
                     photoUrl: e.photo_url ?? null,
                   }}
                 />
@@ -151,6 +160,7 @@ showRoute.get("/shows/:slug", async (c) => {
                   airDate: e.air_date ?? e.airDate,
                   airYear: e.air_year ?? e.airYear,
                   airPrecision: e.air_precision ?? e.airPrecision,
+                  inferred: !!(e.is_placeholder ?? e.isPlaceholder),
                   photoUrl: e.photo_url ?? e.photoUrl ?? null,
                 }}
               />

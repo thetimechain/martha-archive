@@ -5,6 +5,7 @@ import { fetchLastImport, fetchRowCounts, fetchConnections } from "../db/queries
 import { canonical, breadcrumbsJsonLd } from "../lib/seo.js";
 import { wikiLinksFor } from "../lib/wiki-links.js";
 import { allCoords } from "../lib/places-geo.js";
+import { env } from "../lib/env.js";
 import { safeJsonForScriptTag } from "../lib/safe-json.js";
 
 export const placesRoute = new Hono();
@@ -97,7 +98,7 @@ placesRoute.get("/places", async (c) => {
       description="Every farm, bakery, museum, gallery, garden, and location featured on Martha Stewart Living. From Murray McMurray Hatchery to Balthazar Bakery to Peckerwood Garden."
       canonical={canonical("/places")}
       jsonLd={[breadcrumbsJsonLd([{ name: "Archive", url: canonical("/") }, { name: "Places", url: canonical("/places") }])]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page" style="padding-top:var(--space-5);padding-bottom:var(--space-8);">
         <header style="border-bottom:var(--hairline-bold);padding-bottom:var(--space-4);margin-bottom:var(--space-6);">
@@ -133,9 +134,9 @@ placesRoute.get("/places", async (c) => {
                   <a href={`/places/${p.slug}`} style="text-decoration:none;color:inherit;display:block;padding:var(--space-2) 0;border-bottom:var(--hairline-thin);">
                     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
                       <span style="font-family:var(--font-body);font-size:1.05rem;color:var(--body-text);">{p.name}</span>
-                      <span style="font-family:var(--font-display);font-size:1.2rem;color:var(--bedford-gray);">{p.mentions}</span>
+                      <span style="font-family:var(--font-display);font-size:1.2rem;color: var(--text-secondary);">{p.mentions}</span>
                     </div>
-                    <p class="caption" style="margin-top:4px;color:var(--bedford-gray);font-size:0.75rem;">
+                    <p class="caption" style="margin-top:4px;color: var(--text-secondary);font-size:0.75rem;">
                       {KIND_LABEL[p.kind] ?? p.kind}
                     </p>
                     {p.role && (
@@ -162,12 +163,12 @@ placesRoute.get("/places", async (c) => {
           </nav>
           {letters.map((l) => (
             <section id={`letter-${l}`} style="margin-bottom:var(--space-3);">
-              <p style="font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--bedford-gray);margin-bottom:var(--space-1);">{l}</p>
+              <p style="font-family:var(--font-display);font-size:2rem;line-height:1;color: var(--text-secondary);margin-bottom:var(--space-1);">{l}</p>
               <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--space-1) var(--space-4);">
                 {(alpha.get(l) ?? []).map((p) => (
                   <a href={`/places/${p.slug}`} style="text-decoration:none;color:inherit;padding:2px 0;border-bottom:var(--hairline-thin);display:flex;justify-content:space-between;gap:var(--space-2);">
                     <span>{p.name}</span>
-                    <span style="color:var(--bedford-gray);font-size:0.75rem;">{KIND_LABEL[p.kind] ?? p.kind}</span>
+                    <span style="color: var(--text-secondary);font-size:0.75rem;">{KIND_LABEL[p.kind] ?? p.kind}</span>
                   </a>
                 ))}
               </div>
@@ -175,7 +176,7 @@ placesRoute.get("/places", async (c) => {
           ))}
         </section>
 
-        <p class="caption" style="margin-top:var(--space-7);color:var(--bedford-gray);max-width:var(--measure-prose);">
+        <p class="caption" style="margin-top:var(--space-7);color: var(--text-secondary);max-width:var(--measure-prose);">
           Field-trip subjects are extracted from MSL TV segment descriptions on marthastewart.tv.
           Curated entries include researched context (founding, location, link to Martha); discovered
           entries show only the segment they appeared in.
@@ -187,8 +188,8 @@ placesRoute.get("/places", async (c) => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /places/map — illustrated atlas of every researched Martha-orbit place.
-// Hand-curated coords in data/places-geo.json. Tiles via CARTO Positron with
-// a sepia/parchment CSS filter applied client-side.
+// Hand-curated coords in data/places-geo.json. Tiles from MAP_TILE_URL
+// (OpenStreetMap by default) with a sepia/parchment CSS filter applied client-side.
 // ─────────────────────────────────────────────────────────────────────────────
 placesRoute.get("/places/map", async (c) => {
   // Force every visitor to the latest HTML — Safari was caching the older
@@ -233,7 +234,7 @@ placesRoute.get("/places/map", async (c) => {
       bare
       head={
         <>
-          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+          <link rel="stylesheet" href="/static/vendor/leaflet/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" />
           <link rel="stylesheet" href="/static/styles/places-map.css" />
         </>
       }
@@ -249,7 +250,7 @@ placesRoute.get("/places/map", async (c) => {
           <span class="atlas-bar__count">{mapPoints.length}</span>
         </header>
 
-        <div id="atlas-map" role="region" aria-label="Atlas of Martha-orbit places"></div>
+        <div id="atlas-map" data-tile-url={env.MAP_TILE_URL} data-tile-attribution={env.MAP_TILE_ATTRIBUTION} data-tile-max-zoom={String(env.MAP_TILE_MAX_ZOOM)} role="region" aria-label="Atlas of Martha-orbit places"></div>
 
         <nav class="atlas-chips" aria-label="Filter by kind">
           <button type="button" class="atlas-chip atlas-chip--all is-active" data-kind="all">All</button>
@@ -291,14 +292,14 @@ placesRoute.get("/places/map", async (c) => {
             </svg>
             <span>Home</span>
           </a>
-          <a class="atlas-tabbar__item" href="/m/guests" aria-label="Guest index">
+          <a class="atlas-tabbar__item" href="/m/guests">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               <circle cx="11" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/>
               <path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
             <span>Guests</span>
           </a>
-          <a class="atlas-tabbar__item is-active" href="/places/map" aria-label="Atlas — where Martha went" aria-current="page">
+          <a class="atlas-tabbar__item is-active" href="/places/map" aria-current="page">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
               <path d="M11 2.5c-3 0-5.5 2.4-5.5 5.5 0 4.2 5.5 11.5 5.5 11.5s5.5-7.3 5.5-11.5C16.5 4.9 14 2.5 11 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
               <circle cx="11" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>
@@ -327,7 +328,7 @@ placesRoute.get("/places/map", async (c) => {
         </nav>
 
         <script id="atlas-data" type="application/json" dangerouslySetInnerHTML={{ __html: safeJsonForScriptTag(mapPoints) }}></script>
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="/static/vendor/leaflet/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="></script>
         <script src="/static/scripts/places-map.js" defer></script>
       </div>
     </Layout>,
@@ -380,14 +381,14 @@ placesRoute.get("/places/:slug", async (c) => {
           <a href="/places" style="color:var(--body-text);">Places</a>
         </p>
         <h1 class="display" style="margin-bottom:var(--space-2);">{place.name}</h1>
-        <p class="caption" style="color:var(--bedford-gray);margin-bottom:var(--space-3);">
+        <p class="caption" style="color: var(--text-secondary);margin-bottom:var(--space-3);">
           {KIND_LABEL[place.kind] ?? place.kind} · {place.mentions} appearance{place.mentions === 1 ? "" : "s"}
         </p>
         {place.role && (
           <p class="lede" style="max-width:var(--measure-prose);margin-bottom:var(--space-5);">{place.role}</p>
         )}
         {wikiLinks.length > 0 && (
-          <p class="caption" style="font-style:italic;color:var(--bedford-gray);max-width:var(--measure-prose);margin-top:calc(-1 * var(--space-3));margin-bottom:var(--space-5);">
+          <p class="caption" style="font-style:italic;color: var(--text-secondary);max-width:var(--measure-prose);margin-top:calc(-1 * var(--space-3));margin-bottom:var(--space-5);">
             Main article on the research wiki:{" "}
             {wikiLinks.map((l, i) => (
               <>
@@ -409,9 +410,9 @@ placesRoute.get("/places/:slug", async (c) => {
                    style="text-decoration:none;color:inherit;display:block;padding:var(--space-1) 0;border-bottom:var(--hairline-thin);">
                   <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-2);">
                     <span style="font-family:var(--font-body);">{c.name}</span>
-                    <span style="font-family:var(--font-display);color:var(--bedford-gray);font-size:1.05rem;">{c.shared}</span>
+                    <span style="font-family:var(--font-display);color: var(--text-secondary);font-size:1.05rem;">{c.shared}</span>
                   </div>
-                  <p class="caption" style="margin-top:2px;color:var(--bedford-gray);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;">
+                  <p class="caption" style="margin-top:2px;color: var(--text-secondary);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;">
                     {c.entity_type === "person" ? c.kind : `${c.kind} · place`}
                   </p>
                 </a>
@@ -422,7 +423,7 @@ placesRoute.get("/places/:slug", async (c) => {
 
         <p class="smallcap-eyebrow" style="margin-bottom:var(--space-3);">Featured in</p>
         {eps.length === 0 && (
-          <p class="caption" style="color:var(--bedford-gray);font-style:italic;max-width:var(--measure-prose);">
+          <p class="caption" style="color: var(--text-secondary);font-style:italic;max-width:var(--measure-prose);">
             Documented as a Martha-orbit location in the research notes above; matching it to a specific
             MSL TV episode is open work. The vhx segment descriptions don't name it directly.
           </p>
@@ -438,11 +439,11 @@ placesRoute.get("/places/:slug", async (c) => {
                 <div style="aspect-ratio:16/9;background:var(--eggshell);" aria-hidden="true" />
               )}
               <p style="margin-top:var(--space-1);font-family:var(--font-body);">{e.title}</p>
-              <p class="caption" style="color:var(--bedford-gray);font-size:var(--size-caption);">
+              <p class="caption" style="color: var(--text-secondary);font-size:var(--size-caption);">
                 Season {e.season ?? "—"} · {e.air_year ?? "—"}
               </p>
               {e.context && (
-                <p class="caption" style="font-style:italic;color:var(--bedford-gray);font-size:0.75rem;margin-top:2px;">
+                <p class="caption" style="font-style:italic;color: var(--text-secondary);font-size:0.75rem;margin-top:2px;">
                   {e.context.length > 90 ? e.context.slice(0, 90) + "…" : e.context}
                 </p>
               )}

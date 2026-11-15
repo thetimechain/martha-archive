@@ -5,6 +5,7 @@ import { formatDate } from "../views/components/EpisodeCard.js";
 import { copy } from "../copy.js";
 import { canonical, siteHost, tvEpisodeJsonLd, breadcrumbsJsonLd } from "../lib/seo.js";
 import { decorateShorthandSafe } from "../lib/shorthand.js";
+import { GENERATED_TEXT, GRADE_LABEL, GRADE_TEXT, YEAR_ONLY_TEXT, gradeOf, segments as segmentsOf, type Grade } from "../lib/honesty.js";
 
 export const episodeDetailRoute = new Hono();
 
@@ -20,19 +21,23 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
   const id = c.req.param("id");
   const detail = await fetchEpisodeDetail(id);
   if (!detail) return c.notFound();
-  const { ep, show, guests, recipes, topics, themes, tags, segments, entities, prev, next } = detail;
+  const { ep, show, guests, recipes, topics, themes, tags, segments, entities, prev, next, disputedWith } = detail;
+  const grade: Grade = ep.grade ?? gradeOf({ confidence: ep.confidence, singleSource: ep.singleSource, isPlaceholder: !!ep.isPlaceholder });
+  const numbered = ep.season !== null && ep.episodeNumber !== null && !ep.isPlaceholder;
+  const yearOnly = ep.airPrecision === "year";
+  const listed = ep.synopsisGenerated ? segmentsOf(ep.sourceTitle ?? ep.title) : [];
   const [lastImport, counts] = await Promise.all([fetchLastImport(), fetchRowCounts()]);
   const date = formatDate(ep.airDate as any, ep.airYear, ep.airPrecision);
-  const ogTitle = `${show?.name ?? "Episode"}${ep.season !== null && ep.episodeNumber !== null ? `, S${ep.season}E${ep.episodeNumber}` : ""} — "${ep.title}"`;
+  const ogTitle = `${show?.name ?? "Episode"}${numbered ? `, S${ep.season}E${ep.episodeNumber}` : ""} — "${ep.title}"`;
   const url = canonical(`/episodes/${ep.id}`);
   const epLd = tvEpisodeJsonLd({
     id: ep.id,
     title: ep.title,
     description: truncate(ep.description, 500),
-    air_date: (ep as any).airDate as any,
+    air_date: ep.isPlaceholder || yearOnly ? null : ((ep as any).airDate as any),
     air_year: ep.airYear ?? null,
     season: ep.season ?? null,
-    episode_number: ep.episodeNumber ?? null,
+    episode_number: numbered ? ep.episodeNumber : null,
     runtime_minutes: ep.runtimeMinutes ?? null,
     photo_url: (ep as any).photo_url ?? null,
     show_name: show?.name ?? null,
@@ -58,7 +63,7 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
         image: (ep as any).photo_url ?? undefined,
       }}
       jsonLd={[epLd, crumbs]}
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <article class="episode-detail page page--prose">
         {(ep as any).photo_url && (
@@ -79,15 +84,32 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
         )}
         <p class="eyebrow">
           {show ? <a href={`/shows/${show.slug}`} style="text-decoration:none;">{show.name}</a> : "Episode"}
-          {ep.season !== null && ep.episodeNumber !== null && (
+          {numbered && (
             <>
               {" "}· Season {ep.season}, Episode {ep.episodeNumber}
             </>
           )}
+          {ep.isPlaceholder && ep.season !== null && <> · Season {ep.season}</>}
         </p>
         <h1 class="serif-title">{ep.title}</h1>
-        <p class="air-date italic">{date}</p>
+        <p class="air-date italic">{date}{ep.isPlaceholder ? ", inferred" : ""}</p>
+        {yearOnly && <p class="caption">{YEAR_ONLY_TEXT}</p>}
+        {ep.isPlaceholder && (
+          <p class="notice">
+            {GRADE_TEXT.inferred} <a href="/gaps">Read what is missing and why.</a>
+          </p>
+        )}
         {ep.description && <p class="description" dangerouslySetInnerHTML={decorateShorthandSafe(ep.description)}></p>}
+        {listed.length > 0 && (
+          <>
+            <p class="caption">{GENERATED_TEXT}</p>
+            <ol class="segment-list">
+              {listed.map((s) => (
+                <li>{s}</li>
+              ))}
+            </ol>
+          </>
+        )}
         {(ep as any).mst_canonical_url && (
           <p class="caption" style="margin-top:var(--space-2);">
             {((ep as any).provenance === "marthastewart-tv") ? (
@@ -191,7 +213,7 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
             <p>
               {tags.map((t, i) => (
                 <>
-                  <a href={`/episodes?tag=${encodeURIComponent(t.tag)}`} style="text-decoration:none;font-style:italic;color:var(--bedford-gray);">
+                  <a href={`/episodes?tag=${encodeURIComponent(t.tag)}`} style="text-decoration:none;font-style:italic;color: var(--text-secondary);">
                     {t.tag}
                   </a>
                   {i < tags.length - 1 ? "  ·  " : ""}
@@ -230,10 +252,24 @@ episodeDetailRoute.get("/episodes/:id", async (c) => {
           </section>
         )}
 
-        <p style="margin-top:var(--space-3);">
-          <span class={`confidence-badge confidence-badge--${ep.confidence}`}>{ep.confidence}</span>
-          {ep.singleSource && <span class="caption" style="margin-left:var(--space-2);">single source</span>}
-        </p>
+        <section class="record" aria-labelledby="record-title">
+          <h2 id="record-title">The record</h2>
+          <p>
+            <span class={`confidence-badge confidence-badge--${grade}`}>{GRADE_LABEL[grade]}</span> {GRADE_TEXT[grade]}
+          </p>
+          {disputedWith.length > 0 && (
+            <p class="caption">
+              Another record also claims Season {ep.season}, Episode {ep.episodeNumber}:{" "}
+              {disputedWith.map((d: { id: string; title: string }, i: number) => (
+                <>
+                  {i > 0 && ", "}
+                  <a href={`/episodes/${d.id}`}>{d.title}</a>
+                </>
+              ))}
+              . The sources disagree, and both are kept.
+            </p>
+          )}
+        </section>
 
         <nav class="prev-next" aria-label="Episode navigation">
           {prev ? (

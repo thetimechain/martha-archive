@@ -1,4 +1,4 @@
-# Martha Stewart TV Archive
+# Martha: An Archive
 
 An unofficial, fan-made archive of Martha Stewart's television work — **2,842
 episodes across 12 shows (1986–2024)**, rendered in a 1990s *Martha Stewart
@@ -25,6 +25,18 @@ appeared on the shows and the **places** Martha visited.
 - **Places** (`/places`, `/places/map`) — 340+ farms, bakeries, museums,
   gardens, restaurants, and field-trip destinations, browsable and plotted on
   a vintage-atlas map.
+- **Honest records** — every episode carries one grade, set by
+  `src/lib/honesty.ts` and applied over the whole table by
+  `pnpm data:regrade` (also run at the end of `pnpm data:import`):
+
+  | Grade | Meaning |
+  |---|---|
+  | *Confirmed* | Two or more independent sources |
+  | *One listing* | One source |
+  | *Partial* | Limited sources |
+  | *Date inferred* | Weekday broadcasts of The Martha Stewart Show placed by the season calendar; their title and content are unknown |
+
+  Placeholders show as "Untitled broadcast, <date>". Year-only dates show as the year. Template synopses are withheld and the segment list is shown instead. Originals are kept in `source_title` / `source_description`.
 - **Entity pipeline** — `scripts/mst-extract-entities.mjs` builds the
   people/places dataset from curated allowlists, researched manual credits,
   and an LLM-verified extraction over episode segment rundowns
@@ -106,4 +118,47 @@ submit allowlist edits by PR without re-running — a maintainer regenerates
 fly deploy --remote-only --app martha
 ```
 
-CI (`.github/workflows/ci.yml`): typecheck + unit tests + build on push/PR.
+CI (`.github/workflows/ci.yml`) runs two jobs on push and PR:
+- **Required:** typecheck, unit tests, size budgets and build.
+- **Non-blocking:** a browser job with Postgres that runs the op scripts and axe.
+
+### After deploying this branch's data changes
+
+Against Neon, once:
+1. `pnpm db:migrate` applies 0004: grade and honesty columns. The unique index on (show, season, episode) becomes a plain index.
+2. `pnpm data:regrade` grades every row, including the crawl rows.
+
+3. Verify the live site with the same checks used locally. Expect 8 of 8 op scripts and 0 axe violations:
+
+   ```bash
+   BASE_URL=https://martha.fly.dev pnpm test:ops
+   BASE_URL=https://martha.fly.dev pnpm test:a11y
+   ```
+
+   Before this branch was deployed (November 14, 2026), the live site failed 7 of the 8 op scripts. Each failure was a defect this branch fixes: "101%", missing OSM attribution, the trademark wordmark, unpaged mobile lists, the missing calendar note, the sort control under the new CSP, and titled counts. Only `not-found` passed.
+
+No map key is needed: tiles default to OpenStreetMap. Set `MAP_TILE_URL` (plus attribution and max zoom) to use another provider; the CSP follows it.
+
+## Tests
+
+```bash
+pnpm test            # unit (vitest)
+pnpm test:budgets    # gzip budgets for static assets (budgets.json)
+pnpm dev &           # then, against http://127.0.0.1:8080 (or BASE_URL):
+pnpm test:ops        # tests/ops/*.ops: scripts of driver operations
+pnpm test:a11y       # axe, WCAG 2.1 AA, 16 views
+pnpm driver "goto /episodes" "type css:#q pie" state tree   # look around like the tests do
+```
+
+`tools/driver.ts` exposes a small fixed set of operations (after expo/exact), listed by `pnpm driver help`. A new behavior gets a new `tests/ops/<name>.ops`, one operation per line. Put `# @nojs` or `# @mobile` on its own line to change the browser.
+
+## Security
+
+Every response carries:
+- a Content-Security-Policy with no inline scripts (`src/middleware/security.ts`)
+- `nosniff`
+- `Referrer-Policy`
+- `Permissions-Policy`
+- HSTS in production
+
+Event handlers go in script files; the mobile app uses `data-action` attributes with one delegated listener. Leaflet is vendored in `public/vendor/leaflet`.

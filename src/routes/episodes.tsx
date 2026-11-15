@@ -56,9 +56,9 @@ episodesRoute.get("/episodes", async (c) => {
 
   return c.html(
     <Layout
-      title="Episodes — Martha Stewart Living: An Archive"
+      title="Episodes — Martha: An Archive"
       description="The complete episode archive across all Martha Stewart programs."
-      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes ?? 0 }}
+      footerMeta={{ lastImport: lastImport?.finishedAt?.toISOString(), episodeCount: counts.episodes_titled ?? 0 }}
     >
       <div class="page page--wide" style="padding-top:var(--space-4);">
         <header class="results-header">
@@ -74,13 +74,16 @@ episodesRoute.get("/episodes", async (c) => {
                 Array.isArray(v) ? v.map((vv) => <input type="hidden" name={k} value={vv} />) : <input type="hidden" name={k} value={String(v)} />,
               )}
               <label for="sort">{copy.sortBy}</label>
-              <select name="sort" id="sort" onchange="this.form.submit()">
+              <select name="sort" id="sort" data-autosubmit>
                 {SORTS.map((s) => (
                   <option value={s} selected={params.sort === s}>
                     {labelForSort(s)}
                   </option>
                 ))}
               </select>
+              <noscript>
+                <button type="submit">{copy.sortBy}</button>
+              </noscript>
               <span class="results-count">
                 {result.total.toLocaleString()} episodes
               </span>
@@ -112,6 +115,7 @@ episodesRoute.get("/episodes", async (c) => {
                         airDate: e.air_date ?? e.airDate ?? null,
                         airYear: e.air_year ?? e.airYear ?? null,
                         airPrecision: e.air_precision ?? e.airPrecision ?? null,
+                        inferred: !!(e.is_placeholder ?? e.isPlaceholder),
                         photoUrl: e.photo_url ?? e.photoUrl ?? null,
                       }}
                     />

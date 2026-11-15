@@ -9,6 +9,7 @@ import type {
   MssCalendarEntryInsert,
   ShowInsert,
 } from "../db/schema.js";
+import { isPersonFiledAsRecipe, subjectKey } from "../lib/honesty.js";
 
 export type RawEpisode = {
   id?: string;
@@ -187,6 +188,11 @@ export function normalizeEpisode(raw: RawEpisode): NormalizedEpisode {
   const recipes: NormalizedEpisode["recipes"] = [];
   let rPos = 0;
   for (const r of raw.recipes ?? []) {
+    if (isPersonFiledAsRecipe(r)) {
+      guests.push({ episodeId: id, name: r.name.trim(), role: r.context.trim() || null, position: gPos++ });
+      warnings.push(`moved "${r.name}" from recipes to guests`);
+      continue;
+    }
     const n = normalizeRecipe(r);
     if (n) recipes.push({ episodeId: id, name: n.name, note: n.note, position: rPos++ });
   }
@@ -194,8 +200,9 @@ export function normalizeEpisode(raw: RawEpisode): NormalizedEpisode {
   const dedup = (arr: unknown[] | undefined): string[] =>
     Array.from(new Set((arr ?? []).map((x) => (typeof x === "string" ? x.trim() : "")).filter(Boolean)));
 
-  const topics = dedup(raw.topics).map((topic) => ({ episodeId: id, topic }));
-  const themes = dedup(raw.themes).map((theme) => ({ episodeId: id, theme }));
+  const merged = (arr: unknown[] | undefined) => Array.from(new Set(dedup(arr).map(subjectKey)));
+  const topics = merged(raw.topics).map((topic) => ({ episodeId: id, topic }));
+  const themes = merged(raw.themes).map((theme) => ({ episodeId: id, theme }));
   const tags = dedup(raw.tags).map((tag) => ({ episodeId: id, tag }));
 
   return { episode, guests, recipes, topics, themes, tags, warnings };

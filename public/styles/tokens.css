@@ -42,6 +42,14 @@
   --drop-cap-sage: var(--pale-sage);
   --accent-sage: var(--hosta);
 
+  /* ─── Text colors that pass WCAG AA on cream (the palette above is for
+         fills and rules; several pastels fail as text) ─── */
+  --text-secondary:  #5A5248; /* 6.75:1 on page-cream */
+  --link:            #3F5562; /* 6.87:1 */
+  --hosta-text:      #4A5A3E; /* 6.6:1 */
+  --russet-text:     #7A4A2E; /* 6.9:1 */
+  --terracotta-text: #A8412F; /* 5.3:1 on cream, 5.0:1 on buttermilk */
+
   /* ─── Type families ─── */
   --font-display: 'Cormorant Garamond', 'Bodoni Moda', 'Bodoni 72', Didot, 'Times New Roman', serif;
   --font-body:    'Libre Caslon Text', 'EB Garamond', 'Adobe Caslon Pro', Garamond, Georgia, serif;
